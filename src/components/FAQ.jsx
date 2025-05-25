@@ -253,7 +253,7 @@ const FAQ = ({ onNavigateToCalculator }) => {
           <Row>
             {/* Categories Sidebar */}
             <Col lg={3} className="mb-4 mb-lg-0">
-              <Card className="border-0 shadow-sm sticky-top" style={{ top: '2rem' }}>
+              <Card className="border-0 shadow-sm faq-categories-card">
                 <Card.Header className="bg-primary text-white">
                   <h5 className="mb-0 fw-bold">Categories</h5>
                 </Card.Header>
@@ -262,7 +262,7 @@ const FAQ = ({ onNavigateToCalculator }) => {
                     <Button
                       key={category.id}
                       variant={selectedCategory === category.id ? 'primary' : 'light'}
-                      className="w-100 text-start border-0 rounded-0 py-3 px-4"
+                      className="w-100 text-start border-0 rounded-0 py-3 px-4 faq-category-btn"
                       onClick={() => setSelectedCategory(category.id)}
                     >
                       <div className="d-flex align-items-center justify-content-between">

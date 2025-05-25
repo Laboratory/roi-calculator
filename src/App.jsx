@@ -14,10 +14,11 @@ function App() {
   const [calculationResults, setCalculationResults] = useState(null);
   const [activeTab, setActiveTab] = useState('input');
   const [currentPage, setCurrentPage] = useState('calculator');
+  const [isTabChanging, setIsTabChanging] = useState(false);
   
   const handleCalculate = (results) => {
     setCalculationResults(results);
-    setActiveTab('results');
+    handleTabChange('results');
   };
 
   const handleNavigation = (page) => {
@@ -32,11 +33,24 @@ function App() {
     setActiveTab('input');
   };
 
+  const handleTabChange = (newTab) => {
+    if (newTab === activeTab) return;
+    
+    setIsTabChanging(true);
+    
+    // Add a small delay to allow for smooth transition
+    setTimeout(() => {
+      setActiveTab(newTab);
+      setIsTabChanging(false);
+    }, 150);
+  };
+
   return (
     <div className={`app-container ${darkMode ? 'dark-mode' : 'light-mode'}`}>
       <header className="app-header">
         <div className="brand">
-          <span className="brand-highlight">Token</span>Calculator
+          <img src="/logo.svg" alt="TokenCalculator" className="brand-logo" />
+          <span className="brand-title">TokenCalculator</span>
         </div>
         <div className="nav-links">
           <a 
@@ -78,7 +92,7 @@ function App() {
           </div>
           
           <div className="calculator-card">
-            <Nav className="calculator-tabs" variant="tabs" activeKey={activeTab} onSelect={(k) => setActiveTab(k)}>
+            <Nav className="calculator-tabs" variant="tabs" activeKey={activeTab} onSelect={handleTabChange}>
               <Nav.Item>
                 <Nav.Link eventKey="input">Input Parameters</Nav.Link>
               </Nav.Item>
@@ -93,22 +107,32 @@ function App() {
               </Nav.Item>
             </Nav>
             
-            <div className="tab-content">
-              {activeTab === 'input' && (
-                <CalculatorForm onCalculate={handleCalculate} />
-              )}
-              
-              {activeTab === 'results' && calculationResults && (
-                <CalculatorResults results={calculationResults} />
-              )}
-              
-              {activeTab === 'monthly' && calculationResults && (
-                <MonthlyROIBreakdown results={calculationResults} />
-              )}
-              
-              {activeTab === 'unlock' && calculationResults && (
-                <UnlockSchedule results={calculationResults} />
-              )}
+            <div className="tab-content-wrapper">
+              <div className="tab-content">
+                <div className={`tab-pane ${activeTab === 'input' ? 'active fade-in' : ''} ${isTabChanging ? 'fade-out' : ''}`}>
+                  {activeTab === 'input' && (
+                    <CalculatorForm onCalculate={handleCalculate} />
+                  )}
+                </div>
+                
+                <div className={`tab-pane ${activeTab === 'results' ? 'active fade-in' : ''} ${isTabChanging ? 'fade-out' : ''}`}>
+                  {activeTab === 'results' && calculationResults && (
+                    <CalculatorResults results={calculationResults} />
+                  )}
+                </div>
+                
+                <div className={`tab-pane ${activeTab === 'monthly' ? 'active fade-in' : ''} ${isTabChanging ? 'fade-out' : ''}`}>
+                  {activeTab === 'monthly' && calculationResults && (
+                    <MonthlyROIBreakdown results={calculationResults} />
+                  )}
+                </div>
+                
+                <div className={`tab-pane ${activeTab === 'unlock' ? 'active fade-in' : ''} ${isTabChanging ? 'fade-out' : ''}`}>
+                  {activeTab === 'unlock' && calculationResults && (
+                    <UnlockSchedule results={calculationResults} />
+                  )}
+                </div>
+              </div>
             </div>
           </div>
         </Container>
@@ -123,35 +147,36 @@ function App() {
       )}
       
       <footer className="app-footer">
-        <div className="footer-brand">
-          Token Unlock & ROI Calculator
-        </div>
-        <div className="footer-links">
-          <h5>Links</h5>
-          <a 
-            href="#" 
-            onClick={(e) => { e.preventDefault(); handleNavigation('calculator'); }}
-          >
-            Home
-          </a>
-          <a 
-            href="#" 
-            onClick={(e) => { e.preventDefault(); handleNavigation('about'); }}
-          >
-            About
-          </a>
-          <a 
-            href="#" 
-            onClick={(e) => { e.preventDefault(); handleNavigation('faq'); }}
-          >
-            FAQ
-          </a>
-        </div>
-        <div className="footer-connect">
-          <h5>Connect</h5>
-          <a href="#">Twitter</a>
-          <a href="#">GitHub</a>
-          <a href="#">Contact</a>
+        <div className="footer-content">
+          <div className="footer-brand">
+            <span className="footer-logo">TokenCalculator</span>
+            <span className="footer-tagline">Professional ROI Analysis</span>
+          </div>
+          <div className="footer-links">
+            <a 
+              href="#" 
+              onClick={(e) => { e.preventDefault(); handleNavigation('calculator'); }}
+            >
+              Calculator
+            </a>
+            <a 
+              href="#" 
+              onClick={(e) => { e.preventDefault(); handleNavigation('about'); }}
+            >
+              About
+            </a>
+            <a 
+              href="#" 
+              onClick={(e) => { e.preventDefault(); handleNavigation('faq'); }}
+            >
+              FAQ
+            </a>
+          </div>
+          <div className="footer-connect">
+            <a href="#">Twitter</a>
+            <a href="#">GitHub</a>
+            <a href="#">Contact</a>
+          </div>
         </div>
       </footer>
     </div>

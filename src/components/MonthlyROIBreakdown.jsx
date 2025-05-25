@@ -141,18 +141,18 @@ const MonthlyROIBreakdown = ({ results }) => {
         {/* Total Revenue and ROI Summary */}
         <div className="total-summary mt-4">
           <h4 className="subsection-title">Total Summary</h4>
-          <div className="summary-cards">
-            <Row>
-              {selectedScenarios.map(scenario => {
-                const totalRevenue = getTotalRevenue(scenario);
-                const finalROI = results.totalROI[scenario];
-                const roiClass = finalROI >= 0 ? 'positive-roi' : 'negative-roi';
-                
-                return (
-                  <Col md={4} key={scenario} className="mb-3">
-                    <div className={`summary-card ${scenario.toLowerCase()}-summary`}>
+          <Row className="summary-cards">
+            {selectedScenarios.map(scenario => {
+              const totalRevenue = getTotalRevenue(scenario);
+              const finalROI = results.totalROI[scenario];
+              const roiClass = finalROI >= 0 ? 'positive-roi' : 'negative-roi';
+              
+              return (
+                <Col md={4} key={scenario} className="mb-3 d-flex">
+                  <Card className={`summary-card ${scenario.toLowerCase()}-summary flex-fill`}>
+                    <Card.Body className="d-flex flex-column">
                       <div className="summary-title">{scenario} Case</div>
-                      <div className="summary-content">
+                      <div className="summary-content flex-grow-1">
                         <div className="summary-item">
                           <span>Total Revenue:</span>
                           <span>{formatCurrency(totalRevenue)}</span>
@@ -162,12 +162,12 @@ const MonthlyROIBreakdown = ({ results }) => {
                           <span className={roiClass}>{formatPercentage(finalROI)}</span>
                         </div>
                       </div>
-                    </div>
-                  </Col>
-                );
-              })}
-            </Row>
-          </div>
+                    </Card.Body>
+                  </Card>
+                </Col>
+              );
+            })}
+          </Row>
         </div>
         
         {/* Advanced Mode Teaser */}

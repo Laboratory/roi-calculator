@@ -1,5 +1,334 @@
 /* Add these styles to your existing CSS */
 
+/* Header Brand Title */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.brand-title {
+  color: white;
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+}
+
+/* ROI Scenarios - Equal Height Cards */
+.scenario-cards {
+  margin-bottom: 2rem;
+}
+
+.scenario-cards .col-md-4 {
+  display: flex;
+  margin-bottom: 1rem;
+}
+
+.scenario-card {
+  width: 100%;
+  min-height: 200px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.scenario-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.scenario-card .card-body {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.scenario-name {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  text-align: center;
+}
+
+.scenario-roi {
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.scenario-details {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.detail-row:last-child {
+  border-bottom: none;
+}
+
+.dark-mode .detail-row {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.detail-row span:first-child {
+  font-weight: 500;
+  color: #666;
+}
+
+.dark-mode .detail-row span:first-child {
+  color: #ccc;
+}
+
+.detail-row span:last-child {
+  font-weight: 600;
+}
+
+/* Scenario Card Colors */
+.bear-case {
+  border-left: 4px solid #ef4444;
+}
+
+.base-case {
+  border-left: 4px solid #3b82f6;
+}
+
+.bull-case {
+  border-left: 4px solid #10b981;
+}
+
+.bear-case .scenario-name {
+  color: #ef4444;
+}
+
+.base-case .scenario-name {
+  color: #3b82f6;
+}
+
+.bull-case .scenario-name {
+  color: #10b981;
+}
+
+.positive-roi {
+  color: #10b981;
+}
+
+.negative-roi {
+  color: #ef4444;
+}
+
+/* Token Information Card */
+.token-info-section {
+  margin-top: 3rem;
+}
+
+.token-info-card {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+}
+
+.dark-mode .token-info-card {
+  background-color: #2a2a2a;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.info-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.info-item:last-child {
+  border-bottom: none;
+}
+
+.dark-mode .info-item {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.info-label {
+  font-weight: 500;
+  color: #666;
+}
+
+.dark-mode .info-label {
+  color: #ccc;
+}
+
+.info-value {
+  font-weight: 600;
+}
+
+/* Monthly Breakdown Padding */
+.monthly-roi-breakdown {
+  padding-top: 1.5rem;
+}
+
+/* Total Summary Cards */
+.summary-cards .col-md-4 {
+  display: flex;
+}
+
+.summary-card {
+  width: 100%;
+  min-height: 120px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.summary-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.summary-card .card-body {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.summary-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  text-align: center;
+}
+
+.summary-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.summary-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+}
+
+.summary-item span:first-child {
+  font-weight: 500;
+  color: #666;
+}
+
+.dark-mode .summary-item span:first-child {
+  color: #ccc;
+}
+
+.summary-item span:last-child {
+  font-weight: 600;
+}
+
+/* Summary Card Colors */
+.bear-summary {
+  border-left: 4px solid #ef4444;
+}
+
+.base-summary {
+  border-left: 4px solid #3b82f6;
+}
+
+.bull-summary {
+  border-left: 4px solid #10b981;
+}
+
+.bear-summary .summary-title {
+  color: #ef4444;
+}
+
+.base-summary .summary-title {
+  color: #3b82f6;
+}
+
+.bull-summary .summary-title {
+  color: #10b981;
+}
+
+/* Footer - Single Line with 100% Width */
+.app-footer {
+  background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+  color: white;
+  padding: 1rem 0;
+  margin-top: auto;
+  width: 100%;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.footer-content {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 2rem;
+  white-space: nowrap;
+}
+
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.footer-logo {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: white;
+}
+
+.footer-tagline {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.footer-links,
+.footer-connect {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.footer-links a,
+.footer-connect a {
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+}
+
+.footer-links a:hover,
+.footer-connect a:hover {
+  color: white;
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-1px);
+}
+
+/* Dark Mode Footer */
+.dark-mode .app-footer {
+  background: linear-gradient(135deg, #1e40af, #1d4ed8);
+}
+
 /* ROI Chart Styles */
 .chart-card {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
@@ -225,8 +554,217 @@
   color: var(--background-color);
 }
 
+/* Tab Animation Styles */
+.tab-content {
+  position: relative;
+  overflow: hidden;
+}
+
+.tab-pane {
+  opacity: 0;
+  transform: translateX(20px);
+  transition: all 0.3s ease-in-out;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+}
+
+.tab-pane.active {
+  opacity: 1;
+  transform: translateX(0);
+  position: relative;
+  pointer-events: auto;
+}
+
+.tab-pane.fade-in {
+  animation: fadeInSlide 0.4s ease-out forwards;
+}
+
+.tab-pane.fade-out {
+  animation: fadeOutSlide 0.3s ease-in forwards;
+}
+
+@keyframes fadeInSlide {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeOutSlide {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+}
+
+/* Tab Navigation Animation */
+.calculator-tabs .nav-link {
+  transition: all 0.2s ease-in-out;
+  position: relative;
+  overflow: hidden;
+}
+
+.calculator-tabs .nav-link::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.5s ease-in-out;
+}
+
+.calculator-tabs .nav-link:hover::before {
+  left: 100%;
+}
+
+.calculator-tabs .nav-link.active {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dark-mode .calculator-tabs .nav-link.active {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.calculator-tabs .nav-link:not(.active):hover {
+  transform: translateY(-1px);
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.dark-mode .calculator-tabs .nav-link:not(.active):hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Loading Animation for Tab Content */
+.tab-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+}
+
+.tab-loading::after {
+  content: '';
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(0, 123, 255, 0.1);
+  border-left-color: #007bff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Smooth height transitions for dynamic content */
+.tab-content-wrapper {
+  transition: min-height 0.3s ease-in-out;
+}
+
+/* Enhanced tab content styling */
+.tab-pane > * {
+  animation: slideInContent 0.5s ease-out;
+}
+
+@keyframes slideInContent {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* FAQ Categories Sidebar Fix */
+.faq-categories-card {
+  position: relative;
+  z-index: 1;
+}
+
+.faq-category-btn {
+  transition: all 0.2s ease-in-out;
+}
+
+.faq-category-btn:hover {
+  transform: translateX(2px);
+}
+
+.faq-category-btn:focus {
+  box-shadow: none;
+  outline: none;
+}
+
+/* Ensure proper spacing for FAQ page */
+.faq-page .bg-light {
+  position: relative;
+  z-index: 0;
+}
+
+/* Fix for categories overlapping navigation */
+.faq-page section {
+  position: relative;
+  z-index: 1;
+}
+
 /* Responsive adjustments */
+@media (max-width: 992px) {
+  .footer-content {
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+    gap: 1rem;
+  }
+  
+  .footer-brand {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  
+  .footer-links,
+  .footer-connect {
+    gap: 1rem;
+  }
+}
+
 @media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+    padding: 0 1rem;
+  }
+  
+  .footer-links,
+  .footer-connect {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+  }
+  
+  .footer-links a,
+  .footer-connect a {
+    font-size: 0.85rem;
+    padding: 0.2rem 0.4rem;
+  }
+  
   .position-absolute.top-0.start-0,
   .position-absolute.bottom-0.end-0 {
     position: relative !important;
@@ -241,4 +779,44 @@
   .d-flex.gap-3 .btn {
     width: 100%;
   }
+  
+  .tab-pane {
+    transform: translateX(10px);
+  }
+  
+  .tab-pane.active {
+    transform: translateX(0);
+  }
+  
+  @keyframes fadeInSlide {
+    from {
+      opacity: 0;
+      transform: translateX(15px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  /* FAQ Categories mobile fix */
+  .faq-categories-card {
+    margin-bottom: 2rem;
+  }
+}
+
+/* Additional z-index fixes for proper layering */
+.app-header {
+  position: relative;
+  z-index: 1000;
+}
+
+.main-content {
+  position: relative;
+  z-index: 1;
+}
+
+.calculator-card {
+  position: relative;
+  z-index: 2;
 }

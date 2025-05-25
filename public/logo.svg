@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="40" viewBox="0 0 200 40" fill="none">
+  <!-- Calculator Icon Background Circle -->
+  <circle cx="20" cy="20" r="18" fill="url(#gradient)" stroke="#2563eb" stroke-width="2"/>
+  
+  <!-- Calculator Grid -->
+  <rect x="12" y="10" width="16" height="20" rx="2" fill="none" stroke="white" stroke-width="1.5"/>
+  
+  <!-- Display Screen -->
+  <rect x="14" y="12" width="12" height="3" rx="1" fill="white" opacity="0.9"/>
+  
+  <!-- Button Grid -->
+  <!-- Row 1 -->
+  <circle cx="15" cy="18" r="1" fill="white" opacity="0.8"/>
+  <circle cx="20" cy="18" r="1" fill="white" opacity="0.8"/>
+  <circle cx="25" cy="18" r="1" fill="white" opacity="0.8"/>
+  
+  <!-- Row 2 -->
+  <circle cx="15" cy="21" r="1" fill="white" opacity="0.8"/>
+  <circle cx="20" cy="21" r="1" fill="white" opacity="0.8"/>
+  <circle cx="25" cy="21" r="1" fill="white" opacity="0.8"/>
+  
+  <!-- Row 3 -->
+  <circle cx="15" cy="24" r="1" fill="white" opacity="0.8"/>
+  <circle cx="20" cy="24" r="1" fill="white" opacity="0.8"/>
+  <circle cx="25" cy="24" r="1" fill="white" opacity="0.8"/>
+  
+  <!-- Row 4 -->
+  <circle cx="15" cy="27" r="1" fill="white" opacity="0.8"/>
+  <rect x="18.5" y="26" width="5" height="2" rx="1" fill="white" opacity="0.8"/>
+  
+  <!-- Token Symbol ($ overlay) -->
+  <text x="20" y="22" text-anchor="middle" font-family="Arial, sans-serif" font-size="6" font-weight="bold" fill="#2563eb">$</text>
+  
+  
+  <!-- Gradient Definition -->
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#2563eb;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1d4ed8;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+</svg>
