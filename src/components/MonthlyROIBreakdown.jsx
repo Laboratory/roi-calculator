@@ -9,7 +9,7 @@ const MonthlyROIBreakdown = ({ results }) => {
   const [selectedScenarios, setSelectedScenarios] = useState(
     results.priceScenarios.map(s => s.name)
   );
-  
+
   const handleScenarioToggle = (scenario) => {
     if (selectedScenarios.includes(scenario)) {
       if (selectedScenarios.length > 1) { // Ensure at least one scenario is selected
@@ -19,15 +19,15 @@ const MonthlyROIBreakdown = ({ results }) => {
       setSelectedScenarios([...selectedScenarios, scenario]);
     }
   };
-  
+
   const formatMonth = (month) => {
     if (!results.tgeDate) return `Month ${month}`;
-    
+
     const date = new Date(results.tgeDate);
     date.setMonth(date.getMonth() + parseInt(month));
     return `Month ${month} (${format(date, 'MMM yyyy')})`;
   };
-  
+
   const formatPercentage = (value) => {
     return new Intl.NumberFormat('en-US', {
       style: 'percent',
@@ -35,7 +35,7 @@ const MonthlyROIBreakdown = ({ results }) => {
       maximumFractionDigits: 2
     }).format(value / 100);
   };
-  
+
   const formatCurrency = (value) => {
     return new Intl.NumberFormat('en-US', {
       style: 'currency',
@@ -44,10 +44,10 @@ const MonthlyROIBreakdown = ({ results }) => {
       maximumFractionDigits: 2
     }).format(value);
   };
-  
+
   // Get all months from the data
   const months = Object.keys(results.cumulativeROI[results.priceScenarios[0].name]).map(Number);
-  
+
   // Find break-even months for each scenario
   const breakEvenMonths = {};
   selectedScenarios.forEach(scenario => {
@@ -56,38 +56,38 @@ const MonthlyROIBreakdown = ({ results }) => {
       breakEvenMonths[scenario] = breakEvenMonth;
     }
   });
-  
+
   // Calculate total revenue for each scenario
   const getTotalRevenue = (scenario) => {
     return Object.values(results.monthlyRevenue[scenario]).reduce((sum, value) => sum + value, 0);
   };
-  
+
   const getScenarioStyle = (scenario) => {
     const colors = {
       'Bear': '#dc3545', // Bootstrap danger color
       'Base': '#0d6efd', // Bootstrap primary color
       'Bull': '#198754'  // Bootstrap success color
     };
-    
+
     return {
       borderLeft: `5px solid ${colors[scenario] || '#dee2e6'}`
     };
   };
-  
+
   return (
     <div className="monthly-roi-breakdown">
-      <div className="chart-section">
-        <h3 className="section-title">ROI Over Time</h3>
+      <div className="chart-section" style={{ marginBottom: '100px', height: '600px', position: 'relative' }}>
+        <h3 className={`section-title ${darkMode ? "text-white" : ""}`}>ROI Over Time</h3>
         <Alert variant="info" className="chart-explanation-alert mb-3">
           This chart shows your cumulative ROI over time for each selected price scenario. The break-even point (0% ROI) is where you recover your initial investment.
         </Alert>
-        <Card className="chart-card mb-4">
+        <Card className="chart-card mb-5">
           <Card.Body>
             <div className="scenario-toggles mb-3">
               <Row>
                 {results.priceScenarios.map(scenario => (
                   <Col key={scenario.name} xs={4} md={3} lg={2}>
-                    <Form.Check 
+                    <Form.Check
                       type="checkbox"
                       id={`scenario-${scenario.name}`}
                       label={`${scenario.name} Case`}
@@ -99,10 +99,10 @@ const MonthlyROIBreakdown = ({ results }) => {
                 ))}
               </Row>
             </div>
-            
-            <div className="chart-container" style={{ height: '400px' }}>
-              <ROIChart 
-                data={results.cumulativeROI} 
+
+            <div className="chart-container" style={{ height: '400px', position: 'relative' }}>
+              <ROIChart
+                data={results.cumulativeROI}
                 scenarios={selectedScenarios}
                 tgeDate={results.tgeDate}
               />
@@ -110,32 +110,32 @@ const MonthlyROIBreakdown = ({ results }) => {
           </Card.Body>
         </Card>
       </div>
-      
+
       <div className="table-section">
-        <h3 className="section-title">Monthly Breakdown</h3>
+        <h3 className={`section-title ${darkMode ? "text-white" : ""}`} style={{ marginTop: '50px' }}>Monthly Breakdown</h3>
         <div className="table-responsive">
           <Table striped bordered hover className="monthly-breakdown-table">
             <thead>
               <tr>
-                <th>Month</th>
-                <th>Tokens Unlocked</th>
+                <th className={darkMode ? "text-white" : ""}>Month</th>
+                <th className={darkMode ? "text-white" : ""}>Tokens Unlocked</th>
                 {selectedScenarios.map(scenario => (
                   <React.Fragment key={scenario}>
-                    <th>{scenario} Revenue</th>
-                    <th>{scenario} Cumulative ROI</th>
+                    <th className={darkMode ? "text-white" : ""}>{scenario} Revenue</th>
+                    <th className={darkMode ? "text-white" : ""}>{scenario} Cumulative ROI</th>
                   </React.Fragment>
                 ))}
               </tr>
             </thead>
             <tbody>
               {months.map(month => (
-                <tr key={month} className={Object.entries(breakEvenMonths).some(([scenario, breakMonth]) => 
+                <tr key={month} className={Object.entries(breakEvenMonths).some(([scenario, breakMonth]) =>
                   selectedScenarios.includes(scenario) && breakMonth === month) ? 'break-even-row' : ''}>
-                  <td>{formatMonth(month)}</td>
-                  <td>{results.monthlyUnlocks[month].toLocaleString(undefined, { maximumFractionDigits: 2 })} {results.tokenName}</td>
+                  <td className={darkMode ? "text-white" : ""}>{formatMonth(month)}</td>
+                  <td className={darkMode ? "text-white" : ""}>{results.monthlyUnlocks[month].toLocaleString(undefined, { maximumFractionDigits: 2 })} {results.tokenName}</td>
                   {selectedScenarios.map(scenario => (
                     <React.Fragment key={scenario}>
-                      <td>{formatCurrency(results.monthlyRevenue[scenario][month])}</td>
+                      <td className={darkMode ? "text-white" : ""}>{formatCurrency(results.monthlyRevenue[scenario][month])}</td>
                       <td className={results.cumulativeROI[scenario][month] >= 0 ? 'positive-roi' : 'negative-roi'}>
                         {formatPercentage(results.cumulativeROI[scenario][month])}
                         {breakEvenMonths[scenario] === month && (
@@ -149,28 +149,28 @@ const MonthlyROIBreakdown = ({ results }) => {
             </tbody>
           </Table>
         </div>
-        
+
         {/* Total Revenue and ROI Summary */}
         <div className="total-summary mt-4">
-          <h4 className="subsection-title">Total Summary</h4>
+          <h4 className={`subsection-title ${darkMode ? "text-white" : ""}`}>Total Summary</h4>
           <Row className="summary-cards">
             {selectedScenarios.map(scenario => {
               const totalRevenue = getTotalRevenue(scenario);
               const finalROI = results.totalROI[scenario];
               const roiClass = finalROI >= 0 ? 'positive-roi' : 'negative-roi';
-              
+
               return (
                 <Col md={4} key={scenario} className="mb-3 d-flex">
                   <Card className={`summary-card ${scenario.toLowerCase()}-summary flex-fill`} style={getScenarioStyle(scenario)}>
                     <Card.Body className="d-flex flex-column">
-                      <div className="summary-title">{scenario} Case</div>
+                      <div className={`summary-title ${darkMode ? "text-white" : ""}`}>{scenario} Case</div>
                       <div className="summary-content flex-grow-1">
                         <div className="summary-item">
-                          <span>Total Revenue:</span>
-                          <span>{formatCurrency(totalRevenue)}</span>
+                          <span className={darkMode ? "text-white" : ""}>Total Revenue:</span>
+                          <span className={darkMode ? "text-white" : ""}>{formatCurrency(totalRevenue)}</span>
                         </div>
                         <div className="summary-item">
-                          <span>Final ROI:</span>
+                          <span className={darkMode ? "text-white" : ""}>Final ROI:</span>
                           <span className={roiClass}>{formatPercentage(finalROI)}</span>
                         </div>
                       </div>
@@ -181,7 +181,7 @@ const MonthlyROIBreakdown = ({ results }) => {
             })}
           </Row>
         </div>
-        
+
         {/* Advanced Mode Teaser */}
         <div className="advanced-mode-teaser mt-4">
           <Alert variant="info" className="teaser-alert">

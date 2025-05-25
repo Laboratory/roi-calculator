@@ -27,6 +27,11 @@ body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.6;
   transition: all 0.3s ease;
+  font-size: 16px;
+}
+
+.light-mode {
+  font-size: 16px;
 }
 
 .app-container {
@@ -77,6 +82,155 @@ body {
   background: var(--dark-card);
   border-top: 1px solid var(--border-dark);
   color: var(--dark-text);
+}
+
+.dark-mode p,
+.dark-mode h1,
+.dark-mode h2,
+.dark-mode h3,
+.dark-mode h4,
+.dark-mode h5,
+.dark-mode h6,
+.dark-mode label,
+.dark-mode .form-label,
+.dark-mode .form-text {
+  color: var(--dark-text);
+}
+
+.dark-mode .text-muted,
+.dark-mode .text-secondary,
+.dark-mode .text-body-secondary {
+  color: #d1d7de !important;
+}
+
+.dark-mode .table,
+.dark-mode .table th,
+.dark-mode .table td,
+.dark-mode .table>:not(caption)>*>* {
+  color: var(--dark-text);
+}
+
+.dark-mode .table-striped>tbody>tr:nth-of-type(odd)>*,
+.dark-mode .table-striped>tbody>tr:nth-of-type(even)>* {
+  color: var(--dark-text);
+}
+
+.dark-mode input,
+.dark-mode select,
+.dark-mode textarea {
+  color: var(--dark-text);
+  background-color: rgba(255, 255, 255, 0.05);
+  border-color: var(--border-dark);
+}
+
+.dark-mode input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.dark-mode .card {
+  background-color: var(--dark-card);
+  border-color: var(--border-dark);
+}
+
+.dark-mode .card-header,
+.dark-mode .card-footer {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-color: var(--border-dark);
+}
+
+.dark-mode .scenario-card .scenario-name,
+.dark-mode .scenario-card .detail-row,
+.dark-mode .scenario-card .detail-row span,
+.dark-mode .token-info-card .info-label,
+.dark-mode .token-info-card .info-value,
+.dark-mode .token-info-card .info-item span {
+  color: var(--dark-text) !important;
+}
+
+.dark-mode .scenario-card {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.dark-mode .token-info-card {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.dark-mode .section-title {
+  color: var(--dark-text) !important;
+}
+
+.dark-mode .scenario-details,
+.dark-mode .detail-row,
+.dark-mode .info-item {
+  color: var(--dark-text) !important;
+}
+
+.dark-mode .break-even-text {
+  color: var(--dark-text) !important;
+  font-size: 14px;
+}
+
+.dark-mode .break-even-text strong {
+  color: var(--dark-text) !important;
+  font-weight: 600;
+}
+
+/* Fix for ROI Chart break-even legend */
+.break-even-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 15px;
+  margin-bottom: 30px;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  position: relative;
+  z-index: 1;
+}
+
+.break-even-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  padding: 5px;
+}
+
+.break-even-marker {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 10px;
+  flex-shrink: 0;
+}
+
+.break-even-text {
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.dark-mode .break-even-text {
+  color: var(--dark-text) !important;
+}
+
+.dark-mode .break-even-text strong {
+  color: var(--dark-text) !important;
+  font-weight: 600;
+}
+
+/* Add spacing between chart section and table section */
+.chart-section {
+  margin-bottom: 50px; /* Increased spacing between chart and table sections */
+}
+
+.table-section {
+  margin-top: 20px; /* Add top margin to the table section */
+}
+
+.section-title {
+  margin-bottom: 20px; /* Add space below section titles */
+  position: relative;
+  z-index: 2; /* Ensure section titles are above other elements */
 }
 
 /* Header Styles */
@@ -376,7 +530,7 @@ body {
 }
 
 .dark-mode .table th {
-  background: #1e40af;
+  background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
   color: white;
   border-color: var(--border-dark);
 }
@@ -405,6 +559,67 @@ body {
 
 .dark-mode .table-striped tbody tr:nth-of-type(odd) {
   background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Summary Card Styles */
+.summary-card {
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.dark-mode .summary-card {
+  background-color: var(--dark-card);
+  border-color: var(--border-dark);
+}
+
+.summary-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.dark-mode .summary-title {
+  color: var(--dark-text) !important;
+}
+
+.summary-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.summary-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dark-mode .summary-item {
+  color: var(--dark-text) !important;
+}
+
+.dark-mode .summary-item span {
+  color: var(--dark-text) !important;
+}
+
+.positive-roi {
+  color: var(--success-color) !important;
+  font-weight: 600;
+}
+
+.negative-roi {
+  color: var(--danger-color) !important;
+  font-weight: 600;
+}
+
+.dark-mode .positive-roi {
+  color: #4ade80 !important; /* Lighter green for dark mode */
+}
+
+.dark-mode .negative-roi {
+  color: #f87171 !important; /* Lighter red for dark mode */
 }
 
 /* Footer */

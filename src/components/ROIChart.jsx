@@ -146,6 +146,20 @@ const ROIChart = ({ data, scenarios, tgeDate }) => {
           }
         }
       },
+      title: {
+        display: false,
+        text: '',
+        color: textColor,
+        font: {
+          size: 14,
+          weight: 'normal'
+        },
+        padding: {
+          top: 10,
+          bottom: 30
+        },
+        position: 'bottom'
+      },
       tooltip: {
         callbacks: {
           label: function(context) {
@@ -235,36 +249,41 @@ const ROIChart = ({ data, scenarios, tgeDate }) => {
   
   return (
     <div className="roi-chart-container">
-      <div style={{ height: '400px' }}>
+      <div style={{ height: '400px', marginBottom: '20px', position: 'relative' }}>
         <Line data={chartData} options={options} />
-      </div>
-      
-      {/* Break-even legend */}
-      <div className="break-even-legend">
-        {Object.entries(breakEvenPoints).map(([scenario, point]) => (
-          <div key={scenario} className="break-even-item">
-            <span className="break-even-marker" style={{ backgroundColor: getColor(scenario).border }}></span>
-            <span className="break-even-text">
-              <strong>{scenario}</strong> breaks even at {formatMonth(point.month)}
-            </span>
-          </div>
-        ))}
-        
-        {/* Add infinity indicators to the legend if present */}
-        {scenarios.map(scenario => {
-          const hasInfinity = months.some(month => data[scenario][month] === Infinity);
-          if (hasInfinity) {
-            return (
-              <div key={`${scenario}-infinity`} className="break-even-item">
-                <span className="break-even-marker" style={{ backgroundColor: getColor(scenario).border }}></span>
-                <span className="break-even-text">
-                  <strong>{scenario}</strong> reaches extremely high ROI
-                </span>
+        {Object.entries(breakEvenPoints).length > 0 && (
+          <div style={{ 
+            position: 'absolute',
+            top: '60px',
+            right: '20px',
+            textAlign: 'left', 
+            padding: '10px 15px', 
+            background: darkMode ? 'rgba(30, 39, 46, 0.9)' : 'rgba(255, 255, 255, 0.9)',
+            borderRadius: '8px',
+            color: darkMode ? '#f5f6fa' : '#2d3436',
+            fontSize: '14px',
+            fontWeight: 'normal',
+            boxShadow: '0 3px 6px rgba(0,0,0,0.3)',
+            zIndex: 10,
+            maxWidth: '300px',
+            lineHeight: '1.5'
+          }}>
+            {Object.entries(breakEvenPoints).map(([scenario, point], index) => (
+              <div key={scenario} style={{ display: 'block', marginBottom: '8px' }}>
+                <span style={{ 
+                  display: 'inline-block', 
+                  width: '12px', 
+                  height: '12px', 
+                  borderRadius: '50%', 
+                  backgroundColor: getColor(scenario).border,
+                  marginRight: '8px',
+                  verticalAlign: 'middle'
+                }}></span>
+                <strong style={{ color: darkMode ? '#f5f6fa' : '#2d3436' }}>{scenario}</strong> breaks even at {formatMonth(point.month)}
               </div>
-            );
-          }
-          return null;
-        }).filter(Boolean)}
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

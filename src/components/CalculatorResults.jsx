@@ -12,7 +12,7 @@ const CalculatorResults = ({ results }) => {
     fdvValues,
     totalSupply
   } = results;
-  
+
   const formatPercentage = (value) => {
     return new Intl.NumberFormat('en-US', {
       style: 'percent',
@@ -20,7 +20,7 @@ const CalculatorResults = ({ results }) => {
       maximumFractionDigits: 2
     }).format(value / 100);
   };
-  
+
   const formatCurrency = (value) => {
     return new Intl.NumberFormat('en-US', {
       style: 'currency',
@@ -29,7 +29,7 @@ const CalculatorResults = ({ results }) => {
       maximumFractionDigits: 2
     }).format(value);
   };
-  
+
   const formatFDV = (value) => {
     if (value >= 1000000000) {
       return `$${(value / 1000000000).toFixed(2)}B`;
@@ -39,27 +39,27 @@ const CalculatorResults = ({ results }) => {
       return formatCurrency(value);
     }
   };
-  
+
   const calculateFinalValue = (roi) => {
     return initialInvestment * (1 + roi / 100);
   };
-  
+
   const getScenarioStyle = (scenario) => {
     const colors = {
       'Bear': '#dc3545', // Bootstrap danger color
       'Base': '#0d6efd', // Bootstrap primary color
       'Bull': '#198754'  // Bootstrap success color
     };
-    
+
     return {
       borderLeft: `5px solid ${colors[scenario] || '#dee2e6'}`
     };
   };
-  
+
   return (
     <div className="calculator-results">
       <h3 className="section-title">ROI Scenarios</h3>
-      
+
       {fdvWarnings.length > 0 && (
         <Alert variant="warning" className="fdv-warning mb-4">
           <div className="d-flex align-items-center">
@@ -73,13 +73,13 @@ const CalculatorResults = ({ results }) => {
           </ul>
         </Alert>
       )}
-      
+
       <Row className="scenario-cards">
         {Object.keys(totalROI).map(scenario => {
           const roi = totalROI[scenario];
           const finalValue = calculateFinalValue(roi);
           const roiClass = roi < 0 ? 'negative-roi' : 'positive-roi';
-          
+
           return (
             <Col md={4} key={scenario} className="d-flex">
               <Card className={`scenario-card ${scenario.toLowerCase()}-case flex-fill`} style={getScenarioStyle(scenario)}>
@@ -118,9 +118,9 @@ const CalculatorResults = ({ results }) => {
           );
         })}
       </Row>
-      
+
       <div className="token-info-section">
-        <h3 className="section-title">Token Information</h3>
+        <h3 className="section-title mt-3">Token Information</h3>
         <Card className="token-info-card">
           <Card.Body>
             <Row>
