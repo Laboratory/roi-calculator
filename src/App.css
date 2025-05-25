@@ -1,0 +1,160 @@
+/* Add these styles to your existing CSS */
+
+/* ROI Chart Styles */
+.chart-card {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.dark-mode .chart-card {
+  background-color: #2a2a2a;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.chart-container {
+  position: relative;
+}
+
+.scenario-toggle {
+  margin-bottom: 8px;
+}
+
+.bear-toggle .form-check-label {
+  color: rgba(255, 99, 132, 1);
+  font-weight: 500;
+}
+
+.base-toggle .form-check-label {
+  color: rgba(54, 162, 235, 1);
+  font-weight: 500;
+}
+
+.bull-toggle .form-check-label {
+  color: rgba(75, 192, 192, 1);
+  font-weight: 500;
+}
+
+.break-even-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 16px;
+  padding: 12px;
+  background-color: rgba(0, 0, 0, 0.02);
+  border-radius: 6px;
+}
+
+.dark-mode .break-even-legend {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.break-even-item {
+  display: flex;
+  align-items: center;
+  font-size: 0.9rem;
+}
+
+.break-even-marker {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+.break-even-text {
+  color: #666;
+}
+
+.dark-mode .break-even-text {
+  color: #ccc;
+}
+
+/* Table Styles */
+.break-even-row {
+  background-color: rgba(0, 0, 0, 0.03) !important;
+}
+
+.dark-mode .break-even-row {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+.break-even-badge {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 2px 6px;
+  font-size: 0.7rem;
+  background-color: #28a745;
+  color: white;
+  border-radius: 4px;
+  vertical-align: middle;
+}
+
+/* Monthly Breakdown Table Specific Styles */
+.monthly-breakdown-table {
+  background-color: var(--card-background);
+  color: var(--text-color);
+}
+
+.dark-mode .monthly-breakdown-table {
+  background-color: #1e272e;
+  color: #f5f6fa;
+  border-color: #485460;
+}
+
+.dark-mode .monthly-breakdown-table th,
+.dark-mode .monthly-breakdown-table td {
+  border-color: #485460;
+  color: #f5f6fa;
+}
+
+.dark-mode .monthly-breakdown-table thead th {
+  background-color: #2c3e50;
+  color: #f5f6fa;
+}
+
+.dark-mode .monthly-breakdown-table tbody tr:nth-of-type(odd) {
+  background-color: #1e272e;
+}
+
+.dark-mode .monthly-breakdown-table tbody tr:nth-of-type(even) {
+  background-color: #2a3a4a;
+}
+
+.dark-mode .monthly-breakdown-table .positive-roi {
+  color: #00b894;
+}
+
+.dark-mode .monthly-breakdown-table .negative-roi {
+  color: #ff7675;
+}
+
+.dark-mode .text-muted {
+  color: #b2bec3 !important;
+}
+
+/* FDV Warning Styles (from previous implementation) */
+.fdv-warning {
+  border-left: 4px solid #f0ad4e;
+  background-color: rgba(240, 173, 78, 0.1);
+}
+
+.fdv-warning ul {
+  padding-left: 1.5rem;
+}
+
+.text-warning {
+  color: #f0ad4e !important;
+  font-weight: 500;
+}
+
+.detail-row.fdv {
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px dashed rgba(0, 0, 0, 0.1);
+}
+
+.dark-mode .detail-row.fdv {
+  border-top: 1px dashed rgba(255, 255, 255, 0.1);
+}

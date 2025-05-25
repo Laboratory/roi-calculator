@@ -1,0 +1,273 @@
+import React, { useContext } from 'react';
+import { Line } from 'react-chartjs-2';
+import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, Filler } from 'chart.js';
+import { format } from 'date-fns';
+import { ThemeContext } from '../context/ThemeContext';
+
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, Filler);
+
+const ROIChart = ({ data, scenarios, tgeDate }) => {
+  const { darkMode } = useContext(ThemeContext);
+  const months = Object.keys(data[scenarios[0]]).map(Number);
+  
+  const formatMonth = (month) => {
+    if (!tgeDate) return `Month ${month}`;
+    
+    const date = new Date(tgeDate);
+    date.setMonth(date.getMonth() + parseInt(month));
+    return format(date, 'MMM yyyy');
+  };
+  
+  // Color palette for scenarios
+  const colors = {
+    'Bear': { bg: 'rgba(255, 99, 132, 0.2)', border: 'rgba(255, 99, 132, 1)' },
+    'Base': { bg: 'rgba(54, 162, 235, 0.2)', border: 'rgba(54, 162, 235, 1)' },
+    'Bull': { bg: 'rgba(75, 192, 192, 0.2)', border: 'rgba(75, 192, 192, 1)' },
+    // Default colors for additional scenarios
+    default: [
+      { bg: 'rgba(153, 102, 255, 0.2)', border: 'rgba(153, 102, 255, 1)' },
+      { bg: 'rgba(255, 159, 64, 0.2)', border: 'rgba(255, 159, 64, 1)' },
+      { bg: 'rgba(255, 206, 86, 0.2)', border: 'rgba(255, 206, 86, 1)' },
+      { bg: 'rgba(199, 199, 199, 0.2)', border: 'rgba(199, 199, 199, 1)' }
+    ]
+  };
+  
+  const getColor = (scenario, index) => {
+    if (colors[scenario]) return colors[scenario];
+    return colors.default[index % colors.default.length];
+  };
+  
+  // Find break-even points for each scenario
+  const breakEvenPoints = {};
+  scenarios.forEach(scenario => {
+    for (let i = 0; i < months.length; i++) {
+      const month = months[i];
+      const roi = data[scenario][month];
+      if (roi >= 0 && (i === 0 || data[scenario][months[i-1]] < 0)) {
+        breakEvenPoints[scenario] = { month, roi };
+        break;
+      }
+    }
+  });
+  
+  // Find max and min values for better scaling
+  let maxValue = -Infinity;
+  let minValue = Infinity;
+  
+  scenarios.forEach(scenario => {
+    months.forEach(month => {
+      const value = data[scenario][month];
+      // Skip Infinity or extremely large values for max calculation
+      if (value !== Infinity && value < 10000) {
+        maxValue = Math.max(maxValue, value);
+      }
+      // Skip -Infinity or extremely small values for min calculation
+      if (value !== -Infinity && value > -10000) {
+        minValue = Math.min(minValue, value);
+      }
+    });
+  });
+  
+  // Add some padding to the max/min
+  maxValue = Math.ceil(maxValue * 1.1);
+  minValue = Math.floor(minValue * 1.1);
+  
+  // Ensure we always show the 0 line
+  if (minValue > 0) minValue = 0;
+  if (maxValue < 0) maxValue = 0;
+  
+  // Process data to handle Infinity values
+  const processedData = {};
+  scenarios.forEach(scenario => {
+    processedData[scenario] = {};
+    months.forEach(month => {
+      const value = data[scenario][month];
+      if (value === Infinity || value > 10000) {
+        processedData[scenario][month] = maxValue;
+      } else if (value === -Infinity || value < -10000) {
+        processedData[scenario][month] = minValue;
+      } else {
+        processedData[scenario][month] = value;
+      }
+    });
+  });
+  
+  const chartData = {
+    labels: months.map(month => formatMonth(month)),
+    datasets: scenarios.map((scenario, index) => {
+      const colorSet = getColor(scenario, index);
+      return {
+        label: `${scenario} Scenario`,
+        data: months.map(month => processedData[scenario][month]),
+        backgroundColor: colorSet.bg,
+        borderColor: colorSet.border,
+        borderWidth: 2,
+        tension: 0.1,
+        pointRadius: 3,
+        pointHoverRadius: 5,
+        fill: false
+      };
+    })
+  };
+  
+  // Add break-even point annotations
+  const annotations = {};
+  Object.entries(breakEvenPoints).forEach(([scenario, point], index) => {
+    const monthIndex = months.indexOf(point.month);
+    if (monthIndex !== -1) {
+      annotations[`breakEven-${scenario}`] = {
+        type: 'point',
+        xValue: monthIndex,
+        yValue: point.roi,
+        backgroundColor: darkMode ? 'rgba(255, 255, 255, 0.8)' : 'rgba(0, 0, 0, 0.8)',
+        borderColor: darkMode ? 'rgba(255, 255, 255, 0.8)' : 'rgba(0, 0, 0, 0.8)',
+        borderWidth: 2,
+        radius: 6,
+        pointStyle: 'rectRot'
+      };
+    }
+  });
+  
+  // Get text color based on theme
+  const textColor = darkMode ? '#f5f6fa' : '#2d3436';
+  const gridColor = darkMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)';
+  const zeroLineColor = darkMode ? 'rgba(255, 255, 255, 0.5)' : 'rgba(0, 0, 0, 0.5)';
+  
+  const options = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        position: 'top',
+        labels: {
+          color: textColor,
+          font: {
+            weight: 'bold'
+          }
+        }
+      },
+      tooltip: {
+        callbacks: {
+          label: function(context) {
+            const value = data[context.dataset.label.split(' ')[0]][months[context.dataIndex]];
+            
+            // Handle infinity values in tooltip
+            if (value === Infinity) {
+              return 'ROI: ∞ (Infinity)';
+            } else if (value === -Infinity) {
+              return 'ROI: -∞ (-Infinity)';
+            }
+            
+            const label = `ROI: ${(value / 100).toLocaleString(undefined, { style: 'percent', minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+            
+            // Add break-even indicator to tooltip
+            const scenario = context.dataset.label.split(' ')[0];
+            if (breakEvenPoints[scenario] && breakEvenPoints[scenario].month === months[context.dataIndex]) {
+              return [label, '⭐ Break-even point'];
+            }
+            return label;
+          },
+          title: function(context) {
+            return context[0].label;
+          }
+        },
+        backgroundColor: darkMode ? 'rgba(30, 39, 46, 0.9)' : 'rgba(0, 0, 0, 0.7)',
+        titleColor: '#fff',
+        bodyColor: '#fff',
+        borderColor: darkMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)',
+        borderWidth: 1
+      },
+      annotation: {
+        annotations: annotations
+      }
+    },
+    scales: {
+      y: {
+        min: minValue,
+        max: maxValue,
+        ticks: {
+          callback: function(value) {
+            return (value / 100).toLocaleString(undefined, { style: 'percent', minimumFractionDigits: 0 });
+          },
+          color: textColor
+        },
+        title: {
+          display: true,
+          text: 'Cumulative ROI (%)',
+          color: textColor,
+          font: {
+            weight: 'bold'
+          }
+        },
+        grid: {
+          color: function(context) {
+            if (context.tick.value === 0) {
+              return zeroLineColor;
+            }
+            return gridColor;
+          },
+          lineWidth: function(context) {
+            if (context.tick.value === 0) {
+              return 2; // Thicker line for break-even (0%)
+            }
+            return 1;
+          }
+        }
+      },
+      x: {
+        title: {
+          display: true,
+          text: 'Month',
+          color: textColor,
+          font: {
+            weight: 'bold'
+          }
+        },
+        ticks: {
+          color: textColor
+        },
+        grid: {
+          color: gridColor
+        }
+      }
+    }
+  };
+  
+  return (
+    <div className="roi-chart-container">
+      <div style={{ height: '400px' }}>
+        <Line data={chartData} options={options} />
+      </div>
+      
+      {/* Break-even legend */}
+      <div className="break-even-legend">
+        {Object.entries(breakEvenPoints).map(([scenario, point]) => (
+          <div key={scenario} className="break-even-item">
+            <span className="break-even-marker" style={{ backgroundColor: getColor(scenario).border }}></span>
+            <span className="break-even-text">
+              <strong>{scenario}</strong> breaks even at {formatMonth(point.month)}
+            </span>
+          </div>
+        ))}
+        
+        {/* Add infinity indicators to the legend if present */}
+        {scenarios.map(scenario => {
+          const hasInfinity = months.some(month => data[scenario][month] === Infinity);
+          if (hasInfinity) {
+            return (
+              <div key={`${scenario}-infinity`} className="break-even-item">
+                <span className="break-even-marker" style={{ backgroundColor: getColor(scenario).border }}></span>
+                <span className="break-even-text">
+                  <strong>{scenario}</strong> reaches extremely high ROI
+                </span>
+              </div>
+            );
+          }
+          return null;
+        }).filter(Boolean)}
+      </div>
+    </div>
+  );
+};
+
+export default ROIChart;
