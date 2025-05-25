@@ -622,6 +622,135 @@ body {
   color: #f87171 !important; /* Lighter red for dark mode */
 }
 
+/* ROI Chart Styles */
+.roi-chart-container {
+  width: 100%;
+  position: relative;
+}
+
+.roi-chart-wrapper {
+  height: 400px;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.break-even-legend-container {
+  position: absolute;
+  top: 60px;
+  right: 20px;
+  text-align: left;
+  padding: 10px 15px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: normal;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.3);
+  z-index: 10;
+  max-width: 300px;
+  line-height: 1.5;
+}
+
+.light-mode .break-even-legend-container {
+  background: rgba(255, 255, 255, 0.9);
+  color: #2d3436;
+}
+
+.dark-mode .break-even-legend-container {
+  background: rgba(30, 39, 46, 0.9);
+  color: #f5f6fa;
+}
+
+.break-even-legend-item {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.break-even-legend-marker {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+.break-even-legend-text {
+  font-weight: 600;
+}
+
+.light-mode .break-even-legend-text {
+  color: #2d3436;
+}
+
+.dark-mode .break-even-legend-text {
+  color: #f5f6fa;
+}
+
+/* Monthly ROI Breakdown Styles */
+.chart-section {
+  margin-bottom: 100px;
+  height: 600px;
+  position: relative;
+}
+
+.chart-container {
+  height: 400px;
+  position: relative;
+}
+
+.monthly-breakdown-section-title {
+  margin-top: 50px;
+}
+
+/* Scenario Card Styles */
+.scenario-card {
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  margin-bottom: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.bear-case {
+  border-left: 5px solid #dc3545;
+}
+
+.base-case {
+  border-left: 5px solid #0d6efd;
+}
+
+.bull-case {
+  border-left: 5px solid #198754;
+}
+
+.scenario-name {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.scenario-roi {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.scenario-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.25rem 0;
+}
+
+.token-info-section {
+  margin-top: 2rem;
+}
+
 /* Footer */
 .app-footer {
   padding: 3rem 2rem 2rem;

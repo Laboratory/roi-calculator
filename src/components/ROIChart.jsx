@@ -249,37 +249,17 @@ const ROIChart = ({ data, scenarios, tgeDate }) => {
   
   return (
     <div className="roi-chart-container">
-      <div style={{ height: '400px', marginBottom: '20px', position: 'relative' }}>
+      <div className="roi-chart-wrapper">
         <Line data={chartData} options={options} />
         {Object.entries(breakEvenPoints).length > 0 && (
-          <div style={{ 
-            position: 'absolute',
-            top: '60px',
-            right: '20px',
-            textAlign: 'left', 
-            padding: '10px 15px', 
-            background: darkMode ? 'rgba(30, 39, 46, 0.9)' : 'rgba(255, 255, 255, 0.9)',
-            borderRadius: '8px',
-            color: darkMode ? '#f5f6fa' : '#2d3436',
-            fontSize: '14px',
-            fontWeight: 'normal',
-            boxShadow: '0 3px 6px rgba(0,0,0,0.3)',
-            zIndex: 10,
-            maxWidth: '300px',
-            lineHeight: '1.5'
-          }}>
+          <div className="break-even-legend-container">
             {Object.entries(breakEvenPoints).map(([scenario, point], index) => (
-              <div key={scenario} style={{ display: 'block', marginBottom: '8px' }}>
-                <span style={{ 
-                  display: 'inline-block', 
-                  width: '12px', 
-                  height: '12px', 
-                  borderRadius: '50%', 
-                  backgroundColor: getColor(scenario).border,
-                  marginRight: '8px',
-                  verticalAlign: 'middle'
-                }}></span>
-                <strong style={{ color: darkMode ? '#f5f6fa' : '#2d3436' }}>{scenario}</strong> breaks even at {formatMonth(point.month)}
+              <div key={scenario} className="break-even-legend-item">
+                <span 
+                  className="break-even-legend-marker" 
+                  style={{ backgroundColor: getColor(scenario).border }}
+                ></span>
+                <strong className="break-even-legend-text">{scenario}</strong> breaks even at {formatMonth(point.month)}
               </div>
             ))}
           </div>

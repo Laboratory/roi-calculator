@@ -76,7 +76,7 @@ const MonthlyROIBreakdown = ({ results }) => {
 
   return (
     <div className="monthly-roi-breakdown">
-      <div className="chart-section" style={{ marginBottom: '100px', height: '600px', position: 'relative' }}>
+      <div className="chart-section">
         <h3 className={`section-title ${darkMode ? "text-white" : ""}`}>ROI Over Time</h3>
         <Alert variant="info" className="chart-explanation-alert mb-3">
           This chart shows your cumulative ROI over time for each selected price scenario. The break-even point (0% ROI) is where you recover your initial investment.
@@ -100,7 +100,7 @@ const MonthlyROIBreakdown = ({ results }) => {
               </Row>
             </div>
 
-            <div className="chart-container" style={{ height: '400px', position: 'relative' }}>
+            <div className="chart-container">
               <ROIChart
                 data={results.cumulativeROI}
                 scenarios={selectedScenarios}
@@ -112,7 +112,7 @@ const MonthlyROIBreakdown = ({ results }) => {
       </div>
 
       <div className="table-section">
-        <h3 className={`section-title ${darkMode ? "text-white" : ""}`} style={{ marginTop: '50px' }}>Monthly Breakdown</h3>
+        <h3 className={`section-title monthly-breakdown-section-title ${darkMode ? "text-white" : ""}`}>Monthly Breakdown</h3>
         <div className="table-responsive">
           <Table striped bordered hover className="monthly-breakdown-table">
             <thead>
