@@ -62,6 +62,18 @@ const MonthlyROIBreakdown = ({ results }) => {
     return Object.values(results.monthlyRevenue[scenario]).reduce((sum, value) => sum + value, 0);
   };
   
+  const getScenarioStyle = (scenario) => {
+    const colors = {
+      'Bear': '#dc3545', // Bootstrap danger color
+      'Base': '#0d6efd', // Bootstrap primary color
+      'Bull': '#198754'  // Bootstrap success color
+    };
+    
+    return {
+      borderLeft: `5px solid ${colors[scenario] || '#dee2e6'}`
+    };
+  };
+  
   return (
     <div className="monthly-roi-breakdown">
       <div className="chart-section">
@@ -149,7 +161,7 @@ const MonthlyROIBreakdown = ({ results }) => {
               
               return (
                 <Col md={4} key={scenario} className="mb-3 d-flex">
-                  <Card className={`summary-card ${scenario.toLowerCase()}-summary flex-fill`}>
+                  <Card className={`summary-card ${scenario.toLowerCase()}-summary flex-fill`} style={getScenarioStyle(scenario)}>
                     <Card.Body className="d-flex flex-column">
                       <div className="summary-title">{scenario} Case</div>
                       <div className="summary-content flex-grow-1">

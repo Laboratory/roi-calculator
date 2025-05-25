@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { Container, Row, Col, Button, Nav, Image } from 'react-bootstrap';
-import { FaSun, FaMoon } from 'react-icons/fa';
+import { FaSun, FaMoon, FaInstagram, FaFacebookF } from 'react-icons/fa';
 import { ThemeContext } from './context/ThemeContext';
 import CalculatorForm from './components/CalculatorForm';
 import CalculatorResults from './components/CalculatorResults';
@@ -146,39 +146,64 @@ function App() {
         <FAQ onNavigateToCalculator={handleNavigateToCalculator} />
       )}
       
-      <footer className="app-footer">
-        <div className="footer-content">
-          <div className="footer-brand">
-            <span className="footer-logo">TokenCalculator</span>
-            <span className="footer-tagline">Professional ROI Analysis</span>
-          </div>
-          <div className="footer-links">
-            <a 
-              href="#" 
-              onClick={(e) => { e.preventDefault(); handleNavigation('calculator'); }}
-            >
-              Calculator
+      <div className="container-fluid">
+        <footer className={`d-flex flex-wrap justify-content-between align-items-center py-3 border-top ${darkMode ? 'bg-dark text-light' : 'bg-light'}`}>
+          <div className="col-md-4 d-flex align-items-center">
+            <a href="#" className="mb-3 me-2 mb-md-0 text-decoration-none lh-1" onClick={(e) => { e.preventDefault(); handleNavigation('calculator'); }}>
+              <img src="/logo.svg" alt="TokenCalculator" width="48" height="48" />
             </a>
-            <a 
-              href="#" 
-              onClick={(e) => { e.preventDefault(); handleNavigation('about'); }}
-            >
-              About
-            </a>
-            <a 
-              href="#" 
-              onClick={(e) => { e.preventDefault(); handleNavigation('faq'); }}
-            >
-              FAQ
-            </a>
+            <span className={`mb-3 mb-md-0 ${darkMode ? 'text-light' : 'text-body-secondary'}`}>© 2025 TokenCalculator</span>
           </div>
-          <div className="footer-connect">
-            <a href="#">Twitter</a>
-            <a href="#">GitHub</a>
-            <a href="#">Contact</a>
-          </div>
-        </div>
-      </footer>
+          
+          <ul className="nav col-md-4 justify-content-end list-unstyled d-flex">
+            <li className="nav-item">
+              <a 
+                href="#" 
+                className={`nav-link px-2 ${darkMode ? 'text-light' : 'text-body-secondary'}`}
+                onClick={(e) => { e.preventDefault(); handleNavigation('calculator'); }}
+              >
+                Calculator
+              </a>
+            </li>
+            <li className="nav-item">
+              <a 
+                href="#" 
+                className={`nav-link px-2 ${darkMode ? 'text-light' : 'text-body-secondary'}`}
+                onClick={(e) => { e.preventDefault(); handleNavigation('about'); }}
+              >
+                About
+              </a>
+            </li>
+            <li className="nav-item">
+              <a 
+                href="#" 
+                className={`nav-link px-2 ${darkMode ? 'text-light' : 'text-body-secondary'}`}
+                onClick={(e) => { e.preventDefault(); handleNavigation('faq'); }}
+              >
+                FAQ
+              </a>
+            </li>
+            <li className="nav-item">
+              <a 
+                href="#" 
+                className={`nav-link px-2 ${darkMode ? 'text-light' : 'text-body-secondary'}`}
+                onClick={(e) => { e.preventDefault(); }}
+              >
+                Terms
+              </a>
+            </li>
+            <li className="nav-item">
+              <a 
+                href="#" 
+                className={`nav-link px-2 ${darkMode ? 'text-light' : 'text-body-secondary'}`}
+                onClick={(e) => { e.preventDefault(); }}
+              >
+                Privacy
+              </a>
+            </li>
+          </ul>
+        </footer>
+      </div>
     </div>
   );
 }

@@ -44,6 +44,18 @@ const CalculatorResults = ({ results }) => {
     return initialInvestment * (1 + roi / 100);
   };
   
+  const getScenarioStyle = (scenario) => {
+    const colors = {
+      'Bear': '#dc3545', // Bootstrap danger color
+      'Base': '#0d6efd', // Bootstrap primary color
+      'Bull': '#198754'  // Bootstrap success color
+    };
+    
+    return {
+      borderLeft: `5px solid ${colors[scenario] || '#dee2e6'}`
+    };
+  };
+  
   return (
     <div className="calculator-results">
       <h3 className="section-title">ROI Scenarios</h3>
@@ -70,7 +82,7 @@ const CalculatorResults = ({ results }) => {
           
           return (
             <Col md={4} key={scenario} className="d-flex">
-              <Card className={`scenario-card ${scenario.toLowerCase()}-case flex-fill`}>
+              <Card className={`scenario-card ${scenario.toLowerCase()}-case flex-fill`} style={getScenarioStyle(scenario)}>
                 <Card.Body className="d-flex flex-column">
                   <h4 className="scenario-name">{scenario} Case</h4>
                   <div className={`scenario-roi ${roiClass}`}>
