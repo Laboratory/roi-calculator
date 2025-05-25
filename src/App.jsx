@@ -8,6 +8,8 @@ import UnlockSchedule from './components/UnlockSchedule';
 import MonthlyROIBreakdown from './components/MonthlyROIBreakdown';
 import About from './components/About';
 import FAQ from './components/FAQ';
+import Terms from './components/Terms';
+import Privacy from './components/Privacy';
 
 function App() {
   const { darkMode, toggleTheme } = useContext(ThemeContext);
@@ -146,13 +148,21 @@ function App() {
         <FAQ onNavigateToCalculator={handleNavigateToCalculator} />
       )}
       
+      {currentPage === 'terms' && (
+        <Terms />
+      )}
+
+      {currentPage === 'privacy' && (
+        <Privacy />
+      )}
+      
       <div className="container-fluid">
         <footer className={`d-flex flex-wrap justify-content-between align-items-center py-3 border-top ${darkMode ? 'bg-dark text-light' : 'bg-light'}`}>
           <div className="col-md-4 d-flex align-items-center">
             <a href="#" className="mb-3 me-2 mb-md-0 text-decoration-none lh-1" onClick={(e) => { e.preventDefault(); handleNavigation('calculator'); }}>
               <img src="/logo.svg" alt="TokenCalculator" width="48" height="48" />
             </a>
-            <span className={`mb-3 mb-md-0 ${darkMode ? 'text-light' : 'text-body-secondary'}`}>© 2025 TokenCalculator</span>
+            <span className={`mb-3 mb-md-0 ${darkMode ? 'text-light' : 'text-body-secondary'}`}> 2025 TokenCalculator</span>
           </div>
           
           <ul className="nav col-md-4 justify-content-end list-unstyled d-flex">
@@ -187,7 +197,7 @@ function App() {
               <a 
                 href="#" 
                 className={`nav-link px-2 ${darkMode ? 'text-light' : 'text-body-secondary'}`}
-                onClick={(e) => { e.preventDefault(); }}
+                onClick={(e) => { e.preventDefault(); handleNavigation('terms'); }}
               >
                 Terms
               </a>
@@ -196,7 +206,7 @@ function App() {
               <a 
                 href="#" 
                 className={`nav-link px-2 ${darkMode ? 'text-light' : 'text-body-secondary'}`}
-                onClick={(e) => { e.preventDefault(); }}
+                onClick={(e) => { e.preventDefault(); handleNavigation('privacy'); }}
               >
                 Privacy
               </a>
