@@ -158,3 +158,87 @@
 .dark-mode .detail-row.fdv {
   border-top: 1px dashed rgba(255, 255, 255, 0.1);
 }
+
+/* Bootstrap About Page Styles */
+.about-page {
+  /* All styles are handled by Bootstrap classes */
+}
+
+/* Custom utilities for better spacing */
+.min-vh-75 {
+  min-height: 75vh;
+}
+
+/* Dark mode overrides for Bootstrap components */
+.dark-mode .bg-light {
+  background-color: #1a1a1a !important;
+}
+
+.dark-mode .card {
+  background-color: #2a2a2a;
+  border-color: #404040;
+}
+
+.dark-mode .card-body {
+  color: var(--text-color);
+}
+
+.dark-mode .text-muted {
+  color: #b2bec3 !important;
+}
+
+.dark-mode .lead {
+  color: var(--text-color) !important;
+}
+
+.dark-mode .display-4,
+.dark-mode .display-5,
+.dark-mode h1, .dark-mode h2, .dark-mode h3, .dark-mode h4, .dark-mode h5, .dark-mode h6 {
+  color: var(--text-color);
+}
+
+.dark-mode .card-title {
+  color: var(--text-color);
+}
+
+.dark-mode .card-text {
+  color: var(--text-muted);
+}
+
+/* Ensure proper contrast in dark mode */
+.dark-mode .bg-primary {
+  background-color: #0d6efd !important;
+}
+
+.dark-mode .text-primary {
+  color: #6ea8fe !important;
+}
+
+.dark-mode .btn-outline-secondary {
+  color: var(--text-color);
+  border-color: var(--border-color);
+}
+
+.dark-mode .btn-outline-secondary:hover {
+  background-color: var(--text-color);
+  border-color: var(--text-color);
+  color: var(--background-color);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .position-absolute.top-0.start-0,
+  .position-absolute.bottom-0.end-0 {
+    position: relative !important;
+    transform: none !important;
+    margin: 1rem 0 !important;
+  }
+  
+  .d-flex.gap-3 {
+    flex-direction: column;
+  }
+  
+  .d-flex.gap-3 .btn {
+    width: 100%;
+  }
+}
