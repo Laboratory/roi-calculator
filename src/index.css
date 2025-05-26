@@ -582,11 +582,11 @@ body {
   border-color: var(--border-light);
 }
 
-.table-striped tbody tr:nth-of-type(odd) {
+.table-striped>tbody>tr:nth-of-type(odd) {
   background-color: rgba(37, 99, 235, 0.05);
 }
 
-.dark-mode .table-striped tbody tr:nth-of-type(odd) {
+.dark-mode .table-striped>tbody>tr:nth-of-type(odd) {
   background-color: rgba(255, 255, 255, 0.05);
 }
 
@@ -1024,4 +1024,69 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--secondary-color);
+}
+
+/* Tooltip Styles */
+.tooltip {
+  font-size: 0.9rem;
+  max-width: 300px;
+}
+
+.tooltip-inner {
+  padding: 0.75rem;
+  text-align: left;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border-radius: 0.5rem;
+  line-height: 1.5;
+}
+
+.dark-mode .tooltip-inner {
+  background-color: var(--dark-card);
+  color: var(--dark-text);
+}
+
+.info-icon {
+  font-size: 0.8rem;
+  opacity: 0;
+  cursor: help;
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* Show info icon on parent element hover */
+.section-title:hover .info-icon,
+.info-label:hover .info-icon,
+.form-label:hover .info-icon,
+label:hover .info-icon,
+th:hover .info-icon,
+.detail-row span:hover .info-icon,
+.fdv-warning strong:hover .info-icon,
+.scenario-name:hover .info-icon,
+.scenario-roi:hover .info-icon {
+  opacity: 1;
+}
+
+/* Bootstrap specific form label hover */
+.form-group:hover .form-label .info-icon,
+.form-group:hover label .info-icon {
+  opacity: 1;
+}
+
+/* Also show info icon when hovering directly on the icon */
+.info-icon:hover {
+  opacity: 1;
+}
+
+/* Make form labels with info icons have pointer cursor to indicate interactivity */
+.form-label, .section-title, th, .detail-row span, .info-label {
+  cursor: pointer;
+}
+
+/* Ensure the icon is properly aligned */
+.form-label .info-icon,
+.section-title .info-icon,
+th .info-icon,
+.detail-row .info-icon,
+.info-label .info-icon {
+  vertical-align: middle;
+  margin-left: 5px;
 }

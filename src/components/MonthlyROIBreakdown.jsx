@@ -1,8 +1,9 @@
 import React, { useState, useContext } from 'react';
-import { Table, Form, Row, Col, Card, Alert } from 'react-bootstrap';
+import { Table, Form, Row, Col, Card, Alert, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import ROIChart from './ROIChart';
 import { format } from 'date-fns';
 import { ThemeContext } from '../context/ThemeContext';
+import { FaInfoCircle } from 'react-icons/fa';
 
 const MonthlyROIBreakdown = ({ results }) => {
   const { darkMode } = useContext(ThemeContext);
@@ -77,27 +78,39 @@ const MonthlyROIBreakdown = ({ results }) => {
   return (
     <div className="monthly-roi-breakdown">
       <div className="chart-section">
-        <h3 className={`section-title ${darkMode ? "text-white" : ""}`}>ROI Over Time</h3>
-        <Alert variant="info" className="chart-explanation-alert mb-3">
-          This chart shows your cumulative ROI over time for each selected price scenario. The break-even point (0% ROI) is where you recover your initial investment.
-        </Alert>
-        <Card className="chart-card mb-5">
+        <Card className="chart-card">
           <Card.Body>
-            <div className="scenario-toggles mb-3">
-              <Row>
-                {results.priceScenarios.map(scenario => (
-                  <Col key={scenario.name} xs={4} md={3} lg={2}>
-                    <Form.Check
-                      type="checkbox"
-                      id={`scenario-${scenario.name}`}
-                      label={`${scenario.name} Case`}
-                      checked={selectedScenarios.includes(scenario.name)}
-                      onChange={() => handleScenarioToggle(scenario.name)}
-                      className={`scenario-toggle ${scenario.name.toLowerCase()}-toggle`}
-                    />
-                  </Col>
-                ))}
-              </Row>
+            <div className="chart-header">
+              <h3 className={`section-title ${darkMode ? "text-white" : ""}`}>
+                ROI Over Time
+                <OverlayTrigger
+                  placement="top"
+                  overlay={
+                    <Tooltip id="tooltip-roi-chart">
+                      This chart shows how your investment's ROI changes over time as tokens are unlocked. The lines represent different price scenarios.
+                    </Tooltip>
+                  }
+                >
+                  <span className="ms-2"><FaInfoCircle className="text-primary info-icon" /></span>
+                </OverlayTrigger>
+              </h3>
+              <div className="scenario-toggles">
+                <Form>
+                  <div className="d-flex flex-wrap gap-3">
+                    {results.priceScenarios.map(scenario => (
+                      <Form.Check
+                        key={scenario.name}
+                        type="checkbox"
+                        id={`scenario-${scenario.name}`}
+                        label={`${scenario.name} Case`}
+                        checked={selectedScenarios.includes(scenario.name)}
+                        onChange={() => handleScenarioToggle(scenario.name)}
+                        className={`scenario-toggle ${scenario.name.toLowerCase()}-toggle`}
+                      />
+                    ))}
+                  </div>
+                </Form>
+              </div>
             </div>
 
             <div className="chart-container">
@@ -112,17 +125,77 @@ const MonthlyROIBreakdown = ({ results }) => {
       </div>
 
       <div className="table-section">
-        <h3 className={`section-title monthly-breakdown-section-title ${darkMode ? "text-white" : ""}`}>Monthly Breakdown</h3>
+        <h3 className={`section-title monthly-breakdown-section-title ${darkMode ? "text-white" : ""}`}>
+          Monthly Breakdown
+          <OverlayTrigger
+            placement="top"
+            overlay={
+              <Tooltip id="tooltip-monthly-breakdown">
+                This table shows a detailed month-by-month breakdown of your investment's performance, including token unlocks, revenue, and cumulative ROI for each scenario.
+              </Tooltip>
+            }
+          >
+            <span className="ms-2"><FaInfoCircle className="text-primary info-icon" /></span>
+          </OverlayTrigger>
+        </h3>
         <div className="table-responsive">
           <Table striped bordered hover className="monthly-breakdown-table">
             <thead>
               <tr>
-                <th className={darkMode ? "text-white" : ""}>Month</th>
-                <th className={darkMode ? "text-white" : ""}>Tokens Unlocked</th>
+                <th className={darkMode ? "text-white" : ""}>
+                  Month
+                  <OverlayTrigger
+                    placement="top"
+                    overlay={
+                      <Tooltip id="tooltip-month-column">
+                        The month number after TGE (Token Generation Event). If a TGE date was provided, actual calendar dates are shown in parentheses.
+                      </Tooltip>
+                    }
+                  >
+                    <span className="ms-2"><FaInfoCircle className="text-primary info-icon" /></span>
+                  </OverlayTrigger>
+                </th>
+                <th className={darkMode ? "text-white" : ""}>
+                  Tokens Unlocked
+                  <OverlayTrigger
+                    placement="top"
+                    overlay={
+                      <Tooltip id="tooltip-tokens-unlocked">
+                        The number of tokens that become available in this specific month according to your vesting schedule.
+                      </Tooltip>
+                    }
+                  >
+                    <span className="ms-2"><FaInfoCircle className="text-primary info-icon" /></span>
+                  </OverlayTrigger>
+                </th>
                 {selectedScenarios.map(scenario => (
                   <React.Fragment key={scenario}>
-                    <th className={darkMode ? "text-white" : ""}>{scenario} Revenue</th>
-                    <th className={darkMode ? "text-white" : ""}>{scenario} Cumulative ROI</th>
+                    <th className={darkMode ? "text-white" : ""}>
+                      {scenario} Revenue
+                      <OverlayTrigger
+                        placement="top"
+                        overlay={
+                          <Tooltip id={`tooltip-revenue-${scenario}`}>
+                            The estimated USD value of tokens unlocked this month based on the {scenario.toLowerCase()} case price scenario.
+                          </Tooltip>
+                        }
+                      >
+                        <span className="ms-2"><FaInfoCircle className="text-primary info-icon" /></span>
+                      </OverlayTrigger>
+                    </th>
+                    <th className={darkMode ? "text-white" : ""}>
+                      {scenario} Cumulative ROI
+                      <OverlayTrigger
+                        placement="top"
+                        overlay={
+                          <Tooltip id={`tooltip-cumulative-roi-${scenario}`}>
+                            The total return on investment up to this month in the {scenario.toLowerCase()} case scenario. Highlighted green when positive, red when negative.
+                          </Tooltip>
+                        }
+                      >
+                        <span className="ms-2"><FaInfoCircle className="text-primary info-icon" /></span>
+                      </OverlayTrigger>
+                    </th>
                   </React.Fragment>
                 ))}
               </tr>

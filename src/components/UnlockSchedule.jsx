@@ -1,11 +1,12 @@
 import React, { useContext } from 'react';
 import { Bar } from 'react-chartjs-2';
-import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
+import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip as ChartTooltip, Legend } from 'chart.js';
 import { format } from 'date-fns';
-import { Table } from 'react-bootstrap';
+import { Table, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { ThemeContext } from '../context/ThemeContext';
+import { FaInfoCircle } from 'react-icons/fa';
 
-ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
+ChartJS.register(CategoryScale, LinearScale, BarElement, Title, ChartTooltip, Legend);
 
 const UnlockSchedule = ({ results }) => {
   const { darkMode } = useContext(ThemeContext);
@@ -151,21 +152,105 @@ const UnlockSchedule = ({ results }) => {
   return (
     <div className="unlock-schedule">
       <div className="chart-container" style={{ height: '400px' }}>
-        <h3 className="section-title">Token Unlock Schedule</h3>
+        <h3 className="section-title">
+          Token Unlock Schedule
+          <OverlayTrigger
+            placement="top"
+            overlay={
+              <Tooltip id="tooltip-unlock-schedule-chart">
+                This chart visualizes your token's vesting schedule, showing what percentage of your tokens unlocks at each period.
+              </Tooltip>
+            }
+          >
+            <span className="ms-2"><FaInfoCircle className="text-primary info-icon" /></span>
+          </OverlayTrigger>
+        </h3>
         <Bar data={chartData} options={chartOptions} />
       </div>
       
       <div className="schedule-details mt-5">
-        <h3 className="section-title">Unlock Schedule Details</h3>
+        <h3 className="section-title">
+          Unlock Schedule Details
+          <OverlayTrigger
+            placement="top"
+            overlay={
+              <Tooltip id="tooltip-unlock-schedule-details">
+                This table provides a detailed breakdown of your token's unlock schedule, including exact dates, percentages, and estimated values.
+              </Tooltip>
+            }
+          >
+            <span className="ms-2"><FaInfoCircle className="text-primary info-icon" /></span>
+          </OverlayTrigger>
+        </h3>
         <div className="table-responsive">
           <Table striped bordered hover className="monthly-breakdown-table">
             <thead>
               <tr>
-                <th>Period</th>
-                <th>Time</th>
-                <th>Percentage</th>
-                <th>Tokens Unlocked</th>
-                <th>Value (Base Case)</th>
+                <th>
+                  Period
+                  <OverlayTrigger
+                    placement="top"
+                    overlay={
+                      <Tooltip id="tooltip-period">
+                        The unlock period number, with TGE (Token Generation Event) being the initial unlock.
+                      </Tooltip>
+                    }
+                  >
+                    <span className="ms-2"><FaInfoCircle className="text-primary info-icon" /></span>
+                  </OverlayTrigger>
+                </th>
+                <th>
+                  Time
+                  <OverlayTrigger
+                    placement="top"
+                    overlay={
+                      <Tooltip id="tooltip-time">
+                        The specific date when tokens will be unlocked. Shows month number if no TGE date was provided.
+                      </Tooltip>
+                    }
+                  >
+                    <span className="ms-2"><FaInfoCircle className="text-primary info-icon" /></span>
+                  </OverlayTrigger>
+                </th>
+                <th>
+                  Percentage
+                  <OverlayTrigger
+                    placement="top"
+                    overlay={
+                      <Tooltip id="tooltip-percentage">
+                        The percentage of your total token allocation that unlocks in this period.
+                      </Tooltip>
+                    }
+                  >
+                    <span className="ms-2"><FaInfoCircle className="text-primary info-icon" /></span>
+                  </OverlayTrigger>
+                </th>
+                <th>
+                  Tokens Unlocked
+                  <OverlayTrigger
+                    placement="top"
+                    overlay={
+                      <Tooltip id="tooltip-tokens-unlocked-table">
+                        The actual number of tokens that become available in this period based on your total token amount.
+                      </Tooltip>
+                    }
+                  >
+                    <span className="ms-2"><FaInfoCircle className="text-primary info-icon" /></span>
+                  </OverlayTrigger>
+                </th>
+                <th>
+                  Value (Base Case)
+                  <OverlayTrigger
+                    placement="top"
+                    overlay={
+                      <Tooltip id="tooltip-value">
+                        The estimated USD value of tokens unlocked in this period, calculated using the Base Case price scenario.
+                      </Tooltip>
+                    }
+                  >
+                    <span className="ms-2"><FaInfoCircle className="text-primary info-icon" /></span>
+                  </OverlayTrigger>
+                </th>
               </tr>
             </thead>
             <tbody>
