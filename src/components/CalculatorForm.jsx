@@ -23,7 +23,8 @@ const CalculatorForm = ({onCalculate}) => {
     tokenAmount: '',
     cliff: 3,
     vestingDuration: 9,
-    unlockFrequency: 'monthly'
+    unlockFrequency: 'monthly',
+    supplyOption: 'custom'
   });
 
   const [priceScenarios, setPriceScenarios] = useState([
@@ -118,10 +119,29 @@ const CalculatorForm = ({onCalculate}) => {
       setIsTokenAmountCalculated(false);
     }
 
-    setFormData({
-      ...formData,
-      [name]: value
-    });
+    // Handle supply option selection
+    if (name === 'supplyOption') {
+      let totalSupply = '';
+      
+      if (value === '10billion') {
+        totalSupply = '10000000000';
+      } else if (value === '1billion') {
+        totalSupply = '1000000000';
+      } else if (value === '100million') {
+        totalSupply = '100000000';
+      }
+      
+      setFormData({
+        ...formData,
+        [name]: value,
+        totalSupply: totalSupply
+      });
+    } else {
+      setFormData({
+        ...formData,
+        [name]: value
+      });
+    }
 
     // Auto-generate unlock schedule when vesting parameters change
     if (['tgeUnlock', 'cliff', 'vestingDuration', 'unlockFrequency'].includes(name)) {
@@ -435,13 +455,30 @@ const CalculatorForm = ({onCalculate}) => {
                       <FaInfoCircle className="ms-2 text-primary info-icon"/>
                     </Form.Label>
                   </OverlayTrigger>
-                  <Form.Control
-                    type="number"
-                    name="totalSupply"
-                    value={formData.totalSupply}
-                    onChange={handleInputChange}
-                    placeholder="e.g., 100000000"
-                  />
+                  <Form.Group>
+                    <Form.Select
+                      name="supplyOption"
+                      value={formData.supplyOption}
+                      onChange={handleInputChange}
+                      className="mb-2"
+                    >
+                      <option value="10billion">10 Billion (10,000,000,000)</option>
+                      <option value="1billion">1 Billion (1,000,000,000)</option>
+                      <option value="100million">100 Million (100,000,000)</option>
+                      <option value="custom">Custom</option>
+                    </Form.Select>
+                    
+                    {formData.supplyOption === 'custom' && (
+                      <Form.Control
+                        type="number"
+                        name="totalSupply"
+                        value={formData.totalSupply}
+                        onChange={handleInputChange}
+                        placeholder="e.g., 100000000"
+                      />
+                    )}
+                  </Form.Group>
+                  
                   <Form.Text className="text-muted">
                     Used to calculate FDV and provide warnings
                   </Form.Text>
