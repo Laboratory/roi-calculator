@@ -335,6 +335,11 @@ body {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   margin-bottom: 2rem;
+  background-color: var(--light-card);
+}
+
+.dark-mode .calculator-card {
+  background-color: var(--dark-card);
 }
 
 /* Tab Navigation */
@@ -383,6 +388,7 @@ body {
 
 .tab-content {
   position: relative;
+  padding: 1rem;
 }
 
 .tab-pane {
@@ -394,6 +400,7 @@ body {
   left: 0;
   right: 0;
   pointer-events: none;
+  padding: 1rem;
 }
 
 .tab-pane.active {
@@ -434,6 +441,28 @@ body {
 }
 
 /* Form Styles */
+.form-section {
+  margin-bottom: 0.5rem;
+  padding: 0 0.5rem;
+}
+
+.section-title {
+  margin-bottom: .5rem;
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
+.section-content {
+  background-color: var(--light-card);
+  border-radius: 0.5rem;
+  padding: .5rem 0 0.5rem 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.dark-mode .section-content {
+  background-color: var(--dark-card);
+}
+
 .form-group {
   margin-bottom: 1.5rem;
 }

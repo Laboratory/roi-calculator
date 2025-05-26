@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { Container, Row, Col, Button, Nav, Image } from 'react-bootstrap';
 import { FaSun, FaMoon, FaInstagram, FaFacebookF } from 'react-icons/fa';
+import { Routes, Route, Link, useNavigate, useLocation } from 'react-router-dom';
 import { ThemeContext } from './context/ThemeContext';
 import CalculatorForm from './components/CalculatorForm';
 import CalculatorResults from './components/CalculatorResults';
