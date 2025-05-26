@@ -36,9 +36,15 @@ export const calculateResults = (data) => {
   const cumulativeROI = {};
   const totalROI = {};
   const breakEvenMonths = {};
+  const scenarioROIs = {};
   
   priceScenarios.forEach(scenario => {
     const scenarioPrice = Number(scenario.price);
+    const scenarioROI = Number(scenario.roi);
+    
+    // Store the ROI for each scenario
+    scenarioROIs[scenario.name] = scenarioROI;
+    
     monthlyRevenue[scenario.name] = Array(maxMonth + 1).fill(0);
     cumulativeROI[scenario.name] = Array(maxMonth + 1).fill(0);
     
@@ -81,7 +87,7 @@ export const calculateResults = (data) => {
         const fdvInBillions = (fdv / 1000000000).toFixed(2);
         fdvWarnings.push({
           scenario: scenario.name,
-          message: `${scenario.name} case price implies FDV of $${fdvInBillions}B — likely unrealistic for early-stage token.`
+          message: `${scenario.name} market scenario implies FDV of $${fdvInBillions}B — likely unrealistic for early-stage token.`
         });
       }
     });
@@ -103,6 +109,7 @@ export const calculateResults = (data) => {
     fdvWarnings,
     fdvValues,
     totalSupply: Number(totalSupply) || null,
-    priceScenarios
+    priceScenarios,
+    scenarioROIs
   };
 };

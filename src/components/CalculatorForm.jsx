@@ -28,9 +28,9 @@ const CalculatorForm = ({onCalculate}) => {
   });
 
   const [priceScenarios, setPriceScenarios] = useState([
-    {name: 'Bear', price: '0.05'},
-    {name: 'Base', price: '0.2'},
-    {name: 'Bull', price: '0.5'}
+    {name: 'Bear', roi: '-90', price: '0.05'},
+    {name: 'Base', roi: '0', price: '0.2'},
+    {name: 'Bull', roi: '300', price: '0.5'}
   ]);
 
   const [unlockPeriods, setUnlockPeriods] = useState(DEFAULT_UNLOCK_PERIODS);
@@ -111,6 +111,28 @@ const CalculatorForm = ({onCalculate}) => {
     return generatedPeriods;
   };
 
+  // Calculate scenario prices based on ROI inputs
+  const calculateScenarioPrices = () => {
+    const basePrice = Number(formData.tokenPrice);
+    const updatedScenarios = priceScenarios.map(scenario => {
+      const roi = Number(scenario.roi);
+      const calculatedPrice = basePrice * (1 + (roi / 100));
+      return {
+        ...scenario,
+        price: calculatedPrice.toString()
+      };
+    });
+    
+    setPriceScenarios(updatedScenarios);
+  };
+  
+  // Update scenario prices when token price or ROI values change
+  useEffect(() => {
+    if (formData.tokenPrice) {
+      calculateScenarioPrices();
+    }
+  }, [formData.tokenPrice]);
+
   const handleInputChange = (e) => {
     const {name, value} = e.target;
 
@@ -170,6 +192,15 @@ const CalculatorForm = ({onCalculate}) => {
     updatedScenarios[index][field] = value;
     setPriceScenarios(updatedScenarios);
 
+    // If ROI is changed, recalculate the price
+    if (field === 'roi' && formData.tokenPrice) {
+      const roi = Number(value);
+      const basePrice = Number(formData.tokenPrice);
+      const calculatedPrice = basePrice * (1 + (roi / 100));
+      updatedScenarios[index].price = calculatedPrice.toString();
+      setPriceScenarios(updatedScenarios);
+    }
+
     // Clear scenario errors
     if (errors.scenarios) {
       setErrors({
@@ -216,11 +247,11 @@ const CalculatorForm = ({onCalculate}) => {
 
     // Validate scenarios
     const hasValidScenarios = priceScenarios.every(scenario =>
-      scenario.name && scenario.price !== '' && parseFloat(scenario.price) >= 0
+      scenario.name && scenario.roi !== '' && parseFloat(scenario.roi) >= -100
     );
 
     if (!hasValidScenarios) {
-      newErrors.scenarios = 'All scenarios must have a name and valid price';
+      newErrors.scenarios = 'All scenarios must have a name and valid ROI';
     }
 
     // Validate unlock periods
@@ -491,14 +522,12 @@ const CalculatorForm = ({onCalculate}) => {
                 placement="top"
                 overlay={
                   <Tooltip id="tooltip-price-scenarios">
-                    Define different price scenarios to see potential returns in various market conditions. Bear
-                    (pessimistic), Base (expected), and Bull (optimistic) cases help you understand the range of
-                    possible outcomes.
+                    Define different market scenarios to see potential returns in various market conditions.
                   </Tooltip>
                 }
               >
                 <h3 className="section-title tooltip-label">
-                  Price Scenarios
+                  Market ROI Scenarios
                   <FaInfoCircle className="ms-2 text-primary info-icon"/>
                 </h3>
               </OverlayTrigger>
@@ -511,27 +540,30 @@ const CalculatorForm = ({onCalculate}) => {
                           placement="top"
                           overlay={
                             <Tooltip id={`tooltip-scenario-${index}`}>
-                              {scenario.name === 'Bear' && 'Pessimistic price target - the lowest reasonable price you expect the token to reach.'}
-                              {scenario.name === 'Base' && 'Expected price target - the most likely price you expect the token to reach.'}
-                              {scenario.name === 'Bull' && 'Optimistic price target - the highest reasonable price you expect the token to reach.'}
+                              {scenario.name === 'Bear' && 'We assume your token trades at 90% below your presale price during your entire vesting period.'}
+                              {scenario.name === 'Base' && 'No major price change. Token price stays near your purchase level.'}
+                              {scenario.name === 'Bull' && 'Market surges. We assume Token trades at a multiple of your presale price over your vesting period.'}
                             </Tooltip>
                           }
                         >
                           <Form.Label className="tooltip-label">
-                            {scenario.name} Case Price (USD)
+                            {scenario.name} Market Return
                             <FaInfoCircle className="ms-2 text-primary info-icon"/>
                           </Form.Label>
                         </OverlayTrigger>
                         <InputGroup>
-                          <InputGroup.Text>$</InputGroup.Text>
                           <Form.Control
                             type="number"
-                            value={scenario.price}
-                            onChange={(e) => handleScenarioChange(index, 'price', e.target.value)}
-                            placeholder="Token price"
-                            step="0.0000001"
+                            value={scenario.roi}
+                            onChange={(e) => handleScenarioChange(index, 'roi', e.target.value)}
+                            placeholder="Return percentage"
+                            step="1"
                           />
+                          <InputGroup.Text>%</InputGroup.Text>
                         </InputGroup>
+                        <Form.Text className="text-muted">
+                          Calculated price: ${parseFloat(scenario.price).toFixed(6)}
+                        </Form.Text>
                       </Form.Group>
                     </Col>
                   </Row>
