@@ -26,7 +26,15 @@ const MonthlyROIBreakdown = ({ results }) => {
 
     const date = new Date(results.tgeDate);
     date.setMonth(date.getMonth() + parseInt(month));
-    return `Month ${month} (${format(date, 'MMM yyyy')})`;
+    return `Month ${month}`;
+  };
+
+  const formatDate = (month) => {
+    if (!results.tgeDate) return null;
+
+    const date = new Date(results.tgeDate);
+    date.setMonth(date.getMonth() + parseInt(month));
+    return format(date, 'MMM yyyy');
   };
 
   const formatPercentage = (value) => {
@@ -212,7 +220,10 @@ const MonthlyROIBreakdown = ({ results }) => {
               {months.map(month => (
                 <tr key={month} className={Object.entries(breakEvenMonths).some(([scenario, breakMonth]) =>
                   selectedScenarios.includes(scenario) && breakMonth === month) ? 'break-even-row' : ''}>
-                  <td className={darkMode ? "text-white" : ""}>{formatMonth(month)}</td>
+                  <td className={darkMode ? "text-white" : ""}>
+                    {formatMonth(month)}
+                    {formatDate(month) && <div className="calendar-date">{formatDate(month)}</div>}
+                  </td>
                   <td className={darkMode ? "text-white" : ""}>{results.monthlyUnlocks[month].toLocaleString(undefined, { maximumFractionDigits: 2 })} {results.tokenName}</td>
                   {selectedScenarios.map(scenario => (
                     <React.Fragment key={scenario}>

@@ -13,6 +13,12 @@ const ROIChart = ({ data, scenarios, tgeDate }) => {
   const formatMonth = (month) => {
     if (!tgeDate) return `Month ${month}`;
     
+    return `Month ${month}`;
+  };
+  
+  const formatDate = (month) => {
+    if (!tgeDate) return null;
+    
     const date = new Date(tgeDate);
     date.setMonth(date.getMonth() + parseInt(month));
     return format(date, 'MMM yyyy');
@@ -93,7 +99,11 @@ const ROIChart = ({ data, scenarios, tgeDate }) => {
   });
   
   const chartData = {
-    labels: months.map(month => formatMonth(month)),
+    labels: months.map(month => {
+      const monthLabel = formatMonth(month);
+      const dateLabel = formatDate(month);
+      return dateLabel ? [monthLabel, dateLabel] : monthLabel;
+    }),
     datasets: scenarios.map((scenario, index) => {
       const colorSet = getColor(scenario, index);
       return {
@@ -182,7 +192,9 @@ const ROIChart = ({ data, scenarios, tgeDate }) => {
             return label;
           },
           title: function(context) {
-            return context[0].label;
+            const label = context[0].label;
+            // If label is an array (has both month and date), join them with a line break
+            return Array.isArray(label) ? label.join('\n') : label;
           }
         },
         backgroundColor: darkMode ? 'rgba(30, 39, 46, 0.9)' : 'rgba(0, 0, 0, 0.7)',
@@ -260,6 +272,9 @@ const ROIChart = ({ data, scenarios, tgeDate }) => {
                   style={{ backgroundColor: getColor(scenario).border }}
                 ></span>
                 <strong className="break-even-legend-text">{scenario}</strong> breaks even at {formatMonth(point.month)}
+                {formatDate(point.month) && (
+                  <div className="calendar-date">{formatDate(point.month)}</div>
+                )}
               </div>
             ))}
           </div>
