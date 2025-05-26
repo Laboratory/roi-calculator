@@ -517,473 +517,258 @@ const CalculatorForm = ({onCalculate}) => {
         </Row>
 
         <div className="form-section mt-4">
-          <h3 className="section-title">Investment Details</h3>
+          <OverlayTrigger
+            placement="top"
+            overlay={<Tooltip id="tooltip-price-scenarios">
+              Define different market scenarios to see potential returns in various market conditions.
+            </Tooltip>}
+          >
+            <h3 className="section-title tooltip-label">
+              Market ROI Scenarios
+              <FaInfoCircle className="ms-2 text-primary info-icon"/>
+            </h3>
+          </OverlayTrigger>
+          <div className="section-content">
+            {priceScenarios.map((scenario, index) => (<Row key={index} className="mb-3">
+              <Col md={6}>
+                <Form.Group>
+                  <OverlayTrigger
+                    placement="top"
+                    overlay={<Tooltip id={`tooltip-scenario-${index}`}>
+                      {scenario.name === 'Bear' && 'We assume your token trades at 90% below your presale price during your entire vesting period.'}
+                      {scenario.name === 'Base' && 'No major price change. Token price stays near your purchase level.'}
+                      {scenario.name === 'Bull' && 'Market surges. We assume Token trades at a multiple of your presale price over your vesting period.'}
+                    </Tooltip>}
+                  >
+                    <Form.Label className="tooltip-label">
+                      {scenario.name} Market Return
+                      <FaInfoCircle className="ms-2 text-primary info-icon"/>
+                    </Form.Label>
+                  </OverlayTrigger>
+                  <InputGroup>
+                    <Form.Control
+                      type="number"
+                      value={scenario.roi}
+                      onChange={(e) => handleScenarioChange(index, 'roi', e.target.value)}
+                      placeholder="Return percentage"
+                      step="1"
+                    />
+                    <InputGroup.Text>%</InputGroup.Text>
+                  </InputGroup>
+                  <Form.Text className="text-muted">
+                    Calculated price: ${parseFloat(scenario.price).toFixed(6)}
+                  </Form.Text>
+                </Form.Group>
+              </Col>
+            </Row>))}
+          </div>
+        </div>
+
+        <div className="form-section mt-4">
+          <h3 className="section-title">Unlock Schedule</h3>
           <div className="section-content">
             <Row>
               <Col md={6}>
                 <Form.Group className="mb-3">
                   <OverlayTrigger
                     placement="top"
-                    overlay={<Tooltip id="tooltip-investment-amount">
-                      The amount of money you invested in USD.
+                    overlay={<Tooltip id="tooltip-tge-unlock">
+                      The percentage of your tokens that will be unlocked at TGE (Token Generation Event).
                     </Tooltip>}
                   >
                     <Form.Label className="tooltip-label">
-                      Investment Amount (USD)
+                      TGE Unlock (%)
                       <FaInfoCircle className="ms-2 text-primary info-icon"/>
                     </Form.Label>
                   </OverlayTrigger>
                   <InputGroup>
-                    <InputGroup.Text>$</InputGroup.Text>
                     <Form.Control
                       type="number"
-                      name="investmentAmount"
-                      value={formData.investmentAmount}
+                      name="tgeUnlock"
+                      value={formData.tgeUnlock}
                       onChange={handleInputChange}
-                      placeholder="e.g., 1000"
-                      step="0.01"
-                      isInvalid={!!errors.investmentAmount}
+                      placeholder="e.g., 10"
+                      min="0"
+                      max="100"
+                      step="0.1"
+                      isInvalid={!!errors.tgeUnlock}
                     />
+                    <InputGroup.Text>%</InputGroup.Text>
                   </InputGroup>
                   <Form.Control.Feedback type="invalid">
-                    {errors.investmentAmount}
-                  </Form.Control.Feedback>
-                </Form.Group>
-              </Col>
-
-              <Col md={6}>
-                <Form.Group className="mb-3">
-                  <OverlayTrigger
-                    placement="top"
-                    overlay={<Tooltip id="tooltip-token-price">
-                      The price per token in USD at the time of your investment.
-                    </Tooltip>}
-                  >
-                    <Form.Label className="tooltip-label">
-                      Token Price (USD)
-                      <FaInfoCircle className="ms-2 text-primary info-icon"/>
-                    </Form.Label>
-                  </OverlayTrigger>
-                  <InputGroup>
-                    <InputGroup.Text>$</InputGroup.Text>
-                    <Form.Control
-                      type="number"
-                      name="tokenPrice"
-                      value={formData.tokenPrice}
-                      onChange={handleInputChange}
-                      placeholder="e.g., 0.1"
-                      step="0.0000001"
-                      isInvalid={!!errors.tokenPrice}
-                    />
-                  </InputGroup>
-                  <Form.Control.Feedback type="invalid">
-                    {errors.tokenPrice}
+                    {errors.tgeUnlock}
                   </Form.Control.Feedback>
                 </Form.Group>
               </Col>
             </Row>
 
             <Row>
-              <Col md={6}>
+              <Col md={4}>
                 <Form.Group className="mb-3">
                   <OverlayTrigger
                     placement="top"
-                    overlay={<Tooltip id="tooltip-token-name">
-                      The name or ticker of the token you invested in.
-                    </Tooltip>}
+                    overlay={<Tooltip id="tooltip-cliff">
+                    The number of months after TGE before tokens start to unlock.
+                  </Tooltip>}
                   >
                     <Form.Label className="tooltip-label">
-                      Token Name/Ticker
-                      <FaInfoCircle className="ms-2 text-primary info-icon"/>
-                    </Form.Label>
-                  </OverlayTrigger>
-                  <Form.Control
-                    type="text"
-                    name="tokenName"
-                    value={formData.tokenName}
-                    onChange={handleInputChange}
-                    placeholder="e.g., ETH"
-                    isInvalid={!!errors.tokenName}
-                  />
-                  <Form.Control.Feedback type="invalid">
-                    {errors.tokenName}
-                  </Form.Control.Feedback>
-                </Form.Group>
-              </Col>
-
-              <Col md={6}>
-                <Form.Group className="mb-3">
-                  <OverlayTrigger
-                    placement="top"
-                    overlay={<Tooltip id="tooltip-token-amount">
-                      The number of tokens you purchased. This is automatically calculated based on your investment
-                      amount and token price, but you can override it if needed.
-                    </Tooltip>}
-                  >
-                    <Form.Label className="tooltip-label">
-                      Token Amount
+                      Cliff (months)
                       <FaInfoCircle className="ms-2 text-primary info-icon"/>
                     </Form.Label>
                   </OverlayTrigger>
                   <Form.Control
                     type="number"
-                    name="tokenAmount"
-                    value={formData.tokenAmount}
+                    name="cliff"
+                    value={formData.cliff}
                     onChange={handleInputChange}
-                    placeholder="e.g., 10000"
-                    step="0.01"
-                    isInvalid={!!errors.tokenAmount}
+                    min="0"
+                    step="1"
                   />
-                  {isTokenAmountCalculated && (<Form.Text className="text-muted">
-                    Estimated: {Number(getEstimatedTokenAmount()).toLocaleString(undefined, {maximumFractionDigits: 2})} tokens
-                  </Form.Text>)}
+                </Form.Group>
+              </Col>
+
+              <Col md={4}>
+                <Form.Group className="mb-3">
+                  <OverlayTrigger
+                    placement="top"
+                    overlay={<Tooltip id="tooltip-vesting-duration">
+                    The total duration in months over which tokens will vest after the cliff period.
+                  </Tooltip>}
+                  >
+                    <Form.Label className="tooltip-label">
+                      Vesting Duration (months)
+                      <FaInfoCircle className="ms-2 text-primary info-icon"/>
+                    </Form.Label>
+                  </OverlayTrigger>
+                  <Form.Control
+                    type="number"
+                    name="vestingDuration"
+                    value={formData.vestingDuration}
+                    onChange={handleInputChange}
+                    min="1"
+                    step="1"
+                  />
+                </Form.Group>
+              </Col>
+
+              <Col md={4}>
+                <Form.Group className="mb-3">
+                  <OverlayTrigger
+                    placement="top"
+                    overlay={<Tooltip id="tooltip-unlock-frequency">
+                    How frequently tokens unlock during the vesting period.
+                  </Tooltip>}
+                  >
+                    <Form.Label className="tooltip-label">
+                      Unlock Frequency
+                      <FaInfoCircle className="ms-2 text-primary info-icon"/>
+                    </Form.Label>
+                  </OverlayTrigger>
+                  <Form.Select
+                    name="unlockFrequency"
+                    value={formData.unlockFrequency}
+                    onChange={handleInputChange}
+                  >
+                    <option value="monthly">Monthly</option>
+                    <option value="weekly">Weekly</option>
+                  </Form.Select>
                 </Form.Group>
               </Col>
             </Row>
 
-            <Row>
-              <Col md={6}>
-                <Form.Group className="mb-3">
-                  <OverlayTrigger
-                    placement="top"
-                    overlay={<Tooltip id="tooltip-tge-date">
-                      Token Generation Event date - when your tokens were first created and the vesting schedule
-                      began.
-                    </Tooltip>}
-                  >
-                    <Form.Label className="tooltip-label">
-                      TGE Date
-                      <FaInfoCircle className="ms-2 text-primary info-icon"/>
-                    </Form.Label>
-                  </OverlayTrigger>
-                  <DatePicker
-                    selected={formData.tgeDate}
-                    onChange={handleDateChange}
-                    className="form-control"
-                    placeholderText="dd.mm.yyyy"
-                    dateFormat="dd.MM.yyyy"
-                  />
-                  <div>
-                    <Form.Text className="text-muted">
-                      If provided, results will show actual calendar dates
-                    </Form.Text>
-                  </div>
-                </Form.Group>
-              </Col>
-
-              <Col md={6}>
-                <Form.Group className="mb-3">
-                  <OverlayTrigger
-                    placement="top"
-                    overlay={<Tooltip id="tooltip-total-supply">
-                      The total number of tokens that will ever exist for this project. Used to calculate the Fully
-                      Diluted Valuation (FDV).
-                    </Tooltip>}
-                  >
-                    <Form.Label className="tooltip-label">
-                      Total Token Supply (Optional)
-                      <FaInfoCircle className="ms-2 text-primary info-icon"/>
-                    </Form.Label>
-                  </OverlayTrigger>
-                  <Form.Group>
-                    <Form.Select
-                      name="supplyOption"
-                      value={formData.supplyOption}
-                      onChange={handleInputChange}
-                      className="mb-2"
-                    >
-                      <option value="10billion">10 Billion (10,000,000,000)</option>
-                      <option value="1billion">1 Billion (1,000,000,000)</option>
-                      <option value="100million">100 Million (100,000,000)</option>
-                      <option value="custom">Custom</option>
-                    </Form.Select>
-
-                    {formData.supplyOption === 'custom' && (<Form.Control
-                      type="number"
-                      name="totalSupply"
-                      value={formData.totalSupply}
-                      onChange={handleInputChange}
-                      placeholder="e.g., 100000000"
-                    />)}
-                  </Form.Group>
-
-                  <Form.Text className="text-muted">
-                    Used to calculate FDV and provide warnings
-                  </Form.Text>
-                </Form.Group>
-              </Col>
-            </Row>
-
-            <div className="form-section mt-4">
-              <OverlayTrigger
-                placement="top"
-                overlay={<Tooltip id="tooltip-price-scenarios">
-                  Define different market scenarios to see potential returns in various market conditions.
+            <div className="generated-schedule mt-4">
+              <h5>
+                <OverlayTrigger
+                  placement="top"
+                  overlay={<Tooltip id="tooltip-generated-schedule">
+                  This table shows the
+                  detailed {formData.unlockFrequency === 'weekly' ? 'weekly' : 'monthly'} unlock schedule for
+                  your tokens.
                 </Tooltip>}
-              >
-                <h3 className="section-title tooltip-label">
-                  Market ROI Scenarios
-                  <FaInfoCircle className="ms-2 text-primary info-icon"/>
-                </h3>
-              </OverlayTrigger>
-              <div className="section-content">
-                {priceScenarios.map((scenario, index) => (<Row key={index} className="mb-3">
-                  <Col md={6}>
-                    <Form.Group>
+                >
+                      <span className="tooltip-label">
+                        Generated Unlock Schedule
+                        <FaInfoCircle className="ms-2 text-primary info-icon"/>
+                      </span>
+                </OverlayTrigger>
+              </h5>
+
+              <div className="table-responsive">
+                <table className="table table-sm table-striped">
+                  <thead>
+                  <tr>
+                    <th>
                       <OverlayTrigger
                         placement="top"
-                        overlay={<Tooltip id={`tooltip-scenario-${index}`}>
-                          {scenario.name === 'Bear' && 'We assume your token trades at 90% below your presale price during your entire vesting period.'}
-                          {scenario.name === 'Base' && 'No major price change. Token price stays near your purchase level.'}
-                          {scenario.name === 'Bull' && 'Market surges. We assume Token trades at a multiple of your presale price over your vesting period.'}
-                        </Tooltip>}
+                        overlay={<Tooltip id="tooltip-period">
+                      The {formData.unlockFrequency === 'weekly' ? 'week' : 'month'} number after TGE (Token
+                      Generation Event).
+                    </Tooltip>}
                       >
-                        <Form.Label className="tooltip-label">
-                          {scenario.name} Market Return
-                          <FaInfoCircle className="ms-2 text-primary info-icon"/>
-                        </Form.Label>
+                            <span className="tooltip-label">
+                              {formData.tgeDate ? "Time" : "Period"}
+                              <FaInfoCircle className="ms-2 text-primary info-icon"/>
+                            </span>
                       </OverlayTrigger>
-                      <InputGroup>
-                        <Form.Control
-                          type="number"
-                          value={scenario.roi}
-                          onChange={(e) => handleScenarioChange(index, 'roi', e.target.value)}
-                          placeholder="Return percentage"
-                          step="1"
-                        />
-                        <InputGroup.Text>%</InputGroup.Text>
-                      </InputGroup>
-                      <Form.Text className="text-muted">
-                        Calculated price: ${parseFloat(scenario.price).toFixed(6)}
-                      </Form.Text>
-                    </Form.Group>
-                  </Col>
-                </Row>))}
+                    </th>
+                    <th>
+                      <OverlayTrigger
+                        placement="top"
+                        overlay={<Tooltip id="tooltip-percentage">
+                      The percentage of your total tokens that will unlock during this period.
+                    </Tooltip>}
+                      >
+                            <span className="tooltip-label">
+                              Percentage (%)
+                              <FaInfoCircle className="ms-2 text-primary info-icon"/>
+                            </span>
+                      </OverlayTrigger>
+                    </th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr>
+                    <td>
+                      {formData.tgeDate ? (<div>Month 0 — {new Date(formData.tgeDate).toLocaleDateString('en-US', {
+                        month: 'short', day: 'numeric', year: 'numeric'
+                      })}</div>) : (
+                        <div>{formData.unlockFrequency === 'weekly' ? 'Week (0)' : 'Month 0 (TGE)'}</div>)}
+                    </td>
+                    <td>{formData.tgeUnlock}%</td>
+                  </tr>
+                  {unlockPeriods.map((period, index) => {
+                    // Determine which value to display as the primary time unit
+                    const monthValue = period.month;
+                    const weekValue = formData.unlockFrequency === 'weekly' ? (period.weekNumber || Math.round((period.month - Number(formData.cliff)) * 4.33) + 1) : null;
+
+                    return (<tr key={index}>
+                      <td>
+                        {formData.tgeDate ? (<div>
+                          {formData.unlockFrequency === 'weekly' ? `Week ${weekValue} — ${formatUnlockDate(weekValue)}` : `Month ${monthValue} — ${formatUnlockDate(monthValue)}`}
+                        </div>) : (<div>
+                          {formData.unlockFrequency === 'weekly' ? `Week ${weekValue}` : `Month ${monthValue}`}
+                        </div>)}
+                      </td>
+                      <td>{period.percentage}%</td>
+                    </tr>);
+                  })}
+                  </tbody>
+                </table>
               </div>
-            </div>
 
-            <div className="form-section mt-4">
-              <OverlayTrigger
-                placement="top"
-                overlay={<Tooltip id="tooltip-unlock-schedule">
-                  Define how your tokens will be released over time. Most token investments have vesting periods
-                  where
-                  tokens are gradually unlocked. This significantly impacts your ROI timeline.
-                </Tooltip>}
-              >
-                <h3 className="section-title tooltip-label">
-                  Unlock Schedule
-                  <FaInfoCircle className="ms-2 text-primary info-icon"/>
-                </h3>
-              </OverlayTrigger>
-              <div className="section-content">
-                {errors.totalPercentage && (<Alert variant="danger">{errors.totalPercentage}</Alert>)}
-
-                <Row className="mb-3">
-                  <Col md={6}>
-                    <Form.Group>
-                      <OverlayTrigger
-                        placement="top"
-                        overlay={<Tooltip id="tooltip-tge-unlock">
-                          The percentage of your tokens that were immediately available at the Token Generation
-                          Event.
-                        </Tooltip>}
-                      >
-                        <Form.Label className="tooltip-label">
-                          TGE Unlock (%)
-                          <FaInfoCircle className="ms-2 text-primary info-icon"/>
-                        </Form.Label>
-                      </OverlayTrigger>
-                      <InputGroup>
-                        <Form.Control
-                          type="number"
-                          name="tgeUnlock"
-                          value={formData.tgeUnlock}
-                          onChange={handleInputChange}
-                          placeholder="e.g., 10"
-                          min="0"
-                          max="100"
-                          step="0.1"
-                          isInvalid={!!errors.tgeUnlock}
-                        />
-                        <InputGroup.Text>%</InputGroup.Text>
-                      </InputGroup>
-                      <Form.Control.Feedback type="invalid">
-                        {errors.tgeUnlock}
-                      </Form.Control.Feedback>
-                    </Form.Group>
-                  </Col>
-                </Row>
-
-                <Row className="mb-3">
-                  <Col md={4}>
-                    <Form.Group>
-                      <OverlayTrigger
-                        placement="top"
-                        overlay={<Tooltip id="tooltip-cliff">
-                          The number of months after TGE before tokens start to unlock.
-                        </Tooltip>}
-                      >
-                        <Form.Label className="tooltip-label">
-                          Cliff (months)
-                          <FaInfoCircle className="ms-2 text-primary info-icon"/>
-                        </Form.Label>
-                      </OverlayTrigger>
-                      <Form.Control
-                        type="number"
-                        name="cliff"
-                        value={formData.cliff}
-                        onChange={handleInputChange}
-                        min="0"
-                        step="1"
-                      />
-                    </Form.Group>
-                  </Col>
-
-                  <Col md={4}>
-                    <Form.Group>
-                      <OverlayTrigger
-                        placement="top"
-                        overlay={<Tooltip id="tooltip-vesting-duration">
-                          The total duration in months over which tokens will vest after the cliff period.
-                        </Tooltip>}
-                      >
-                        <Form.Label className="tooltip-label">
-                          Vesting Duration (months)
-                          <FaInfoCircle className="ms-2 text-primary info-icon"/>
-                        </Form.Label>
-                      </OverlayTrigger>
-                      <Form.Control
-                        type="number"
-                        name="vestingDuration"
-                        value={formData.vestingDuration}
-                        onChange={handleInputChange}
-                        min="1"
-                        step="1"
-                      />
-                    </Form.Group>
-                  </Col>
-
-                  <Col md={4}>
-                    <Form.Group>
-                      <OverlayTrigger
-                        placement="top"
-                        overlay={<Tooltip id="tooltip-unlock-frequency">
-                          How frequently tokens unlock during the vesting period.
-                        </Tooltip>}
-                      >
-                        <Form.Label className="tooltip-label">
-                          Unlock Frequency
-                          <FaInfoCircle className="ms-2 text-primary info-icon"/>
-                        </Form.Label>
-                      </OverlayTrigger>
-                      <Form.Select
-                        name="unlockFrequency"
-                        value={formData.unlockFrequency}
-                        onChange={handleInputChange}
-                      >
-                        <option value="monthly">Monthly</option>
-                        <option value="weekly">Weekly</option>
-                      </Form.Select>
-                    </Form.Group>
-                  </Col>
-                </Row>
-
-                <div className="generated-schedule mt-4">
-                  <h5>
-                    <OverlayTrigger
-                      placement="top"
-                      overlay={<Tooltip id="tooltip-generated-schedule">
-                        This table shows the
-                        detailed {formData.unlockFrequency === 'weekly' ? 'weekly' : 'monthly'} unlock schedule for
-                        your tokens.
-                      </Tooltip>}
-                    >
-                        <span className="tooltip-label">
-                          Generated Unlock Schedule
-                          <FaInfoCircle className="ms-2 text-primary info-icon"/>
-                        </span>
-                    </OverlayTrigger>
-                  </h5>
-
-                  <div className="table-responsive">
-                    <table className="table table-sm table-striped">
-                      <thead>
-                      <tr>
-                        <th>
-                          <OverlayTrigger
-                            placement="top"
-                            overlay={<Tooltip id="tooltip-period">
-                              The {formData.unlockFrequency === 'weekly' ? 'week' : 'month'} number after TGE (Token
-                              Generation Event).
-                            </Tooltip>}
-                          >
-                                <span className="tooltip-label">
-                                  {formData.tgeDate ? "Time" : "Period"}
-                                  <FaInfoCircle className="ms-2 text-primary info-icon"/>
-                                </span>
-                          </OverlayTrigger>
-                        </th>
-                        <th>
-                          <OverlayTrigger
-                            placement="top"
-                            overlay={<Tooltip id="tooltip-percentage">
-                              The percentage of your total tokens that will unlock during this period.
-                            </Tooltip>}
-                          >
-                                <span className="tooltip-label">
-                                  Percentage (%)
-                                  <FaInfoCircle className="ms-2 text-primary info-icon"/>
-                                </span>
-                          </OverlayTrigger>
-                        </th>
-                      </tr>
-                      </thead>
-                      <tbody>
-                      <tr>
-                        <td>
-                          {formData.tgeDate ? (<div>Month 0 — {new Date(formData.tgeDate).toLocaleDateString('en-US', {
-                            month: 'short', day: 'numeric', year: 'numeric'
-                          })}</div>) : (
-                            <div>{formData.unlockFrequency === 'weekly' ? 'Week (0)' : 'Month 0 (TGE)'}</div>)}
-                        </td>
-                        <td>{formData.tgeUnlock}%</td>
-                      </tr>
-                      {unlockPeriods.map((period, index) => {
-                        // Determine which value to display as the primary time unit
-                        const monthValue = period.month;
-                        const weekValue = formData.unlockFrequency === 'weekly' ? (period.weekNumber || Math.round((period.month - Number(formData.cliff)) * 4.33) + 1) : null;
-
-                        return (<tr key={index}>
-                          <td>
-                            {formData.tgeDate ? (<div>
-                              {formData.unlockFrequency === 'weekly' ? `Week ${weekValue} — ${formatUnlockDate(weekValue)}` : `Month ${monthValue} — ${formatUnlockDate(monthValue)}`}
-                            </div>) : (<div>
-                              {formData.unlockFrequency === 'weekly' ? `Week ${weekValue}` : `Month ${monthValue}`}
-                            </div>)}
-                          </td>
-                          <td>{period.percentage}%</td>
-                        </tr>);
-                      })}
-                      </tbody>
-                    </table>
-                  </div>
-
-                  {formData.unlockFrequency === 'weekly' && !formData.tgeDate && (<div className="mt-2">
-                    <small className="text-muted">
-                      * Week numbers are calculated from TGE date
-                    </small>
-                  </div>)}
-                </div>
-              </div>
-            </div>
-
-            <div className="d-grid gap-2 mt-4">
-              <Button variant="primary" size="lg" onClick={handleCalculate}>
-                Calculate Results
-              </Button>
+              {formData.unlockFrequency === 'weekly' && !formData.tgeDate && (<div className="mt-2">
+                <small className="text-muted">
+                  * Week numbers are calculated from TGE date
+                </small>
+              </div>)}
             </div>
           </div>
+        </div>
+
+        <div className="d-grid gap-2 mt-4">
+          <Button variant="primary" size="lg" onClick={handleCalculate}>
+            Calculate Results
+          </Button>
         </div>
       </div>
     </div>
