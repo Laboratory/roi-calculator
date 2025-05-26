@@ -81,19 +81,19 @@ const MonthlyROIBreakdown = ({ results }) => {
         <Card className="chart-card">
           <Card.Body>
             <div className="chart-header">
-              <h3 className={`section-title ${darkMode ? "text-white" : ""}`}>
-                ROI Over Time
-                <OverlayTrigger
-                  placement="top"
-                  overlay={
-                    <Tooltip id="tooltip-roi-chart">
-                      This chart shows how your investment's ROI changes over time as tokens are unlocked. The lines represent different price scenarios.
-                    </Tooltip>
-                  }
-                >
-                  <span className="ms-2"><FaInfoCircle className="text-primary info-icon" /></span>
-                </OverlayTrigger>
-              </h3>
+              <OverlayTrigger
+                placement="top"
+                overlay={
+                  <Tooltip id="tooltip-roi-chart">
+                    This chart shows how your investment's ROI changes over time as tokens are unlocked. The lines represent different price scenarios.
+                  </Tooltip>
+                }
+              >
+                <h3 className={`section-title tooltip-label ${darkMode ? "text-white" : ""}`}>
+                  ROI Over Time
+                  <FaInfoCircle className="ms-2 text-primary info-icon" />
+                </h3>
+              </OverlayTrigger>
               <div className="scenario-toggles">
                 <Form>
                   <div className="d-flex flex-wrap gap-3">
@@ -125,25 +125,24 @@ const MonthlyROIBreakdown = ({ results }) => {
       </div>
 
       <div className="table-section">
-        <h3 className={`section-title monthly-breakdown-section-title ${darkMode ? "text-white" : ""}`}>
-          Monthly Breakdown
-          <OverlayTrigger
-            placement="top"
-            overlay={
-              <Tooltip id="tooltip-monthly-breakdown">
-                This table shows a detailed month-by-month breakdown of your investment's performance, including token unlocks, revenue, and cumulative ROI for each scenario.
-              </Tooltip>
-            }
-          >
-            <span className="ms-2"><FaInfoCircle className="text-primary info-icon" /></span>
-          </OverlayTrigger>
-        </h3>
+        <OverlayTrigger
+          placement="top"
+          overlay={
+            <Tooltip id="tooltip-monthly-breakdown">
+              This table shows a detailed month-by-month breakdown of your investment's performance, including token unlocks, revenue, and cumulative ROI for each scenario.
+            </Tooltip>
+          }
+        >
+          <h3 className={`section-title tooltip-label monthly-breakdown-section-title ${darkMode ? "text-white" : ""}`}>
+            Monthly Breakdown
+            <FaInfoCircle className="ms-2 text-primary info-icon" />
+          </h3>
+        </OverlayTrigger>
         <div className="table-responsive">
           <Table striped bordered hover className="monthly-breakdown-table">
             <thead>
               <tr>
                 <th className={darkMode ? "text-white" : ""}>
-                  Month
                   <OverlayTrigger
                     placement="top"
                     overlay={
@@ -152,48 +151,57 @@ const MonthlyROIBreakdown = ({ results }) => {
                       </Tooltip>
                     }
                   >
-                    <span className="ms-2"><FaInfoCircle className="text-primary info-icon" /></span>
+                    <span className="tooltip-label">
+                      Month
+                      <FaInfoCircle className="ms-2 text-primary info-icon" />
+                    </span>
                   </OverlayTrigger>
                 </th>
                 <th className={darkMode ? "text-white" : ""}>
-                  Tokens Unlocked
                   <OverlayTrigger
                     placement="top"
                     overlay={
                       <Tooltip id="tooltip-tokens-unlocked">
-                        The number of tokens that become available in this specific month according to your vesting schedule.
+                        The number of tokens that become available in this month according to your vesting schedule.
                       </Tooltip>
                     }
                   >
-                    <span className="ms-2"><FaInfoCircle className="text-primary info-icon" /></span>
+                    <span className="tooltip-label">
+                      Tokens Unlocked
+                      <FaInfoCircle className="ms-2 text-primary info-icon" />
+                    </span>
                   </OverlayTrigger>
                 </th>
                 {selectedScenarios.map(scenario => (
-                  <React.Fragment key={scenario}>
-                    <th className={darkMode ? "text-white" : ""}>
-                      {scenario} Revenue
+                  <React.Fragment key={`${scenario}-headers`}>
+                    <th className={darkMode ? "text-white" : ""} style={getScenarioStyle(scenario)}>
                       <OverlayTrigger
                         placement="top"
                         overlay={
-                          <Tooltip id={`tooltip-revenue-${scenario}`}>
-                            The estimated USD value of tokens unlocked this month based on the {scenario.toLowerCase()} case price scenario.
+                          <Tooltip id={`tooltip-monthly-revenue-${scenario}`}>
+                            The USD value of tokens unlocked in this month, calculated using the {scenario} Case price.
                           </Tooltip>
                         }
                       >
-                        <span className="ms-2"><FaInfoCircle className="text-primary info-icon" /></span>
+                        <span className="tooltip-label">
+                          {scenario} Case Revenue
+                          <FaInfoCircle className="ms-2 text-primary info-icon" />
+                        </span>
                       </OverlayTrigger>
                     </th>
-                    <th className={darkMode ? "text-white" : ""}>
-                      {scenario} Cumulative ROI
+                    <th className={darkMode ? "text-white" : ""} style={getScenarioStyle(scenario)}>
                       <OverlayTrigger
                         placement="top"
                         overlay={
                           <Tooltip id={`tooltip-cumulative-roi-${scenario}`}>
-                            The total return on investment up to this month in the {scenario.toLowerCase()} case scenario. Highlighted green when positive, red when negative.
+                            Your total return on investment up to this month, calculated using the {scenario} Case price.
                           </Tooltip>
                         }
                       >
-                        <span className="ms-2"><FaInfoCircle className="text-primary info-icon" /></span>
+                        <span className="tooltip-label">
+                          {scenario} Case ROI
+                          <FaInfoCircle className="ms-2 text-primary info-icon" />
+                        </span>
                       </OverlayTrigger>
                     </th>
                   </React.Fragment>

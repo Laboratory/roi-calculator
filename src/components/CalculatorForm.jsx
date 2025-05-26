@@ -195,19 +195,19 @@ const CalculatorForm = ({ onCalculate }) => {
             <Row>
               <Col md={6}>
                 <Form.Group className="mb-3">
-                  <Form.Label className="d-flex align-items-center">
-                    Initial Investment (USD)
-                    <OverlayTrigger
-                      placement="top"
-                      overlay={
-                        <Tooltip id="tooltip-investment">
-                          The total amount in USD you plan to invest in this token. This will be used to calculate your potential returns.
-                        </Tooltip>
-                      }
-                    >
-                      <span className="ms-2"><FaInfoCircle className="text-primary info-icon" /></span>
-                    </OverlayTrigger>
-                  </Form.Label>
+                  <OverlayTrigger
+                    placement="top"
+                    overlay={
+                      <Tooltip id="tooltip-investment">
+                        The total amount in USD that you invested in this token.
+                      </Tooltip>
+                    }
+                  >
+                    <Form.Label className="tooltip-label">
+                      Initial Investment (USD)
+                      <FaInfoCircle className="ms-2 text-primary info-icon" />
+                    </Form.Label>
+                  </OverlayTrigger>
                   <InputGroup>
                     <InputGroup.Text>$</InputGroup.Text>
                     <Form.Control
@@ -227,19 +227,19 @@ const CalculatorForm = ({ onCalculate }) => {
               
               <Col md={6}>
                 <Form.Group className="mb-3">
-                  <Form.Label className="d-flex align-items-center">
-                    Token Price at Purchase (USD)
-                    <OverlayTrigger
-                      placement="top"
-                      overlay={
-                        <Tooltip id="tooltip-token-price">
-                          The price per token in USD at the time of your investment. This determines how many tokens you'll receive.
-                        </Tooltip>
-                      }
-                    >
-                      <span className="ms-2"><FaInfoCircle className="text-primary info-icon" /></span>
-                    </OverlayTrigger>
-                  </Form.Label>
+                  <OverlayTrigger
+                    placement="top"
+                    overlay={
+                      <Tooltip id="tooltip-token-price">
+                        The price per token in USD at the time of your investment.
+                      </Tooltip>
+                    }
+                  >
+                    <Form.Label className="tooltip-label">
+                      Token Price at Purchase (USD)
+                      <FaInfoCircle className="ms-2 text-primary info-icon" />
+                    </Form.Label>
+                  </OverlayTrigger>
                   <InputGroup>
                     <InputGroup.Text>$</InputGroup.Text>
                     <Form.Control
@@ -262,19 +262,19 @@ const CalculatorForm = ({ onCalculate }) => {
             <Row>
               <Col md={6}>
                 <Form.Group className="mb-3">
-                  <Form.Label className="d-flex align-items-center">
-                    Token Name/Ticker
-                    <OverlayTrigger
-                      placement="top"
-                      overlay={
-                        <Tooltip id="tooltip-token-name">
-                          The name or ticker symbol of the token you invested in (e.g., BTC, ETH, SOL).
-                        </Tooltip>
-                      }
-                    >
-                      <span className="ms-2"><FaInfoCircle className="text-primary info-icon" /></span>
-                    </OverlayTrigger>
-                  </Form.Label>
+                  <OverlayTrigger
+                    placement="top"
+                    overlay={
+                      <Tooltip id="tooltip-token-name">
+                        The name or ticker symbol of the token you invested in.
+                      </Tooltip>
+                    }
+                  >
+                    <Form.Label className="tooltip-label">
+                      Token Name/Ticker
+                      <FaInfoCircle className="ms-2 text-primary info-icon" />
+                    </Form.Label>
+                  </OverlayTrigger>
                   <Form.Control
                     type="text"
                     name="tokenName"
@@ -291,19 +291,19 @@ const CalculatorForm = ({ onCalculate }) => {
               
               <Col md={6}>
                 <Form.Group className="mb-3">
-                  <Form.Label className="d-flex align-items-center">
-                    Token Amount
-                    <OverlayTrigger
-                      placement="top"
-                      overlay={
-                        <Tooltip id="tooltip-token-amount">
-                          The number of tokens you received for your investment. This is calculated automatically based on your investment amount and token price.
-                        </Tooltip>
-                      }
-                    >
-                      <span className="ms-2"><FaInfoCircle className="text-primary info-icon" /></span>
-                    </OverlayTrigger>
-                  </Form.Label>
+                  <OverlayTrigger
+                    placement="top"
+                    overlay={
+                      <Tooltip id="tooltip-token-amount">
+                        The number of tokens you received for your investment. This is calculated automatically based on your investment amount and token price.
+                      </Tooltip>
+                    }
+                  >
+                    <Form.Label className="tooltip-label">
+                      Token Amount
+                      <FaInfoCircle className="ms-2 text-primary info-icon" />
+                    </Form.Label>
+                  </OverlayTrigger>
                   <Form.Control
                     type="number"
                     name="tokenAmount"
@@ -324,19 +324,19 @@ const CalculatorForm = ({ onCalculate }) => {
             <Row>
               <Col md={6}>
                 <Form.Group className="mb-3">
-                  <Form.Label className="d-flex align-items-center">
-                    TGE Date
-                    <OverlayTrigger
-                      placement="top"
-                      overlay={
-                        <Tooltip id="tooltip-tge-date">
-                          Token Generation Event date - when your tokens were first created and the vesting schedule began.
-                        </Tooltip>
-                      }
-                    >
-                      <span className="ms-2"><FaInfoCircle className="text-primary info-icon" /></span>
-                    </OverlayTrigger>
-                  </Form.Label>
+                  <OverlayTrigger
+                    placement="top"
+                    overlay={
+                      <Tooltip id="tooltip-tge-date">
+                        Token Generation Event date - when your tokens were first created and the vesting schedule began.
+                      </Tooltip>
+                    }
+                  >
+                    <Form.Label className="tooltip-label">
+                      TGE Date
+                      <FaInfoCircle className="ms-2 text-primary info-icon" />
+                    </Form.Label>
+                  </OverlayTrigger>
                   <DatePicker
                     selected={formData.tgeDate}
                     onChange={handleDateChange}
@@ -352,19 +352,19 @@ const CalculatorForm = ({ onCalculate }) => {
               
               <Col md={6}>
                 <Form.Group className="mb-3">
-                  <Form.Label className="d-flex align-items-center">
-                    Total Token Supply (Optional)
-                    <OverlayTrigger
-                      placement="top"
-                      overlay={
-                        <Tooltip id="tooltip-total-supply">
-                          The total number of tokens that will ever exist for this project. Used to calculate the Fully Diluted Valuation (FDV).
-                        </Tooltip>
-                      }
-                    >
-                      <span className="ms-2"><FaInfoCircle className="text-primary info-icon" /></span>
-                    </OverlayTrigger>
-                  </Form.Label>
+                  <OverlayTrigger
+                    placement="top"
+                    overlay={
+                      <Tooltip id="tooltip-total-supply">
+                        The total number of tokens that will ever exist for this project. Used to calculate the Fully Diluted Valuation (FDV).
+                      </Tooltip>
+                    }
+                  >
+                    <Form.Label className="tooltip-label">
+                      Total Token Supply (Optional)
+                      <FaInfoCircle className="ms-2 text-primary info-icon" />
+                    </Form.Label>
+                  </OverlayTrigger>
                   <Form.Control
                     type="number"
                     name="totalSupply"
@@ -380,48 +380,50 @@ const CalculatorForm = ({ onCalculate }) => {
             </Row>
             
             <div className="form-section mt-4">
-              <h3 className="section-title">
-                Price Scenarios
-                <OverlayTrigger
-                  placement="top"
-                  overlay={
-                    <Tooltip id="tooltip-price-scenarios">
-                      Define different price scenarios to see potential returns in various market conditions. Bear (pessimistic), Base (expected), and Bull (optimistic) cases help you understand the range of possible outcomes.
-                    </Tooltip>
-                  }
-                >
-                  <span className="ms-2"><FaInfoCircle className="text-primary info-icon" /></span>
-                </OverlayTrigger>
-              </h3>
+              <OverlayTrigger
+                placement="top"
+                overlay={
+                  <Tooltip id="tooltip-price-scenarios">
+                    Define different price scenarios to see potential returns in various market conditions. Bear (pessimistic), Base (expected), and Bull (optimistic) cases help you understand the range of possible outcomes.
+                  </Tooltip>
+                }
+              >
+                <h3 className="section-title tooltip-label">
+                  Price Scenarios
+                  <FaInfoCircle className="ms-2 text-primary info-icon" />
+                </h3>
+              </OverlayTrigger>
               <div className="section-content">
                 {priceScenarios.map((scenario, index) => (
                   <Row key={index} className="mb-3">
                     <Col md={6}>
-                      <Form.Label className="d-flex align-items-center">
-                        {scenario.name} Case Price (USD)
+                      <Form.Group>
                         <OverlayTrigger
                           placement="top"
                           overlay={
                             <Tooltip id={`tooltip-scenario-${index}`}>
-                              {scenario.name === 'Bear' ? 'Pessimistic price prediction if market conditions are unfavorable.' : 
-                               scenario.name === 'Base' ? 'Expected price prediction under normal market conditions.' : 
-                               'Optimistic price prediction if market conditions are favorable.'}
+                              {scenario.name === 'Bear' && 'Pessimistic price target - the lowest reasonable price you expect the token to reach.'}
+                              {scenario.name === 'Base' && 'Expected price target - the most likely price you expect the token to reach.'}
+                              {scenario.name === 'Bull' && 'Optimistic price target - the highest reasonable price you expect the token to reach.'}
                             </Tooltip>
                           }
                         >
-                          <span className="ms-2"><FaInfoCircle className="text-primary info-icon" /></span>
+                          <Form.Label className="tooltip-label">
+                            {scenario.name} Case Price (USD)
+                            <FaInfoCircle className="ms-2 text-primary info-icon" />
+                          </Form.Label>
                         </OverlayTrigger>
-                      </Form.Label>
-                      <InputGroup>
-                        <InputGroup.Text>$</InputGroup.Text>
-                        <Form.Control
-                          type="number"
-                          value={scenario.price}
-                          onChange={(e) => handleScenarioChange(index, 'price', e.target.value)}
-                          placeholder="Token price"
-                          step="0.0000001"
-                        />
-                      </InputGroup>
+                        <InputGroup>
+                          <InputGroup.Text>$</InputGroup.Text>
+                          <Form.Control
+                            type="number"
+                            value={scenario.price}
+                            onChange={(e) => handleScenarioChange(index, 'price', e.target.value)}
+                            placeholder="Token price"
+                            step="0.0000001"
+                          />
+                        </InputGroup>
+                      </Form.Group>
                     </Col>
                   </Row>
                 ))}
@@ -429,38 +431,38 @@ const CalculatorForm = ({ onCalculate }) => {
             </div>
             
             <div className="form-section mt-4">
-              <h3 className="section-title">
-                Unlock Schedule
-                <OverlayTrigger
-                  placement="top"
-                  overlay={
-                    <Tooltip id="tooltip-unlock-schedule">
-                      Define how your tokens will be released over time. Most token investments have vesting periods where tokens are gradually unlocked. This significantly impacts your ROI timeline.
-                    </Tooltip>
-                  }
-                >
-                  <span className="ms-2"><FaInfoCircle className="text-primary info-icon" /></span>
-                </OverlayTrigger>
-              </h3>
+              <OverlayTrigger
+                placement="top"
+                overlay={
+                  <Tooltip id="tooltip-unlock-schedule">
+                    Define how your tokens will be released over time. Most token investments have vesting periods where tokens are gradually unlocked. This significantly impacts your ROI timeline.
+                  </Tooltip>
+                }
+              >
+                <h3 className="section-title tooltip-label">
+                  Unlock Schedule
+                  <FaInfoCircle className="ms-2 text-primary info-icon" />
+                </h3>
+              </OverlayTrigger>
               <div className="section-content">
                 {errors.totalPercentage && (
                   <Alert variant="danger">{errors.totalPercentage}</Alert>
                 )}
                 
                 <Form.Group className="mb-3">
-                  <Form.Label className="d-flex align-items-center">
-                    TGE Unlock Percentage
-                    <OverlayTrigger
-                      placement="top"
-                      overlay={
-                        <Tooltip id="tooltip-tge-unlock">
-                          The percentage of your tokens that were immediately available at the Token Generation Event.
-                        </Tooltip>
-                      }
-                    >
-                      <span className="ms-2"><FaInfoCircle className="text-primary info-icon" /></span>
-                    </OverlayTrigger>
-                  </Form.Label>
+                  <OverlayTrigger
+                    placement="top"
+                    overlay={
+                      <Tooltip id="tooltip-tge-unlock">
+                        The percentage of your tokens that were immediately available at the Token Generation Event.
+                      </Tooltip>
+                    }
+                  >
+                    <Form.Label className="tooltip-label">
+                      TGE Unlock Percentage
+                      <FaInfoCircle className="ms-2 text-primary info-icon" />
+                    </Form.Label>
+                  </OverlayTrigger>
                   <InputGroup>
                     <Form.Control
                       type="number"
@@ -483,19 +485,19 @@ const CalculatorForm = ({ onCalculate }) => {
                   <Row key={index} className="mb-3 align-items-end">
                     <Col xs={6} md={3}>
                       <Form.Group>
-                        <Form.Label className="d-flex align-items-center">
-                          Month
-                          <OverlayTrigger
-                            placement="top"
-                            overlay={
-                              <Tooltip id={`tooltip-month-${index}`}>
-                                The month when this portion of tokens will be unlocked, counting from the TGE date.
-                              </Tooltip>
-                            }
-                          >
-                            <span className="ms-2"><FaInfoCircle className="text-primary info-icon" /></span>
-                          </OverlayTrigger>
-                        </Form.Label>
+                        <OverlayTrigger
+                          placement="top"
+                          overlay={
+                            <Tooltip id={`tooltip-month-${index}`}>
+                              The month when this portion of tokens will be unlocked, counting from the TGE date.
+                            </Tooltip>
+                          }
+                        >
+                          <Form.Label className="tooltip-label">
+                            Month
+                            <FaInfoCircle className="ms-2 text-primary info-icon" />
+                          </Form.Label>
+                        </OverlayTrigger>
                         <Form.Control
                           type="number"
                           value={period.month}
@@ -506,19 +508,19 @@ const CalculatorForm = ({ onCalculate }) => {
                     </Col>
                     <Col xs={6} md={3}>
                       <Form.Group>
-                        <Form.Label className="d-flex align-items-center">
-                          Percentage
-                          <OverlayTrigger
-                            placement="top"
-                            overlay={
-                              <Tooltip id={`tooltip-percentage-${index}`}>
-                                The percentage of your total tokens that will unlock in this period.
-                              </Tooltip>
-                            }
-                          >
-                            <span className="ms-2"><FaInfoCircle className="text-primary info-icon" /></span>
-                          </OverlayTrigger>
-                        </Form.Label>
+                        <OverlayTrigger
+                          placement="top"
+                          overlay={
+                            <Tooltip id={`tooltip-percentage-${index}`}>
+                              The percentage of your total tokens that will unlock in this period.
+                            </Tooltip>
+                          }
+                        >
+                          <Form.Label className="tooltip-label">
+                            Percentage
+                            <FaInfoCircle className="ms-2 text-primary info-icon" />
+                          </Form.Label>
+                        </OverlayTrigger>
                         <InputGroup>
                           <Form.Control
                             type="number"

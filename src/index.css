@@ -1052,6 +1052,18 @@ body {
   transition: opacity 0.3s ease-in-out;
 }
 
+/* Tooltip label styling */
+.tooltip-label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+/* Always show info icon when hovering on tooltip-label */
+.tooltip-label:hover .info-icon {
+  opacity: 1;
+}
+
 /* Show info icon on parent element hover */
 .section-title:hover .info-icon,
 .info-label:hover .info-icon,
