@@ -1,0 +1,16 @@
+schemaVersion: 1.0
+stacks:
+  staging: &staging
+    type: static
+    parent: alphamind-co/alphamind-co
+    template: static-site
+    config: &staging-cfg
+      bundleDir: ${git:root}/dist
+      domain: staging-roi.alphamind.co
+      indexDocument: index.html
+      errorDocument: index.html
+  prod:
+    <<: *staging
+    config:
+      <<: *staging-cfg
+      domain: roi.alphamind.co
