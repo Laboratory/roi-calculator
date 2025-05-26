@@ -8,30 +8,53 @@ export const calculateResults = (data) => {
     totalSupply,
     tokenAmount,
     priceScenarios,
-    unlockPeriods
+    unlockPeriods,
+    unlockFrequency
   } = data;
   
-  // Sort unlock periods by month
+  // Sort unlock periods by month or week equivalent
   const sortedUnlockPeriods = [...unlockPeriods].sort((a, b) => a.month - b.month);
   
-  // Calculate monthly unlocks
+  // Calculate monthly/weekly unlocks
   const maxMonth = sortedUnlockPeriods.length > 0 
     ? sortedUnlockPeriods[sortedUnlockPeriods.length - 1].month 
     : 0;
   
-  const monthlyUnlocks = Array(maxMonth + 1).fill(0);
+  // For weekly frequency, we need more granular arrays
+  // 1 month = ~4.33 weeks
+  const isWeekly = unlockFrequency === 'weekly';
+  const timeUnitCount = isWeekly 
+    ? Math.ceil(maxMonth * 4.33) + 1 // Convert months to weeks and add 1 for TGE
+    : maxMonth + 1; // Add 1 for TGE
   
-  // TGE unlock (month 0)
+  const unlockAmounts = Array(timeUnitCount).fill(0);
+  
+  // TGE unlock (time unit 0)
   const tgeUnlockAmount = (Number(tokenAmount) * Number(tgeUnlock)) / 100;
-  monthlyUnlocks[0] = tgeUnlockAmount;
+  unlockAmounts[0] = tgeUnlockAmount;
   
   // Other unlock periods
   sortedUnlockPeriods.forEach(period => {
     const unlockAmount = (Number(tokenAmount) * Number(period.percentage)) / 100;
-    monthlyUnlocks[period.month] = unlockAmount;
+    
+    if (isWeekly) {
+      // For weekly unlocks, use the weekNumber property if available, otherwise calculate it
+      const weekIndex = period.weekNumber 
+        ? period.weekNumber 
+        : Math.round(period.month * 4.33);
+      
+      if (weekIndex > 0 && weekIndex < timeUnitCount) {
+        unlockAmounts[weekIndex] = unlockAmount;
+      }
+    } else {
+      // For monthly unlocks, use the month directly
+      if (period.month > 0) {
+        unlockAmounts[period.month] = unlockAmount;
+      }
+    }
   });
   
-  // Calculate monthly revenue for each scenario
+  // Calculate revenue for each scenario
   const monthlyRevenue = {};
   const cumulativeROI = {};
   const totalROI = {};
@@ -45,28 +68,29 @@ export const calculateResults = (data) => {
     // Store the ROI for each scenario
     scenarioROIs[scenario.name] = scenarioROI;
     
-    monthlyRevenue[scenario.name] = Array(maxMonth + 1).fill(0);
-    cumulativeROI[scenario.name] = Array(maxMonth + 1).fill(0);
+    monthlyRevenue[scenario.name] = Array(timeUnitCount).fill(0);
+    cumulativeROI[scenario.name] = Array(timeUnitCount).fill(0);
     
     let cumulativeRevenue = 0;
     let breakEvenFound = false;
     
-    for (let month = 0; month <= maxMonth; month++) {
-      const monthRevenue = monthlyUnlocks[month] * scenarioPrice;
-      monthlyRevenue[scenario.name][month] = monthRevenue;
-      cumulativeRevenue += monthRevenue;
+    for (let timeUnit = 0; timeUnit < timeUnitCount; timeUnit++) {
+      const timeUnitRevenue = unlockAmounts[timeUnit] * scenarioPrice;
+      monthlyRevenue[scenario.name][timeUnit] = timeUnitRevenue;
+      cumulativeRevenue += timeUnitRevenue;
       
       const roi = ((cumulativeRevenue / Number(investmentAmount)) - 1) * 100;
-      cumulativeROI[scenario.name][month] = roi;
+      cumulativeROI[scenario.name][timeUnit] = roi;
       
       // Check for break-even point
       if (!breakEvenFound && roi >= 0) {
-        breakEvenMonths[scenario.name] = month;
+        // Convert week to month for consistent reporting if using weekly frequency
+        breakEvenMonths[scenario.name] = isWeekly ? (timeUnit / 4.33).toFixed(2) : timeUnit;
         breakEvenFound = true;
       }
     }
     
-    totalROI[scenario.name] = cumulativeROI[scenario.name][maxMonth];
+    totalROI[scenario.name] = cumulativeROI[scenario.name][timeUnitCount - 1];
     
     if (!breakEvenFound) {
       breakEvenMonths[scenario.name] = null;
@@ -101,7 +125,7 @@ export const calculateResults = (data) => {
     tgeDate,
     tgeUnlock,
     unlockPeriods: sortedUnlockPeriods,
-    monthlyUnlocks,
+    monthlyUnlocks: unlockAmounts,
     monthlyRevenue,
     cumulativeROI,
     totalROI,
@@ -110,6 +134,7 @@ export const calculateResults = (data) => {
     fdvValues,
     totalSupply: Number(totalSupply) || null,
     priceScenarios,
-    scenarioROIs
+    scenarioROIs,
+    unlockFrequency
   };
 };

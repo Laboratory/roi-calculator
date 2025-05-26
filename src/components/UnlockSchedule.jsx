@@ -16,27 +16,42 @@ const UnlockSchedule = ({ results }) => {
     tgeDate,
     priceScenarios,
     tokenAmount,
-    tgeUnlock
+    tgeUnlock,
+    unlockFrequency
   } = results;
   
   const baseScenario = priceScenarios.find(s => s.name === 'Base') || priceScenarios[0];
   
   const formatMonth = (month) => {
-    if (!tgeDate) return `Month ${month}`;
+    if (!tgeDate) {
+      return results.unlockFrequency === 'weekly' ? `Week ${month}` : `Month ${month}`;
+    }
     
     const date = new Date(tgeDate);
-    date.setMonth(date.getMonth() + parseInt(month));
-    return `Month ${month} — ${format(date, 'MMM d, yyyy')}`;
+    if (results.unlockFrequency === 'weekly') {
+      date.setDate(date.getDate() + (month * 7));
+      return `Week ${month} — ${format(date, 'MMM d, yyyy')}`;
+    } else {
+      date.setMonth(date.getMonth() + parseInt(month));
+      return `Month ${month} — ${format(date, 'MMM d, yyyy')}`;
+    }
   };
   
   const formatDate = (month) => {
-    if (!tgeDate) return 'Month ' + month;
+    if (!tgeDate) {
+      return results.unlockFrequency === 'weekly' ? `Week ${month}` : `Month ${month}`;
+    }
     
     if (month === 0) return 'TGE — ' + format(new Date(tgeDate), 'MMM d, yyyy');
     
     const date = new Date(tgeDate);
-    date.setMonth(date.getMonth() + month);
-    return `Month ${month} — ${format(date, 'MMM d, yyyy')}`;
+    if (results.unlockFrequency === 'weekly') {
+      date.setDate(date.getDate() + (month * 7));
+      return `Week ${month} — ${format(date, 'MMM d, yyyy')}`;
+    } else {
+      date.setMonth(date.getMonth() + month);
+      return `Month ${month} — ${format(date, 'MMM d, yyyy')}`;
+    }
   };
   
   const formatNumber = (value) => {
@@ -140,9 +155,18 @@ const UnlockSchedule = ({ results }) => {
   ];
   
   results.unlockPeriods.forEach((period, index) => {
+    let timeValue;
+    if (unlockFrequency === 'weekly') {
+      // For weekly frequency, use the weekNumber property if available
+      const weekIndex = period.weekNumber ? period.weekNumber : Math.round(period.month * 4.33);
+      timeValue = formatDate(weekIndex);
+    } else {
+      timeValue = formatDate(period.month);
+    }
+    
     tableData.push({
       period: index + 1,
-      time: formatDate(period.month),
+      time: timeValue,
       percentage: period.percentage,
       tokens: period.percentage * tokenAmount / 100,
       value: period.percentage * tokenAmount * baseScenario.price / 100

@@ -21,20 +21,39 @@ const MonthlyROIBreakdown = ({ results }) => {
     }
   };
 
-  const formatMonth = (month) => {
-    if (!results.tgeDate) return `Month ${month}`;
+  const formatTimeUnit = (timeUnit) => {
+    const isWeekly = results.unlockFrequency === 'weekly';
+    
+    if (!results.tgeDate) {
+      return isWeekly ? `Week ${timeUnit}` : `Month ${timeUnit}`;
+    }
 
     const date = new Date(results.tgeDate);
-    date.setMonth(date.getMonth() + parseInt(month));
-    return `Month ${month}`;
+    if (isWeekly) {
+      // Add weeks (approximately 7 days per week)
+      date.setDate(date.getDate() + (timeUnit * 7));
+    } else {
+      // Add months
+      date.setMonth(date.getMonth() + parseInt(timeUnit));
+    }
+    
+    return isWeekly ? `Week ${timeUnit}` : `Month ${timeUnit}`;
   };
 
-  const formatDate = (month) => {
+  const formatDate = (timeUnit) => {
     if (!results.tgeDate) return null;
 
     const date = new Date(results.tgeDate);
-    date.setMonth(date.getMonth() + parseInt(month));
-    return format(date, 'MMM yyyy');
+    
+    if (results.unlockFrequency === 'weekly') {
+      // Add weeks (approximately 7 days per week)
+      date.setDate(date.getDate() + (timeUnit * 7));
+    } else {
+      // Add months
+      date.setMonth(date.getMonth() + parseInt(timeUnit));
+    }
+    
+    return format(date, 'MMM dd, yyyy');
   };
 
   const formatPercentage = (value) => {
@@ -57,12 +76,29 @@ const MonthlyROIBreakdown = ({ results }) => {
   // Get all months from the data
   const months = Object.keys(results.cumulativeROI[results.priceScenarios[0].name]).map(Number);
 
+  // For weekly frequency, we need to map the actual week numbers
+  const getWeekNumber = (timeUnit) => {
+    if (results.unlockFrequency === 'weekly') {
+      return timeUnit; // The timeUnit is already the week number
+    }
+    return timeUnit; // For monthly, return as is
+  };
+
   // Find break-even months for each scenario
   const breakEvenMonths = {};
   selectedScenarios.forEach(scenario => {
     const breakEvenMonth = results.breakEvenMonths[scenario];
     if (breakEvenMonth !== null) {
-      breakEvenMonths[scenario] = breakEvenMonth;
+      // For weekly frequency, we need to convert the month value back to weeks
+      if (results.unlockFrequency === 'weekly') {
+        // Find the closest matching week
+        const weekIndex = months.findIndex(month => 
+          Math.abs(month / 4.33 - breakEvenMonth) < 0.1
+        );
+        breakEvenMonths[scenario] = weekIndex !== -1 ? months[weekIndex] : null;
+      } else {
+        breakEvenMonths[scenario] = breakEvenMonth;
+      }
     }
   });
 
@@ -126,6 +162,7 @@ const MonthlyROIBreakdown = ({ results }) => {
                 data={results.cumulativeROI}
                 scenarios={selectedScenarios}
                 tgeDate={results.tgeDate}
+                unlockFrequency={results.unlockFrequency}
               />
             </div>
           </Card.Body>
@@ -137,12 +174,12 @@ const MonthlyROIBreakdown = ({ results }) => {
           placement="top"
           overlay={
             <Tooltip id="tooltip-monthly-breakdown">
-              This table shows a detailed month-by-month breakdown of your investment's performance, including token unlocks, revenue, and cumulative ROI for each scenario.
+              This table shows a detailed {results.unlockFrequency === 'weekly' ? 'week-by-week' : 'month-by-month'} breakdown of your investment's performance, including token unlocks, revenue, and cumulative ROI for each scenario.
             </Tooltip>
           }
         >
           <h3 className={`section-title tooltip-label monthly-breakdown-section-title ${darkMode ? "text-white" : ""}`}>
-            Monthly Breakdown
+            {results.unlockFrequency === 'weekly' ? 'Weekly' : 'Monthly'} Breakdown
             <FaInfoCircle className="ms-2 text-primary info-icon" />
           </h3>
         </OverlayTrigger>
@@ -155,12 +192,14 @@ const MonthlyROIBreakdown = ({ results }) => {
                     placement="top"
                     overlay={
                       <Tooltip id="tooltip-month-column">
-                        The month number after TGE (Token Generation Event). If a TGE date was provided, actual calendar dates are shown in parentheses.
+                        {results.unlockFrequency === 'weekly' 
+                          ? 'The week number after TGE (Token Generation Event). If a TGE date was provided, actual calendar dates are shown in parentheses.'
+                          : 'The month number after TGE (Token Generation Event). If a TGE date was provided, actual calendar dates are shown in parentheses.'}
                       </Tooltip>
                     }
                   >
                     <span className="tooltip-label">
-                      Month
+                      {results.unlockFrequency === 'weekly' ? 'Week' : 'Month'}
                       <FaInfoCircle className="ms-2 text-primary info-icon" />
                     </span>
                   </OverlayTrigger>
@@ -170,7 +209,7 @@ const MonthlyROIBreakdown = ({ results }) => {
                     placement="top"
                     overlay={
                       <Tooltip id="tooltip-tokens-unlocked">
-                        The number of tokens that become available in this month according to your vesting schedule.
+                        The number of tokens that become available in this {results.unlockFrequency === 'weekly' ? 'week' : 'month'} according to your vesting schedule.
                       </Tooltip>
                     }
                   >
@@ -187,7 +226,7 @@ const MonthlyROIBreakdown = ({ results }) => {
                         placement="top"
                         overlay={
                           <Tooltip id={`tooltip-monthly-revenue-${scenario}`}>
-                            The USD value of tokens unlocked in this month, calculated using the {scenario} Case price.
+                            The USD value of tokens unlocked in this {results.unlockFrequency === 'weekly' ? 'week' : 'month'}, calculated using the {scenario} Case price.
                           </Tooltip>
                         }
                       >
@@ -202,7 +241,7 @@ const MonthlyROIBreakdown = ({ results }) => {
                         placement="top"
                         overlay={
                           <Tooltip id={`tooltip-cumulative-roi-${scenario}`}>
-                            Your total return on investment up to this month, calculated using the {scenario} Case price.
+                            Your total return on investment up to this {results.unlockFrequency === 'weekly' ? 'week' : 'month'}, calculated using the {scenario} Case price.
                           </Tooltip>
                         }
                       >
@@ -221,8 +260,13 @@ const MonthlyROIBreakdown = ({ results }) => {
                 <tr key={month} className={Object.entries(breakEvenMonths).some(([scenario, breakMonth]) =>
                   selectedScenarios.includes(scenario) && breakMonth === month) ? 'break-even-row' : ''}>
                   <td className={darkMode ? "text-white" : ""}>
-                    {formatMonth(month)}
-                    {formatDate(month) && <div className="calendar-date">{formatDate(month)}</div>}
+                    {results.unlockFrequency === 'weekly' 
+                      ? (formatDate(month) 
+                          ? `Week ${getWeekNumber(month)} - ${formatDate(month)}` 
+                          : `Week ${getWeekNumber(month)}`)
+                      : formatTimeUnit(month)}
+                    {results.unlockFrequency !== 'weekly' && formatDate(month) && 
+                      <div className="calendar-date">{formatDate(month)}</div>}
                   </td>
                   <td className={darkMode ? "text-white" : ""}>{results.monthlyUnlocks[month].toLocaleString(undefined, { maximumFractionDigits: 2 })} {results.tokenName}</td>
                   {selectedScenarios.map(scenario => (

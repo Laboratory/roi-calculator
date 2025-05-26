@@ -6,22 +6,34 @@ import { ThemeContext } from '../context/ThemeContext';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, Filler);
 
-const ROIChart = ({ data, scenarios, tgeDate }) => {
+const ROIChart = ({ data, scenarios, tgeDate, unlockFrequency = 'monthly' }) => {
   const { darkMode } = useContext(ThemeContext);
   const months = Object.keys(data[scenarios[0]]).map(Number);
   
-  const formatMonth = (month) => {
-    if (!tgeDate) return `Month ${month}`;
+  const formatTimeUnit = (timeUnit) => {
+    const isWeekly = unlockFrequency === 'weekly';
     
-    return `Month ${month}`;
+    if (!tgeDate) {
+      return isWeekly ? `Week ${timeUnit}` : `Month ${timeUnit}`;
+    }
+    
+    return isWeekly ? `Week ${timeUnit}` : `Month ${timeUnit}`;
   };
   
-  const formatDate = (month) => {
+  const formatDate = (timeUnit) => {
     if (!tgeDate) return null;
     
     const date = new Date(tgeDate);
-    date.setMonth(date.getMonth() + parseInt(month));
-    return format(date, 'MMM yyyy');
+    
+    if (unlockFrequency === 'weekly') {
+      // Add weeks (approximately 7 days per week)
+      date.setDate(date.getDate() + (timeUnit * 7));
+      return format(date, 'MMM dd, yyyy');
+    } else {
+      // Add months
+      date.setMonth(date.getMonth() + parseInt(timeUnit));
+      return format(date, 'MMM yyyy');
+    }
   };
   
   // Color palette for scenarios
@@ -100,9 +112,9 @@ const ROIChart = ({ data, scenarios, tgeDate }) => {
   
   const chartData = {
     labels: months.map(month => {
-      const monthLabel = formatMonth(month);
+      const timeUnitLabel = formatTimeUnit(month);
       const dateLabel = formatDate(month);
-      return dateLabel ? [monthLabel, dateLabel] : monthLabel;
+      return dateLabel ? (unlockFrequency === 'weekly' ? `Week ${month} - ${dateLabel}` : [timeUnitLabel, dateLabel]) : timeUnitLabel;
     }),
     datasets: scenarios.map((scenario, index) => {
       const colorSet = getColor(scenario, index);
@@ -243,7 +255,7 @@ const ROIChart = ({ data, scenarios, tgeDate }) => {
       x: {
         title: {
           display: true,
-          text: 'Month',
+          text: 'Time Unit',
           color: textColor,
           font: {
             weight: 'bold'
@@ -271,7 +283,7 @@ const ROIChart = ({ data, scenarios, tgeDate }) => {
                   className="break-even-legend-marker" 
                   style={{ backgroundColor: getColor(scenario).border }}
                 ></span>
-                <strong className="break-even-legend-text">{scenario}</strong> breaks even at {formatMonth(point.month)}
+                <strong className="break-even-legend-text">{scenario}</strong> breaks even at {formatTimeUnit(point.month)}
                 {formatDate(point.month) && (
                   <div className="calendar-date">{formatDate(point.month)}</div>
                 )}
