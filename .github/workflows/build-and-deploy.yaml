@@ -53,3 +53,4 @@ jobs:
       artifacts-dir: 'dist'
     secrets:
       sc-config: "${{ secrets.SC_CONFIG }}"
+
