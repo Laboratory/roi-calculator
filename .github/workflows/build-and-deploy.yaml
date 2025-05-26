@@ -28,12 +28,12 @@ jobs:
         with:
           registry-url: "https://registry.npmjs.org"
           node-version-file: 'package.json'
-      #      - name: prepare secrets
-      #        id: prepare-secrets
-      #        env:
-      #          SIMPLE_CONTAINER_CONFIG: ${{ secrets.SC_CONFIG }}
-      #        run: |
-      #          bash <(curl -Ls "https://dist.simple-container.com/sc.sh") secrets reveal
+      - name: prepare secrets
+        id: prepare-secrets
+        env:
+          SIMPLE_CONTAINER_CONFIG: ${{ secrets.SC_CONFIG }}
+        run: |
+          bash <(curl -Ls "https://dist.simple-container.com/sc.sh") secrets reveal
       - name: build
         shell: bash
         env:
@@ -58,6 +58,6 @@ jobs:
       stack-name: 'roi-calculator'
       environment: "${{ inputs.environment || 'staging' }}"
       artifacts-dir: 'dist'
-#    secrets:
-#      sc-config: "${{ secrets.SC_CONFIG }}"
+    secrets:
+      sc-config: "${{ secrets.SC_CONFIG }}"
 
