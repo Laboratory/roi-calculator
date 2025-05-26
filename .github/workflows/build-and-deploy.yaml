@@ -1,4 +1,4 @@
-name: Build and deploy alphamind-roi-calculator
+name: Build and deploy roi-calculator
 on:
   push:
     branches:
@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
     inputs:
       environment:
-        description: "Environment to deploy alphamind-roi-calculator to (default: staging)"
+        description: "Environment to deploy roi-calculator to (default: staging)"
         default: 'staging'
         required: true
         type: choice
@@ -28,18 +28,17 @@ jobs:
         with:
           registry-url: "https://registry.npmjs.org"
           node-version-file: 'package.json'
-      - name: prepare secrets
-        id: prepare-secrets
-        env:
-          SIMPLE_CONTAINER_CONFIG: ${{ secrets.SC_CONFIG }}
-        run: |
-          bash <(curl -Ls "https://dist.simple-container.com/sc.sh") secrets reveal
+      #      - name: prepare secrets
+      #        id: prepare-secrets
+      #        env:
+      #          SIMPLE_CONTAINER_CONFIG: ${{ secrets.SC_CONFIG }}
+      #        run: |
+      #          bash <(curl -Ls "https://dist.simple-container.com/sc.sh") secrets reveal
       - name: build
         shell: bash
         env:
           CI: "false"
         run: |-
-          cp ${{ inputs.environment || 'staging' }}.env .env
           npm ci
           npm run build
       - name: Upload artifacts
