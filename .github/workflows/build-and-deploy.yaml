@@ -28,12 +28,6 @@ jobs:
         with:
           registry-url: "https://registry.npmjs.org"
           node-version-file: 'package.json'
-      #      - name: prepare secrets
-      #        id: prepare-secrets
-      #        env:
-      #          SIMPLE_CONTAINER_CONFIG: ${{ secrets.SC_CONFIG }}
-      #        run: |
-      #          bash <(curl -Ls "https://dist.simple-container.com/sc.sh") secrets reveal
       - name: build
         shell: bash
         env:
@@ -59,4 +53,3 @@ jobs:
       artifacts-dir: 'dist'
     secrets:
       sc-config: "${{ secrets.SC_CONFIG }}"
-
