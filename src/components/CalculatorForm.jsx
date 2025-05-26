@@ -20,7 +20,10 @@ const CalculatorForm = ({onCalculate}) => {
     tgeUnlock: 10,
     tgeDate: null,
     totalSupply: '',
-    tokenAmount: ''
+    tokenAmount: '',
+    cliff: 3,
+    vestingDuration: 9,
+    unlockFrequency: 'monthly'
   });
 
   const [priceScenarios, setPriceScenarios] = useState([
@@ -51,6 +54,62 @@ const CalculatorForm = ({onCalculate}) => {
     }
   }, [formData.investmentAmount, formData.tokenPrice]);
 
+  // Initialize unlock schedule with default values
+  useEffect(() => {
+    const generatedSchedule = generateUnlockSchedule();
+    setUnlockPeriods(generatedSchedule);
+  }, []);
+
+  const generateUnlockSchedule = () => {
+    const { tgeUnlock, cliff, vestingDuration, unlockFrequency } = formData;
+    
+    // Calculate remaining percentage after TGE
+    const remainingPercentage = 100 - Number(tgeUnlock);
+    
+    // Calculate number of unlock periods based on vesting duration and frequency
+    let numberOfUnlocks = vestingDuration;
+    if (unlockFrequency === 'weekly') {
+      numberOfUnlocks = Math.floor(vestingDuration * 4.33); // Approximate weeks in a month
+    }
+    
+    // Calculate percentage per unlock
+    const percentagePerUnlock = remainingPercentage / numberOfUnlocks;
+    
+    // Generate unlock periods
+    const generatedPeriods = [];
+    
+    if (unlockFrequency === 'monthly') {
+      // Start from cliff month
+      for (let i = 0; i < numberOfUnlocks; i++) {
+        generatedPeriods.push({
+          month: Number(cliff) + i + 1,
+          percentage: parseFloat(percentagePerUnlock.toFixed(2))
+        });
+      }
+    } else if (unlockFrequency === 'weekly') {
+      // Convert cliff to weeks
+      const cliffWeeks = Number(cliff) * 4.33;
+      for (let i = 0; i < numberOfUnlocks; i++) {
+        // Convert week back to month equivalent for display
+        const monthEquivalent = Number(cliff) + ((i + 1) / 4.33);
+        generatedPeriods.push({
+          month: parseFloat(monthEquivalent.toFixed(2)),
+          percentage: parseFloat(percentagePerUnlock.toFixed(2))
+        });
+      }
+    }
+    
+    // Adjust the last period to ensure total is exactly 100%
+    const totalPercentage = Number(tgeUnlock) + generatedPeriods.reduce((sum, period) => sum + period.percentage, 0);
+    if (generatedPeriods.length > 0 && totalPercentage !== 100) {
+      const lastPeriod = generatedPeriods[generatedPeriods.length - 1];
+      lastPeriod.percentage += (100 - totalPercentage);
+      lastPeriod.percentage = parseFloat(lastPeriod.percentage.toFixed(2));
+    }
+    
+    return generatedPeriods;
+  };
+
   const handleInputChange = (e) => {
     const {name, value} = e.target;
 
@@ -63,6 +122,12 @@ const CalculatorForm = ({onCalculate}) => {
       ...formData,
       [name]: value
     });
+
+    // Auto-generate unlock schedule when vesting parameters change
+    if (['tgeUnlock', 'cliff', 'vestingDuration', 'unlockFrequency'].includes(name)) {
+      const generatedSchedule = generateUnlockSchedule();
+      setUnlockPeriods(generatedSchedule);
+    }
 
     // Clear error for this field if it exists
     if (errors[name]) {
@@ -457,107 +522,196 @@ const CalculatorForm = ({onCalculate}) => {
                   <Alert variant="danger">{errors.totalPercentage}</Alert>
                 )}
 
-                <Form.Group className="mb-3">
-                  <OverlayTrigger
-                    placement="top"
-                    overlay={
-                      <Tooltip id="tooltip-tge-unlock">
-                        The percentage of your tokens that were immediately available at the Token Generation Event.
-                      </Tooltip>
-                    }
-                  >
-                    <Form.Label className="tooltip-label">
-                      TGE Unlock Percentage
-                      <FaInfoCircle className="ms-2 text-primary info-icon"/>
-                    </Form.Label>
-                  </OverlayTrigger>
-                  <InputGroup>
-                    <Form.Control
-                      type="number"
-                      name="tgeUnlock"
-                      value={formData.tgeUnlock}
-                      onChange={handleInputChange}
-                      placeholder="e.g., 10"
-                      min="0"
-                      max="100"
-                      isInvalid={!!errors.tgeUnlock}
-                    />
-                    <InputGroup.Text>%</InputGroup.Text>
-                  </InputGroup>
-                  <Form.Control.Feedback type="invalid">
-                    {errors.tgeUnlock}
-                  </Form.Control.Feedback>
-                </Form.Group>
-
-                {unlockPeriods.map((period, index) => (
-                  <Row key={index} className="mb-3 align-items-end">
-                    <Col xs={6} md={3}>
-                      <Form.Group>
-                        <OverlayTrigger
-                          placement="top"
-                          overlay={
-                            <Tooltip id={`tooltip-month-${index}`}>
-                              The month when this portion of tokens will be unlocked, counting from the TGE date.
-                            </Tooltip>
-                          }
-                        >
-                          <Form.Label className="tooltip-label">
-                            Month
-                            <FaInfoCircle className="ms-2 text-primary info-icon"/>
-                          </Form.Label>
-                        </OverlayTrigger>
+                <Row className="mb-3">
+                  <Col md={6}>
+                    <Form.Group>
+                      <OverlayTrigger
+                        placement="top"
+                        overlay={
+                          <Tooltip id="tooltip-tge-unlock">
+                            The percentage of your tokens that were immediately available at the Token Generation Event.
+                          </Tooltip>
+                        }
+                      >
+                        <Form.Label className="tooltip-label">
+                          TGE Unlock (%)
+                          <FaInfoCircle className="ms-2 text-primary info-icon"/>
+                        </Form.Label>
+                      </OverlayTrigger>
+                      <InputGroup>
                         <Form.Control
                           type="number"
-                          value={period.month}
-                          onChange={(e) => handleUnlockPeriodChange(index, 'month', e.target.value)}
-                          min="1"
+                          name="tgeUnlock"
+                          value={formData.tgeUnlock}
+                          onChange={handleInputChange}
+                          placeholder="e.g., 10"
+                          min="0"
+                          max="100"
+                          step="0.1"
+                          isInvalid={!!errors.tgeUnlock}
                         />
-                      </Form.Group>
-                    </Col>
-                    <Col xs={6} md={3}>
-                      <Form.Group>
-                        <OverlayTrigger
-                          placement="top"
-                          overlay={
-                            <Tooltip id={`tooltip-percentage-${index}`}>
-                              The percentage of your total tokens that will unlock in this period.
-                            </Tooltip>
-                          }
-                        >
-                          <Form.Label className="tooltip-label">
-                            Percentage
-                            <FaInfoCircle className="ms-2 text-primary info-icon"/>
-                          </Form.Label>
-                        </OverlayTrigger>
-                        <InputGroup>
+                        <InputGroup.Text>%</InputGroup.Text>
+                      </InputGroup>
+                      <Form.Control.Feedback type="invalid">
+                        {errors.tgeUnlock}
+                      </Form.Control.Feedback>
+                    </Form.Group>
+                  </Col>
+                </Row>
+                
+                <Row className="mb-3">
+                  <Col md={4}>
+                    <Form.Group>
+                      <OverlayTrigger
+                        placement="top"
+                        overlay={
+                          <Tooltip id="tooltip-cliff">
+                            The number of months after TGE before tokens start to unlock.
+                          </Tooltip>
+                        }
+                      >
+                        <Form.Label className="tooltip-label">
+                          Cliff (months)
+                          <FaInfoCircle className="ms-2 text-primary info-icon"/>
+                        </Form.Label>
+                      </OverlayTrigger>
+                      <Form.Control
+                        type="number"
+                        name="cliff"
+                        value={formData.cliff}
+                        onChange={handleInputChange}
+                        min="0"
+                        step="1"
+                      />
+                    </Form.Group>
+                  </Col>
+                  
+                  <Col md={4}>
+                    <Form.Group>
+                      <OverlayTrigger
+                        placement="top"
+                        overlay={
+                          <Tooltip id="tooltip-vesting-duration">
+                            The total duration in months over which tokens will vest after the cliff period.
+                          </Tooltip>
+                        }
+                      >
+                        <Form.Label className="tooltip-label">
+                          Vesting Duration (months)
+                          <FaInfoCircle className="ms-2 text-primary info-icon"/>
+                        </Form.Label>
+                      </OverlayTrigger>
+                      <Form.Control
+                        type="number"
+                        name="vestingDuration"
+                        value={formData.vestingDuration}
+                        onChange={handleInputChange}
+                        min="1"
+                        step="1"
+                      />
+                    </Form.Group>
+                  </Col>
+                  
+                  <Col md={4}>
+                    <Form.Group>
+                      <OverlayTrigger
+                        placement="top"
+                        overlay={
+                          <Tooltip id="tooltip-unlock-frequency">
+                            How frequently tokens unlock during the vesting period.
+                          </Tooltip>
+                        }
+                      >
+                        <Form.Label className="tooltip-label">
+                          Unlock Frequency
+                          <FaInfoCircle className="ms-2 text-primary info-icon"/>
+                        </Form.Label>
+                      </OverlayTrigger>
+                      <Form.Select
+                        name="unlockFrequency"
+                        value={formData.unlockFrequency}
+                        onChange={handleInputChange}
+                      >
+                        <option value="monthly">Monthly</option>
+                        <option value="weekly">Weekly</option>
+                      </Form.Select>
+                    </Form.Group>
+                  </Col>
+                </Row>
+
+                <div className="generated-schedule mt-4">
+                  <h5>Generated Unlock Schedule</h5>
+                  
+                  {unlockPeriods.map((period, index) => (
+                    <Row key={index} className="mb-3 align-items-end">
+                      <Col xs={6} md={3}>
+                        <Form.Group>
+                          <OverlayTrigger
+                            placement="top"
+                            overlay={
+                              <Tooltip id={`tooltip-month-${index}`}>
+                                The month when this portion of tokens will be unlocked, counting from the TGE date.
+                              </Tooltip>
+                            }
+                          >
+                            <Form.Label className="tooltip-label">
+                              Month
+                              <FaInfoCircle className="ms-2 text-primary info-icon"/>
+                            </Form.Label>
+                          </OverlayTrigger>
                           <Form.Control
                             type="number"
-                            value={period.percentage}
-                            onChange={(e) => handleUnlockPeriodChange(index, 'percentage', e.target.value)}
-                            min="0"
-                            max="100"
-                            step="0.1"
+                            value={period.month}
+                            onChange={(e) => handleUnlockPeriodChange(index, 'month', e.target.value)}
+                            min="1"
+                            step="0.01"
                           />
-                          <InputGroup.Text>%</InputGroup.Text>
-                        </InputGroup>
-                      </Form.Group>
-                    </Col>
-                    <Col md={2}>
-                      <Button
-                        variant="danger"
-                        onClick={() => removeUnlockPeriod(index)}
-                        disabled={unlockPeriods.length <= 1}
-                        className="w-100"
-                      >
-                        Remove
-                      </Button>
-                    </Col>
-                  </Row>
-                ))}
+                        </Form.Group>
+                      </Col>
+                      <Col xs={6} md={3}>
+                        <Form.Group>
+                          <OverlayTrigger
+                            placement="top"
+                            overlay={
+                              <Tooltip id={`tooltip-percentage-${index}`}>
+                                The percentage of your total tokens that will unlock in this period.
+                              </Tooltip>
+                            }
+                          >
+                            <Form.Label className="tooltip-label">
+                              Percentage
+                              <FaInfoCircle className="ms-2 text-primary info-icon"/>
+                            </Form.Label>
+                          </OverlayTrigger>
+                          <InputGroup>
+                            <Form.Control
+                              type="number"
+                              value={period.percentage}
+                              onChange={(e) => handleUnlockPeriodChange(index, 'percentage', e.target.value)}
+                              min="0"
+                              max="100"
+                              step="0.1"
+                            />
+                            <InputGroup.Text>%</InputGroup.Text>
+                          </InputGroup>
+                        </Form.Group>
+                      </Col>
+                      <Col md={2}>
+                        <Button
+                          variant="danger"
+                          onClick={() => removeUnlockPeriod(index)}
+                          className="w-100"
+                        >
+                          Remove
+                        </Button>
+                      </Col>
+                    </Row>
+                  ))}
 
-                <Button variant="outline-primary" onClick={addUnlockPeriod} className="mt-2">
-                  Add Unlock Period
-                </Button>
+                  <Button variant="outline-primary" onClick={addUnlockPeriod} className="mt-2">
+                    Add Unlock Period
+                  </Button>
+                </div>
               </div>
             </div>
 
