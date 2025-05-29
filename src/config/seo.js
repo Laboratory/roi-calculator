@@ -17,7 +17,7 @@ export const seoConfig = {
     canonicalUrl: '/',
     ogImage: '/images/og-home.jpg',
     ogTitle: 'IDO ROI Simulator | Uncover real returns',
-    ogDescription: 'Visualize token unlocks. Break free from FDV illusions. Simulate your returns from any token presale.',
+    ogDescription: 'Uncover real returns. Visualize token unlocks. Break free from FDV illusions. Simulate your returns from any token presale, forecast token unlocks, and plan smarter exits.',
     schema: {
       '@context': 'https://schema.org',
       '@type': 'WebApplication',
@@ -40,7 +40,7 @@ export const seoConfig = {
     canonicalUrl: '/about',
     ogImage: '/images/og-about.jpg',
     ogTitle: 'About the IDO ROI Simulator | How it works',
-    ogDescription: 'Learn how our simulator helps crypto investors make informed decisions with accurate unlock schedule visualization.',
+    ogDescription: 'Discover how our IDO ROI Simulator helps crypto investors make informed decisions. See how we calculate real returns based on token unlock schedules and market scenarios.',
     schema: {
       '@context': 'https://schema.org',
       '@type': 'AboutPage',
@@ -61,7 +61,7 @@ export const seoConfig = {
     canonicalUrl: '/faq',
     ogImage: '/images/og-faq.jpg',
     ogTitle: 'Frequently Asked Questions | IDO ROI Simulator',
-    ogDescription: 'Find answers to common questions about using our simulator, understanding unlock schedules, and interpreting projections.',
+    ogDescription: 'Get answers to common questions about our IDO ROI Simulator. Learn about token unlock schedules, ROI calculations, price scenarios, and how to interpret simulation results.',
     schema: {
       '@context': 'https://schema.org',
       '@type': 'FAQPage',
@@ -101,7 +101,7 @@ export const seoConfig = {
     canonicalUrl: '/terms',
     ogImage: '/images/og-terms.jpg',
     ogTitle: 'Terms of Service | IDO ROI Simulator',
-    ogDescription: 'Read the terms of service for using our IDO ROI Simulator. Understand your rights and responsibilities.',
+    ogDescription: 'Read our Terms of Service for the IDO ROI Simulator. Understand the rules, limitations, and legal terms that govern your use of our token investment simulation tool.',
     schema: {
       '@context': 'https://schema.org',
       '@type': 'WebPage',
@@ -117,7 +117,7 @@ export const seoConfig = {
     canonicalUrl: '/privacy',
     ogImage: '/images/og-privacy.jpg',
     ogTitle: 'Privacy Policy | IDO ROI Simulator',
-    ogDescription: 'Our privacy policy explains how we handle your data when you use the IDO ROI Simulator. We prioritize your privacy.',
+    ogDescription: 'Our Privacy Policy explains how we handle your data when using the IDO ROI Simulator. Learn about our data collection practices, cookies usage, and your privacy rights.',
     schema: {
       '@context': 'https://schema.org',
       '@type': 'WebPage',
@@ -133,7 +133,7 @@ export const seoConfig = {
     canonicalUrl: '/404',
     ogImage: '/images/og-404.jpg',
     ogTitle: 'Page Not Found | IDO ROI Simulator',
-    ogDescription: "The page you're looking for doesn't exist. Return to our IDO ROI Simulator to plan your investment strategy.",
+    ogDescription: "Sorry, the page you're looking for doesn't exist. Return to our IDO ROI Simulator to calculate potential returns from your token investments and visualize unlock schedules.",
     schema: {
       '@context': 'https://schema.org',
       '@type': 'WebPage',

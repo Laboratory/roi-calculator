@@ -76,8 +76,18 @@ const injectSeoMetadata = () => {
       );
     }
     
+    // Remove existing Open Graph tags if present
+    html = html.replace(/<meta property="og:.*?>\n/g, '');
+    html = html.replace(/<meta name="twitter:.*?>\n/g, '');
+    
     // Add Open Graph metadata
-    let ogTags = '';
+    let ogTags = '\n  <!-- Open Graph / Facebook -->\n';
+    
+    // OG Type
+    ogTags += `  <meta property="og:type" content="${config.schema && config.schema['@type'] === 'AboutPage' ? 'profile' : 'website'}">\n`;
+    
+    // OG URL
+    ogTags += `  <meta property="og:url" content="${canonicalUrl}">\n`;
     
     // OG Title
     if (config.ogTitle) {
@@ -93,20 +103,17 @@ const injectSeoMetadata = () => {
       ogTags += `  <meta property="og:description" content="${config.description}">\n`;
     }
     
-    // OG URL
-    ogTags += `  <meta property="og:url" content="${canonicalUrl}">\n`;
-    
-    // OG Type
-    ogTags += `  <meta property="og:type" content="${config.schema && config.schema['@type'] === 'AboutPage' ? 'profile' : 'website'}">\n`;
-    
     // OG Image
     if (config.ogImage) {
       const ogImageUrl = config.ogImage.startsWith('http') ? config.ogImage : `${seoConfig.baseUrl}${config.ogImage}`;
       ogTags += `  <meta property="og:image" content="${ogImageUrl}">\n`;
+      ogTags += `  <meta property="og:image:width" content="1200">\n`;
+      ogTags += `  <meta property="og:image:height" content="630">\n`;
       ogTags += `  <meta property="og:image:alt" content="${config.ogTitle || config.title}">\n`;
     }
     
     // Twitter Card
+    ogTags += '\n  <!-- Twitter -->\n';
     ogTags += `  <meta name="twitter:card" content="summary_large_image">\n`;
     if (config.ogTitle) {
       ogTags += `  <meta name="twitter:title" content="${config.ogTitle}">\n`;
@@ -119,23 +126,38 @@ const injectSeoMetadata = () => {
       ogTags += `  <meta name="twitter:image" content="${ogImageUrl}">\n`;
     }
     
-    // Add OG tags before closing head tag
-    html = html.replace(
-      /<\/head>/i,
-      `${ogTags}</head>`
-    );
+    // Find the position to insert OG tags (after keywords or before closing head)
+    const keywordsPos = html.indexOf('<meta name="keywords"');
+    const authorPos = html.indexOf('<meta name="author"');
+    
+    if (keywordsPos !== -1 || authorPos !== -1) {
+      const insertPos = Math.max(
+        keywordsPos !== -1 ? html.indexOf('\n', keywordsPos) + 1 : 0,
+        authorPos !== -1 ? html.indexOf('\n', authorPos) + 1 : 0
+      );
+      
+      html = html.substring(0, insertPos) + ogTags + html.substring(insertPos);
+    } else {
+      // If no keywords or author tags, insert before closing head
+      html = html.replace(
+        /<\/head>/i,
+        `${ogTags}\n</head>`
+      );
+    }
     
     // Add structured data
     if (config.schema) {
-      const structuredDataScript = `
-  <script type="application/ld+json">
+      // Remove existing structured data if present
+      html = html.replace(/<script type="application\/ld\+json">[\s\S]*?<\/script>\n/g, '');
+      
+      const structuredDataScript = `\n  <script type="application/ld+json">
     ${JSON.stringify(config.schema)}
-  </script>`;
+  </script>\n`;
       
       // Add before closing head tag
       html = html.replace(
         /<\/head>/i,
-        `${structuredDataScript}\n</head>`
+        `${structuredDataScript}</head>`
       );
     }
     
