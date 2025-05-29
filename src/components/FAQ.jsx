@@ -2,6 +2,8 @@ import React, { useState, useContext } from 'react';
 import { Container, Row, Col, Card, Accordion, Badge, Button, Form, InputGroup } from 'react-bootstrap';
 import { FaSearch, FaQuestionCircle, FaCalculator, FaChartLine, FaLock, FaShieldAlt, FaRocket, FaUsers, FaArrowRight, FaCheck, FaTimes, FaExclamationTriangle } from 'react-icons/fa';
 import { ThemeContext } from '../context/ThemeContext';
+import SEO from './SEO';
+import { seoConfig } from '../config/seo';
 
 const FAQ = ({ onNavigateToCalculator }) => {
   const { darkMode } = useContext(ThemeContext);
@@ -161,8 +163,18 @@ const FAQ = ({ onNavigateToCalculator }) => {
     }
   };
 
+  // Get SEO config for this page
+  const { title, description, canonicalUrl, schema } = seoConfig.faq;
+
   return (
     <div className="faq-page">
+      <SEO 
+        title={title}
+        description={description}
+        canonicalUrl={canonicalUrl}
+        schema={schema}
+      />
+      
       {/* Hero Section */}
       <section className="hero-section bg-light py-5">
         <Container>

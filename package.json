@@ -5,8 +5,15 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "build": "vite build && npm run generate-sitemap && npm run generate-static-html && npm run optimize-static-build && npm run inject-seo-metadata && npm run optimize-assets && npm run add-cache-headers && npm run generate-icons",
+    "preview": "vite preview",
+    "generate-sitemap": "node scripts/generate-sitemap.js",
+    "generate-static-html": "node scripts/generate-static-html.js",
+    "optimize-static-build": "node scripts/optimize-static-build.js",
+    "inject-seo-metadata": "node scripts/inject-seo-metadata.js",
+    "optimize-assets": "node scripts/optimize-assets.js",
+    "add-cache-headers": "node scripts/add-cache-headers.js",
+    "generate-icons": "node scripts/generate-icons.js"
   },
   "dependencies": {
     "bootstrap": "^5.3.2",
@@ -17,6 +24,7 @@
     "react-chartjs-2": "^5.2.0",
     "react-datepicker": "^4.21.0",
     "react-dom": "^18.2.0",
+    "react-helmet-async": "^2.0.5",
     "react-icons": "^4.11.0",
     "react-router-dom": "^7.6.1"
   },
