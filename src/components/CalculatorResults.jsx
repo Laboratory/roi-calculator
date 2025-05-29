@@ -49,7 +49,7 @@ const CalculatorResults = ({ results }) => {
   };
 
   return (
-    <div className="calculator-results">
+    <div className="calculator-results" id="calculator-results">
       <OverlayTrigger
         placement="top"
         overlay={
@@ -122,19 +122,19 @@ const CalculatorResults = ({ results }) => {
                       <span>{formatCurrency(initialInvestment)}</span>
                     </div>
                     <div className="detail-row">
-                      <span>
-                        Final:
-                        <OverlayTrigger
-                          placement="top"
-                          overlay={
-                            <Tooltip id={`tooltip-final-${scenario}`}>
-                              The estimated final value of your investment in this price scenario.
-                            </Tooltip>
-                          }
-                        >
-                          <span className="ms-2"><FaInfoCircle className="text-primary info-icon" /></span>
-                        </OverlayTrigger>
-                      </span>
+                      <OverlayTrigger
+                        placement="top"
+                        overlay={
+                          <Tooltip id={`tooltip-final-${scenario}`}>
+                            The estimated final value of your investment in this price scenario.
+                          </Tooltip>
+                        }
+                      >
+                        <span className="tooltip-label">
+                          Final:
+                          <FaInfoCircle className="ms-2 text-primary info-icon" />
+                        </span>
+                      </OverlayTrigger>
                       <span>{formatCurrency(finalValue)}</span>
                     </div>
                     {breakEvenMonths[scenario] !== null && (
@@ -175,22 +175,6 @@ const CalculatorResults = ({ results }) => {
                         </span>
                       </div>
                     )}
-                    <div className="detail-row">
-                      <OverlayTrigger
-                        placement="top"
-                        overlay={
-                          <Tooltip id={`tooltip-final-${scenario}`}>
-                            The estimated final value of your investment in this price scenario.
-                          </Tooltip>
-                        }
-                      >
-                        <span className="tooltip-label">
-                          Final:
-                          <FaInfoCircle className="ms-2 text-primary info-icon" />
-                        </span>
-                      </OverlayTrigger>
-                      <span>{formatCurrency(finalValue)}</span>
-                    </div>
                   </div>
                 </Card.Body>
               </Card>

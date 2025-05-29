@@ -2,9 +2,14 @@ import React, { useContext } from 'react';
 import { Container, Row, Col, Card, Badge, Button } from 'react-bootstrap';
 import { FaCalculator, FaChartLine, FaLock, FaUsers, FaShieldAlt, FaRocket, FaArrowRight, FaCheck, FaStar } from 'react-icons/fa';
 import { ThemeContext } from '../context/ThemeContext';
+import SEO from './SEO';
+import { seoConfig } from '../config/seo';
 
 const About = ({ onNavigateToCalculator }) => {
   const { darkMode } = useContext(ThemeContext);
+
+  // Get SEO config for this page
+  const { title, description, canonicalUrl, schema } = seoConfig.about;
 
   const features = [
     {
@@ -87,6 +92,12 @@ const About = ({ onNavigateToCalculator }) => {
 
   return (
     <div className="about-page">
+      <SEO 
+        title={title}
+        description={description}
+        canonicalUrl={canonicalUrl}
+        schema={schema}
+      />
       {/* Hero Section */}
       <section className="hero-section bg-light py-5">
         <Container>

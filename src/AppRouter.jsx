@@ -1,13 +1,25 @@
-import React, { useContext } from 'react';
+import React, { lazy, Suspense, useContext } from 'react';
 import { Container, Button, Navbar, Nav } from 'react-bootstrap';
 import { FaSun, FaMoon, FaInstagram, FaFacebookF } from 'react-icons/fa';
 import { Routes, Route, Link, useLocation, useNavigate } from 'react-router-dom';
 import { ThemeContext } from './context/ThemeContext';
-import Calculator from './components/Calculator';
-import About from './components/About';
-import FAQ from './components/FAQ';
-import Terms from './components/Terms';
-import Privacy from './components/Privacy';
+
+// Lazy load page components
+const Calculator = lazy(() => import('./components/Calculator'));
+const About = lazy(() => import('./components/About'));
+const FAQ = lazy(() => import('./components/FAQ'));
+const Terms = lazy(() => import('./components/Terms'));
+const Privacy = lazy(() => import('./components/Privacy'));
+const NotFound = lazy(() => import('./components/NotFound'));
+
+// Loading component for suspense fallback
+const PageLoader = () => (
+  <div className="d-flex justify-content-center align-items-center" style={{ height: '50vh' }}>
+    <div className="spinner-border text-primary" role="status">
+      <span className="visually-hidden">Loading...</span>
+    </div>
+  </div>
+);
 
 function AppRouter() {
   const { darkMode, toggleTheme } = useContext(ThemeContext);
@@ -53,13 +65,16 @@ function AppRouter() {
       </header>
       
       <main>
-        <Routes>
-          <Route path="/" element={<Calculator />} />
-          <Route path="/about" element={<About onNavigateToCalculator={() => navigate('/')} />} />
-          <Route path="/faq" element={<FAQ onNavigateToCalculator={() => navigate('/')} />} />
-          <Route path="/terms" element={<Terms />} />
-          <Route path="/privacy" element={<Privacy />} />
-        </Routes>
+        <Suspense fallback={<PageLoader />}>
+          <Routes>
+            <Route path="/" element={<Calculator />} />
+            <Route path="/about" element={<About onNavigateToCalculator={() => navigate('/')} />} />
+            <Route path="/faq" element={<FAQ onNavigateToCalculator={() => navigate('/')} />} />
+            <Route path="/terms" element={<Terms />} />
+            <Route path="/privacy" element={<Privacy />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Suspense>
       </main>
       
       <div className="container-fluid">
@@ -68,7 +83,7 @@ function AppRouter() {
             <Link to="/" className="mb-3 me-2 mb-md-0 text-decoration-none lh-1">
               <img src="/logo.svg" alt="TokenCalculator" width="48" height="48" />
             </Link>
-            <span className={`mb-3 mb-md-0 ${darkMode ? 'text-light' : 'text-body-secondary'}`}> 2025 TokenCalculator</span>
+            <span className={`mb-3 mb-md-0 ${darkMode ? 'text-light' : 'text-body-secondary'}`}> {new Date().getFullYear()} TokenCalculator</span>
           </div>
           
           <ul className="nav col-md-4 justify-content-end list-unstyled d-flex">

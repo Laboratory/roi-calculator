@@ -1,12 +1,24 @@
 import React, { useContext } from 'react';
 import { Container, Card } from 'react-bootstrap';
+import SEO from './SEO';
+import { seoConfig } from '../config/seo';
 import { ThemeContext } from '../context/ThemeContext';
 
 const Terms = () => {
   const { darkMode } = useContext(ThemeContext);
+  
+  // Get SEO config for this page
+  const { title, description, canonicalUrl, schema } = seoConfig.terms;
 
   return (
     <Container className="main-content">
+      <SEO 
+        title={title}
+        description={description}
+        canonicalUrl={canonicalUrl}
+        schema={schema}
+      />
+      
       <div className="page-header">
         <h1 className={`page-title ${darkMode ? "text-white" : ""}`}>Terms of Service</h1>
         <p className={`page-subtitle ${darkMode ? "text-white-50" : "text-muted"}`}>Last updated: May 26, 2025</p>
