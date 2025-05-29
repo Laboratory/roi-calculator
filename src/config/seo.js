@@ -36,7 +36,7 @@ export const seoConfig = {
   // About page
   about: {
     title: 'About the IDO ROI Simulator | How it works',
-    description: 'Learn how our Token ROI Calculator helps investors make informed decisions with accurate unlock schedule visualization and return projections.',
+    description: 'Discover how our IDO ROI Simulator helps crypto investors make informed decisions. See how we calculate real returns based on token unlock schedules and market scenarios.',
     canonicalUrl: '/about',
     ogImage: '/images/og-about.jpg',
     ogTitle: 'About the IDO ROI Simulator | How it works',
@@ -57,7 +57,7 @@ export const seoConfig = {
   // FAQ page
   faq: {
     title: 'Frequently Asked Questions | IDO ROI Simulator',
-    description: 'Find answers to common questions about using our Token ROI Calculator, understanding unlock schedules, and interpreting investment projections.',
+    description: 'Get answers to common questions about our IDO ROI Simulator. Learn about token unlock schedules, ROI calculations, price scenarios, and how to interpret simulation results.',
     canonicalUrl: '/faq',
     ogImage: '/images/og-faq.jpg',
     ogTitle: 'Frequently Asked Questions | IDO ROI Simulator',
@@ -97,7 +97,7 @@ export const seoConfig = {
   // Terms page
   terms: {
     title: 'Terms of Service | IDO ROI Simulator',
-    description: 'Read the terms of service for using our Token ROI Calculator. Understand your rights and responsibilities when using our investment planning tool.',
+    description: 'Read our Terms of Service for the IDO ROI Simulator. Understand the rules, limitations, and legal terms that govern your use of our token investment simulation tool.',
     canonicalUrl: '/terms',
     ogImage: '/images/og-terms.jpg',
     ogTitle: 'Terms of Service | IDO ROI Simulator',
@@ -113,7 +113,7 @@ export const seoConfig = {
   // Privacy page
   privacy: {
     title: 'Privacy Policy | IDO ROI Simulator',
-    description: 'Our privacy policy explains how we handle your data when you use the Token ROI Calculator. We prioritize your privacy and data security.',
+    description: 'Our Privacy Policy explains how we handle your data when using the IDO ROI Simulator. Learn about our data collection practices, cookies usage, and your privacy rights.',
     canonicalUrl: '/privacy',
     ogImage: '/images/og-privacy.jpg',
     ogTitle: 'Privacy Policy | IDO ROI Simulator',
@@ -129,7 +129,7 @@ export const seoConfig = {
   // 404 page
   notFound: {
     title: 'Page Not Found | IDO ROI Simulator',
-    description: "The page you're looking for doesn't exist. Return to our Token ROI Calculator to plan your investment strategy.",
+    description: "Sorry, the page you're looking for doesn't exist. Return to our IDO ROI Simulator to calculate potential returns from your token investments and visualize unlock schedules.",
     canonicalUrl: '/404',
     ogImage: '/images/og-404.jpg',
     ogTitle: 'Page Not Found | IDO ROI Simulator',
