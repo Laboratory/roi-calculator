@@ -12,9 +12,12 @@ export const seoConfig = {
   
   // Home/Calculator page
   home: {
-    title: 'Token ROI Calculator - Visualize Token Unlock Schedules and Potential Returns',
-    description: 'Calculate potential returns from token investments and visualize unlock schedules. Plan your investment strategy with our free, interactive ROI calculator.',
+    title: 'IDO ROI Simulator | Uncover real returns',
+    description: 'Uncover real returns. Visualize token unlocks. Break free from FDV illusions. Simulate your returns from any token presale, forecast token unlocks, and plan smarter exits.',
     canonicalUrl: '/',
+    ogImage: '/images/og-home.jpg',
+    ogTitle: 'IDO ROI Simulator | Uncover real returns',
+    ogDescription: 'Visualize token unlocks. Break free from FDV illusions. Simulate your returns from any token presale.',
     schema: {
       '@context': 'https://schema.org',
       '@type': 'WebApplication',
@@ -32,9 +35,12 @@ export const seoConfig = {
   
   // About page
   about: {
-    title: 'About Our Token ROI Calculator - Transparent Investment Planning',
+    title: 'About the IDO ROI Simulator | How it works',
     description: 'Learn how our Token ROI Calculator helps investors make informed decisions with accurate unlock schedule visualization and return projections.',
     canonicalUrl: '/about',
+    ogImage: '/images/og-about.jpg',
+    ogTitle: 'About the IDO ROI Simulator | How it works',
+    ogDescription: 'Learn how our simulator helps crypto investors make informed decisions with accurate unlock schedule visualization.',
     schema: {
       '@context': 'https://schema.org',
       '@type': 'AboutPage',
@@ -50,9 +56,12 @@ export const seoConfig = {
   
   // FAQ page
   faq: {
-    title: 'Frequently Asked Questions - Token ROI Calculator Help Center',
+    title: 'Frequently Asked Questions | IDO ROI Simulator',
     description: 'Find answers to common questions about using our Token ROI Calculator, understanding unlock schedules, and interpreting investment projections.',
     canonicalUrl: '/faq',
+    ogImage: '/images/og-faq.jpg',
+    ogTitle: 'Frequently Asked Questions | IDO ROI Simulator',
+    ogDescription: 'Find answers to common questions about using our simulator, understanding unlock schedules, and interpreting projections.',
     schema: {
       '@context': 'https://schema.org',
       '@type': 'FAQPage',
@@ -87,9 +96,12 @@ export const seoConfig = {
   
   // Terms page
   terms: {
-    title: 'Terms of Service - Token ROI Calculator',
+    title: 'Terms of Service | IDO ROI Simulator',
     description: 'Read the terms of service for using our Token ROI Calculator. Understand your rights and responsibilities when using our investment planning tool.',
     canonicalUrl: '/terms',
+    ogImage: '/images/og-terms.jpg',
+    ogTitle: 'Terms of Service | IDO ROI Simulator',
+    ogDescription: 'Read the terms of service for using our IDO ROI Simulator. Understand your rights and responsibilities.',
     schema: {
       '@context': 'https://schema.org',
       '@type': 'WebPage',
@@ -100,9 +112,12 @@ export const seoConfig = {
   
   // Privacy page
   privacy: {
-    title: 'Privacy Policy - Token ROI Calculator',
+    title: 'Privacy Policy | IDO ROI Simulator',
     description: 'Our privacy policy explains how we handle your data when you use the Token ROI Calculator. We prioritize your privacy and data security.',
     canonicalUrl: '/privacy',
+    ogImage: '/images/og-privacy.jpg',
+    ogTitle: 'Privacy Policy | IDO ROI Simulator',
+    ogDescription: 'Our privacy policy explains how we handle your data when you use the IDO ROI Simulator. We prioritize your privacy.',
     schema: {
       '@context': 'https://schema.org',
       '@type': 'WebPage',
@@ -113,9 +128,12 @@ export const seoConfig = {
   
   // 404 page
   notFound: {
-    title: 'Page Not Found - Token ROI Calculator',
+    title: 'Page Not Found | IDO ROI Simulator',
     description: "The page you're looking for doesn't exist. Return to our Token ROI Calculator to plan your investment strategy.",
     canonicalUrl: '/404',
+    ogImage: '/images/og-404.jpg',
+    ogTitle: 'Page Not Found | IDO ROI Simulator',
+    ogDescription: "The page you're looking for doesn't exist. Return to our IDO ROI Simulator to plan your investment strategy.",
     schema: {
       '@context': 'https://schema.org',
       '@type': 'WebPage',

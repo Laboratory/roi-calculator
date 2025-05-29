@@ -76,6 +76,55 @@ const injectSeoMetadata = () => {
       );
     }
     
+    // Add Open Graph metadata
+    let ogTags = '';
+    
+    // OG Title
+    if (config.ogTitle) {
+      ogTags += `  <meta property="og:title" content="${config.ogTitle}">\n`;
+    } else if (config.title) {
+      ogTags += `  <meta property="og:title" content="${config.title}">\n`;
+    }
+    
+    // OG Description
+    if (config.ogDescription) {
+      ogTags += `  <meta property="og:description" content="${config.ogDescription}">\n`;
+    } else if (config.description) {
+      ogTags += `  <meta property="og:description" content="${config.description}">\n`;
+    }
+    
+    // OG URL
+    ogTags += `  <meta property="og:url" content="${canonicalUrl}">\n`;
+    
+    // OG Type
+    ogTags += `  <meta property="og:type" content="${config.schema && config.schema['@type'] === 'AboutPage' ? 'profile' : 'website'}">\n`;
+    
+    // OG Image
+    if (config.ogImage) {
+      const ogImageUrl = config.ogImage.startsWith('http') ? config.ogImage : `${seoConfig.baseUrl}${config.ogImage}`;
+      ogTags += `  <meta property="og:image" content="${ogImageUrl}">\n`;
+      ogTags += `  <meta property="og:image:alt" content="${config.ogTitle || config.title}">\n`;
+    }
+    
+    // Twitter Card
+    ogTags += `  <meta name="twitter:card" content="summary_large_image">\n`;
+    if (config.ogTitle) {
+      ogTags += `  <meta name="twitter:title" content="${config.ogTitle}">\n`;
+    }
+    if (config.ogDescription) {
+      ogTags += `  <meta name="twitter:description" content="${config.ogDescription}">\n`;
+    }
+    if (config.ogImage) {
+      const ogImageUrl = config.ogImage.startsWith('http') ? config.ogImage : `${seoConfig.baseUrl}${config.ogImage}`;
+      ogTags += `  <meta name="twitter:image" content="${ogImageUrl}">\n`;
+    }
+    
+    // Add OG tags before closing head tag
+    html = html.replace(
+      /<\/head>/i,
+      `${ogTags}</head>`
+    );
+    
     // Add structured data
     if (config.schema) {
       const structuredDataScript = `
