@@ -4,27 +4,26 @@
  */
 
 // Base URL for canonical URLs
-export const baseUrl = 'https://tokencalculator.io';
+export const baseUrl = 'https://roi.alphamind.co';
 
 export const seoConfig = {
-  // Base URL for canonical URLs
   baseUrl,
-  
-  // Home/Calculator page
+
+  // Home/Simulator page
   home: {
-    title: 'IDO ROI Simulator | Uncover real returns',
-    description: 'Uncover real returns. Visualize token unlocks. Break free from FDV illusions. Simulate your returns from any token presale, forecast token unlocks, and plan smarter exits.',
+    title: 'IDO ROI Simulator | Visualize Unlocks, Model Returns, Plan Smarter Exits',
+    description: 'Use our free IDO ROI Simulator to model token unlocks, project real returns, and avoid presale pitfalls. Simulate your token investment across bear, base, and bull scenarios. No wallet, no login required.',
     canonicalUrl: '/',
     ogImage: '/images/og-home.jpg',
-    ogTitle: 'IDO ROI Simulator | Uncover real returns',
-    ogDescription: 'Uncover real returns. Visualize token unlocks. Break free from FDV illusions. Simulate your returns from any token presale, forecast token unlocks, and plan smarter exits.',
+    ogTitle: 'IDO ROI Simulator | Visualize Unlocks, Model Returns, Plan Smarter Exits',
+    ogDescription: 'Simulate token unlocks and ROI across market conditions. Understand FDV risk, break-even timing, and sell pressure — all without spreadsheets.',
     schema: {
       '@context': 'https://schema.org',
       '@type': 'WebApplication',
-      'name': 'Token ROI Calculator',
+      'name': 'IDO ROI Simulator',
       'applicationCategory': 'FinanceApplication',
       'operatingSystem': 'Web',
-      'description': 'Calculate potential returns and visualize token unlock schedules with our ROI calculator',
+      'description': 'Free token investment ROI simulator for retail investors. Visualize unlock schedules, model return paths, and evaluate real performance across market cycles.',
       'offers': {
         '@type': 'Offer',
         'price': '0',
@@ -32,46 +31,46 @@ export const seoConfig = {
       }
     }
   },
-  
+
   // About page
   about: {
-    title: 'About the IDO ROI Simulator | How it works',
-    description: 'Discover how our IDO ROI Simulator helps crypto investors make informed decisions. See how we calculate real returns based on token unlock schedules and market scenarios.',
+    title: 'How the IDO ROI Simulator Works | Token Unlock Modeling & Risk Insights',
+    description: 'Learn how the IDO ROI Simulator helps investors model token unlocks, assess real ROI timelines, and plan better exits from crypto presales.',
     canonicalUrl: '/about',
     ogImage: '/images/og-about.jpg',
-    ogTitle: 'About the IDO ROI Simulator | How it works',
-    ogDescription: 'Discover how our IDO ROI Simulator helps crypto investors make informed decisions. See how we calculate real returns based on token unlock schedules and market scenarios.',
+    ogTitle: 'How the IDO ROI Simulator Works | Token Unlock Modeling & Risk Insights',
+    ogDescription: 'Discover how this tool simulates token unlocks, return projections, FDV sensitivity and break-even timing based on presale terms and market movement.',
     schema: {
       '@context': 'https://schema.org',
       '@type': 'AboutPage',
-      'name': 'About the Token ROI Calculator',
-      'description': 'Information about the Token ROI Calculator tool and its features',
+      'name': 'How the IDO ROI Simulator Works',
+      'description': 'Detailed explanation of the IDO ROI Simulator, including use cases for token unlock modeling, break-even planning, and investor decision-making.',
       'mainEntity': {
         '@type': 'WebSite',
-        'name': 'Token ROI Calculator',
+        'name': 'IDO ROI Simulator',
         'url': baseUrl
       }
     }
   },
-  
+
   // FAQ page
   faq: {
-    title: 'Frequently Asked Questions | IDO ROI Simulator',
-    description: 'Get answers to common questions about our IDO ROI Simulator. Learn about token unlock schedules, ROI calculations, price scenarios, and how to interpret simulation results.',
+    title: 'FAQs | Token Unlocks, ROI Modeling & Presale Risk Analysis',
+    description: 'Answers to common questions about how to simulate token unlock schedules, calculate ROI across scenarios, and evaluate crypto investment timing.',
     canonicalUrl: '/faq',
     ogImage: '/images/og-faq.jpg',
-    ogTitle: 'Frequently Asked Questions | IDO ROI Simulator',
-    ogDescription: 'Get answers to common questions about our IDO ROI Simulator. Learn about token unlock schedules, ROI calculations, price scenarios, and how to interpret simulation results.',
+    ogTitle: 'FAQs | Token Unlocks, ROI Modeling & Presale Risk Analysis',
+    ogDescription: 'Get clear answers about token unlock schedules, ROI projections, and how this simulator models returns under various market outcomes.',
     schema: {
       '@context': 'https://schema.org',
       '@type': 'FAQPage',
       'mainEntity': [
         {
           '@type': 'Question',
-          'name': 'How does the Token ROI Calculator work?',
+          'name': 'How does the IDO ROI Simulator work?',
           'acceptedAnswer': {
             '@type': 'Answer',
-            'text': 'Our calculator uses your investment amount, token price, and unlock schedule to project potential returns over time. It visualizes token unlocks and calculates ROI based on different market scenarios.'
+            'text': 'The simulator lets you enter token presale terms — price, investment size, unlock schedule — and models ROI under bull, base, and bear scenarios. It shows break-even timing and cumulative returns month-by-month.'
           }
         },
         {
@@ -79,7 +78,7 @@ export const seoConfig = {
           'name': 'What is a token unlock schedule?',
           'acceptedAnswer': {
             '@type': 'Answer',
-            'text': 'A token unlock schedule defines when and how many tokens become available for trading after an initial token offering. Tokens are often released gradually over time according to predefined percentages.'
+            'text': 'A token unlock schedule defines how and when tokens from a presale become available for trading. This usually involves TGE%, cliff periods, and vesting over time. The simulator visualizes this process clearly.'
           }
         },
         {
@@ -87,53 +86,53 @@ export const seoConfig = {
           'name': 'How accurate are the ROI projections?',
           'acceptedAnswer': {
             '@type': 'Answer',
-            'text': 'Our projections are based on the data you provide and market scenarios you select. While they offer valuable insights, cryptocurrency markets are volatile and actual returns may vary significantly.'
+            'text': 'The simulator gives ROI estimates based on user input and market assumptions. While not financial advice, it offers realistic projections to help investors understand risk and timeline.'
           }
         }
       ]
     }
   },
-  
+
   // Terms page
   terms: {
     title: 'Terms of Service | IDO ROI Simulator',
-    description: 'Read our Terms of Service for the IDO ROI Simulator. Understand the rules, limitations, and legal terms that govern your use of our token investment simulation tool.',
+    description: 'Read our Terms of Service for the IDO ROI Simulator to understand your use of this free crypto investment modeling tool.',
     canonicalUrl: '/terms',
     ogImage: '/images/og-terms.jpg',
     ogTitle: 'Terms of Service | IDO ROI Simulator',
-    ogDescription: 'Read our Terms of Service for the IDO ROI Simulator. Understand the rules, limitations, and legal terms that govern your use of our token investment simulation tool.',
+    ogDescription: 'Review legal terms and usage conditions for the IDO ROI Simulator, a non-financial educational tool for ROI modeling.',
     schema: {
       '@context': 'https://schema.org',
       '@type': 'WebPage',
       'name': 'Terms of Service',
-      'description': 'Terms and conditions for using the Token ROI Calculator'
+      'description': 'Terms of use for the free web-based IDO ROI Simulator.'
     }
   },
-  
+
   // Privacy page
   privacy: {
     title: 'Privacy Policy | IDO ROI Simulator',
-    description: 'Our Privacy Policy explains how we handle your data when using the IDO ROI Simulator. Learn about our data collection practices, cookies usage, and your privacy rights.',
+    description: 'Learn how your data is handled using the IDO ROI Simulator. We don’t track, log, or store personal information.',
     canonicalUrl: '/privacy',
     ogImage: '/images/og-privacy.jpg',
     ogTitle: 'Privacy Policy | IDO ROI Simulator',
-    ogDescription: 'Our Privacy Policy explains how we handle your data when using the IDO ROI Simulator. Learn about our data collection practices, cookies usage, and your privacy rights.',
+    ogDescription: 'This simulator is privacy-first by design. All ROI calculations are done locally in your browser.',
     schema: {
       '@context': 'https://schema.org',
       '@type': 'WebPage',
       'name': 'Privacy Policy',
-      'description': 'Privacy policy for the Token ROI Calculator website'
+      'description': 'No-login, no-tracking privacy policy for IDO ROI Simulator.'
     }
   },
-  
+
   // 404 page
   notFound: {
     title: 'Page Not Found | IDO ROI Simulator',
-    description: "Sorry, the page you're looking for doesn't exist. Return to our IDO ROI Simulator to calculate potential returns from your token investments and visualize unlock schedules.",
+    description: "This page doesn't exist. Return to the simulator to model your token presale ROI and unlock schedule.",
     canonicalUrl: '/404',
     ogImage: '/images/og-404.jpg',
     ogTitle: 'Page Not Found | IDO ROI Simulator',
-    ogDescription: "Sorry, the page you're looking for doesn't exist. Return to our IDO ROI Simulator to calculate potential returns from your token investments and visualize unlock schedules.",
+    ogDescription: "This page doesn't exist. Return to the IDO ROI Simulator and calculate real-world token unlock outcomes.",
     schema: {
       '@context': 'https://schema.org',
       '@type': 'WebPage',
