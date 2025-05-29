@@ -75,6 +75,7 @@ export const calculateResults = (data) => {
     let breakEvenFound = false;
     
     for (let timeUnit = 0; timeUnit < timeUnitCount; timeUnit++) {
+      // Calculate revenue ONLY for tokens unlocked in this period
       const timeUnitRevenue = unlockAmounts[timeUnit] * scenarioPrice;
       monthlyRevenue[scenario.name][timeUnit] = timeUnitRevenue;
       cumulativeRevenue += timeUnitRevenue;

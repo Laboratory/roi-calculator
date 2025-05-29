@@ -68,7 +68,7 @@ function AppRouter() {
             <Link to="/" className="mb-3 me-2 mb-md-0 text-decoration-none lh-1">
               <img src="/logo.svg" alt="TokenCalculator" width="48" height="48" />
             </Link>
-            <span className={`mb-3 mb-md-0 ${darkMode ? 'text-light' : 'text-body-secondary'}`}>© 2025 TokenCalculator</span>
+            <span className={`mb-3 mb-md-0 ${darkMode ? 'text-light' : 'text-body-secondary'}`}> 2025 TokenCalculator</span>
           </div>
           
           <ul className="nav col-md-4 justify-content-end list-unstyled d-flex">
@@ -113,6 +113,14 @@ function AppRouter() {
               </Link>
             </li>
           </ul>
+          <div className="disclaimer mt-4 mb-3 small text-muted col-12">
+            <p className={`text-center ${darkMode ? 'text-light-emphasis' : 'text-dark-emphasis'}`}>
+              This tool is for informational and educational purposes only. All simulations and ROI projections are hypothetical and do not constitute financial advice, investment guidance, or guarantees of future performance. Always do your own research (DYOR) and consult with licensed professionals before making any investment decisions. AlphaMind and its affiliates are not liable for any actions taken based on this simulator.
+            </p>
+            <p className={`text-center ${darkMode ? 'text-light-emphasis' : 'text-dark-emphasis'}`}>
+              <strong>Remember:</strong> Simulations are not predictions. Markets are wild — especially in crypto.
+            </p>
+          </div>
         </footer>
       </div>
     </div>
