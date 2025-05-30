@@ -24,7 +24,7 @@ const FAQ = ({ onNavigateToSimulator }) => {
       id: 1,
       category: 'simulator',
       question: 'How do I use the Token ROI Simulator?',
-      answer: 'Simply enter your investment amount, token allocation, unlock schedule, and price scenarios (bear, base, bull). The simulator will automatically compute your potential returns, break-even points, and provide detailed monthly breakdowns.',
+      answer: 'Simply enter your investment amount, token allocation, unlock schedule, and price scenarios (bear, base, bull) in the Presale Setup tab. The simulator will automatically compute your potential returns, break-even points, and provide detailed ROI Over Time analysis.',
       popular: true
     },
     {
@@ -114,8 +114,8 @@ const FAQ = ({ onNavigateToSimulator }) => {
     {
       id: 14,
       category: 'simulator',
-      question: 'How do I interpret the monthly breakdown table?',
-      answer: 'The monthly breakdown shows: tokens unlocked each month, cumulative tokens available, potential value at different price scenarios, and running ROI calculations. Green indicates positive returns, red indicates losses.',
+      question: 'How do I interpret the ROI Over Time chart and table?',
+      answer: 'The ROI Over Time chart and table show your potential returns over time, including break-even points, monthly returns, and cumulative returns. Green indicates positive returns, red indicates losses.',
       popular: false
     },
     {

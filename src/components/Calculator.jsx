@@ -62,20 +62,21 @@ const Simulator = () => {
       
       <div className="simulator-header">
         <h1>Token Unlock & ROI Simulator</h1>
-        <p>Simulate your potential returns and visualize token unlock schedules</p>
+        <p className="subtitle">Uncover real returns. Visualize token unlocks. Break free from FDV illusions.</p>
+        <p className="description">Simulate your returns from any token presale, forecast token unlocks, and plan smarter exits under different market scenarios. Free, fast, and privacy-safe. Built by AlphaMind to protect retail investors.</p>
       </div>
       
       <div className="simulator-body">
         <Tab.Container activeKey={activeTab} onSelect={handleTabChange}>
           <Nav className="simulator-tabs" variant="tabs">
             <Nav.Item>
-              <Nav.Link eventKey="input">Input Parameters</Nav.Link>
+              <Nav.Link eventKey="input">Presale Setup</Nav.Link>
             </Nav.Item>
             <Nav.Item>
               <Nav.Link eventKey="unlock" disabled={!calculationData}>Unlock Schedule</Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link eventKey="monthly" disabled={!calculationData}>Monthly Breakdown</Nav.Link>
+              <Nav.Link eventKey="monthly" disabled={!calculationData}>ROI Over Time</Nav.Link>
             </Nav.Item>
           </Nav>
           

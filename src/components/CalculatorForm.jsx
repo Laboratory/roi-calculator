@@ -325,7 +325,7 @@ const SimulatorForm = ({onCalculate}) => {
 
   return (<div className="simulator-form">
     <div className="form-section">
-      <h3 className="section-title">Presale Details</h3>
+      <h2>Presale Setup</h2>
       <div className="section-content ps-2 pe-2">
         <Row>
           <Col md={6}>
@@ -514,11 +514,11 @@ const SimulatorForm = ({onCalculate}) => {
               <OverlayTrigger
                 placement="top"
                 overlay={<Tooltip id="tooltip-total-supply">
-                  Add total supply to detect high FDV setups and unlock dilution.
+                  The total number of tokens that will ever exist for this project. Used to calculate the Fully Diluted Valuation (FDV).
                 </Tooltip>}
               >
                 <Form.Label className="tooltip-label">
-                  Total Token Supply
+                  Total Token Supply (Optional)
                   <FaInfoCircle className="ms-2 text-primary info-icon"/>
                 </Form.Label>
               </OverlayTrigger>
@@ -545,7 +545,7 @@ const SimulatorForm = ({onCalculate}) => {
               </Form.Group>
 
               <Form.Text className="text-muted">
-                Used to calculate FDV and provide warnings
+                Add total supply to detect high FDV setups and unlock dilution.
               </Form.Text>
             </Form.Group>
           </Col>
@@ -818,8 +818,8 @@ const SimulatorForm = ({onCalculate}) => {
           </Button>
 
           <div className="cta-section mt-4 p-4 border rounded bg-light">
-            <h5 className="text-center mb-3">Want early access to the advanced version and new features?</h5>
-            <p className="text-center mb-4">Drop your 📩email or subscribe to our telegram bot for notifications.</p>
+            <h5 className="text-center mb-3">Drop your email or join our Telegram to shape the next version.</h5>
+            <p className="text-center mb-4">Want early access to the advanced version and new features? Drop your 📩email or subscribe to our telegram bot for notifications.</p>
 
             <Row className="mb-4">
               <Col md={8}>
@@ -847,7 +847,7 @@ const SimulatorForm = ({onCalculate}) => {
             <hr className="my-4" />
 
             <p className="text-center mb-3">Like this tool? Help us build the ultimate ROI simulator for IDOs:</p>
-            <p className="text-center mb-4">Leave your feedback and join conversation in community channels:</p>
+            <p className="text-center mb-4">leave your feedback and join conversation in community channels:</p>
 
             <Row>
               <Col md={6}>

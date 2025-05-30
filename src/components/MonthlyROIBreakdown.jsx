@@ -121,6 +121,7 @@ const MonthlyROIBreakdown = ({ results }) => {
 
   return (
     <div className="monthly-roi-breakdown">
+      <h2>ROI Over Time</h2>
       <div className="chart-section">
         <Card className="chart-card">
           <Card.Body>

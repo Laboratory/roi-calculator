@@ -261,6 +261,32 @@ const About = ({ onNavigateToSimulator }) => {
         </Container>
       </section>
 
+      {/* About Section */}
+      <section className="py-5">
+        <Container>
+          <Row>
+            <Col className="text-center mb-5">
+              <div className="about-header">
+                <h1>About the IDO ROI Simulator</h1>
+                <p className="subtitle">Built by AlphaMind to protect retail investors</p>
+              </div>
+              <div className="about-section">
+                <h2>Why We Built This</h2>
+                <p>
+                  The IDO ROI Simulator was created to help crypto investors make more informed decisions about token presales and IDOs. 
+                  Too many retail investors fall victim to misleading marketing that focuses on fully diluted valuation (FDV) 
+                  without accounting for token unlock schedules and market conditions.
+                </p>
+                <p>
+                  Our mission is to provide a free, easy-to-use tool that lets you visualize real returns, understand token unlocks, 
+                  and break free from FDV illusions. We believe that better information leads to better investment decisions.
+                </p>
+              </div>
+            </Col>
+          </Row>
+        </Container>
+      </section>
+
       {/* Privacy Section */}
       <section className="py-5 bg-light">
         <Container>
