@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { Alert, Button, Col, Form, InputGroup, OverlayTrigger, Row, Tooltip } from 'react-bootstrap';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
-import { FaInfoCircle, FaTelegram, FaDiscord, FaPaperPlane } from 'react-icons/fa';
+import { FaInfoCircle, FaTelegram, FaDiscord, FaPaperPlane, FaTwitter, FaYoutube } from 'react-icons/fa';
 import { calculateResults } from '../utils/calculator';
+import { subscribeToBrevo } from '../api/brevoService';
 
 const DEFAULT_UNLOCK_PERIODS = [{month: 1, percentage: 15}, {month: 3, percentage: 25}, {
   month: 6, percentage: 25
@@ -32,6 +33,11 @@ const SimulatorForm = ({onCalculate}) => {
   const [unlockPeriods, setUnlockPeriods] = useState(DEFAULT_UNLOCK_PERIODS);
   const [errors, setErrors] = useState({});
   const [isTokenAmountCalculated, setIsTokenAmountCalculated] = useState(false);
+
+  const [email, setEmail] = useState('');
+  const [isSubmittingEmail, setIsSubmittingEmail] = useState(false);
+  const [emailError, setEmailError] = useState('');
+  const [emailSuccess, setEmailSuccess] = useState(false);
 
   // Auto-calculate token amount when investment and price are provided
   useEffect(() => {
@@ -321,6 +327,38 @@ const SimulatorForm = ({onCalculate}) => {
     }
 
     return date.toLocaleDateString('en-US', {month: 'short', day: 'numeric', year: 'numeric'});
+  };
+
+  // Email subscription handler
+  const handleEmailSubscribe = (e) => {
+    e.preventDefault();
+    setEmailError('');
+    
+    if (email && email.includes('@') && email.includes('.')) {
+      setIsSubmittingEmail(true);
+      
+      subscribeToBrevo(email)
+        .then(data => {
+          setEmailSuccess(true);
+          setEmail('');
+          
+          // Hide success message after 5 seconds
+          setTimeout(() => {
+            setEmailSuccess(false);
+          }, 5000);
+          
+          console.log('Email submitted successfully:', data);
+        })
+        .catch(error => {
+          console.error('Error submitting email:', error);
+          setEmailError(error.message);
+        })
+        .finally(() => {
+          setIsSubmittingEmail(false);
+        });
+    } else {
+      setEmailError('Please enter a valid email address');
+    }
   };
 
   return (<div className="simulator-form">
@@ -823,21 +861,40 @@ const SimulatorForm = ({onCalculate}) => {
 
             <Row className="mb-4">
               <Col md={8}>
-                <InputGroup>
-                  <Form.Control
-                    type="email"
-                    placeholder="Your email address"
-                    aria-label="Email address"
-                    className="py-2"
-                  />
-                  <Button variant="outline-primary" className="px-3 py-2 h-100">
-                    <FaPaperPlane className="me-2" />
-                    Subscribe
-                  </Button>
-                </InputGroup>
+                <Form onSubmit={handleEmailSubscribe}>
+                  <InputGroup>
+                    <Form.Control
+                      type="email"
+                      placeholder="Your email address"
+                      aria-label="Email address"
+                      className="py-2"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                    />
+                    <Button 
+                      variant="outline-primary" 
+                      className="px-3 py-2 h-100"
+                      type="submit"
+                      disabled={isSubmittingEmail}
+                    >
+                      <FaPaperPlane className="me-2" />
+                      {isSubmittingEmail ? 'Subscribing...' : 'Subscribe'}
+                    </Button>
+                  </InputGroup>
+                  {emailError && (
+                    <Alert variant="danger" className="mt-2 mb-0 py-2 small">
+                      {emailError}
+                    </Alert>
+                  )}
+                  {emailSuccess && (
+                    <Alert variant="success" className="mt-2 mb-0 py-2 small">
+                      Thanks for subscribing! We'll keep you updated.
+                    </Alert>
+                  )}
+                </Form>
               </Col>
               <Col md={4}>
-                <Button variant="outline-info" className="w-100 py-2 h-100">
+                <Button variant="outline-info" className="w-100 py-2 h-100" href="https://t.me/AlphaIDO_bot?start" target="_blank" rel="noopener noreferrer">
                   <FaTelegram className="me-2" />
                   Telegram Bot
                 </Button>
@@ -851,15 +908,30 @@ const SimulatorForm = ({onCalculate}) => {
 
             <Row>
               <Col md={6}>
-                <Button variant="outline-primary" className="w-100 py-2 h-100">
+                <Button variant="outline-primary" className="w-100 py-2 h-100" href="https://discord.gg/NB4hhuXkWz" target="_blank" rel="noopener noreferrer">
                   <FaDiscord className="me-2" />
                   Join Discord
                 </Button>
               </Col>
               <Col md={6}>
-                <Button variant="outline-info" className="w-100 py-2 h-100">
+                <Button variant="outline-info" className="w-100 py-2 h-100" href="https://t.me/alphamind_official" target="_blank" rel="noopener noreferrer">
                   <FaTelegram className="me-2" />
                   Telegram Group
+                </Button>
+              </Col>
+            </Row>
+
+            <Row className="mt-3">
+              <Col md={6}>
+                <Button variant="outline-dark" className="w-100 py-2 h-100" href="https://twitter.com/alphamind_labs" target="_blank" rel="noopener noreferrer">
+                  <FaTwitter className="me-2" />
+                  Follow on X (Twitter)
+                </Button>
+              </Col>
+              <Col md={6}>
+                <Button variant="outline-danger" className="w-100 py-2 h-100" href="https://www.youtube.com/@AlphaMind_labs" target="_blank" rel="noopener noreferrer">
+                  <FaYoutube className="me-2" />
+                  YouTube Channel
                 </Button>
               </Col>
             </Row>
