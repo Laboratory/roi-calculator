@@ -6,7 +6,7 @@ import { ThemeContext } from './context/ThemeContext';
 
 // Lazy load page components
 const Simulator = lazy(() => import('./components/Calculator'));
-const About = lazy(() => import('./components/About'));
+const HowItWorks = lazy(() => import('./components/About'));
 const FAQ = lazy(() => import('./components/FAQ'));
 const Terms = lazy(() => import('./components/Terms'));
 const Privacy = lazy(() => import('./components/Privacy'));
@@ -65,7 +65,7 @@ function AppRouter () {
       <Suspense fallback={<PageLoader/>}>
         <Routes>
           <Route path="/" element={<Simulator/>}/>
-          <Route path="/about" element={<About onNavigateToSimulator={() => navigate('/')}/>}/>
+          <Route path="/about" element={<HowItWorks onNavigateToSimulator={() => navigate('/')}/>}/>
           <Route path="/faq" element={<FAQ onNavigateToSimulator={() => navigate('/')}/>}/>
           <Route path="/terms" element={<Terms/>}/>
           <Route path="/privacy" element={<Privacy/>}/>
