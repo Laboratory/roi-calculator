@@ -1,9 +1,8 @@
-import React, { useState, useContext, lazy, Suspense } from 'react';
-import { Container, Row, Col, Card, Tab, Nav } from 'react-bootstrap';
-import { ThemeContext } from '../context/ThemeContext';
+import React, { lazy, Suspense, useEffect, useState } from 'react';
+import { Container, Nav, Tab } from 'react-bootstrap';
 import SEO from './SEO';
 import { seoConfig } from '../config/seo';
-import PageLoader from './PageLoader';
+import { trackEvent, trackTabChange } from '../utils/analytics';
 
 // Lazy load components
 const SimulatorForm = lazy(() => import('./CalculatorForm'));
@@ -24,26 +23,37 @@ const Simulator = () => {
   const [calculationData, setCalculationData] = useState(null);
   const [activeTab, setActiveTab] = useState('input');
   const [isTabChanging, setIsTabChanging] = useState(false);
-  
+
   // Get SEO config for this page
-  const { title, description, canonicalUrl, schema } = seoConfig.home;
+  const {title, description, canonicalUrl, schema} = seoConfig.home;
 
   const handleCalculate = (data) => {
     setCalculationData(data);
+
+    // Track calculation event
+    trackEvent('roi_calculation', {
+      investment_amount: data.investmentAmount,
+      token_price: data.tokenPrice,
+      has_vesting: data.hasVesting
+    });
+
     setActiveTab('monthly');
-    
+
     // Scroll to results after calculation
     setTimeout(() => {
       const resultsElement = document.getElementById('simulator-results');
       if (resultsElement) {
-        resultsElement.scrollIntoView({ behavior: 'smooth' });
+        resultsElement.scrollIntoView({behavior: 'smooth'});
       }
     }, 100);
   };
 
   const handleTabChange = (newTab) => {
     if (newTab === activeTab) return;
-    
+
+    // Track tab change
+    trackTabChange(newTab, activeTab);
+
     setIsTabChanging(true);
     setTimeout(() => {
       setActiveTab(newTab);
@@ -53,19 +63,21 @@ const Simulator = () => {
 
   return (
     <Container className="py-4 simulator-container">
-      <SEO 
+      <SEO
         title={title}
         description={description}
         canonicalUrl={canonicalUrl}
         schema={schema}
       />
-      
+
       <div className="simulator-header">
         <h1>Token Unlock & ROI Simulator</h1>
         <p className="subtitle">Uncover real returns. Visualize token unlocks. Break free from FDV illusions.</p>
-        <p className="description">Simulate your returns from any token presale, forecast token unlocks, and plan smarter exits under different market scenarios. Free, fast, and privacy-safe. Built by AlphaMind to protect retail investors.</p>
+        <p className="description">Simulate your returns from any token presale, forecast token unlocks, and plan
+          smarter exits under different market scenarios. Free, fast, and privacy-safe. Built by AlphaMind to protect
+          retail investors.</p>
       </div>
-      
+
       <div className="simulator-body">
         <Tab.Container activeKey={activeTab} onSelect={handleTabChange}>
           <Nav className="simulator-tabs" variant="tabs">
@@ -79,26 +91,29 @@ const Simulator = () => {
               <Nav.Link eventKey="monthly" disabled={!calculationData}>ROI Over Time</Nav.Link>
             </Nav.Item>
           </Nav>
-          
+
           <Tab.Content>
-            <Tab.Pane eventKey="input" className={`tab-pane ${activeTab === 'input' ? 'active fade-in' : ''} ${isTabChanging ? 'fade-out' : ''}`}>
+            <Tab.Pane eventKey="input"
+                      className={`tab-pane ${activeTab === 'input' ? 'active fade-in' : ''} ${isTabChanging ? 'fade-out' : ''}`}>
               {activeTab === 'input' && (
-                <SimulatorForm onCalculate={handleCalculate} />
+                <SimulatorForm onCalculate={handleCalculate}/>
               )}
             </Tab.Pane>
-            
-            <Tab.Pane eventKey="monthly" className={`tab-pane ${activeTab === 'monthly' ? 'active fade-in' : ''} ${isTabChanging ? 'fade-out' : ''}`}>
+
+            <Tab.Pane eventKey="monthly"
+                      className={`tab-pane ${activeTab === 'monthly' ? 'active fade-in' : ''} ${isTabChanging ? 'fade-out' : ''}`}>
               {activeTab === 'monthly' && calculationData && (
-                <Suspense fallback={<ComponentLoader />}>
-                  <MonthlyROIBreakdown results={calculationData} />
+                <Suspense fallback={<ComponentLoader/>}>
+                  <MonthlyROIBreakdown results={calculationData}/>
                 </Suspense>
               )}
             </Tab.Pane>
-            
-            <Tab.Pane eventKey="unlock" className={`tab-pane ${activeTab === 'unlock' ? 'active fade-in' : ''} ${isTabChanging ? 'fade-out' : ''}`}>
+
+            <Tab.Pane eventKey="unlock"
+                      className={`tab-pane ${activeTab === 'unlock' ? 'active fade-in' : ''} ${isTabChanging ? 'fade-out' : ''}`}>
               {activeTab === 'unlock' && calculationData && (
-                <Suspense fallback={<ComponentLoader />}>
-                  <UnlockSchedule results={calculationData} />
+                <Suspense fallback={<ComponentLoader/>}>
+                  <UnlockSchedule results={calculationData}/>
                 </Suspense>
               )}
             </Tab.Pane>

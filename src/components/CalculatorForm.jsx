@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { Alert, Button, Col, Form, InputGroup, OverlayTrigger, Row, Tooltip } from 'react-bootstrap';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
-import { FaInfoCircle, FaTelegram, FaDiscord, FaPaperPlane, FaTwitter, FaYoutube } from 'react-icons/fa';
+import { FaDiscord, FaInfoCircle, FaPaperPlane, FaTelegram, FaTwitter, FaYoutube } from 'react-icons/fa';
 import { calculateResults } from '../utils/calculator';
 import { subscribeToBrevo } from '../api/brevoService';
+import { trackEvent, trackFormSubmission, trackInputChange, trackLinkClick } from '../utils/analytics';
 
 const DEFAULT_UNLOCK_PERIODS = [{month: 1, percentage: 15}, {month: 3, percentage: 25}, {
   month: 6, percentage: 25
@@ -38,6 +39,8 @@ const SimulatorForm = ({onCalculate, setCurrentTab}) => {
   const [isSubmittingEmail, setIsSubmittingEmail] = useState(false);
   const [emailError, setEmailError] = useState('');
   const [emailSuccess, setEmailSuccess] = useState(false);
+
+  const [trackingTimeouts, setTrackingTimeouts] = useState({});
 
   // Auto-calculate token amount when investment and price are provided
   useEffect(() => {
@@ -115,9 +118,7 @@ const SimulatorForm = ({onCalculate, setCurrentTab}) => {
   // Calculate scenario prices based on ROI inputs
   const calculateScenarioPrices = () => {
     // Use expected listing price if provided, otherwise use purchase price
-    const basePrice = formData.expectedListingPrice && Number(formData.expectedListingPrice) > 0
-      ? Number(formData.expectedListingPrice)
-      : Number(formData.tokenPrice);
+    const basePrice = formData.expectedListingPrice && Number(formData.expectedListingPrice) > 0 ? Number(formData.expectedListingPrice) : Number(formData.tokenPrice);
 
     const updatedScenarios = priceScenarios.map(scenario => {
       const roi = Number(scenario.roi);
@@ -137,32 +138,16 @@ const SimulatorForm = ({onCalculate, setCurrentTab}) => {
     }
   }, [formData.tokenPrice, formData.expectedListingPrice]);
 
+  // Input change handler with debounced tracking
   const handleInputChange = (e) => {
     const {name, value} = e.target;
 
-    // Handle supply option changes
-    if (name === 'supplyOption') {
-      let totalSupply = '';
-
-      switch (value) {
-        case '10billion':
-          totalSupply = '10000000000';
-          break;
-        case '1billion':
-          totalSupply = '1000000000';
-          break;
-        case '100million':
-          totalSupply = '100000000';
-          break;
-        default:
-          // Keep existing value for custom
-          totalSupply = formData.totalSupply;
-      }
-
-      setFormData(prev => ({
-        ...prev, supplyOption: value, totalSupply
-      }));
-      return;
+    // Track input change (with debounce to prevent excessive events)
+    if (!trackingTimeouts[name]) {
+      trackingTimeouts[name] = setTimeout(() => {
+        trackInputChange(name, 'calculator_form');
+        trackingTimeouts[name] = null;
+      }, 1000);
     }
 
     setFormData(prev => ({
@@ -174,6 +159,28 @@ const SimulatorForm = ({onCalculate, setCurrentTab}) => {
       setErrors({
         ...errors, [name]: null
       });
+    }
+  };
+
+  // Form submission handler
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // Validate form inputs
+    const errors = validateForm();
+
+    if (Object.keys(errors).length === 0) {
+      // Track successful form submission
+      trackFormSubmission('roi_calculator', 'calculator_page', {
+        token_name: formData.tokenName, investment_amount: formData.investmentAmount,
+      });
+
+      // Calculate results
+      const results = calculateResults({
+        ...formData, priceScenarios, unlockPeriods, unlockFrequency: formData.unlockFrequency
+      });
+      onCalculate(results);
+      setCurrentTab("time");
     }
   };
 
@@ -192,9 +199,7 @@ const SimulatorForm = ({onCalculate, setCurrentTab}) => {
     if (field === 'roi' && formData.tokenPrice) {
       const roi = Number(value);
       // Use expected listing price if provided, otherwise use purchase price
-      const basePrice = formData.expectedListingPrice && Number(formData.expectedListingPrice) > 0
-        ? Number(formData.expectedListingPrice)
-        : Number(formData.tokenPrice);
+      const basePrice = formData.expectedListingPrice && Number(formData.expectedListingPrice) > 0 ? Number(formData.expectedListingPrice) : Number(formData.tokenPrice);
       const calculatedPrice = basePrice * (1 + (roi / 100));
       updatedScenarios[index].price = calculatedPrice.toString();
       setPriceScenarios(updatedScenarios);
@@ -295,13 +300,55 @@ const SimulatorForm = ({onCalculate, setCurrentTab}) => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleCalculate = () => {
-    if (validateForm()) {
-      const results = calculateResults({
-        ...formData, priceScenarios, unlockPeriods, unlockFrequency: formData.unlockFrequency
+  // Email subscription handler
+  const handleEmailSubscribe = (e) => {
+    e.preventDefault();
+    setEmailError('');
+
+    if (email && email.includes('@') && email.includes('.')) {
+      setIsSubmittingEmail(true);
+
+      // Track email subscription attempt
+      trackFormSubmission('email_subscription', 'calculator_footer', {
+        email_provided: true
       });
-      onCalculate(results);
-      setCurrentTab("time");
+
+      subscribeToBrevo(email)
+        .then(data => {
+          setEmailSuccess(true);
+          setEmail('');
+
+          // Track successful subscription
+          trackEvent('email_subscription_success', {
+            location: 'calculator_footer'
+          });
+
+          // Hide success message after 5 seconds
+          setTimeout(() => {
+            setEmailSuccess(false);
+          }, 5000);
+
+          console.log('Email submitted successfully:', data);
+        })
+        .catch(error => {
+          console.error('Error submitting email:', error);
+          setEmailError(error.message);
+
+          // Track failed subscription
+          trackEvent('email_subscription_error', {
+            location: 'calculator_footer', error_message: error.message
+          });
+        })
+        .finally(() => {
+          setIsSubmittingEmail(false);
+        });
+    } else {
+      setEmailError('Please enter a valid email address');
+
+      // Track validation error
+      trackEvent('email_subscription_validation_error', {
+        location: 'calculator_footer'
+      });
     }
   };
 
@@ -328,38 +375,6 @@ const SimulatorForm = ({onCalculate, setCurrentTab}) => {
     }
 
     return date.toLocaleDateString('en-US', {month: 'short', day: 'numeric', year: 'numeric'});
-  };
-
-  // Email subscription handler
-  const handleEmailSubscribe = (e) => {
-    e.preventDefault();
-    setEmailError('');
-    
-    if (email && email.includes('@') && email.includes('.')) {
-      setIsSubmittingEmail(true);
-      
-      subscribeToBrevo(email)
-        .then(data => {
-          setEmailSuccess(true);
-          setEmail('');
-          
-          // Hide success message after 5 seconds
-          setTimeout(() => {
-            setEmailSuccess(false);
-          }, 5000);
-          
-          console.log('Email submitted successfully:', data);
-        })
-        .catch(error => {
-          console.error('Error submitting email:', error);
-          setEmailError(error.message);
-        })
-        .finally(() => {
-          setIsSubmittingEmail(false);
-        });
-    } else {
-      setEmailError('Please enter a valid email address');
-    }
   };
 
   return (<div className="simulator-form">
@@ -495,7 +510,8 @@ const SimulatorForm = ({onCalculate, setCurrentTab}) => {
               <OverlayTrigger
                 placement="top"
                 overlay={<Tooltip id="tooltip-expected-listing-price">
-                  Expected TGE Price (optional): If known, this will be used as the base price for market ROI scenarios. If not provided, we assume listing price = your purchase price
+                  Expected TGE Price (optional): If known, this will be used as the base price for market ROI scenarios.
+                  If not provided, we assume listing price = your purchase price
                 </Tooltip>}
               >
                 <Form.Label className="tooltip-label">
@@ -553,7 +569,8 @@ const SimulatorForm = ({onCalculate, setCurrentTab}) => {
               <OverlayTrigger
                 placement="top"
                 overlay={<Tooltip id="tooltip-total-supply">
-                  The total number of tokens that will ever exist for this project. Used to calculate the Fully Diluted Valuation (FDV).
+                  The total number of tokens that will ever exist for this project. Used to calculate the Fully Diluted
+                  Valuation (FDV).
                 </Tooltip>}
               >
                 <Form.Label className="tooltip-label">
@@ -597,40 +614,38 @@ const SimulatorForm = ({onCalculate, setCurrentTab}) => {
             <div className="form-section h-100">
               <h3 className="section-title">Market ROI Scenarios</h3>
               <div className="section-content border-0 ps-2 pe-2">
-                {priceScenarios.map((scenario, index) => (
-                  <Row key={index} className="mb-3">
-                    <Col md={12}>
-                      <Form.Group>
-                        <OverlayTrigger
-                          placement="top"
-                          overlay={<Tooltip id={`tooltip-scenario-${index}`}>
-                            {scenario.name === 'Bear' && 'We assume your token trades at 90% below your presale price during your entire vesting period.'}
-                            {scenario.name === 'Base' && 'No major price change. Token price stays near your purchase level.'}
-                            {scenario.name === 'Bull' && 'Market surges. We assume Token trades at a multiple of your presale price over your vesting period.'}
-                          </Tooltip>}
-                        >
-                          <Form.Label className="tooltip-label">
-                            {scenario.name} Market Return
-                            <FaInfoCircle className="ms-2 text-primary info-icon"/>
-                          </Form.Label>
-                        </OverlayTrigger>
-                        <InputGroup>
-                          <Form.Control
-                            type="number"
-                            value={scenario.roi}
-                            onChange={(e) => handleScenarioChange(index, 'roi', e.target.value)}
-                            placeholder="Return percentage"
-                            step="1"
-                          />
-                          <InputGroup.Text>%</InputGroup.Text>
-                        </InputGroup>
-                        <Form.Text className="text-muted">
-                          Calculated price: ${parseFloat(scenario.price).toFixed(6)}
-                        </Form.Text>
-                      </Form.Group>
-                    </Col>
-                  </Row>
-                ))}
+                {priceScenarios.map((scenario, index) => (<Row key={index} className="mb-3">
+                  <Col md={12}>
+                    <Form.Group>
+                      <OverlayTrigger
+                        placement="top"
+                        overlay={<Tooltip id={`tooltip-scenario-${index}`}>
+                          {scenario.name === 'Bear' && 'We assume your token trades at 90% below your presale price during your entire vesting period.'}
+                          {scenario.name === 'Base' && 'No major price change. Token price stays near your purchase level.'}
+                          {scenario.name === 'Bull' && 'Market surges. We assume Token trades at a multiple of your presale price over your vesting period.'}
+                        </Tooltip>}
+                      >
+                        <Form.Label className="tooltip-label">
+                          {scenario.name} Market Return
+                          <FaInfoCircle className="ms-2 text-primary info-icon"/>
+                        </Form.Label>
+                      </OverlayTrigger>
+                      <InputGroup>
+                        <Form.Control
+                          type="number"
+                          value={scenario.roi}
+                          onChange={(e) => handleScenarioChange(index, 'roi', e.target.value)}
+                          placeholder="Return percentage"
+                          step="1"
+                        />
+                        <InputGroup.Text>%</InputGroup.Text>
+                      </InputGroup>
+                      <Form.Text className="text-muted">
+                        Calculated price: ${parseFloat(scenario.price).toFixed(6)}
+                      </Form.Text>
+                    </Form.Group>
+                  </Col>
+                </Row>))}
               </div>
             </div>
           </Col>
@@ -816,8 +831,7 @@ const SimulatorForm = ({onCalculate, setCurrentTab}) => {
                     <td>
                       {formData.tgeDate ? (<div>Month 0 — {new Date(formData.tgeDate).toLocaleDateString('en-US', {
                         month: 'short', day: 'numeric', year: 'numeric'
-                      })}</div>) : (
-                        <div>{formData.unlockFrequency === 'weekly' ? 'Week (0)' : 'Month 0 (TGE)'}</div>)}
+                      })}</div>) : (<div>{formData.unlockFrequency === 'weekly' ? 'Week (0)' : 'Month 0 (TGE)'}</div>)}
                     </td>
                     <td>{formData.tgeUnlock}%</td>
                   </tr>
@@ -851,14 +865,16 @@ const SimulatorForm = ({onCalculate, setCurrentTab}) => {
         </Row>
 
         <div className="d-grid gap-2 mt-4">
-          <p className="text-center mb-3">Instantly model your returns across different market conditions & unlock terms.</p>
-          <Button variant="primary" size="lg" onClick={handleCalculate}>
+          <p className="text-center mb-3">Instantly model your returns across different market conditions & unlock
+            terms.</p>
+          <Button variant="primary" size="lg" onClick={handleSubmit}>
             Simulate ROI
           </Button>
 
           <div className="cta-section mt-4 p-4 border rounded bg-light">
             <h5 className="text-center mb-3">Drop your email or join our Telegram to shape the next version.</h5>
-            <p className="text-center mb-4">Want early access to the advanced version and new features? Drop your 📩email or subscribe to our telegram bot for notifications.</p>
+            <p className="text-center mb-4">Want early access to the advanced version and new features? Drop your
+              📩email or subscribe to our telegram bot for notifications.</p>
 
             <Row className="mb-4">
               <Col md={8}>
@@ -872,51 +888,56 @@ const SimulatorForm = ({onCalculate, setCurrentTab}) => {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                     />
-                    <Button 
-                      variant="outline-primary" 
+                    <Button
+                      variant="outline-primary"
                       className="px-3 py-2 h-100"
                       type="submit"
                       disabled={isSubmittingEmail}
                     >
-                      <FaPaperPlane className="me-2" />
+                      <FaPaperPlane className="me-2"/>
                       {isSubmittingEmail ? 'Subscribing...' : 'Subscribe'}
                     </Button>
                   </InputGroup>
-                  {emailError && (
-                    <Alert variant="danger" className="mt-2 mb-0 py-2 small">
-                      {emailError}
-                    </Alert>
-                  )}
-                  {emailSuccess && (
-                    <Alert variant="success" className="mt-2 mb-0 py-2 small">
-                      Thanks for subscribing! We'll keep you updated.
-                    </Alert>
-                  )}
+                  {emailError && (<Alert variant="danger" className="mt-2 mb-0 py-2 small">
+                    {emailError}
+                  </Alert>)}
+                  {emailSuccess && (<Alert variant="success" className="mt-2 mb-0 py-2 small">
+                    Thanks for subscribing! We'll keep you updated.
+                  </Alert>)}
                 </Form>
               </Col>
               <Col md={4}>
-                <Button variant="outline-info" className="w-100 py-2 h-100" href="https://t.me/AlphaIDO_bot?start" target="_blank" rel="noopener noreferrer">
-                  <FaTelegram className="me-2" />
+                <Button
+                  variant="outline-info"
+                  className="w-100 py-2 h-100"
+                  href="https://t.me/AlphaIDO_bot?start"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => trackLinkClick('https://t.me/AlphaIDO_bot?start', 'Telegram Bot', 'calculator_footer')}
+                >
+                  <FaTelegram className="me-2"/>
                   Telegram Bot
                 </Button>
               </Col>
             </Row>
 
-            <hr className="my-4" />
+            <hr className="my-4"/>
 
             <p className="text-center mb-3">Like this tool? Help us build the ultimate ROI simulator for IDOs:</p>
             <p className="text-center mb-4">leave your feedback and join conversation in community channels:</p>
 
             <Row>
               <Col md={6}>
-                <Button variant="outline-primary" className="w-100 py-2 h-100" href="https://discord.gg/NB4hhuXkWz" target="_blank" rel="noopener noreferrer">
-                  <FaDiscord className="me-2" />
+                <Button variant="outline-primary" className="w-100 py-2 h-100" href="https://discord.gg/NB4hhuXkWz"
+                        target="_blank" rel="noopener noreferrer">
+                  <FaDiscord className="me-2"/>
                   Join Discord
                 </Button>
               </Col>
               <Col md={6}>
-                <Button variant="outline-info" className="w-100 py-2 h-100" href="https://t.me/alphamind_official" target="_blank" rel="noopener noreferrer">
-                  <FaTelegram className="me-2" />
+                <Button variant="outline-info" className="w-100 py-2 h-100" href="https://t.me/alphamind_official"
+                        target="_blank" rel="noopener noreferrer">
+                  <FaTelegram className="me-2"/>
                   Telegram Group
                 </Button>
               </Col>
@@ -924,14 +945,16 @@ const SimulatorForm = ({onCalculate, setCurrentTab}) => {
 
             <Row className="mt-3">
               <Col md={6}>
-                <Button variant="outline-dark" className="w-100 py-2 h-100" href="https://twitter.com/alphamind_labs" target="_blank" rel="noopener noreferrer">
-                  <FaTwitter className="me-2" />
+                <Button variant="outline-dark" className="w-100 py-2 h-100" href="https://twitter.com/alphamind_labs"
+                        target="_blank" rel="noopener noreferrer">
+                  <FaTwitter className="me-2"/>
                   Follow on X (Twitter)
                 </Button>
               </Col>
               <Col md={6}>
-                <Button variant="outline-danger" className="w-100 py-2 h-100" href="https://www.youtube.com/@AlphaMind_labs" target="_blank" rel="noopener noreferrer">
-                  <FaYoutube className="me-2" />
+                <Button variant="outline-danger" className="w-100 py-2 h-100"
+                        href="https://www.youtube.com/@AlphaMind_labs" target="_blank" rel="noopener noreferrer">
+                  <FaYoutube className="me-2"/>
                   YouTube Channel
                 </Button>
               </Col>
@@ -939,6 +962,44 @@ const SimulatorForm = ({onCalculate, setCurrentTab}) => {
           </div>
         </div>
       </div>
+    </div>
+    <div className="social-links d-flex justify-content-center gap-3 mt-4">
+      <a
+        href="https://t.me/alphamind_official"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="social-link"
+        onClick={() => trackLinkClick('https://t.me/alphamind_official', 'Telegram Group', 'calculator_footer')}
+      >
+        <FaTelegram size={24}/>
+      </a>
+      <a
+        href="https://discord.gg/NB4hhuXkWz"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="social-link"
+        onClick={() => trackLinkClick('https://discord.gg/NB4hhuXkWz', 'Discord', 'calculator_footer')}
+      >
+        <FaDiscord size={24}/>
+      </a>
+      <a
+        href="https://twitter.com/alphamind_labs"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="social-link"
+        onClick={() => trackLinkClick('https://twitter.com/alphamind_labs', 'Twitter', 'calculator_footer')}
+      >
+        <FaTwitter size={24}/>
+      </a>
+      <a
+        href="https://www.youtube.com/@AlphaMind_labs"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="social-link"
+        onClick={() => trackLinkClick('https://www.youtube.com/@AlphaMind_labs', 'YouTube', 'calculator_footer')}
+      >
+        <FaYoutube size={24}/>
+      </a>
     </div>
   </div>);
 };

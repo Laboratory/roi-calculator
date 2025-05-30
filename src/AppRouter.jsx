@@ -1,8 +1,10 @@
-import React, { lazy, Suspense, useContext } from 'react';
+import React, { lazy, Suspense, useContext, useEffect } from 'react';
 import { Button } from 'react-bootstrap';
 import { FaMoon, FaSun } from 'react-icons/fa';
 import { Link, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { ThemeContext } from './context/ThemeContext';
+import { trackPageView } from './utils/analytics';
+import { seoConfig } from './config/seo';
 
 // Lazy load page components
 const Simulator = lazy(() => import('./components/Calculator'));
@@ -24,6 +26,28 @@ function AppRouter () {
   const {darkMode, toggleTheme} = useContext(ThemeContext);
   const location = useLocation();
   const navigate = useNavigate();
+
+  // Track page views when location changes
+  useEffect(() => {
+    // Get the path
+    const path = location.pathname;
+    
+    // Find the matching SEO config for the current path
+    let configKey = 'home'; // Default to home
+    
+    // Loop through all SEO config entries to find matching canonicalUrl
+    Object.entries(seoConfig).forEach(([key, value]) => {
+      if (key !== 'baseUrl' && value.canonicalUrl === path) {
+        configKey = key;
+      }
+    });
+    
+    // Get the title from the SEO config
+    const pageTitle = seoConfig[configKey]?.title || 'IDO ROI Calculator';
+    
+    // Track the page view
+    trackPageView(path, pageTitle);
+  }, [location]);
 
   return (<div className={`app-container ${darkMode ? 'dark-mode' : 'light-mode'}`}>
     <header className="app-header">
