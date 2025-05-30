@@ -144,7 +144,7 @@ function AppRouter () {
           </li>
         </ul>
         <div className="disclaimer mt-4 mb-3 small text-muted col-12">
-          <div className="container">
+          <div className="container bg-transparent">
             <div className="row">
               <div className="col-12"/>
               <p className={`text-center ${darkMode ? 'text-light-emphasis' : 'text-dark-emphasis'}`}>
