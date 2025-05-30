@@ -21,7 +21,7 @@ const createPngImages = () => {
   
   // Define pages that need OG images
   const pages = [
-    'home', 'about', 'faq', 'terms', 'privacy', '404'
+    'home', 'about', 'education', 'faq', 'terms', 'privacy', '404'
   ];
   
   // Create a simple PNG placeholder for each page

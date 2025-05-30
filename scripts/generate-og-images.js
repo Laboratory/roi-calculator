@@ -22,6 +22,7 @@ const generateOgImages = () => {
   const pages = [
     { name: 'home', title: 'IDO ROI Simulator', subtitle: 'Uncover real returns' },
     { name: 'about', title: 'About the IDO ROI Simulator', subtitle: 'How it works' },
+    { name: 'education', title: 'Crypto Investment Education', subtitle: 'ROI Simulator Guide & Terminology' },
     { name: 'faq', title: 'Frequently Asked Questions', subtitle: 'IDO ROI Simulator' },
     { name: 'terms', title: 'Terms of Service', subtitle: 'IDO ROI Simulator' },
     { name: 'privacy', title: 'Privacy Policy', subtitle: 'IDO ROI Simulator' },

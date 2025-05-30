@@ -18,6 +18,7 @@ const generateSitemap = () => {
   const routes = [
     '/',
     '/about',
+    '/education',
     '/faq',
     '/terms',
     '/privacy'

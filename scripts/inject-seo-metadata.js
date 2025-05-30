@@ -20,6 +20,7 @@ const injectSeoMetadata = () => {
     'index.html': 'home',
     'calculator/index.html': 'home',
     'about/index.html': 'about',
+    'education/index.html': 'education',
     'faq/index.html': 'faq',
     'terms/index.html': 'terms',
     'privacy/index.html': 'privacy',
