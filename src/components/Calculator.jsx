@@ -30,7 +30,7 @@ const Simulator = () => {
 
   const handleCalculate = (data) => {
     setCalculationData(data);
-    setActiveTab('unlock');
+    setActiveTab('monthly');
     
     // Scroll to results after calculation
     setTimeout(() => {

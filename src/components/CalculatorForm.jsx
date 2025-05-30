@@ -10,7 +10,7 @@ const DEFAULT_UNLOCK_PERIODS = [{month: 1, percentage: 15}, {month: 3, percentag
   month: 6, percentage: 25
 }, {month: 12, percentage: 25}];
 
-const SimulatorForm = ({onCalculate}) => {
+const SimulatorForm = ({onCalculate, setCurrentTab}) => {
   const [formData, setFormData] = useState({
     investmentAmount: '1000',
     tokenPrice: '0.1',
@@ -301,6 +301,7 @@ const SimulatorForm = ({onCalculate}) => {
         ...formData, priceScenarios, unlockPeriods, unlockFrequency: formData.unlockFrequency
       });
       onCalculate(results);
+      setCurrentTab("time");
     }
   };
 
