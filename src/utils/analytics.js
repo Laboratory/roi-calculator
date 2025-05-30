@@ -38,6 +38,22 @@ export const trackPageView = (pagePath, pageTitle) => {
 };
 
 /**
+ * Track an error in Google Analytics
+ * 
+ * @param {string} errorType - Type of error (e.g. '404', 'api_error', 'form_validation')
+ * @param {string} errorMessage - Error message
+ * @param {string} errorLocation - Where the error occurred
+ */
+export const trackError = (errorType, errorMessage, errorLocation) => {
+  trackEvent('error', {
+    error_type: errorType,
+    error_message: errorMessage,
+    error_location: errorLocation,
+    page_url: window.location.href,
+  });
+};
+
+/**
  * Track a button click
  * 
  * @param {string} buttonId - ID or name of the button

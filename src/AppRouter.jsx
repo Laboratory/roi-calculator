@@ -3,7 +3,7 @@ import { Button } from 'react-bootstrap';
 import { FaMoon, FaSun } from 'react-icons/fa';
 import { Link, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { ThemeContext } from './context/ThemeContext';
-import { trackPageView } from './utils/analytics';
+import { trackPageView, trackError } from './utils/analytics';
 import { seoConfig } from './config/seo';
 
 // Lazy load page components
@@ -34,11 +34,13 @@ function AppRouter () {
     
     // Find the matching SEO config for the current path
     let configKey = 'home'; // Default to home
+    let isPathFound = false;
     
     // Loop through all SEO config entries to find matching canonicalUrl
     Object.entries(seoConfig).forEach(([key, value]) => {
       if (key !== 'baseUrl' && value.canonicalUrl === path) {
         configKey = key;
+        isPathFound = true;
       }
     });
     
@@ -47,6 +49,12 @@ function AppRouter () {
     
     // Track the page view
     trackPageView(path, pageTitle);
+    
+    // Track 404 errors for unknown pages
+    if (!isPathFound && path !== '/404' && path !== '/') {
+      trackError('404', `Page not found: ${path}`, 'navigation');
+      // Note: We don't automatically redirect to 404 here, as React Router will handle that
+    }
   }, [location]);
 
   return (<div className={`app-container ${darkMode ? 'dark-mode' : 'light-mode'}`}>

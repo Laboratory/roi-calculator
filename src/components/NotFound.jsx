@@ -1,13 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Container, Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { FaArrowLeft, FaCalculator } from 'react-icons/fa';
 import SEO from './SEO';
 import { seoConfig } from '../config/seo';
+import { trackError } from '../utils/analytics';
 
 const NotFound = () => {
   // Get SEO config for this page
   const { title, description, canonicalUrl, schema } = seoConfig.notFound;
+  const location = useLocation();
+  
+  // Track 404 error when component mounts
+  useEffect(() => {
+    // Track the 404 error with the attempted URL
+    trackError('404', `Page not found: ${location.pathname}`, 'NotFound component');
+  }, [location.pathname]);
   
   return (
     <Container className="py-5 text-center">
