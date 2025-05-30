@@ -12,7 +12,7 @@
     --light-card: #ffffff;
     --dark-card: #334155;
     --light-text: #1e293b;
-    --dark-text: #f1f5f9;
+    --dark-text: #ffffff; /* Making the base dark mode text color pure white instead of f1f5f9 */
     --border-light: #e2e8f0;
     --border-dark: #475569;
 }
@@ -73,9 +73,16 @@ body {
     border-bottom: 1px solid var(--border-dark);
 }
 
-.dark-mode .simulator-container {
+.dark-mode .simulator-container,
+.dark-mode .container {
     background: var(--dark-card);
-    border: 1px solid var(--border-dark);
+}
+
+.dark-mode .card,
+.dark-mode .card-body {
+    background-color: var(--dark-card);
+    border-color: var(--border-dark);
+    color: var(--dark-text);
 }
 
 .dark-mode .app-footer {
@@ -97,10 +104,126 @@ body {
     color: var(--dark-text);
 }
 
+.dark-mode .nav-links a {
+    color: white;
+}
+
+.dark-mode .brand-title {
+    color: white;
+}
+
+.dark-mode .simulator-header h1,
+.dark-mode .simulator-header p {
+    color: var(--dark-text);
+}
+
+.dark-mode .btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--secondary-color);
+}
+
+.dark-mode .btn-outline-primary {
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.dark-mode .btn-outline-primary:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.dark-mode input.form-control,
+.dark-mode select.form-select {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-color: var(--border-dark);
+    color: var(--dark-text);
+}
+
+.dark-mode .input-group-text {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-color: var(--border-dark);
+    color: var(--dark-text);
+}
+
+.dark-mode .form-text {
+    color: #adb5bd;
+}
+
+/* Fix for the homepage and Education page */
+.dark-mode .jumbotron,
+.dark-mode .feature-section,
+.dark-mode .cta-section {
+    background-color: var(--dark-card);
+    color: var(--dark-text);
+}
+
+.dark-mode .card {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.dark-mode .card-header {
+    background-color: rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid var(--border-dark);
+}
+
+.dark-mode .card-footer {
+    background-color: rgba(0, 0, 0, 0.3);
+    border-top: 1px solid var(--border-dark);
+}
+
+.dark-mode .list-group-item {
+    background-color: var(--dark-card);
+    border-color: var(--border-dark);
+    color: var(--dark-text);
+}
+
+.dark-mode .table {
+    color: var(--dark-text);
+}
+
+.dark-mode .table thead th {
+    background-color: rgba(0, 0, 0, 0.2);
+    color: var(--dark-text);
+}
+
+.dark-mode .table tbody tr:nth-of-type(odd) {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.dark-mode .table tbody tr:nth-of-type(even) {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.dark-mode .table-bordered,
+.dark-mode .table-bordered td,
+.dark-mode .table-bordered th {
+    border-color: var(--border-dark);
+}
+
+.dark-mode .accordion-item {
+    background-color: var(--dark-card);
+    border-color: var(--border-dark);
+}
+
+.dark-mode .accordion-button {
+    background-color: rgba(0, 0, 0, 0.2);
+    color: var(--dark-text);
+}
+
+.dark-mode .accordion-button:not(.collapsed) {
+    background-color: rgba(0, 0, 0, 0.3);
+    color: var(--dark-text);
+}
+
+.dark-mode .accordion-body {
+    background-color: var(--dark-card);
+    color: var(--dark-text);
+}
+
 .dark-mode .text-muted,
 .dark-mode .text-secondary,
 .dark-mode .text-body-secondary {
-    color: #d1d7de !important;
+    color: #e2e8f0 !important; /* Lighter gray for secondary text */
 }
 
 .dark-mode .table,
@@ -1150,4 +1273,290 @@ th .info-icon,
     border: 1px solid var(--border-light);
     border-radius: 0.75rem;
     overflow: hidden;
+}
+
+/* Footer form elements specific dark mode styling */
+.dark-mode .app-footer input,
+.dark-mode .app-footer .form-control,
+.dark-mode .app-footer input[type="text"],
+.dark-mode .app-footer input[type="email"] {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-color: var(--border-dark);
+    color: var(--dark-text);
+}
+
+.dark-mode .app-footer button,
+.dark-mode .app-footer .btn {
+    border-color: var(--border-dark);
+}
+
+.dark-mode .app-footer {
+    background-color: var(--dark-bg);
+}
+
+/* Fix the specific buttons in footer */
+.dark-mode .btn-outline-primary,
+.dark-mode .telegram-button,
+.dark-mode .discord-button {
+    background-color: rgba(0, 0, 0, 0.2);
+    color: var(--dark-text);
+    border-color: var(--border-dark);
+}
+
+.dark-mode .btn-outline-primary:hover,
+.dark-mode .telegram-button:hover,
+.dark-mode .discord-button:hover {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+/* Fix for the CTA section in dark mode */
+.dark-mode .cta-section.bg-light {
+    background-color: var(--dark-card) !important;
+    border-color: var(--border-dark) !important;
+    color: var(--dark-text) !important;
+}
+
+.dark-mode .cta-section.bg-light h5,
+.dark-mode .cta-section.bg-light p {
+    color: var(--dark-text) !important;
+}
+
+.dark-mode .cta-section.bg-light hr {
+    border-color: var(--border-dark);
+}
+
+.dark-mode .cta-section input,
+.dark-mode .cta-section .form-control {
+    background-color: rgba(255, 255, 255, 0.05) !important;
+    border-color: var(--border-dark) !important;
+    color: var(--dark-text) !important;
+}
+
+.dark-mode .cta-section .btn-outline-primary,
+.dark-mode .cta-section .btn-outline-info {
+    background-color: rgba(0, 0, 0, 0.2) !important;
+    color: var(--dark-text) !important;
+    border-color: var(--border-dark) !important;
+}
+
+.dark-mode .cta-section .btn-outline-primary:hover,
+.dark-mode .cta-section .btn-outline-info:hover {
+    background-color: rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Additional light text styling for dark mode */
+.dark-mode .disclaimer p {
+    color: #ffffff !important; /* Ensuring disclaimer text is pure white */
+}
+
+.dark-mode p,
+.dark-mode h1,
+.dark-mode h2,
+.dark-mode h3,
+.dark-mode h4,
+.dark-mode h5,
+.dark-mode h6 {
+    color: #ffffff !important; /* Making all text elements pure white */
+}
+
+.dark-mode .nav-links a {
+    color: #ffffff !important; /* Brighter navigation links */
+}
+
+.dark-mode .cta-section.bg-light p,
+.dark-mode .cta-section.bg-light h5 {
+    color: #ffffff !important; /* Pure white for CTA section text */
+}
+
+/* Increase contrast for form elements */
+.dark-mode input::placeholder {
+    color: rgba(255, 255, 255, 0.7) !important; /* Brighter placeholder text */
+}
+
+/* Remove different background from disclaimer in footer */
+.dark-mode .app-footer {
+    background-color: var(--dark-bg) !important;
+    border-color: var(--border-dark);
+}
+
+.dark-mode .disclaimer {
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.light-mode .disclaimer {
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.disclaimer p {
+    padding: 0 15px !important;
+}
+
+/* Fix white background in How It Works page for dark mode */
+.dark-mode .how-it-works-page .bg-white,
+.dark-mode .how-it-works-page section.bg-white {
+    background-color: var(--dark-bg) !important;
+}
+
+.dark-mode .how-it-works-page .bg-light,
+.dark-mode .how-it-works-page section.bg-light {
+    background-color: var(--dark-card) !important;
+}
+
+.dark-mode .how-it-works-page .card,
+.dark-mode .how-it-works-page .list-group-item {
+    background-color: var(--dark-card) !important;
+    border-color: var(--border-dark) !important;
+}
+
+.dark-mode .how-it-works-page .card.bg-white,
+.dark-mode .how-it-works-page .card.shadow-sm {
+    background-color: rgba(0, 0, 0, 0.2) !important;
+}
+
+.dark-mode .how-it-works-page .text-muted {
+    color: #e2e8f0 !important;
+}
+
+/* Update the "Ready to Simulate" section in dark mode to use a light background */
+.dark-mode .how-it-works-page section.py-5.bg-primary {
+    background-color: var(--dark-card) !important;
+    border: none !important;
+}
+
+.dark-mode .how-it-works-page section.py-5.bg-primary h2,
+.dark-mode .how-it-works-page section.py-5.bg-primary p {
+    color: var(--dark-text) !important;
+}
+
+.dark-mode .how-it-works-page section.py-5.bg-primary .btn-light {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    color: var(--dark-text) !important;
+    border-color: transparent !important;
+}
+
+.dark-mode .how-it-works-page section.py-5.bg-primary .btn-light:hover {
+    background-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Apply dark mode styling to Education and FAQ pages */
+.dark-mode .education-page section.bg-light,
+.dark-mode .education-page section.bg-white,
+.dark-mode .faq-page section.bg-light,
+.dark-mode .faq-page section.bg-white {
+    background-color: var(--dark-bg) !important;
+}
+
+.dark-mode .education-page .card,
+.dark-mode .faq-page .card {
+    background-color: var(--dark-card) !important;
+    border-color: var(--border-dark) !important;
+}
+
+.dark-mode .education-page .shadow-sm,
+.dark-mode .faq-page .shadow-sm {
+    box-shadow: 0 .125rem .25rem rgba(0, 0, 0, 0.3) !important;
+}
+
+.dark-mode .education-page .list-group-item,
+.dark-mode .faq-page .list-group-item {
+    background-color: var(--dark-card) !important;
+    border-color: var(--border-dark) !important;
+    color: var(--dark-text) !important;
+}
+
+.dark-mode .education-page .alert-info,
+.dark-mode .faq-page .alert-info {
+    background-color: rgba(0, 123, 255, 0.1) !important;
+    border-color: rgba(0, 123, 255, 0.2) !important;
+    color: var(--dark-text) !important;
+}
+
+.dark-mode .education-page .badge.bg-light,
+.dark-mode .faq-page .badge.bg-light {
+    background-color: var(--dark-card) !important;
+    color: var(--dark-text) !important;
+}
+
+.dark-mode .education-page .accordion-button,
+.dark-mode .faq-page .accordion-button {
+    background-color: var(--dark-card) !important;
+    color: var(--dark-text) !important;
+}
+
+.dark-mode .education-page .accordion-body,
+.dark-mode .faq-page .accordion-body {
+    background-color: var(--dark-bg) !important;
+    color: var(--dark-text) !important;
+    border-color: var(--border-dark) !important;
+}
+
+.dark-mode .education-page input.form-control,
+.dark-mode .faq-page input.form-control {
+    background-color: rgba(255, 255, 255, 0.05) !important;
+    border-color: var(--border-dark) !important;
+    color: var(--dark-text) !important;
+}
+
+.dark-mode .education-page .text-muted,
+.dark-mode .faq-page .text-muted {
+    color: #e2e8f0 !important;
+}
+
+/* "Ready to Simulate" style for Education page */
+.dark-mode .education-page section.py-5.bg-primary,
+.dark-mode .faq-page section.py-5.bg-primary {
+    background-color: var(--dark-card) !important;
+    border: none !important;
+}
+
+.dark-mode .education-page section.py-5.bg-primary h2,
+.dark-mode .education-page section.py-5.bg-primary p,
+.dark-mode .faq-page section.py-5.bg-primary h2,
+.dark-mode .faq-page section.py-5.bg-primary p {
+    color: var(--dark-text) !important;
+}
+
+.dark-mode .education-page section.py-5.bg-primary .btn-light,
+.dark-mode .faq-page section.py-5.bg-primary .btn-light {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    color: var(--dark-text) !important;
+    border-color: transparent !important;
+}
+
+.dark-mode .education-page section.py-5.bg-primary .btn-light:hover,
+.dark-mode .faq-page section.py-5.bg-primary .btn-light:hover {
+    background-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Add more padding to sections in dark mode for better visual separation */
+.dark-mode section {
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+}
+
+.dark-mode section + section {
+    margin-top: 1rem !important;
+}
+
+/* Add subtle separator between sections in dark mode */
+.dark-mode section:not(:last-child) {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Add horizontal padding to container elements in dark mode for better spacing */
+.dark-mode .container {
+    padding: 1.5rem !important;
+}
+
+/* Add more padding to cards in dark mode */
+.dark-mode .card {
+    padding: 0.5rem !important;
+}
+
+.dark-mode .card-body {
+    padding: 1.5rem !important;
 }
