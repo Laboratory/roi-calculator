@@ -29,7 +29,7 @@ function Calculator() {
 
   const handleCalculate = (data) => {
     setCalculationData(data);
-    setActiveTab('results');
+    setActiveTab('unlock');
     
     // Scroll to results after calculation
     setTimeout(() => {
@@ -70,9 +70,6 @@ function Calculator() {
             <Nav.Link eventKey="input">Input Parameters</Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link eventKey="results" disabled={!calculationData}>Results</Nav.Link>
-          </Nav.Item>
-          <Nav.Item>
             <Nav.Link eventKey="unlock" disabled={!calculationData}>Unlock Schedule</Nav.Link>
           </Nav.Item>
           <Nav.Item>
@@ -84,14 +81,6 @@ function Calculator() {
           <div className={`tab-pane ${activeTab === 'input' ? 'active fade-in' : ''} ${isTabChanging ? 'fade-out' : ''}`}>
             {activeTab === 'input' && (
               <CalculatorForm onCalculate={handleCalculate} />
-            )}
-          </div>
-          
-          <div className={`tab-pane ${activeTab === 'results' ? 'active fade-in' : ''} ${isTabChanging ? 'fade-out' : ''}`}>
-            {activeTab === 'results' && calculationData && (
-              <Suspense fallback={<ComponentLoader />}>
-                <CalculatorResults results={calculationData} />
-              </Suspense>
             )}
           </div>
           
