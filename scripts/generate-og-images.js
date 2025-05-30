@@ -35,7 +35,7 @@ const generateOgImages = () => {
       <rect x="50" y="50" width="1100" height="530" fill="#1A1A1A" rx="15" ry="15" />
       <text x="600" y="250" font-family="Arial" font-size="60" fill="#FFFFFF" text-anchor="middle">${page.title}</text>
       <text x="600" y="350" font-family="Arial" font-size="40" fill="#8A2BE2" text-anchor="middle">${page.subtitle}</text>
-      <text x="600" y="450" font-family="Arial" font-size="30" fill="#CCCCCC" text-anchor="middle">tokencalculator.io</text>
+      <text x="600" y="450" font-family="Arial" font-size="30" fill="#CCCCCC" text-anchor="middle">https://roi.alphamind.co/</text>
     </svg>`;
     
     const filePath = path.join(imagesDir, `og-${page.name}.svg`);
@@ -48,7 +48,7 @@ const generateOgImages = () => {
       <div>
         <h1 style="font-size:48px;margin:0;">${page.title}</h1>
         <h2 style="font-size:32px;margin:20px 0;color:#1A1A1A;">${page.subtitle}</h2>
-        <p style="font-size:24px;">tokencalculator.io</p>
+        <p style="font-size:24px;">https://roi.alphamind.co/</p>
       </div>
     </body></html>`;
     

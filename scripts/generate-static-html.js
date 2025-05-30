@@ -80,7 +80,7 @@ const generateStaticHtml = () => {
     // Update canonical URL
     routeHtml = routeHtml.replace(
       /<link rel="canonical" href=".*?"/,
-      `<link rel="canonical" href="https://tokencalculator.io${route}"`
+      `<link rel="canonical" href="https://roi.alphamind.co${route}"`
     );
     
     // Write the HTML file

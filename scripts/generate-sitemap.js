@@ -24,7 +24,7 @@ const generateSitemap = () => {
   ];
   
   // Base URL for your site
-  const baseUrl = 'https://tokencalculator.io'; // Replace with your actual domain
+  const baseUrl = 'https://roi.alphamind.co'; // Replace with your actual domain
   
   // Current date in ISO format for lastmod
   const today = new Date().toISOString().split('T')[0];

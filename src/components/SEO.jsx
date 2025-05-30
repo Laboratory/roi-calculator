@@ -8,10 +8,10 @@ import { Helmet } from 'react-helmet-async';
  */
 const SEO = ({ title, description, canonicalUrl, imageUrl, schema }) => {
   // Base URL for the site
-  const siteUrl = 'https://tokencalculator.io';
+  const siteUrl = 'https://roi.alphamind.co/';
   
   // Default image if none provided
-  const defaultImage = `${siteUrl}/logo.svg`;
+  const defaultImage = `${siteUrl}logo.svg`;
   
   return (
     <Helmet>
