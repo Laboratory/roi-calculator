@@ -5,7 +5,7 @@ import { ThemeContext } from '../context/ThemeContext';
 import SEO from './SEO';
 import { seoConfig } from '../config/seo';
 
-const About = ({ onNavigateToCalculator }) => {
+const About = ({ onNavigateToSimulator }) => {
   const { darkMode } = useContext(ThemeContext);
 
   // Get SEO config for this page
@@ -85,8 +85,8 @@ const About = ({ onNavigateToCalculator }) => {
   ];
 
   const handleStartCalculating = () => {
-    if (onNavigateToCalculator) {
-      onNavigateToCalculator();
+    if (onNavigateToSimulator) {
+      onNavigateToSimulator();
     }
   };
 
@@ -142,7 +142,7 @@ const About = ({ onNavigateToCalculator }) => {
               <div className="position-relative">
                 <img 
                   src="https://images.pexels.com/photos/730547/pexels-photo-730547.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop"
-                  alt="Token Calculator Analytics Dashboard" 
+                  alt="Token Simulator Analytics Dashboard" 
                   className="img-fluid rounded-3 shadow-lg"
                   style={{ maxWidth: '500px', height: '350px', objectFit: 'cover' }}
                 />
@@ -190,7 +190,7 @@ const About = ({ onNavigateToCalculator }) => {
           <Row>
             <Col lg={6} className="mb-5 mb-lg-0">
               <h2 className="display-5 fw-bold mb-4">
-                Why Choose <span className="text-primary">TokenCalculator</span>?
+                Why Choose <span className="text-primary">TokenSimulator</span>?
               </h2>
               <p className="lead text-muted mb-4">
                 Built by investors, for investors. Every feature is designed to solve real problems 
@@ -334,7 +334,7 @@ const About = ({ onNavigateToCalculator }) => {
                 Ready to <span className="text-warning">Optimize</span> Your Investments?
               </h2>
               <p className="lead mb-4">
-                Join thousands of investors who trust TokenCalculator for their crypto investment analysis.
+                Join thousands of investors who trust TokenSimulator for their crypto investment analysis.
               </p>
               <Button 
                 variant="light" 

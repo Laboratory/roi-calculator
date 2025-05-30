@@ -5,14 +5,14 @@ import { ThemeContext } from '../context/ThemeContext';
 import SEO from './SEO';
 import { seoConfig } from '../config/seo';
 
-const FAQ = ({ onNavigateToCalculator }) => {
+const FAQ = ({ onNavigateToSimulator }) => {
   const { darkMode } = useContext(ThemeContext);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
 
   const categories = [
     { id: 'all', name: 'All Questions', icon: <FaQuestionCircle />, count: 18 },
-    { id: 'calculator', name: 'Calculator', icon: <FaCalculator />, count: 6 },
+    { id: 'simulator', name: 'Simulator', icon: <FaCalculator />, count: 6 },
     { id: 'roi', name: 'ROI Analysis', icon: <FaChartLine />, count: 4 },
     { id: 'unlock', name: 'Token Unlocks', icon: <FaLock />, count: 3 },
     { id: 'security', name: 'Security & Privacy', icon: <FaShieldAlt />, count: 3 },
@@ -22,15 +22,15 @@ const FAQ = ({ onNavigateToCalculator }) => {
   const faqs = [
     {
       id: 1,
-      category: 'calculator',
-      question: 'How do I use the Token ROI Calculator?',
-      answer: 'Simply enter your investment amount, token allocation, unlock schedule, and price scenarios (bear, base, bull). The calculator will automatically compute your potential returns, break-even points, and provide detailed monthly breakdowns.',
+      category: 'simulator',
+      question: 'How do I use the Token ROI Simulator?',
+      answer: 'Simply enter your investment amount, token allocation, unlock schedule, and price scenarios (bear, base, bull). The simulator will automatically compute your potential returns, break-even points, and provide detailed monthly breakdowns.',
       popular: true
     },
     {
       id: 2,
-      category: 'calculator',
-      question: 'What information do I need to start calculating?',
+      category: 'simulator',
+      question: 'What information do I need to start simulating?',
       answer: 'You need: (1) Your investment amount in USD, (2) Number of tokens allocated, (3) Unlock schedule details (cliff period, vesting duration), and (4) Expected token prices for different market scenarios.',
       popular: true
     },
@@ -66,7 +66,7 @@ const FAQ = ({ onNavigateToCalculator }) => {
       id: 7,
       category: 'security',
       question: 'Do I need to create an account or register?',
-      answer: 'No registration required! You can start using the calculator immediately without providing any personal information, email addresses, or creating accounts.',
+      answer: 'No registration required! You can start using the simulator immediately without providing any personal information, email addresses, or creating accounts.',
       popular: false
     },
     {
@@ -78,7 +78,7 @@ const FAQ = ({ onNavigateToCalculator }) => {
     },
     {
       id: 9,
-      category: 'calculator',
+      category: 'simulator',
       question: 'Can I save my calculations for later?',
       answer: 'Currently, calculations are session-based and not saved permanently. We recommend taking screenshots or notes of important results. Future updates may include local storage options.',
       popular: false
@@ -86,22 +86,22 @@ const FAQ = ({ onNavigateToCalculator }) => {
     {
       id: 10,
       category: 'general',
-      question: 'Is this calculator free to use?',
+      question: 'Is this simulator free to use?',
       answer: 'Yes, completely free! There are no hidden fees, subscriptions, or premium features. All functionality is available to everyone at no cost.',
       popular: true
     },
     {
       id: 11,
-      category: 'calculator',
+      category: 'simulator',
       question: 'What if I make a mistake in my inputs?',
-      answer: 'You can easily modify any input field and recalculate instantly. The calculator updates results in real-time as you change parameters, making it easy to explore different scenarios.',
+      answer: 'You can easily modify any input field and recalculate instantly. The simulator updates results in real-time as you change parameters, making it easy to explore different scenarios.',
       popular: false
     },
     {
       id: 12,
       category: 'roi',
       question: 'What does "break-even" mean in the results?',
-      answer: 'Break-even is when your total returns equal your initial investment (0% profit/loss). The calculator shows when you reach break-even in each price scenario and highlights these points in charts.',
+      answer: 'Break-even is when your total returns equal your initial investment (0% profit/loss). The simulator shows when you reach break-even in each price scenario and highlights these points in charts.',
       popular: false
     },
     {
@@ -113,7 +113,7 @@ const FAQ = ({ onNavigateToCalculator }) => {
     },
     {
       id: 14,
-      category: 'calculator',
+      category: 'simulator',
       question: 'How do I interpret the monthly breakdown table?',
       answer: 'The monthly breakdown shows: tokens unlocked each month, cumulative tokens available, potential value at different price scenarios, and running ROI calculations. Green indicates positive returns, red indicates losses.',
       popular: false
@@ -121,20 +121,20 @@ const FAQ = ({ onNavigateToCalculator }) => {
     {
       id: 15,
       category: 'security',
-      question: 'Can I use this calculator offline?',
-      answer: 'The calculator requires an internet connection to load initially, but once loaded, all calculations work offline. No ongoing internet connection is needed for computations.',
+      question: 'Can I use this simulator offline?',
+      answer: 'The simulator requires an internet connection to load initially, but once loaded, all calculations work offline. No ongoing internet connection is needed for computations.',
       popular: false
     },
     {
       id: 16,
       category: 'general',
-      question: 'Who should use this calculator?',
+      question: 'Who should use this simulator?',
       answer: 'Designed for retail investors participating in token presales, private rounds, or any investment with vesting schedules. Useful for anyone wanting to model potential returns from locked token investments.',
       popular: false
     },
     {
       id: 17,
-      category: 'calculator',
+      category: 'simulator',
       question: 'What browsers are supported?',
       answer: 'Works on all modern browsers including Chrome, Firefox, Safari, and Edge. Mobile browsers are also fully supported with responsive design for smartphones and tablets.',
       popular: false
@@ -157,9 +157,9 @@ const FAQ = ({ onNavigateToCalculator }) => {
 
   const popularFAQs = faqs.filter(faq => faq.popular);
 
-  const handleStartCalculating = () => {
-    if (onNavigateToCalculator) {
-      onNavigateToCalculator();
+  const handleStartSimulating = () => {
+    if (onNavigateToSimulator) {
+      onNavigateToSimulator();
     }
   };
 
@@ -188,7 +188,7 @@ const FAQ = ({ onNavigateToCalculator }) => {
                 Frequently Asked <span className="text-primary">Questions</span>
               </h1>
               <p className="lead text-muted mb-4">
-                Find answers to common questions about the Token ROI Calculator, 
+                Find answers to common questions about the Token ROI Simulator, 
                 unlock schedules, and investment analysis features.
               </p>
               
@@ -213,9 +213,9 @@ const FAQ = ({ onNavigateToCalculator }) => {
                   variant="primary" 
                   size="lg" 
                   className="px-4"
-                  onClick={handleStartCalculating}
+                  onClick={handleStartSimulating}
                 >
-                  Try Calculator
+                  Try Simulator
                   <FaArrowRight className="ms-2" />
                 </Button>
                 <Button variant="outline-secondary" size="lg" className="px-4">
@@ -363,7 +363,7 @@ const FAQ = ({ onNavigateToCalculator }) => {
               </h2>
               <p className="lead text-muted mb-4">
                 Can't find what you're looking for? Our support team is here to help you 
-                get the most out of the Token ROI Calculator.
+                get the most out of the Token ROI Simulator.
               </p>
               
               <Row className="g-4 mb-5">
@@ -372,11 +372,11 @@ const FAQ = ({ onNavigateToCalculator }) => {
                     <Card.Body className="text-center p-4">
                       <FaRocket className="text-primary mb-3" style={{ fontSize: '2rem' }} />
                       <h5 className="fw-bold">Quick Start</h5>
-                      <p className="text-muted small mb-3">Jump right into calculating your ROI</p>
+                      <p className="text-muted small mb-3">Jump right into simulating your ROI</p>
                       <Button 
                         variant="outline-primary" 
                         size="sm"
-                        onClick={handleStartCalculating}
+                        onClick={handleStartSimulating}
                       >
                         Start Now
                       </Button>

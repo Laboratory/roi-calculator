@@ -1,4 +1,4 @@
-// Service Worker for Token ROI Calculator
+// Service Worker for Token ROI Simulator
 const CACHE_NAME = 'roi-calculator-v1';
 
 // Assets to cache on install

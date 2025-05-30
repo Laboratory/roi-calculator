@@ -1,6 +1,6 @@
 {
-  "name": "Token ROI Calculator",
-  "short_name": "ROI Calc",
+  "name": "Token ROI Simulator",
+  "short_name": "ROI Sim",
   "description": "Calculate potential returns and visualize token unlock schedules with our ROI calculator",
   "start_url": "/",
   "display": "standalone",

@@ -46,19 +46,19 @@ const generateStaticHtml = () => {
     
     // Update meta tags based on the route
     const routeTitles = {
-      '/calculator': 'Token ROI Calculator',
-      '/about': 'About the ROI Calculator',
-      '/faq': 'Frequently Asked Questions | ROI Calculator',
-      '/terms': 'Terms of Service | ROI Calculator',
-      '/privacy': 'Privacy Policy | ROI Calculator'
+      '/calculator': 'Token ROI Simulator',
+      '/about': 'About the ROI Simulator',
+      '/faq': 'Frequently Asked Questions | ROI Simulator',
+      '/terms': 'Terms of Service | ROI Simulator',
+      '/privacy': 'Privacy Policy | ROI Simulator'
     };
     
     const routeDescriptions = {
       '/calculator': 'Calculate potential returns and visualize token unlock schedules with our ROI calculator',
-      '/about': 'Learn about the Token ROI Calculator and how it can help you make informed investment decisions',
-      '/faq': 'Find answers to frequently asked questions about the Token ROI Calculator',
-      '/terms': 'Terms of Service for using the Token ROI Calculator',
-      '/privacy': 'Privacy Policy for the Token ROI Calculator'
+      '/about': 'Learn about the Token ROI Simulator and how it can help you make informed investment decisions',
+      '/faq': 'Find answers to frequently asked questions about the Token ROI Simulator',
+      '/terms': 'Terms of Service for using the Token ROI Simulator',
+      '/privacy': 'Privacy Policy for the Token ROI Simulator'
     };
     
     // Update title
@@ -91,10 +91,10 @@ const generateStaticHtml = () => {
   // Create a 404.html file
   const notFoundHtml = indexHtml.replace(
     /<title>.*?<\/title>/,
-    '<title>Page Not Found | ROI Calculator</title>'
+    '<title>Page Not Found | ROI Simulator</title>'
   ).replace(
     /<meta name="description" content=".*?"/,
-    '<meta name="description" content="The page you\'re looking for doesn\'t exist. Return to our Token ROI Calculator."'
+    '<meta name="description" content="The page you\'re looking for doesn\'t exist. Return to our Token ROI Simulator."'
   );
   
   fs.writeFileSync(path.join(distDir, '404.html'), notFoundHtml);

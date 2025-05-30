@@ -1,11 +1,12 @@
-import React, { useState, useEffect, lazy, Suspense } from 'react';
-import { Container, Row, Col, Card, Nav } from 'react-bootstrap';
-import CalculatorForm from './CalculatorForm';
+import React, { useState, useContext, lazy, Suspense } from 'react';
+import { Container, Row, Col, Card, Tab, Nav } from 'react-bootstrap';
+import { ThemeContext } from '../context/ThemeContext';
 import SEO from './SEO';
 import { seoConfig } from '../config/seo';
+import PageLoader from './PageLoader';
 
-// Lazy load heavy components
-const CalculatorResults = lazy(() => import('./CalculatorResults'));
+// Lazy load components
+const SimulatorForm = lazy(() => import('./CalculatorForm'));
 const UnlockSchedule = lazy(() => import('./UnlockSchedule'));
 const MonthlyROIBreakdown = lazy(() => import('./MonthlyROIBreakdown'));
 
@@ -19,7 +20,7 @@ const ComponentLoader = () => (
   </div>
 );
 
-function Calculator() {
+const Simulator = () => {
   const [calculationData, setCalculationData] = useState(null);
   const [activeTab, setActiveTab] = useState('input');
   const [isTabChanging, setIsTabChanging] = useState(false);
@@ -33,7 +34,7 @@ function Calculator() {
     
     // Scroll to results after calculation
     setTimeout(() => {
-      const resultsElement = document.getElementById('calculator-results');
+      const resultsElement = document.getElementById('simulator-results');
       if (resultsElement) {
         resultsElement.scrollIntoView({ behavior: 'smooth' });
       }
@@ -51,7 +52,7 @@ function Calculator() {
   };
 
   return (
-    <Container className="py-4">
+    <Container className="py-4 simulator-container">
       <SEO 
         title={title}
         description={description}
@@ -59,50 +60,52 @@ function Calculator() {
         schema={schema}
       />
       
-      <div className="calculator-header">
-        <h1>Token Unlock & ROI Calculator</h1>
+      <div className="simulator-header">
+        <h1>Token Unlock & ROI Simulator</h1>
         <p>Simulate your potential returns and visualize token unlock schedules</p>
       </div>
       
-      <div className="calculator-card">
-        <Nav className="calculator-tabs" variant="tabs" activeKey={activeTab} onSelect={handleTabChange}>
-          <Nav.Item>
-            <Nav.Link eventKey="input">Input Parameters</Nav.Link>
-          </Nav.Item>
-          <Nav.Item>
-            <Nav.Link eventKey="unlock" disabled={!calculationData}>Unlock Schedule</Nav.Link>
-          </Nav.Item>
-          <Nav.Item>
-            <Nav.Link eventKey="monthly" disabled={!calculationData}>Monthly Breakdown</Nav.Link>
-          </Nav.Item>
-        </Nav>
-        
-        <div className="tab-content">
-          <div className={`tab-pane ${activeTab === 'input' ? 'active fade-in' : ''} ${isTabChanging ? 'fade-out' : ''}`}>
-            {activeTab === 'input' && (
-              <CalculatorForm onCalculate={handleCalculate} />
-            )}
-          </div>
+      <div className="simulator-body">
+        <Tab.Container activeKey={activeTab} onSelect={handleTabChange}>
+          <Nav className="simulator-tabs" variant="tabs">
+            <Nav.Item>
+              <Nav.Link eventKey="input">Input Parameters</Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link eventKey="unlock" disabled={!calculationData}>Unlock Schedule</Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link eventKey="monthly" disabled={!calculationData}>Monthly Breakdown</Nav.Link>
+            </Nav.Item>
+          </Nav>
           
-          <div className={`tab-pane ${activeTab === 'monthly' ? 'active fade-in' : ''} ${isTabChanging ? 'fade-out' : ''}`}>
-            {activeTab === 'monthly' && calculationData && (
-              <Suspense fallback={<ComponentLoader />}>
-                <MonthlyROIBreakdown results={calculationData} />
-              </Suspense>
-            )}
-          </div>
-          
-          <div className={`tab-pane ${activeTab === 'unlock' ? 'active fade-in' : ''} ${isTabChanging ? 'fade-out' : ''}`}>
-            {activeTab === 'unlock' && calculationData && (
-              <Suspense fallback={<ComponentLoader />}>
-                <UnlockSchedule results={calculationData} />
-              </Suspense>
-            )}
-          </div>
-        </div>
+          <Tab.Content>
+            <Tab.Pane eventKey="input" className={`tab-pane ${activeTab === 'input' ? 'active fade-in' : ''} ${isTabChanging ? 'fade-out' : ''}`}>
+              {activeTab === 'input' && (
+                <SimulatorForm onCalculate={handleCalculate} />
+              )}
+            </Tab.Pane>
+            
+            <Tab.Pane eventKey="monthly" className={`tab-pane ${activeTab === 'monthly' ? 'active fade-in' : ''} ${isTabChanging ? 'fade-out' : ''}`}>
+              {activeTab === 'monthly' && calculationData && (
+                <Suspense fallback={<ComponentLoader />}>
+                  <MonthlyROIBreakdown results={calculationData} />
+                </Suspense>
+              )}
+            </Tab.Pane>
+            
+            <Tab.Pane eventKey="unlock" className={`tab-pane ${activeTab === 'unlock' ? 'active fade-in' : ''} ${isTabChanging ? 'fade-out' : ''}`}>
+              {activeTab === 'unlock' && calculationData && (
+                <Suspense fallback={<ComponentLoader />}>
+                  <UnlockSchedule results={calculationData} />
+                </Suspense>
+              )}
+            </Tab.Pane>
+          </Tab.Content>
+        </Tab.Container>
       </div>
     </Container>
   );
 }
 
-export default Calculator;
+export default Simulator;

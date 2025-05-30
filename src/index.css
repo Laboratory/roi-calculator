@@ -51,7 +51,7 @@ body {
     border-bottom: 1px solid var(--border-light);
 }
 
-.light-mode .calculator-card {
+.light-mode .simulator-container {
     background: var(--light-card);
     border: 1px solid var(--border-light);
 }
@@ -73,7 +73,7 @@ body {
     border-bottom: 1px solid var(--border-dark);
 }
 
-.dark-mode .calculator-card {
+.dark-mode .simulator-container {
     background: var(--dark-card);
     border: 1px solid var(--border-dark);
 }
@@ -309,12 +309,12 @@ body {
     max-width: 1200px;
 }
 
-.calculator-header {
+.simulator-header {
     text-align: center;
     margin-bottom: 2rem;
 }
 
-.calculator-header h1 {
+.simulator-header h1 {
     font-size: 2.5rem;
     font-weight: 700;
     margin-bottom: 0.5rem;
@@ -324,13 +324,13 @@ body {
     background-clip: text;
 }
 
-.calculator-header p {
+.simulator-header p {
     font-size: 1.2rem;
     opacity: 0.8;
 }
 
-/* Calculator Card */
-.calculator-card {
+/* Simulator Card */
+.simulator-container {
     border-radius: 1rem;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     overflow: hidden;
@@ -338,18 +338,18 @@ body {
     background-color: var(--light-card);
 }
 
-.dark-mode .calculator-card {
+.dark-mode .simulator-container {
     background-color: var(--dark-card);
 }
 
 /* Tab Navigation */
-.calculator-tabs {
+.simulator-tabs {
     border-bottom: none;
     background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
     padding: 0;
 }
 
-.calculator-tabs .nav-link {
+.simulator-tabs .nav-link {
     color: rgba(255, 255, 255, 0.8);
     border: none;
     border-radius: 0;
@@ -360,14 +360,14 @@ body {
     background: transparent;
 }
 
-.calculator-tabs .nav-link:hover {
+.simulator-tabs .nav-link:hover {
     color: white;
     background: rgba(255, 255, 255, 0.1);
     transform: translateY(-2px);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
-.calculator-tabs .nav-link.active {
+.simulator-tabs .nav-link.active {
     color: white;
     background: rgba(255, 255, 255, 0.2);
     font-weight: 600;
@@ -375,7 +375,7 @@ body {
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
 
-.calculator-tabs .nav-link.disabled {
+.simulator-tabs .nav-link.disabled {
     color: rgba(255, 255, 255, 0.4);
     cursor: not-allowed;
 }
@@ -867,11 +867,11 @@ body {
         gap: 1rem;
     }
 
-    .calculator-header h1 {
+    .simulator-header h1 {
         font-size: 2rem;
     }
 
-    .calculator-header p {
+    .simulator-header p {
         font-size: 1rem;
     }
 
@@ -889,18 +889,18 @@ body {
         padding: 2rem 1rem;
     }
 
-    .calculator-tabs .nav-link {
+    .simulator-tabs .nav-link {
         padding: 0.75rem 1rem;
         font-size: 0.9rem;
     }
 }
 
 @media (max-width: 576px) {
-    .calculator-tabs {
+    .simulator-tabs {
         flex-direction: column;
     }
 
-    .calculator-tabs .nav-link {
+    .simulator-tabs .nav-link {
         border-radius: 0;
         text-align: center;
     }
@@ -1123,4 +1123,15 @@ th .info-icon,
 
 .react-datepicker-popper {
     z-index: 1000 !important;
+}
+
+.simulator-form {
+    padding: 1.5rem;
+}
+
+.simulator-form .form-section {
+    margin-bottom: 2rem;
+    border: 1px solid var(--border-light);
+    border-radius: 0.75rem;
+    overflow: hidden;
 }

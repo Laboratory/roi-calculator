@@ -5,7 +5,7 @@ import { Routes, Route, Link, useLocation, useNavigate } from 'react-router-dom'
 import { ThemeContext } from './context/ThemeContext';
 
 // Lazy load page components
-const Calculator = lazy(() => import('./components/Calculator'));
+const Simulator = lazy(() => import('./components/Calculator'));
 const About = lazy(() => import('./components/About'));
 const FAQ = lazy(() => import('./components/FAQ'));
 const Terms = lazy(() => import('./components/Terms'));
@@ -31,8 +31,8 @@ function AppRouter() {
       <header className="app-header">
         <div className="brand">
           <Link to="/" className="text-decoration-none">
-            <img src="/logo.svg" alt="TokenCalculator" className="brand-logo" />
-            <span className="brand-title">TokenCalculator</span>
+            <img src="/logo.svg" alt="TokenSimulator" className="brand-logo" />
+            <span className="brand-title">TokenSimulator</span>
           </Link>
         </div>
         <div className="nav-links">
@@ -40,7 +40,7 @@ function AppRouter() {
             to="/" 
             className={location.pathname === '/' ? 'active' : ''}
           >
-            Calculator
+            Simulator
           </Link>
           <Link 
             to="/about" 
@@ -67,9 +67,9 @@ function AppRouter() {
       <main>
         <Suspense fallback={<PageLoader />}>
           <Routes>
-            <Route path="/" element={<Calculator />} />
-            <Route path="/about" element={<About onNavigateToCalculator={() => navigate('/')} />} />
-            <Route path="/faq" element={<FAQ onNavigateToCalculator={() => navigate('/')} />} />
+            <Route path="/" element={<Simulator />} />
+            <Route path="/about" element={<About onNavigateToSimulator={() => navigate('/')} />} />
+            <Route path="/faq" element={<FAQ onNavigateToSimulator={() => navigate('/')} />} />
             <Route path="/terms" element={<Terms />} />
             <Route path="/privacy" element={<Privacy />} />
             <Route path="*" element={<NotFound />} />
@@ -81,9 +81,9 @@ function AppRouter() {
         <footer className={`d-flex flex-wrap justify-content-between align-items-center py-3 border-top ${darkMode ? 'bg-dark text-light' : 'bg-light'}`}>
           <div className="col-md-4 d-flex align-items-center">
             <Link to="/" className="mb-3 me-2 mb-md-0 text-decoration-none lh-1">
-              <img src="/logo.svg" alt="TokenCalculator" width="48" height="48" />
+              <img src="/logo.svg" alt="TokenSimulator" width="48" height="48" />
             </Link>
-            <span className={`mb-3 mb-md-0 ${darkMode ? 'text-light' : 'text-body-secondary'}`}> {new Date().getFullYear()} TokenCalculator</span>
+            <span className={`mb-3 mb-md-0 ${darkMode ? 'text-light' : 'text-body-secondary'}`}> {new Date().getFullYear()} TokenSimulator</span>
           </div>
           
           <ul className="nav col-md-4 justify-content-end list-unstyled d-flex">
@@ -92,7 +92,7 @@ function AppRouter() {
                 to="/" 
                 className={`nav-link px-2 ${darkMode ? 'text-light' : 'text-body-secondary'}`}
               >
-                Calculator
+                Simulator
               </Link>
             </li>
             <li className="nav-item">

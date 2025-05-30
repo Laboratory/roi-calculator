@@ -9,7 +9,7 @@ const DEFAULT_UNLOCK_PERIODS = [{month: 1, percentage: 15}, {month: 3, percentag
   month: 6, percentage: 25
 }, {month: 12, percentage: 25}];
 
-const CalculatorForm = ({onCalculate}) => {
+const SimulatorForm = ({onCalculate}) => {
   const [formData, setFormData] = useState({
     investmentAmount: '1000',
     tokenPrice: '0.1',
@@ -323,7 +323,7 @@ const CalculatorForm = ({onCalculate}) => {
     return date.toLocaleDateString('en-US', {month: 'short', day: 'numeric', year: 'numeric'});
   };
 
-  return (<div className="calculator-form">
+  return (<div className="simulator-form">
     <div className="form-section">
       <h3 className="section-title">Presale Details</h3>
       <div className="section-content ps-2 pe-2">
@@ -870,4 +870,4 @@ const CalculatorForm = ({onCalculate}) => {
   </div>);
 };
 
-export default CalculatorForm;
+export default SimulatorForm;
