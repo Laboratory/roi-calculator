@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { seoConfig } from '../src/config/seo.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -14,18 +15,22 @@ const generateSitemap = () => {
   const distDir = path.resolve(__dirname, '../dist');
   const sitemapPath = path.join(distDir, 'sitemap.xml');
   
-  // Define your application routes
-  const routes = [
-    '/',
-    '/about',
-    '/education',
-    '/faq',
-    '/terms',
-    '/privacy'
-  ];
+  // Extract routes from seoConfig
+  const routes = [];
+  
+  // Process each page in the seoConfig
+  Object.entries(seoConfig).forEach(([key, config]) => {
+    // Skip baseUrl property
+    if (key === 'baseUrl') return;
+    
+    // Add canonicalUrl if it exists
+    if (config.canonicalUrl) {
+      routes.push(config.canonicalUrl);
+    }
+  });
   
   // Base URL for your site
-  const baseUrl = 'https://roi.alphamind.co'; // Replace with your actual domain
+  const baseUrl = seoConfig.baseUrl || 'https://roi.alphamind.co';
   
   // Current date in ISO format for lastmod
   const today = new Date().toISOString().split('T')[0];

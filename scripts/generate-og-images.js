@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { seoConfig } from '../src/config/seo.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -18,16 +19,27 @@ const generateOgImages = () => {
     fs.mkdirSync(imagesDir, { recursive: true });
   }
   
-  // Define pages that need OG images
-  const pages = [
-    { name: 'home', title: 'IDO ROI Simulator', subtitle: 'Uncover real returns' },
-    { name: 'about', title: 'About the IDO ROI Simulator', subtitle: 'How it works' },
-    { name: 'education', title: 'Crypto Investment Education', subtitle: 'ROI Simulator Guide & Terminology' },
-    { name: 'faq', title: 'Frequently Asked Questions', subtitle: 'IDO ROI Simulator' },
-    { name: 'terms', title: 'Terms of Service', subtitle: 'IDO ROI Simulator' },
-    { name: 'privacy', title: 'Privacy Policy', subtitle: 'IDO ROI Simulator' },
-    { name: '404', title: 'Page Not Found', subtitle: 'IDO ROI Simulator' }
-  ];
+  // Extract page information from seoConfig
+  const pages = [];
+  
+  // Process each page in the seoConfig
+  Object.entries(seoConfig).forEach(([key, config]) => {
+    // Skip baseUrl property
+    if (key === 'baseUrl') return;
+    
+    // Only process pages with ogImage property
+    if (config.ogImage) {
+      // Extract page name from ogImage path
+      const ogImagePath = config.ogImage;
+      const pageName = ogImagePath.split('/').pop().replace('og-', '').replace('.jpg', '');
+      
+      pages.push({
+        name: pageName,
+        title: config.ogTitle || config.title || 'IDO ROI Simulator',
+        subtitle: config.ogDescription ? config.ogDescription.split('.')[0] : 'Token Investment Simulator'
+      });
+    }
+  });
   
   // Generate an SVG placeholder for each page
   pages.forEach(page => {

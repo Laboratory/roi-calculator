@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { seoConfig } from '../src/config/seo.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -19,10 +20,22 @@ const createPngImages = () => {
     fs.mkdirSync(imagesDir, { recursive: true });
   }
   
-  // Define pages that need OG images
-  const pages = [
-    'home', 'about', 'education', 'faq', 'terms', 'privacy', '404'
-  ];
+  // Extract page names from seoConfig
+  const pages = [];
+  
+  // Process each page in the seoConfig
+  Object.entries(seoConfig).forEach(([key, config]) => {
+    // Skip baseUrl property
+    if (key === 'baseUrl') return;
+    
+    // Only process pages with ogImage property
+    if (config.ogImage) {
+      // Extract page name from ogImage path
+      const ogImagePath = config.ogImage;
+      const pageName = ogImagePath.split('/').pop().replace('og-', '').replace('.jpg', '');
+      pages.push(pageName);
+    }
+  });
   
   // Create a simple PNG placeholder for each page
   pages.forEach(page => {
