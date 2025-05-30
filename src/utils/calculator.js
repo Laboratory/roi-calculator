@@ -9,7 +9,8 @@ export const calculateResults = (data) => {
     tokenAmount,
     priceScenarios,
     unlockPeriods,
-    unlockFrequency
+    unlockFrequency,
+    expectedListingPrice
   } = data;
   
   // Sort unlock periods by month or week equivalent
@@ -136,6 +137,7 @@ export const calculateResults = (data) => {
     totalSupply: Number(totalSupply) || null,
     priceScenarios,
     scenarioROIs,
-    unlockFrequency
+    unlockFrequency,
+    expectedListingPrice: expectedListingPrice ? Number(expectedListingPrice) : null
   };
 };
