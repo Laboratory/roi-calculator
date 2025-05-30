@@ -93,6 +93,34 @@ export const seoConfig = {
     }
   },
 
+  // Education page
+  education: {
+    title: 'Crypto Investment Education | IDO ROI Simulator Guide & Terminology',
+    description: 'Learn everything you need to know about token investments, unlock schedules, and ROI calculations. A complete guide for beginners to advanced investors.',
+    canonicalUrl: '/education',
+    ogImage: '/images/og-education.jpg',
+    ogTitle: 'Crypto Investment Education | IDO ROI Simulator Guide & Terminology',
+    ogDescription: 'Master token investment concepts with our comprehensive guide to vesting, TGE, cliffs, FDV, and market scenarios. No prior knowledge required.',
+    schema: {
+      '@context': 'https://schema.org',
+      '@type': 'EducationalPage',
+      'name': 'Crypto Investment Education Guide',
+      'description': 'Comprehensive educational resource explaining token investment terminology, ROI calculations, and unlock schedules for crypto investors.',
+      'educationalUse': 'Self-Study',
+      'audience': {
+        '@type': 'Audience',
+        'audienceType': 'Retail Investors'
+      },
+      'teaches': 'Token investment, vesting schedules, ROI calculation, market scenarios analysis',
+      'learningResourceType': 'Guide',
+      'mainEntity': {
+        '@type': 'WebSite',
+        'name': 'IDO ROI Simulator',
+        'url': baseUrl
+      }
+    }
+  },
+
   // Terms page
   terms: {
     title: 'Terms of Service | IDO ROI Simulator',

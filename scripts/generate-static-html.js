@@ -18,6 +18,7 @@ const generateStaticHtml = () => {
   const routes = [
     '/calculator',
     '/about',
+    '/education',
     '/faq',
     '/terms',
     '/privacy'
@@ -48,6 +49,7 @@ const generateStaticHtml = () => {
     const routeTitles = {
       '/calculator': 'Token ROI Simulator',
       '/about': 'About the ROI Simulator',
+      '/education': 'Crypto Investment Education | IDO ROI Simulator Guide & Terminology',
       '/faq': 'Frequently Asked Questions | ROI Simulator',
       '/terms': 'Terms of Service | ROI Simulator',
       '/privacy': 'Privacy Policy | ROI Simulator'
@@ -56,6 +58,7 @@ const generateStaticHtml = () => {
     const routeDescriptions = {
       '/calculator': 'Calculate potential returns and visualize token unlock schedules with our ROI calculator',
       '/about': 'Learn about the Token ROI Simulator and how it can help you make informed investment decisions',
+      '/education': 'Learn everything you need to know about token investments, unlock schedules, and ROI calculations. A complete guide for beginners to advanced investors.',
       '/faq': 'Find answers to frequently asked questions about the Token ROI Simulator',
       '/terms': 'Terms of Service for using the Token ROI Simulator',
       '/privacy': 'Privacy Policy for the Token ROI Simulator'

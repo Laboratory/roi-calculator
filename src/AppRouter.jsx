@@ -7,6 +7,7 @@ import { ThemeContext } from './context/ThemeContext';
 // Lazy load page components
 const Simulator = lazy(() => import('./components/Calculator'));
 const HowItWorks = lazy(() => import('./components/About'));
+const Education = lazy(() => import('./components/Education'));
 const FAQ = lazy(() => import('./components/FAQ'));
 const Terms = lazy(() => import('./components/Terms'));
 const Privacy = lazy(() => import('./components/Privacy'));
@@ -46,6 +47,12 @@ function AppRouter () {
           How It Works
         </Link>
         <Link
+          to="/education"
+          className={location.pathname === '/education' ? 'active' : ''}
+        >
+          Education
+        </Link>
+        <Link
           to="/faq"
           className={location.pathname === '/faq' ? 'active' : ''}
         >
@@ -66,6 +73,7 @@ function AppRouter () {
         <Routes>
           <Route path="/" element={<Simulator/>}/>
           <Route path="/about" element={<HowItWorks onNavigateToSimulator={() => navigate('/')}/>}/>
+          <Route path="/education" element={<Education onNavigateToSimulator={() => navigate('/')}/>}/>
           <Route path="/faq" element={<FAQ onNavigateToSimulator={() => navigate('/')}/>}/>
           <Route path="/terms" element={<Terms/>}/>
           <Route path="/privacy" element={<Privacy/>}/>
@@ -100,6 +108,14 @@ function AppRouter () {
               className={`nav-link px-2 ${darkMode ? 'text-light' : 'text-body-secondary'}`}
             >
               How It Works
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link
+              to="/education"
+              className={`nav-link px-2 ${darkMode ? 'text-light' : 'text-body-secondary'}`}
+            >
+              Education
             </Link>
           </li>
           <li className="nav-item">
