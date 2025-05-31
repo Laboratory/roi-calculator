@@ -68,7 +68,7 @@ function AppRouter () {
   }, [location]);
 
   return (<div className={`app-container ${darkMode ? 'dark-mode' : 'light-mode'}`}>
-    <header className="navbar navbar-expand-lg navbar-light bg-light shadow-sm py-2">
+    <header className={`navbar navbar-expand-lg ${darkMode ? 'navbar-dark bg-dark' : 'navbar-light bg-light'} shadow-sm py-2 w-100`}>
       <div className="container">
         <Link className="navbar-brand" to="/">
           <img src="/logo.svg" alt="Logo" height="30" className="me-2" />
@@ -85,7 +85,7 @@ function AppRouter () {
             <LanguageSelector />
             <Button 
               variant="link" 
-              className="p-1 ms-2" 
+              className={`p-1 ms-2 ${darkMode ? 'text-light' : ''}`}
               onClick={toggleTheme} 
               aria-label={darkMode ? t('theme.light') : t('theme.dark')}
             >

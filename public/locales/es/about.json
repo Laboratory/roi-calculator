@@ -1,62 +1,213 @@
 {
-  "title": "How the IDO ROI Simulator Works",
-  "subtitle": "Token Unlock Modeling & Risk Insights",
-  "description": "Learn how the IDO ROI Simulator helps investors model token unlocks and understand the true value of their investments.",
+  "title": "Cómo funciona el Simulador de ROI de IDO",
+  "subtitle": "Modelado de desbloqueo de tokens y análisis de riesgos",
+  "description": "Aprenda cómo el Simulador de ROI de IDO ayuda a los inversores a modelar los desbloqueos de tokens y comprender el verdadero valor de sus inversiones.",
   "sections": {
     "intro": {
-      "title": "Our Mission",
-      "content": "The IDO ROI Simulator was built by AlphaMind to help retail crypto investors make more informed decisions. We believe in transparency and providing tools that level the playing field."
+      "title": "Nuestra Misión",
+      "content": "El Simulador de ROI de IDO fue creado por AlphaMind para ayudar a los inversores minoristas de criptomonedas a tomar decisiones más informadas. Creemos en la transparencia y en proporcionar herramientas que nivelen el campo de juego."
     },
     "howItWorks": {
-      "title": "How It Works",
+      "title": "Cómo Funciona",
       "steps": {
         "step1": {
-          "title": "Enter Project Details",
-          "content": "Start by entering basic information about the token project including name, ticker symbol, and price."
+          "title": "Ingrese los detalles del proyecto",
+          "content": "Comience ingresando información básica sobre el proyecto de token, incluido el nombre, el símbolo y el precio."
         },
         "step2": {
-          "title": "Define Tokenomics",
-          "content": "Input the token's total supply and initial circulating supply to establish baseline metrics."
+          "title": "Defina la tokenomía",
+          "content": "Ingrese el suministro total de tokens y el suministro circulante inicial para establecer métricas básicas."
         },
         "step3": {
-          "title": "Set Up Unlock Schedule",
-          "content": "Create a detailed token unlock schedule to visualize how circulating supply will increase over time."
+          "title": "Configure el calendario de desbloqueo",
+          "content": "Cree un calendario detallado de desbloqueo de tokens para visualizar cómo aumentará el suministro circulante con el tiempo."
         },
         "step4": {
-          "title": "Add Your Investment",
-          "content": "Enter your investment amount and token allocation to calculate your personal ROI."
+          "title": "Agregue su inversión",
+          "content": "Ingrese su monto de inversión y asignación de tokens para calcular su ROI personal."
         },
         "step5": {
-          "title": "View Projections",
-          "content": "See projected returns under different market scenarios and plan your exit strategy accordingly."
+          "title": "Ver proyecciones",
+          "content": "Vea sus rendimientos proyectados en diferentes escenarios de mercado y planifique su estrategia de salida en consecuencia."
         }
       }
     },
     "features": {
-      "title": "Key Features",
+      "title": "Características principales",
       "list": {
-        "feature1": "Accurate token unlock visualization",
-        "feature2": "Multiple market scenario modeling",
-        "feature3": "Personal ROI calculator",
-        "feature4": "No account required",
-        "feature5": "Privacy-focused design",
-        "feature6": "Free to use"
+        "feature1": "Visualización precisa del desbloqueo de tokens",
+        "feature2": "Modelado de múltiples escenarios de mercado",
+        "feature3": "Calculadora de ROI personal",
+        "feature4": "No se requiere cuenta",
+        "feature5": "Enfocado en la privacidad",
+        "feature6": "Gratis para usar"
       }
     },
     "team": {
-      "title": "About AlphaMind",
-      "content": "AlphaMind is a research team dedicated to creating tools and resources for the crypto investment community. Our mission is to bring institutional-quality research and tools to retail investors."
+      "title": "Acerca de AlphaMind",
+      "content": "AlphaMind es un equipo de investigación dedicado a crear herramientas y recursos para la comunidad de inversión en criptomonedas. Nuestra misión es proporcionar a los inversores minoristas investigación y herramientas de nivel institucional."
     },
     "contact": {
-      "title": "Connect With Us",
-      "discord": "Join our Discord",
-      "telegram": "Follow our Telegram Channel",
-      "twitter": "Follow us on Twitter",
-      "email": "Contact us at: contact@alphamind.co"
+      "title": "Contáctenos",
+      "discord": "Únase a nuestro Discord",
+      "telegram": "Siga nuestro canal de Telegram",
+      "twitter": "Síganos en Twitter",
+      "email": "Contáctenos en: contact@alphamind.co"
     }
   },
   "cta": {
-    "title": "Ready to Simulate?",
-    "button": "Try the Calculator"
+    "title": "¿Listo para simular?",
+    "button": "Probar la calculadora"
+  },
+  "hero": {
+    "title": "Comprenda sus rendimientos de IDO antes de invertir",
+    "description": "Este simulador gratuito muestra cómo los desbloqueos de tokens, FDV, vesting y las condiciones del mercado afectan sus rendimientos reales, no solo proyecciones exageradas.",
+    "trySimulator": "Probar el simulador",
+    "joinTelegram": "Unirse al bot de Telegram",
+    "notificationCard": {
+      "title": "Reciba notificaciones sobre nuevas funciones",
+      "description": "Sea el primero en saber cuando se lancen nuevas funciones poderosas",
+      "emailPlaceholder": "Su dirección de correo electrónico",
+      "subscribeButton": "Notificarme",
+      "subscribing": "Suscribiendo...",
+      "successMessage": "¡Gracias por suscribirse! Le mantendremos informado."
+    }
+  },
+  "whatIsTool": {
+    "title": "¿Qué es el Simulador de ROI de IDO?",
+    "description": "El Simulador de ROI de IDO es una herramienta gratuita, centrada en la privacidad, que ayuda a los inversores de criptomonedas a comprender el potencial de rendimiento real de las inversiones en preventa de tokens. Modela su línea de tiempo de rendimiento real basada en el porcentaje de TGE, cliff, calendario de vesting, dirección del mercado y FDV.",
+    "helpsList": {
+      "title": "El Simulador de ROI de IDO le ayuda a:",
+      "items": [
+        "Encontrar su punto de equilibrio basado en el precio del token, el calendario de vesting y las condiciones del mercado",
+        "Identificar calendarios de desbloqueo peligrosos que podrían crear presión de venta y hacer caer su inversión",
+        "Comprender cómo el mercado afecta el momento de su salida y las ganancias potenciales",
+        "Visualizar los desbloqueos mensuales de tokens y su impacto en el valor de su inversión",
+        "Comparar escenarios de mercado bajista, de referencia y alcista para planificar su estrategia de inversión"
+      ]
+    }
+  },
+  "whoIsFor": {
+    "title": "Para quién es esto",
+    "categories": {
+      "firstTime": {
+        "title": "Inversores de tokens por primera vez",
+        "description": "Provenientes de plataformas como AngelList, Kickstarter, Seedrs"
+      },
+      "cryptoNative": {
+        "title": "Participantes nativos de IDO de criptomonedas",
+        "description": "Que quieren más claridad y tiempo"
+      },
+      "alphaHunters": {
+        "title": "Cazadores de alfa en etapa temprana",
+        "description": "Buscando modelar caminos de salida"
+      },
+      "influencers": {
+        "title": "Influencers, analistas y VCs",
+        "description": "Que publican contenido sobre preventas"
+      }
+    }
+  },
+  "howItWorksSection": {
+    "title": "Cómo funciona",
+    "steps": [
+      {
+        "number": "1",
+        "title": "Ingrese su inversión",
+        "description": "Ingrese el precio de preventa del token, monto, porcentaje de TGE, vesting y cliff."
+      },
+      {
+        "number": "2",
+        "title": "Modele escenarios de mercado",
+        "description": "Modele resultados en mercados bajistas, de referencia o alcistas."
+      },
+      {
+        "number": "3",
+        "title": "Visualice resultados",
+        "description": "Vea desbloqueos mensuales, punto de equilibrio y progresión de ROI."
+      }
+    ]
+  },
+  "whyMatters": {
+    "title": "Por qué la mayoría de los inversores minoristas se equivocan en los IDOs",
+    "reasons": [
+      "FDV a menudo se malinterpreta — está comprando a una valoración de $500M sin saberlo",
+      "Los calendarios de desbloqueo de tokens están enterrados en los whitepapers",
+      "Espera ganancias de 10x pero no se da cuenta de que sus tokens se desbloquean lentamente mientras el mercado cae"
+    ],
+    "alert": "Esta herramienta le da la imagen completa — antes de que sea demasiado tarde."
+  },
+  "comingNext": {
+    "title": "Qué viene en la versión extendida",
+    "features": [
+      {
+        "emoji": "📈",
+        "title": "Modelado de estrategia de salida parcial",
+        "description": "Optimice cuándo tomar ganancias"
+      },
+      {
+        "emoji": "📊",
+        "title": "Seguimiento dinámico de precios mes a mes",
+        "description": "Vea cómo cambian los precios con el tiempo"
+      },
+      {
+        "emoji": "⚠️",
+        "title": "Alertas de presión de venta",
+        "description": "De VCs, equipos, calendarios de desbloqueo"
+      },
+      {
+        "emoji": "📥",
+        "title": "Exportación CSV y compartir PDF",
+        "description": "Guarde y comparta su análisis"
+      },
+      {
+        "emoji": "🔔",
+        "title": "Recordatorios de desbloqueo a través del bot de Telegram",
+        "description": "Nunca se pierda un evento de desbloqueo"
+      }
+    ],
+    "earlyAccess": "¿Quiere acceso anticipado cuando lancemos estas funciones?",
+    "joinTelegram": "Unirse a Telegram",
+    "leaveEmail": "Dejar su correo electrónico",
+    "joinDiscord": "Unirse a Discord",
+    "followX": "Seguir en X",
+    "youtube": "YouTube"
+  },
+  "exploreIDOs": {
+    "title": "Explore ventas reales de tokens en AlphaMind",
+    "card": {
+      "title": "¿Quiere ver IDOs activos?",
+      "description": "Consulte la plataforma AlphaMind para preventas y oportunidades activas",
+      "seeActive": "Ver preventas activas",
+      "joinQuests": "Unirse a misiones de IDO",
+      "aboutAlphaMind": "Acerca de AlphaMind"
+    }
+  },
+  "privacy": {
+    "title": "Privacidad primero",
+    "features": [
+      {
+        "title": "Sin seguimiento",
+        "description": "No rastreamos ni almacenamos nada"
+      },
+      {
+        "title": "Sin billetera",
+        "description": "No se requiere conexión de billetera"
+      },
+      {
+        "title": "Sin cuenta",
+        "description": "No se necesita cuenta"
+      },
+      {
+        "title": "Sin compartir",
+        "description": "Sus datos permanecen privados"
+      }
+    ],
+    "note": "Sus datos de simulación nunca salen de su navegador. Respetamos su privacidad y no recopilamos ninguna información personal."
+  },
+  "disclaimer": "Este simulador es solo para fines educativos y no constituye asesoramiento de inversión. El rendimiento pasado no es indicativo de resultados futuros. Siempre haga su propia investigación antes de invertir en cualquier proyecto de criptomonedas.",
+  "ctaSection": {
+    "title": "¿Listo para tomar decisiones de inversión más informadas?",
+    "description": "Pruebe nuestro Simulador de ROI de IDO gratuito hoy y comprenda el potencial real de sus inversiones en tokens."
   }
 }

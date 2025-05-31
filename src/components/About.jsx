@@ -30,7 +30,8 @@ const HowItWorks = ({onNavigateToSimulator}) => {
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
-  const { t } = useTranslation(['about', 'common']);
+  // Инициализируем useTranslation с явным указанием namespace 'about'
+  const { t, i18n } = useTranslation('about');
 
   // Get SEO config for this page
   const {title, description, canonicalUrl, schema} = seoConfig.about;
@@ -112,10 +113,10 @@ const HowItWorks = ({onNavigateToSimulator}) => {
         <Row className="align-items-center py-5">
           <Col lg={8} className="mx-auto text-center">
             <h1 className="display-4 fw-bold mb-4">
-              {t('about:hero.title')}
+              {t('hero.title')}
             </h1>
             <p className="lead mb-5">
-              {t('about:hero.description')}
+              {t('hero.description')}
             </p>
 
             <div className="d-flex justify-content-center gap-3 flex-wrap mb-5">
@@ -125,7 +126,7 @@ const HowItWorks = ({onNavigateToSimulator}) => {
                 className="px-4"
                 onClick={handleStartSimulating}
               >
-                {t('about:hero.trySimulator')}
+                {t('hero.trySimulator')}
               </Button>
               <Button
                 variant="outline-info"
@@ -136,21 +137,21 @@ const HowItWorks = ({onNavigateToSimulator}) => {
                 rel="noopener noreferrer"
               >
                 <FaTelegram className="me-2"/>
-                {t('about:hero.joinTelegram')}
+                {t('hero.joinTelegram')}
               </Button>
             </div>
 
             {!emailSubmitted && (<Card className="shadow-sm border-0 p-2 bg-white">
               <Card.Body>
-                <h5 className="fw-bold mb-3">{t('about:hero.notificationCard.title')}</h5>
+                <h5 className="fw-bold mb-3">{t('hero.notificationCard.title')}</h5>
                 <p className="text-muted mb-3">
-                  {t('about:hero.notificationCard.description')}
+                  {t('hero.notificationCard.description')}
                 </p>
                 <form onSubmit={handleEmailSubmit}>
                   <InputGroup className="mb-3">
                     <Form.Control
                       type="email"
-                      placeholder={t('about:hero.notificationCard.emailPlaceholder')}
+                      placeholder={t('hero.notificationCard.emailPlaceholder')}
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       required
@@ -158,14 +159,14 @@ const HowItWorks = ({onNavigateToSimulator}) => {
                     />
                     <Button variant="primary" type="submit" className="px-3 py-2" disabled={isSubmitting}>
                       <FaPaperPlane className="me-2"/>
-                      {isSubmitting ? t('about:hero.notificationCard.subscribing') : t('about:hero.notificationCard.subscribeButton')}
+                      {isSubmitting ? t('hero.notificationCard.subscribing') : t('hero.notificationCard.subscribeButton')}
                     </Button>
                   </InputGroup>
                   {errorMessage && (<Alert variant="danger" className="mt-2 mb-0 py-2">
                     {errorMessage}
                   </Alert>)}
                   {showSuccessMessage && (<Alert variant="success" className="mt-2 mb-0 py-2">
-                    {t('about:hero.notificationCard.successMessage')}
+                    {t('hero.notificationCard.successMessage')}
                   </Alert>)}
                 </form>
               </Card.Body>
@@ -181,17 +182,17 @@ const HowItWorks = ({onNavigateToSimulator}) => {
         <Row className="justify-content-center">
           <Col lg={8} className="text-center mb-5">
             <h2 className="display-5 fw-bold mb-4">
-              {t('about:whatIsTool.title')}
+              {t('whatIsTool.title')}
             </h2>
             <p className="lead mb-5">
-              {t('about:whatIsTool.description')}
+              {t('whatIsTool.description')}
             </p>
 
             <div className="card border-0 shadow-sm p-4 mb-4">
-              <h5 className="fw-bold mb-3">{t('about:whatIsTool.helpsList.title')}</h5>
+              <h5 className="fw-bold mb-3">{t('whatIsTool.helpsList.title')}</h5>
               <ul className="list-group list-group-flush">
-                {Array.isArray(t('about:whatIsTool.helpsList.items', { returnObjects: true })) 
-                  ? t('about:whatIsTool.helpsList.items', { returnObjects: true }).map((item, index) => (
+                {Array.isArray(t('whatIsTool.helpsList.items', { returnObjects: true })) 
+                  ? t('whatIsTool.helpsList.items', { returnObjects: true }).map((item, index) => (
                   <li key={index} className="list-group-item d-flex align-items-center border-0 ps-0">
                     <div className="bg-primary rounded-circle d-flex align-items-center justify-content-center me-3"
                          style={{width: "32px", height: "32px", minWidth: "32px"}}>
@@ -213,7 +214,7 @@ const HowItWorks = ({onNavigateToSimulator}) => {
         <Row className="justify-content-center">
           <Col lg={10}>
             <h2 className="display-5 fw-bold mb-5 text-center">
-              {t('about:whoIsFor.title')}
+              {t('whoIsFor.title')}
             </h2>
 
             <Row className="g-4">
@@ -225,10 +226,10 @@ const HowItWorks = ({onNavigateToSimulator}) => {
                            style={{width: "48px", height: "48px", minWidth: "48px"}}>
                         <FaUser className="text-white"/>
                       </div>
-                      <h5 className="fw-bold mb-0">{t('about:whoIsFor.categories.firstTime.title')}</h5>
+                      <h5 className="fw-bold mb-0">{t('whoIsFor.categories.firstTime.title')}</h5>
                     </div>
                     <p className="text-muted ms-5 ps-2">
-                      {t('about:whoIsFor.categories.firstTime.description')}
+                      {t('whoIsFor.categories.firstTime.description')}
                     </p>
                   </Card.Body>
                 </Card>
@@ -242,10 +243,10 @@ const HowItWorks = ({onNavigateToSimulator}) => {
                            style={{width: "48px", height: "48px", minWidth: "48px"}}>
                         <FaUsers className="text-white"/>
                       </div>
-                      <h5 className="fw-bold mb-0">{t('about:whoIsFor.categories.cryptoNative.title')}</h5>
+                      <h5 className="fw-bold mb-0">{t('whoIsFor.categories.cryptoNative.title')}</h5>
                     </div>
                     <p className="text-muted ms-5 ps-2">
-                      {t('about:whoIsFor.categories.cryptoNative.description')}
+                      {t('whoIsFor.categories.cryptoNative.description')}
                     </p>
                   </Card.Body>
                 </Card>
@@ -259,10 +260,10 @@ const HowItWorks = ({onNavigateToSimulator}) => {
                            style={{width: "48px", height: "48px", minWidth: "48px"}}>
                         <FaRocket className="text-white"/>
                       </div>
-                      <h5 className="fw-bold mb-0">{t('about:whoIsFor.categories.alphaHunters.title')}</h5>
+                      <h5 className="fw-bold mb-0">{t('whoIsFor.categories.alphaHunters.title')}</h5>
                     </div>
                     <p className="text-muted ms-5 ps-2">
-                      {t('about:whoIsFor.categories.alphaHunters.description')}
+                      {t('whoIsFor.categories.alphaHunters.description')}
                     </p>
                   </Card.Body>
                 </Card>
@@ -276,10 +277,10 @@ const HowItWorks = ({onNavigateToSimulator}) => {
                            style={{width: "48px", height: "48px", minWidth: "48px"}}>
                         <FaChartLine className="text-white"/>
                       </div>
-                      <h5 className="fw-bold mb-0">{t('about:whoIsFor.categories.influencers.title')}</h5>
+                      <h5 className="fw-bold mb-0">{t('whoIsFor.categories.influencers.title')}</h5>
                     </div>
                     <p className="text-muted ms-5 ps-2">
-                      {t('about:whoIsFor.categories.influencers.description')}
+                      {t('whoIsFor.categories.influencers.description')}
                     </p>
                   </Card.Body>
                 </Card>
@@ -296,14 +297,14 @@ const HowItWorks = ({onNavigateToSimulator}) => {
         <Row className="justify-content-center">
           <Col lg={10} className="text-center mb-5">
             <h2 className="display-5 fw-bold mb-4">
-              {t('about:howItWorksSection.title')}
+              {t('howItWorksSection.title')}
             </h2>
           </Col>
         </Row>
 
         <Row className="g-4 justify-content-center">
-          {Array.isArray(t('about:howItWorksSection.steps', { returnObjects: true })) 
-            ? t('about:howItWorksSection.steps', { returnObjects: true }).map((step, index) => (
+          {Array.isArray(t('howItWorksSection.steps', { returnObjects: true })) 
+            ? t('howItWorksSection.steps', { returnObjects: true }).map((step, index) => (
             <Col md={4} key={index}>
               <Card className="h-100 text-center border-0 shadow-sm">
                 <Card.Body className="p-4">
@@ -330,12 +331,12 @@ const HowItWorks = ({onNavigateToSimulator}) => {
         <Row className="justify-content-center">
           <Col lg={8}>
             <h2 className="display-5 fw-bold mb-4 text-center">
-              {t('about:whyMatters.title')}
+              {t('whyMatters.title')}
             </h2>
 
             <div className="d-flex flex-column gap-4 mt-5">
-              {Array.isArray(t('about:whyMatters.reasons', { returnObjects: true })) 
-                ? t('about:whyMatters.reasons', { returnObjects: true }).map((reason, index) => (
+              {Array.isArray(t('whyMatters.reasons', { returnObjects: true })) 
+                ? t('whyMatters.reasons', { returnObjects: true }).map((reason, index) => (
                 <div className="d-flex" key={index}>
                   <div
                     className="bg-danger text-white rounded-circle d-flex align-items-center justify-content-center me-3 mt-1"
@@ -350,7 +351,7 @@ const HowItWorks = ({onNavigateToSimulator}) => {
             </div>
 
             <div className="alert alert-primary mt-4 fs-5 text-center">
-              <strong>{t('about:whyMatters.alert')}</strong>
+              <strong>{t('whyMatters.alert')}</strong>
             </div>
           </Col>
         </Row>
@@ -363,12 +364,12 @@ const HowItWorks = ({onNavigateToSimulator}) => {
         <Row className="justify-content-center">
           <Col lg={8} className="text-center mb-5">
             <h2 className="display-5 fw-bold mb-4">
-              {t('about:comingNext.title')}
+              {t('comingNext.title')}
             </h2>
 
             <div className="row row-cols-1 row-cols-md-2 g-4 text-start mt-4">
-              {Array.isArray(t('about:comingNext.features', { returnObjects: true })) 
-                ? t('about:comingNext.features', { returnObjects: true }).map((feature, index) => (
+              {Array.isArray(t('comingNext.features', { returnObjects: true })) 
+                ? t('comingNext.features', { returnObjects: true }).map((feature, index) => (
                 <div className="col" key={index}>
                   <div className="d-flex align-items-start">
                     <div className="me-3 fs-3">{feature.emoji}</div>
@@ -382,7 +383,7 @@ const HowItWorks = ({onNavigateToSimulator}) => {
             </div>
 
             <div className="mt-5">
-              <p className="fs-5 fw-medium">{t('about:comingNext.earlyAccess')}</p>
+              <p className="fs-5 fw-medium">{t('comingNext.earlyAccess')}</p>
               <div className="d-flex justify-content-center gap-3 flex-wrap">
                 <Button
                   variant="outline-info"
@@ -393,7 +394,7 @@ const HowItWorks = ({onNavigateToSimulator}) => {
                   onClick={() => trackLinkClick('https://t.me/alphamind_official', 'Telegram Group', 'about_page')}
                 >
                   <FaTelegram className="me-2"/>
-                  {t('about:comingNext.joinTelegram')}
+                  {t('comingNext.joinTelegram')}
                 </Button>
 
                 {!emailSubmitted && (<Button
@@ -409,7 +410,7 @@ const HowItWorks = ({onNavigateToSimulator}) => {
                   className="px-4"
                 >
                   <FaPaperPlane className="me-2"/>
-                  {t('about:comingNext.leaveEmail')}
+                  {t('comingNext.leaveEmail')}
                 </Button>)}
               </div>
 
@@ -423,7 +424,7 @@ const HowItWorks = ({onNavigateToSimulator}) => {
                   onClick={() => trackLinkClick('https://discord.gg/NB4hhuXkWz', 'Discord', 'about_page')}
                 >
                   <FaDiscord className="me-2"/>
-                  {t('about:comingNext.joinDiscord')}
+                  {t('comingNext.joinDiscord')}
                 </Button>
 
                 <Button
@@ -435,7 +436,7 @@ const HowItWorks = ({onNavigateToSimulator}) => {
                   onClick={() => trackLinkClick('https://twitter.com/alphamind_labs', 'Twitter', 'about_page')}
                 >
                   <FaTwitter className="me-2"/>
-                  {t('about:comingNext.followX')}
+                  {t('comingNext.followX')}
                 </Button>
 
                 <Button
@@ -447,7 +448,7 @@ const HowItWorks = ({onNavigateToSimulator}) => {
                   onClick={() => trackLinkClick('https://www.youtube.com/@AlphaMind_labs', 'YouTube', 'about_page')}
                 >
                   <FaYoutube className="me-2"/>
-                  {t('about:comingNext.youtube')}
+                  {t('comingNext.youtube')}
                 </Button>
               </div>
             </div>
@@ -462,13 +463,13 @@ const HowItWorks = ({onNavigateToSimulator}) => {
         <Row className="justify-content-center">
           <Col lg={8}>
             <h2 className="display-5 fw-bold mb-5 text-center">
-              {t('about:exploreIDOs.title')}
+              {t('exploreIDOs.title')}
             </h2>
 
             <Card className="border-0 shadow text-center p-4 mb-4">
               <Card.Body>
-                <h3 className="fw-bold mb-4">{t('about:exploreIDOs.card.title')}</h3>
-                <p className="mb-4">{t('about:exploreIDOs.card.description')}</p>
+                <h3 className="fw-bold mb-4">{t('exploreIDOs.card.title')}</h3>
+                <p className="mb-4">{t('exploreIDOs.card.description')}</p>
                 <div className="d-flex justify-content-center gap-3 flex-wrap">
                   <Button
                     variant="primary"
@@ -478,7 +479,7 @@ const HowItWorks = ({onNavigateToSimulator}) => {
                     className="px-4"
                     onClick={() => trackLinkClick('https://app.alphamind.co/', 'See Active Presales', 'about_page')}
                   >
-                    {t('about:exploreIDOs.card.seeActive')}
+                    {t('exploreIDOs.card.seeActive')}
                   </Button>
                   <Button
                     variant="outline-primary"
@@ -488,7 +489,7 @@ const HowItWorks = ({onNavigateToSimulator}) => {
                     className="px-4"
                     onClick={() => trackLinkClick('https://app.alphamind.co/build_karma/', 'Join IDO Quests', 'about_page')}
                   >
-                    {t('about:exploreIDOs.card.joinQuests')}
+                    {t('exploreIDOs.card.joinQuests')}
                   </Button>
                   <Button
                     variant="outline-secondary"
@@ -498,7 +499,7 @@ const HowItWorks = ({onNavigateToSimulator}) => {
                     className="px-4"
                     onClick={() => trackLinkClick('https://alphamind.co/', 'About AlphaMind', 'about_page')}
                   >
-                    {t('about:exploreIDOs.card.aboutAlphaMind')}
+                    {t('exploreIDOs.card.aboutAlphaMind')}
                   </Button>
                 </div>
               </Card.Body>
@@ -514,12 +515,12 @@ const HowItWorks = ({onNavigateToSimulator}) => {
         <Row className="justify-content-center">
           <Col lg={8} className="text-center">
             <h2 className="display-5 fw-bold mb-4">
-              {t('about:privacy.title')}
+              {t('privacy.title')}
             </h2>
 
             <Row className="g-4 mt-3">
-              {Array.isArray(t('about:privacy.features', { returnObjects: true })) 
-                ? t('about:privacy.features', { returnObjects: true }).map((feature, index) => (
+              {Array.isArray(t('privacy.features', { returnObjects: true })) 
+                ? t('privacy.features', { returnObjects: true }).map((feature, index) => (
                 <Col sm={6} lg={3} key={index}>
                   <Card className="h-100 border-0 shadow-sm">
                     <Card.Body className="p-4 text-center">
@@ -536,7 +537,7 @@ const HowItWorks = ({onNavigateToSimulator}) => {
             </Row>
 
             <p className="text-muted mt-4">
-              {t('about:privacy.note')}
+              {t('privacy.note')}
             </p>
           </Col>
         </Row>
@@ -550,7 +551,7 @@ const HowItWorks = ({onNavigateToSimulator}) => {
           <Col lg={8}>
             <div className="alert alert-warning">
               <small>
-                {t('about:disclaimer')}
+                {t('disclaimer')}
               </small>
             </div>
           </Col>
@@ -564,10 +565,10 @@ const HowItWorks = ({onNavigateToSimulator}) => {
         <Row className="justify-content-center">
           <Col lg={8}>
             <h2 className="display-5 fw-bold mb-3">
-              {t('about:ctaSection.title')}
+              {t('ctaSection.title')}
             </h2>
             <p className="lead mb-4">
-              {t('about:ctaSection.description')}
+              {t('ctaSection.description')}
             </p>
             <Button
               variant="light"
@@ -579,7 +580,7 @@ const HowItWorks = ({onNavigateToSimulator}) => {
               }}
             >
               <FaArrowRight className="me-2"/>
-              {t('about:cta.button')}
+              {t('cta.button')}
             </Button>
           </Col>
         </Row>

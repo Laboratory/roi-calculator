@@ -1,62 +1,213 @@
 {
-  "title": "How the IDO ROI Simulator Works",
-  "subtitle": "Token Unlock Modeling & Risk Insights",
-  "description": "Learn how the IDO ROI Simulator helps investors model token unlocks and understand the true value of their investments.",
+  "title": "IDO ROI Simülatörü Nasıl Çalışır",
+  "subtitle": "Token Kilit Açma Modellemesi ve Risk Analizi",
+  "description": "IDO ROI Simülatörünün yatırımcılara token kilit açmalarını modellemede ve yatırımlarının gerçek değerini anlamada nasıl yardımcı olduğunu öğrenin.",
   "sections": {
     "intro": {
-      "title": "Our Mission",
-      "content": "The IDO ROI Simulator was built by AlphaMind to help retail crypto investors make more informed decisions. We believe in transparency and providing tools that level the playing field."
+      "title": "Misyonumuz",
+      "content": "IDO ROI Simülatörü, AlphaMind tarafından perakende kripto yatırımcılarının daha bilinçli kararlar almasına yardımcı olmak için oluşturulmuştur. Şeffaflığa ve oyun alanını eşitleyen araçlar sağlamaya inanıyoruz."
     },
     "howItWorks": {
-      "title": "How It Works",
+      "title": "Nasıl Çalışır",
       "steps": {
         "step1": {
-          "title": "Enter Project Details",
-          "content": "Start by entering basic information about the token project including name, ticker symbol, and price."
+          "title": "Proje Detaylarını Girin",
+          "content": "Token projesinin adı, sembolü ve fiyatı dahil temel bilgileri girerek başlayın."
         },
         "step2": {
-          "title": "Define Tokenomics",
-          "content": "Input the token's total supply and initial circulating supply to establish baseline metrics."
+          "title": "Tokenomics'i Tanımlayın",
+          "content": "Temel metrikleri oluşturmak için tokenin toplam arzını ve başlangıç dolaşım arzını girin."
         },
         "step3": {
-          "title": "Set Up Unlock Schedule",
-          "content": "Create a detailed token unlock schedule to visualize how circulating supply will increase over time."
+          "title": "Kilit Açma Takvimini Ayarlayın",
+          "content": "Dolaşımdaki arzın zamanla nasıl artacağını görselleştirmek için ayrıntılı bir token kilit açma takvimi oluşturun."
         },
         "step4": {
-          "title": "Add Your Investment",
-          "content": "Enter your investment amount and token allocation to calculate your personal ROI."
+          "title": "Yatırımınızı Ekleyin",
+          "content": "Kişisel ROI'nizi hesaplamak için yatırım miktarınızı ve token tahsisatınızı girin."
         },
         "step5": {
-          "title": "View Projections",
-          "content": "See projected returns under different market scenarios and plan your exit strategy accordingly."
+          "title": "Projeksiyonları Görüntüleyin",
+          "content": "Farklı piyasa senaryolarında tahmini getirilerinizi görün ve çıkış stratejinizi buna göre planlayın."
         }
       }
     },
     "features": {
-      "title": "Key Features",
+      "title": "Temel Özellikler",
       "list": {
-        "feature1": "Accurate token unlock visualization",
-        "feature2": "Multiple market scenario modeling",
-        "feature3": "Personal ROI calculator",
-        "feature4": "No account required",
-        "feature5": "Privacy-focused design",
-        "feature6": "Free to use"
+        "feature1": "Doğru token kilit açma görselleştirmesi",
+        "feature2": "Çoklu piyasa senaryosu modellemesi",
+        "feature3": "Kişisel ROI hesaplayıcı",
+        "feature4": "Hesap gerektirmez",
+        "feature5": "Gizlilik odaklı",
+        "feature6": "Ücretsiz kullanım"
       }
     },
     "team": {
-      "title": "About AlphaMind",
-      "content": "AlphaMind is a research team dedicated to creating tools and resources for the crypto investment community. Our mission is to bring institutional-quality research and tools to retail investors."
+      "title": "AlphaMind Hakkında",
+      "content": "AlphaMind, kripto yatırım topluluğu için araçlar ve kaynaklar oluşturmaya adanmış bir araştırmadır. Misyonumuz, perakende yatırımcılara kurumsal düzeyde araştırmalar ve araçlar sağlamaktır."
     },
     "contact": {
-      "title": "Connect With Us",
-      "discord": "Join our Discord",
-      "telegram": "Follow our Telegram Channel",
-      "twitter": "Follow us on Twitter",
-      "email": "Contact us at: contact@alphamind.co"
+      "title": "İletişime Geçin",
+      "discord": "Discord'umuza katılın",
+      "telegram": "Telegram kanalımızı takip edin",
+      "twitter": "Twitter'da bizi takip edin",
+      "email": "Bize ulaşın: contact@alphamind.co"
     }
   },
   "cta": {
-    "title": "Ready to Simulate?",
-    "button": "Try the Calculator"
+    "title": "Simülasyona Hazır mısınız?",
+    "button": "Hesaplayıcıyı Deneyin"
+  },
+  "hero": {
+    "title": "Yatırım Yapmadan Önce IDO Getirilerinizi Anlayın",
+    "description": "Bu ücretsiz simülatör, token kilit açmaların, FDV'nin, vestingin ve piyasa koşullarının gerçek getirilerinizi nasıl etkilediğini gösterir — sadece abartılı projeksiyonlar değil.",
+    "trySimulator": "Simülatörü Deneyin",
+    "joinTelegram": "Telegram Botuna Katılın",
+    "notificationCard": {
+      "title": "Yeni Özellikler Hakkında Bildirim Alın",
+      "description": "Güçlü yeni özellikler piyasaya sürüldüğünde ilk bilen siz olun",
+      "emailPlaceholder": "E-posta adresiniz",
+      "subscribeButton": "Beni Bilgilendir",
+      "subscribing": "Abone olunuyor...",
+      "successMessage": "Abone olduğunuz için teşekkürler! Sizi bilgilendireceğiz."
+    }
+  },
+  "whatIsTool": {
+    "title": "IDO ROI Simülatörü Nedir?",
+    "description": "IDO ROI Simülatörü, kripto yatırımcılarının token ön satış yatırımlarından gerçek getiri potansiyelini anlamalarına yardımcı olan ücretsiz, gizlilik odaklı bir araçtır. TGE yüzdesi, cliff, vesting takvimi, piyasa yönü ve FDV'ye dayalı olarak gerçek getiri zaman çizelgenizi modellemektedir.",
+    "helpsList": {
+      "title": "IDO ROI Simülatörü size şu konularda yardımcı olur:",
+      "items": [
+        "Token fiyatı, vesting takvimi ve piyasa koşullarına dayalı olarak başabaş noktanızı bulun",
+        "Yatırımınızı çökertebilecek satış baskısı yaratabilecek tehlikeli kilit açma takvimlerini belirleyin",
+        "Piyasanın çıkış zamanlamanızı ve potansiyel kârlarınızı nasıl etkilediğini anlayın",
+        "Aylık token kilit açmalarını ve bunların yatırım değeriniz üzerindeki etkisini görselleştirin",
+        "Yatırım stratejinizi planlamak için ayı, temel ve boğa piyasası senaryolarını karşılaştırın"
+      ]
+    }
+  },
+  "whoIsFor": {
+    "title": "Bu Kimler İçindir",
+    "categories": {
+      "firstTime": {
+        "title": "İlk kez token yatırımcıları",
+        "description": "AngelList, Kickstarter, Seedrs gibi platformlardan gelenler"
+      },
+      "cryptoNative": {
+        "title": "Kripto-doğal IDO katılımcıları",
+        "description": "Daha fazla netlik ve zamanlama isteyenler"
+      },
+      "alphaHunters": {
+        "title": "Erken aşama alfa avcıları",
+        "description": "Çıkış yollarını modellemek isteyenler"
+      },
+      "influencers": {
+        "title": "Etkileyiciler, analistler ve VC'ler",
+        "description": "Ön satışlar hakkında içerik yayınlayanlar"
+      }
+    }
+  },
+  "howItWorksSection": {
+    "title": "Nasıl Çalışır",
+    "steps": [
+      {
+        "number": "1",
+        "title": "Yatırımınızı Girin",
+        "description": "Token ön satış fiyatını, miktarını, TGE yüzdesini, vestingi ve cliff'i girin."
+      },
+      {
+        "number": "2",
+        "title": "Piyasa Senaryolarını Modelleyin",
+        "description": "Ayı, temel veya boğa piyasalarında sonuçları modelleyin."
+      },
+      {
+        "number": "3",
+        "title": "Sonuçları Görselleştirin",
+        "description": "Aylık kilit açmaları, başabaş noktasını ve ROI ilerlemesini görün."
+      }
+    ]
+  },
+  "whyMatters": {
+    "title": "Çoğu Perakende Yatırımcı Neden IDO'larda Yanılıyor",
+    "reasons": [
+      "FDV genellikle yanlış anlaşılır — bilmeden 500 milyon dolar değerleme üzerinden satın alıyorsunuz",
+      "Token kilit açma takvimleri whitepaper'larda gizlidir",
+      "10x kazanç bekliyorsunuz ancak tokenlerinizin piyasa düşerken yavaşça kilidinin açıldığını fark etmiyorsunuz"
+    ],
+    "alert": "Bu araç size tam resmi verir — çok geç olmadan."
+  },
+  "comingNext": {
+    "title": "Genişletilmiş Versiyonda Neler Geliyor",
+    "features": [
+      {
+        "emoji": "📈",
+        "title": "Kısmi Çıkış Stratejisi Modellemesi",
+        "description": "Ne zaman kâr alacağınızı optimize edin"
+      },
+      {
+        "emoji": "📊",
+        "title": "Dinamik Ay Bazında Fiyat Takibi",
+        "description": "Fiyatların zamanla nasıl değiştiğini görün"
+      },
+      {
+        "emoji": "⚠️",
+        "title": "Satış Baskısı Uyarıları",
+        "description": "VC'lerden, ekiplerden, kilit açma takvimlerinden"
+      },
+      {
+        "emoji": "📥",
+        "title": "CSV Dışa Aktarma ve PDF Paylaşımı",
+        "description": "Analizinizi kaydedin ve paylaşın"
+      },
+      {
+        "emoji": "🔔",
+        "title": "Telegram Botu Aracılığıyla Kilit Açma Hatırlatıcıları",
+        "description": "Hiçbir kilit açma etkinliğini kaçırmayın"
+      }
+    ],
+    "earlyAccess": "Bu özellikleri yayınladığımızda erken erişim ister misiniz?",
+    "joinTelegram": "Telegram'a Katılın",
+    "leaveEmail": "E-postanızı Bırakın",
+    "joinDiscord": "Discord'a Katılın",
+    "followX": "X'te Takip Edin",
+    "youtube": "YouTube"
+  },
+  "exploreIDOs": {
+    "title": "AlphaMind'da Gerçek Token Satışlarını Keşfedin",
+    "card": {
+      "title": "Aktif IDO'ları görmek ister misiniz?",
+      "description": "Aktif ön satışlar ve fırsatlar için AlphaMind platformunu kontrol edin",
+      "seeActive": "Aktif Ön Satışları Görün",
+      "joinQuests": "IDO Görevlerine Katılın",
+      "aboutAlphaMind": "AlphaMind Hakkında"
+    }
+  },
+  "privacy": {
+    "title": "Önce Gizlilik",
+    "features": [
+      {
+        "title": "İzleme Yok",
+        "description": "Hiçbir şeyi izlemiyoruz veya saklamıyoruz"
+      },
+      {
+        "title": "Cüzdan Yok",
+        "description": "Cüzdan bağlantısı gerekmez"
+      },
+      {
+        "title": "Hesap Yok",
+        "description": "Hesap gerekmez"
+      },
+      {
+        "title": "Paylaşım Yok",
+        "description": "Verileriniz gizli kalır"
+      }
+    ],
+    "note": "Simülasyon verileriniz asla tarayıcınızdan çıkmaz. Gizliliğinize saygı duyuyoruz ve hiçbir kişisel bilgi toplamıyoruz."
+  },
+  "disclaimer": "Bu simülatör yalnızca eğitim amaçlıdır ve yatırım tavsiyesi teşkil etmez. Geçmiş performans, gelecekteki sonuçların göstergesi değildir. Herhangi bir kripto para projesine yatırım yapmadan önce her zaman kendi araştırmınızı yapın.",
+  "ctaSection": {
+    "title": "Daha Bilinçli Yatırım Kararları Almaya Hazır mısınız?",
+    "description": "Ücretsiz IDO ROI Simülatörümüzü bugün deneyin ve token yatırımlarınızın gerçek potansiyelini anlayın."
   }
 }

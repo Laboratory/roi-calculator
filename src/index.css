@@ -1548,6 +1548,10 @@ th .info-icon,
 }
 
 /* Add horizontal padding to container elements in dark mode for better spacing */
+.dark-mode .navbar .container {
+    padding: 0 1.5rem !important;
+}
+
 .dark-mode .container {
     padding: 1.5rem !important;
 }

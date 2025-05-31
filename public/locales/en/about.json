@@ -28,7 +28,7 @@
         },
         "step5": {
           "title": "View Projections",
-          "content": "See projected returns under different market scenarios and plan your exit strategy accordingly."
+          "content": "See your projected returns under different market scenarios and plan your exit strategy accordingly."
         }
       }
     },
@@ -39,18 +39,18 @@
         "feature2": "Multiple market scenario modeling",
         "feature3": "Personal ROI calculator",
         "feature4": "No account required",
-        "feature5": "Privacy-focused design",
+        "feature5": "Privacy-focused",
         "feature6": "Free to use"
       }
     },
     "team": {
       "title": "About AlphaMind",
-      "content": "AlphaMind is a research team dedicated to creating tools and resources for the crypto investment community. Our mission is to bring institutional-quality research and tools to retail investors."
+      "content": "AlphaMind is a research team dedicated to creating tools and resources for the crypto investment community. Our mission is to provide retail investors with institutional-grade research and tools."
     },
     "contact": {
-      "title": "Connect With Us",
+      "title": "Get in Touch",
       "discord": "Join our Discord",
-      "telegram": "Follow our Telegram Channel",
+      "telegram": "Follow our Telegram channel",
       "twitter": "Follow us on Twitter",
       "email": "Contact us at: contact@alphamind.co"
     }
@@ -58,5 +58,156 @@
   "cta": {
     "title": "Ready to Simulate?",
     "button": "Try the Calculator"
+  },
+  "hero": {
+    "title": "Understand Your IDO Returns Before You Invest",
+    "description": "This free simulator shows how token unlocks, FDV, vesting, and market conditions affect your actual returns — not just hype projections.",
+    "trySimulator": "Try the Simulator",
+    "joinTelegram": "Join Telegram Bot",
+    "notificationCard": {
+      "title": "Get Notified About New Features",
+      "description": "Be the first to know when powerful new features launch",
+      "emailPlaceholder": "Your email address",
+      "subscribeButton": "Notify Me",
+      "subscribing": "Subscribing...",
+      "successMessage": "Thanks for subscribing! We'll keep you updated."
+    }
+  },
+  "whatIsTool": {
+    "title": "What is the IDO ROI Simulator?",
+    "description": "The IDO ROI Simulator is a free, privacy-focused tool that helps crypto investors understand the real return potential from token presale investments. It models your actual return timeline based on TGE percentage, cliff, vesting schedule, market direction, and FDV.",
+    "helpsList": {
+      "title": "The IDO ROI Simulator helps you:",
+      "items": [
+        "Find your breakeven point based on token price, vesting schedule, and market conditions",
+        "Identify dangerous unlock schedules that could create selling pressure and crash your investment",
+        "Understand how the market affects your exit timing and potential profits",
+        "Visualize monthly token unlocks and their impact on your investment value",
+        "Compare bearish, baseline, and bullish market scenarios to plan your investment strategy"
+      ]
+    }
+  },
+  "whoIsFor": {
+    "title": "Who This Is For",
+    "categories": {
+      "firstTime": {
+        "title": "First-time token investors",
+        "description": "Coming from platforms like AngelList, Kickstarter, Seedrs"
+      },
+      "cryptoNative": {
+        "title": "Crypto-native IDO participants",
+        "description": "Who want more clarity and timing"
+      },
+      "alphaHunters": {
+        "title": "Early-stage alpha hunters",
+        "description": "Looking to model exit paths"
+      },
+      "influencers": {
+        "title": "Influencers, analysts, and VCs",
+        "description": "Who publish content about presales"
+      }
+    }
+  },
+  "howItWorksSection": {
+    "title": "How It Works",
+    "steps": [
+      {
+        "number": "1",
+        "title": "Enter Your Investment",
+        "description": "Input token presale price, amount, TGE percentage, vesting, and cliff."
+      },
+      {
+        "number": "2",
+        "title": "Model Market Scenarios",
+        "description": "Model outcomes in bear, baseline, or bull markets."
+      },
+      {
+        "number": "3",
+        "title": "Visualize Results",
+        "description": "See monthly unlocks, breakeven point, and ROI progression."
+      }
+    ]
+  },
+  "whyMatters": {
+    "title": "Why Most Retail Investors Get IDOs Wrong",
+    "reasons": [
+      "FDV is often misunderstood — you're buying at a $500M valuation without knowing it",
+      "Token unlock schedules are buried in whitepapers",
+      "You expect 10x gains but don't realize your tokens unlock slowly while the market drops"
+    ],
+    "alert": "This tool gives you the full picture — before it's too late."
+  },
+  "comingNext": {
+    "title": "What's Coming in the Extended Version",
+    "features": [
+      {
+        "emoji": "📈",
+        "title": "Partial Exit Strategy Modeling",
+        "description": "Optimize when to take profits"
+      },
+      {
+        "emoji": "📊",
+        "title": "Dynamic Month-by-Month Price Tracking",
+        "description": "See how prices change over time"
+      },
+      {
+        "emoji": "⚠️",
+        "title": "Selling Pressure Alerts",
+        "description": "From VCs, teams, unlock schedules"
+      },
+      {
+        "emoji": "📥",
+        "title": "CSV Export & PDF Sharing",
+        "description": "Save and share your analysis"
+      },
+      {
+        "emoji": "🔔",
+        "title": "Unlock Reminders via Telegram Bot",
+        "description": "Never miss an unlock event"
+      }
+    ],
+    "earlyAccess": "Want early access when we release these features?",
+    "joinTelegram": "Join Telegram",
+    "leaveEmail": "Leave Your Email",
+    "joinDiscord": "Join Discord",
+    "followX": "Follow on X",
+    "youtube": "YouTube"
+  },
+  "exploreIDOs": {
+    "title": "Explore Real Token Sales on AlphaMind",
+    "card": {
+      "title": "Want to see active IDOs?",
+      "description": "Check out the AlphaMind platform for active presales and opportunities",
+      "seeActive": "See Active Presales",
+      "joinQuests": "Join IDO Quests",
+      "aboutAlphaMind": "About AlphaMind"
+    }
+  },
+  "privacy": {
+    "title": "Privacy First",
+    "features": [
+      {
+        "title": "No Tracking",
+        "description": "We don't track or store anything"
+      },
+      {
+        "title": "No Wallet",
+        "description": "No wallet connection required"
+      },
+      {
+        "title": "No Account",
+        "description": "No account needed"
+      },
+      {
+        "title": "No Sharing",
+        "description": "Your data stays private"
+      }
+    ],
+    "note": "Your simulation data never leaves your browser. We respect your privacy and don't collect any personal information."
+  },
+  "disclaimer": "This simulator is for educational purposes only and does not constitute investment advice. Past performance is not indicative of future results. Always do your own research before investing in any cryptocurrency project.",
+  "ctaSection": {
+    "title": "Ready to Make More Informed Investment Decisions?",
+    "description": "Try our free IDO ROI Simulator today and understand the real potential of your token investments."
   }
 }
