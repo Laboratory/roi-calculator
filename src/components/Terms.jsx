@@ -3,12 +3,14 @@ import { Container, Card } from 'react-bootstrap';
 import SEO from './SEO';
 import { seoConfig } from '../config/seo';
 import { ThemeContext } from '../context/ThemeContext';
+import { useTranslation } from 'react-i18next';
 
 const Terms = () => {
+  const { t } = useTranslation(['terms', 'common']);
   const { darkMode } = useContext(ThemeContext);
   
   // Get SEO config for this page
-  const { title, description, canonicalUrl, schema } = seoConfig.terms;
+  const { title, description, canonicalUrl, schema, pageKey } = seoConfig.terms;
 
   return (
     <Container className="main-content">
@@ -17,65 +19,65 @@ const Terms = () => {
         description={description}
         canonicalUrl={canonicalUrl}
         schema={schema}
+        pageKey={pageKey}
       />
       
       <div className="page-header">
-        <h1 className={`page-title ${darkMode ? "text-white" : ""}`}>Terms of Service</h1>
-        <p className={`page-subtitle ${darkMode ? "text-white-50" : "text-muted"}`}>Last updated: May 26, 2025</p>
+        <h1 className={`page-title ${darkMode ? "text-white" : ""}`}>{t('terms:title')}</h1>
+        <p className={`page-subtitle ${darkMode ? "text-white-50" : "text-muted"}`}>{t('terms:lastUpdated')}</p>
       </div>
 
       <Card className="terms-card mb-4">
         <Card.Body>
-          <h2 className={`section-title ${darkMode ? "text-white" : ""}`}>1. Introduction</h2>
+          <h2 className={`section-title ${darkMode ? "text-white" : ""}`}>{t('terms:sections.introduction.title')}</h2>
           <p className={darkMode ? "text-white" : ""}>
-            Welcome to TokenCalculator ("we," "our," or "us"). By accessing or using our website and services, you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our services.
+            {t('terms:sections.introduction.content')}
           </p>
 
-          <h2 className={`section-title ${darkMode ? "text-white" : ""}`}>2. Use of Services</h2>
+          <h2 className={`section-title ${darkMode ? "text-white" : ""}`}>{t('terms:sections.useOfServices.title')}</h2>
           <p className={darkMode ? "text-white" : ""}>
-            TokenCalculator provides tools for calculating potential returns on token investments. Our calculator is for informational purposes only and should not be considered financial advice.
+            {t('terms:sections.useOfServices.content')}
           </p>
           <p className={darkMode ? "text-white" : ""}>
-            You agree to use our services only for lawful purposes and in accordance with these Terms. You are prohibited from:
+            {t('terms:sections.useOfServices.additional')}
           </p>
           <ul className={darkMode ? "text-white" : ""}>
-            <li>Using our services in any way that violates applicable laws or regulations</li>
-            <li>Attempting to interfere with or disrupt the operation of our services</li>
-            <li>Impersonating any person or entity, or falsely stating your affiliation</li>
-            <li>Engaging in any activity that could harm our systems or other users</li>
+            {t('terms:sections.useOfServices.items', { returnObjects: true }).map((item, index) => (
+              <li key={index}>{item}</li>
+            ))}
           </ul>
 
-          <h2 className={`section-title ${darkMode ? "text-white" : ""}`}>3. Disclaimer of Warranties</h2>
+          <h2 className={`section-title ${darkMode ? "text-white" : ""}`}>{t('terms:sections.disclaimer.title')}</h2>
           <p className={darkMode ? "text-white" : ""}>
-            THE SERVICES ARE PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED. TO THE FULLEST EXTENT PERMISSIBLE UNDER APPLICABLE LAW, WE DISCLAIM ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
+            {t('terms:sections.disclaimer.content')}
           </p>
           <p className={darkMode ? "text-white" : ""}>
-            We do not guarantee that our services will be uninterrupted, secure, or error-free, or that defects will be corrected. We make no warranty regarding the accuracy, reliability, or completeness of the content or information provided through our services.
-          </p>
-
-          <h2 className={`section-title ${darkMode ? "text-white" : ""}`}>4. Limitation of Liability</h2>
-          <p className={darkMode ? "text-white" : ""}>
-            TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT SHALL TOKENCALCULATOR, ITS AFFILIATES, OR THEIR RESPECTIVE OFFICERS, DIRECTORS, EMPLOYEES, OR AGENTS BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, INCLUDING LOST PROFITS, ARISING OUT OF OR RELATING TO THE USE OF OR INABILITY TO USE OUR SERVICES.
+            {t('terms:sections.disclaimer.additional')}
           </p>
 
-          <h2 className={`section-title ${darkMode ? "text-white" : ""}`}>5. Risk Disclosure</h2>
+          <h2 className={`section-title ${darkMode ? "text-white" : ""}`}>{t('terms:sections.limitation.title')}</h2>
           <p className={darkMode ? "text-white" : ""}>
-            Cryptocurrency investments involve substantial risk. Past performance is not indicative of future results. The calculations and projections provided by our tools are based on the information you input and various assumptions that may not reflect actual market conditions. You should conduct your own research and consult with financial professionals before making investment decisions.
+            {t('terms:sections.limitation.content')}
           </p>
 
-          <h2 className={`section-title ${darkMode ? "text-white" : ""}`}>6. Modifications to Terms</h2>
+          <h2 className={`section-title ${darkMode ? "text-white" : ""}`}>{t('terms:sections.riskDisclosure.title')}</h2>
           <p className={darkMode ? "text-white" : ""}>
-            We reserve the right to modify these Terms at any time. We will provide notice of significant changes by posting the updated Terms on our website. Your continued use of our services after such modifications constitutes your acceptance of the updated Terms.
+            {t('terms:sections.riskDisclosure.content')}
           </p>
 
-          <h2 className={`section-title ${darkMode ? "text-white" : ""}`}>7. Governing Law</h2>
+          <h2 className={`section-title ${darkMode ? "text-white" : ""}`}>{t('terms:sections.modifications.title')}</h2>
           <p className={darkMode ? "text-white" : ""}>
-            These Terms shall be governed by and construed in accordance with the laws of the jurisdiction in which we operate, without regard to its conflict of law provisions.
+            {t('terms:sections.modifications.content')}
           </p>
 
-          <h2 className={`section-title ${darkMode ? "text-white" : ""}`}>8. Contact Information</h2>
+          <h2 className={`section-title ${darkMode ? "text-white" : ""}`}>{t('terms:sections.governingLaw.title')}</h2>
           <p className={darkMode ? "text-white" : ""}>
-            If you have any questions about these Terms, please contact us at support@tokencalculator.com.
+            {t('terms:sections.governingLaw.content')}
+          </p>
+
+          <h2 className={`section-title ${darkMode ? "text-white" : ""}`}>{t('terms:sections.contactInfo.title')}</h2>
+          <p className={darkMode ? "text-white" : ""}>
+            {t('terms:sections.contactInfo.content')}
           </p>
         </Card.Body>
       </Card>

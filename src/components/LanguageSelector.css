@@ -1,0 +1,12 @@
+.language-selector .dropdown-item {
+  display: flex;
+  align-items: center;
+}
+
+.language-selector .language-flag {
+  margin-right: 8px;
+}
+
+.language-selector .dropdown-toggle .language-flag {
+  margin-right: 4px;
+}

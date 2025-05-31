@@ -1,0 +1,50 @@
+{
+  "chart": {
+    "title": "Token Unlock Schedule",
+    "tooltip": "This chart shows how your tokens will be released over time according to the vesting schedule.",
+    "labels": {
+      "percentage": "Percentage (%)",
+      "period": "Period",
+      "tokenUnlocked": "{{tokenName}} Tokens Unlocked",
+      "tokensUnlocked": "{{tokenName}} Unlocked: {{value}}"
+    },
+    "periodLabels": {
+      "month": "Month {{month}}",
+      "week": "Week {{week}}",
+      "monthWithDate": "Month {{month}} — {{date}}",
+      "weekWithDate": "Week {{week}} — {{date}}",
+      "tge": "TGE — {{date}}"
+    }
+  },
+  "details": {
+    "title": "Unlock Schedule Details",
+    "tooltip": "This table provides a detailed breakdown of your token's unlock schedule, including exact dates, percentages, and estimated values.",
+    "columns": {
+      "period": {
+        "title": "Period",
+        "tooltip": "The unlock period number, with TGE (Token Generation Event) being the initial unlock."
+      },
+      "time": {
+        "title": "Time",
+        "tooltip": "The specific date when tokens will be unlocked. Shows month number if no TGE date was provided."
+      },
+      "percentage": {
+        "title": "Percentage",
+        "tooltip": "The percentage of your total tokens that will be unlocked during this period."
+      },
+      "tokens": {
+        "title": "Tokens",
+        "tooltip": "The actual number of tokens that will be unlocked during this period."
+      },
+      "value": {
+        "title": "Estimated Value",
+        "tooltip": "The estimated USD value of tokens unlocked in this period, calculated using the base price scenario."
+      }
+    }
+  },
+  "summary": {
+    "title": "Total Unlock Summary",
+    "tooltip": "A summary of the entire unlock schedule, showing total percentage, tokens, and estimated value.",
+    "totalRow": "Total"
+  }
+}

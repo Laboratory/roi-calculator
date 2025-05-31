@@ -1,0 +1,62 @@
+{
+  "title": "How the IDO ROI Simulator Works",
+  "subtitle": "Token Unlock Modeling & Risk Insights",
+  "description": "Learn how the IDO ROI Simulator helps investors model token unlocks and understand the true value of their investments.",
+  "sections": {
+    "intro": {
+      "title": "Our Mission",
+      "content": "The IDO ROI Simulator was built by AlphaMind to help retail crypto investors make more informed decisions. We believe in transparency and providing tools that level the playing field."
+    },
+    "howItWorks": {
+      "title": "How It Works",
+      "steps": {
+        "step1": {
+          "title": "Enter Project Details",
+          "content": "Start by entering basic information about the token project including name, ticker symbol, and price."
+        },
+        "step2": {
+          "title": "Define Tokenomics",
+          "content": "Input the token's total supply and initial circulating supply to establish baseline metrics."
+        },
+        "step3": {
+          "title": "Set Up Unlock Schedule",
+          "content": "Create a detailed token unlock schedule to visualize how circulating supply will increase over time."
+        },
+        "step4": {
+          "title": "Add Your Investment",
+          "content": "Enter your investment amount and token allocation to calculate your personal ROI."
+        },
+        "step5": {
+          "title": "View Projections",
+          "content": "See projected returns under different market scenarios and plan your exit strategy accordingly."
+        }
+      }
+    },
+    "features": {
+      "title": "Key Features",
+      "list": {
+        "feature1": "Accurate token unlock visualization",
+        "feature2": "Multiple market scenario modeling",
+        "feature3": "Personal ROI calculator",
+        "feature4": "No account required",
+        "feature5": "Privacy-focused design",
+        "feature6": "Free to use"
+      }
+    },
+    "team": {
+      "title": "About AlphaMind",
+      "content": "AlphaMind is a research team dedicated to creating tools and resources for the crypto investment community. Our mission is to bring institutional-quality research and tools to retail investors."
+    },
+    "contact": {
+      "title": "Connect With Us",
+      "discord": "Join our Discord",
+      "telegram": "Follow our Telegram Channel",
+      "twitter": "Follow us on Twitter",
+      "email": "Contact us at: contact@alphamind.co"
+    }
+  },
+  "cta": {
+    "title": "Ready to Simulate?",
+    "button": "Try the Calculator"
+  }
+}

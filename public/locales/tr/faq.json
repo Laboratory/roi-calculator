@@ -1,0 +1,151 @@
+{
+  "title": "Sık Sorulan",
+  "questions": "Sorular",
+  "subtitle": "Token ROI Simülatörü, kilit açma takvimleri ve yatırım analizi özellikleri hakkında yaygın sorulara yanıtlar bulun.",
+  "description": "Token kilit açma takvimlerinin nasıl simüle edileceği ve potansiyel getirilerin nasıl değerlendirileceği hakkında yaygın sorulara yanıtlar.",
+  "helpCenter": "Yardım Merkezi",
+  "popular": "Popüler",
+  "mostFrequentlyAsked": "Kullanıcılarımız tarafından en sık sorulan sorular",
+  "noResultsFound": "Sonuç Bulunamadı",
+  "tryAnotherSearch": "Arama terimlerinizi ayarlamayı veya farklı kategorilere göz atmayı deneyin.",
+  "clearFilters": "Filtreleri Temizle",
+  "question": "Soru",
+  "trySimulator": "Simülatörü Deneyin",
+  "contactSupport": "Destek ile İletişime Geçin",
+  "popularQuestion": "Popüler",
+  "allQuestions": "Tüm Sorular",
+  "categories": {
+    "title": "Kategoriler",
+    "all": {
+      "title": "Tüm Sorular"
+    },
+    "general": {
+      "title": "Genel",
+      "questions": {
+        "q1": {
+          "question": "Bu simülatör ücretsiz mi?",
+          "answer": "Evet, tamamen ücretsiz! Gizli ücretler, abonelikler veya premium özellikler yoktur. Tüm işlevsellik herkese ücretsiz olarak sunulmaktadır."
+        },
+        "q2": {
+          "question": "Bu simülatörü kimler kullanmalı?",
+          "answer": "Token ön satışlarına, özel turlara veya vesting takvimli herhangi bir yatırıma katılan bireysel yatırımcılar için tasarlanmıştır. Kilitli token yatırımlarından potansiyel getirileri modellemek isteyen herkes için faydalıdır."
+        },
+        "q3": {
+          "question": "Verilerim gizli mi?",
+          "answer": "Evet, kesinlikle. Tüm hesaplamalar yerel olarak tarayıcınızda gerçekleştirilir. Hiçbir veri harici sunuculara gönderilmez, veritabanlarında saklanmaz veya izlenmez. Hassas yatırım bilgileriniz asla cihazınızdan çıkmaz."
+        }
+      }
+    },
+    "simulator": {
+      "title": "Simülatör",
+      "questions": {
+        "q1": {
+          "question": "Token ROI Simülatörünü nasıl kullanırım?",
+          "answer": "Ön Satış Kurulumu sekmesinde yatırım tutarınızı, token tahsisini, kilit açma takvimini ve fiyat senaryolarını (ayı, baz, boğa) girin. Simülatör otomatik olarak potansiyel getirilerinizi, başabaş noktalarını hesaplayacak ve ayrıntılı Zaman İçinde ROI analizi sağlayacaktır."
+        },
+        "q2": {
+          "question": "Simülasyona başlamak için hangi bilgilere ihtiyacım var?",
+          "answer": "Şunlara ihtiyacınız var: (1) USD cinsinden yatırım tutarınız, (2) Tahsis edilen token sayısı, (3) Kilit açma takvimi detayları (cliff süresi, vesting süresi) ve (4) Farklı piyasa senaryoları için beklenen token fiyatları."
+        },
+        "q3": {
+          "question": "Hesaplamalarımı daha sonrası için kaydedebilir miyim?",
+          "answer": "Şu anda, hesaplamalar oturum tabanlıdır ve kalıcı olarak kaydedilmez. Önemli sonuçların ekran görüntülerini veya notlarını almanızı öneririz. Gelecekteki güncellemeler yerel depolama seçenekleri içerebilir."
+        },
+        "q4": {
+          "question": "Girişlerimde bir hata yaparsam ne olur?",
+          "answer": "Herhangi bir giriş alanını kolayca değiştirebilir ve anında yeniden hesaplayabilirsiniz. Simülatör, parametreleri değiştirdikçe sonuçları gerçek zamanlı olarak günceller, farklı senaryoları keşfetmeyi kolaylaştırır."
+        },
+        "q5": {
+          "question": "Zaman İçinde ROI grafiğini ve tablosunu nasıl yorumlarım?",
+          "answer": "Zaman İçinde ROI grafiği ve tablosu, başabaş noktaları, aylık getiriler ve kümülatif getiriler dahil olmak üzere zaman içindeki potansiyel getirilerinizi gösterir. Yeşil pozitif getirileri, kırmızı kayıpları gösterir."
+        },
+        "q6": {
+          "question": "Hangi tarayıcılar destekleniyor?",
+          "answer": "Chrome, Firefox, Safari ve Edge dahil tüm modern tarayıcılarda çalışır. Mobil tarayıcılar da akıllı telefonlar ve tabletler için duyarlı tasarımla tam olarak desteklenmektedir."
+        }
+      }
+    },
+    "roi": {
+      "title": "ROI Analizi",
+      "questions": {
+        "q1": {
+          "question": "Üç fiyat senaryosu (Ayı, Baz, Boğa) nedir?",
+          "answer": "Bunlar farklı piyasa koşullarını temsil eder: Ayı senaryosu, daha düşük token fiyatlarıyla kötümser piyasa koşullarını varsayar, Baz senaryosu gerçekçi beklentileri temsil eder ve Boğa senaryosu daha yüksek fiyatlarla iyimser piyasa büyümesini varsayar."
+        },
+        "q2": {
+          "question": "ROI hesaplamaları ne kadar doğru?",
+          "answer": "Hesaplamalar, girişlerinize göre matematiksel olarak kesindir. Ancak, bunlar fiyat varsayımlarınıza dayalı projeksiyonlardır. Gerçek getiriler, öngörülemeyen gerçek piyasa koşullarına bağlıdır."
+        },
+        "q3": {
+          "question": "Sonuçlardaki \"başabaş\" ne anlama geliyor?",
+          "answer": "Başabaş, toplam getirilerinizin ilk yatırımınıza eşit olduğu (yüzde 0 kâr/zarar) noktadır. Simülatör, her fiyat senaryosunda ne zaman başabaş noktasına ulaştığınızı gösterir ve bu noktaları grafiklerde vurgular."
+        },
+        "q4": {
+          "question": "Yatırım kararları için bu projeksiyonlara güvenmeli miyim?",
+          "answer": "Projeksiyonları analiz için birçok araçtan biri olarak kullanın. Her zaman kendi araştırmınızı yapın, birden fazla senaryo düşünün ve asla kaybetmeyi göze alabileceğinizden fazlasını yatırmayın. Bu, finansal tavsiye değil, eğitim amaçlı bir yazılımdır."
+        }
+      }
+    },
+    "unlock": {
+      "title": "Token Kilit Açma",
+      "questions": {
+        "q1": {
+          "question": "Token kilit açmadaki cliff süresi nedir?",
+          "answer": "Cliff süresi, herhangi bir tokenin alım satım için kullanılabilir hale gelmesinden önceki başlangıç bekleme süresidir. Örneğin, 6 aylık bir cliff, yatırımınızdan sonraki ilk 6 ay boyunca hiçbir tokene erişemeyeceğiniz anlamına gelir."
+        },
+        "q2": {
+          "question": "Doğrusal vesting nasıl çalışır?",
+          "answer": "Doğrusal vesting, tokenlerin zaman içinde eşit parçalar halinde kademeli olarak serbest bırakıldığı anlamına gelir. Bir cliff sonrasında 12 aylık doğrusal vestinginiz varsa, tokenleriniz bu süre boyunca eşit aylık taksitlerle kilit açılacaktır."
+        },
+        "q3": {
+          "question": "Vesting sırasında kısmi token satışlarını modelleyebilir miyim?",
+          "answer": "Mevcut sürüm, kilit açılana kadar tüm tokenleri tuttuğunuzu varsayar. Kısmi satışları ve çıkış stratejilerini modellemek için gelişmiş özellikler gelecekteki güncellemeler için planlanmaktadır."
+        }
+      }
+    },
+    "security": {
+      "title": "Güvenlik ve Gizlilik",
+      "questions": {
+        "q1": {
+          "question": "Yatırım verilerim güvenli ve gizli mi?",
+          "answer": "Evet, kesinlikle. Tüm hesaplamalar yerel olarak tarayıcınızda gerçekleştirilir. Hiçbir veri harici sunuculara gönderilmez, veritabanlarında saklanmaz veya izlenmez. Hassas yatırım bilgileriniz asla cihazınızdan çıkmaz."
+        },
+        "q2": {
+          "question": "Hesap oluşturmam veya kayıt olmam gerekiyor mu?",
+          "answer": "Kayıt gerekli değil! Herhangi bir kişisel bilgi, e-posta adresi veya hesap oluşturmadan simülatörü hemen kullanmaya başlayabilirsiniz."
+        },
+        "q3": {
+          "question": "Bu simülatörü çevrimdışı kullanabilir miyim?",
+          "answer": "Simülatör başlangıçta yüklenmek için internet bağlantısı gerektirir, ancak bir kez yüklendikten sonra tüm hesaplamalar çevrimdışı çalışır. Hesaplamalar için sürekli internet bağlantısı gerekmez."
+        }
+      }
+    }
+  },
+  "stillHaveQuestions": {
+    "title": "Hala",
+    "subtitle": "Aradığınızı bulamıyor musunuz? Destek ekibimiz, Token ROI Simülatöründen en iyi şekilde yararlanmanıza yardımcı olmak için burada.",
+    "contact": "Discord topluluğumuz aracılığıyla bizimle iletişime geçin veya support@alphamind.co adresine e-posta gönderin"
+  },
+  "quickStart": {
+    "title": "Hızlı Başlangıç",
+    "description": "ROI'nizi simüle etmeye hemen başlayın",
+    "button": "Şimdi Başla"
+  },
+  "community": {
+    "title": "Topluluk",
+    "description": "Discord topluluğumuza katılın",
+    "button": "Discord'a Katıl"
+  },
+  "support": {
+    "title": "Destek",
+    "description": "Ekibimizden doğrudan yardım alın",
+    "button": "Bize Ulaşın"
+  },
+  "proTip": {
+    "title": "💡 Pro İpucu",
+    "text": "En doğru sonuçlar için, benzer projeler, piyasa koşulları ve tokenomics temelleri temelinde gerçekçi fiyat hedefleri araştırmak önemlidir."
+  },
+  "readyToTry": "Kendiniz denemek için hazır mısınız?",
+  "simulatorDescription": "Kendi token yatırımlarınızı modellemek ve daha iyi çıkış stratejileri planlamak için simülatörümüzü kullanın.",
+  "trySimulatorNow": "Simülatörü Şimdi Deneyin"
+}

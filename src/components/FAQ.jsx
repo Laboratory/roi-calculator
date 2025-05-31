@@ -1,151 +1,156 @@
-import React, { useState, useContext } from 'react';
-import { Container, Row, Col, Card, Accordion, Badge, Button, Form, InputGroup } from 'react-bootstrap';
-import { FaSearch, FaQuestionCircle, FaCalculator, FaChartLine, FaLock, FaShieldAlt, FaRocket, FaUsers, FaArrowRight, FaCheck, FaTimes, FaExclamationTriangle } from 'react-icons/fa';
+import React, { useContext, useState } from 'react';
+import { Container, Row, Col, Form, InputGroup, Button, Badge, Card, Accordion } from 'react-bootstrap';
+import { FaSearch, FaQuestionCircle, FaCalculator, FaChartLine, FaLock, FaShieldAlt, FaUsers, FaArrowRight } from 'react-icons/fa';
 import { ThemeContext } from '../context/ThemeContext';
 import SEO from './SEO';
 import { seoConfig } from '../config/seo';
+import { useTranslation } from 'react-i18next';
 
 const FAQ = ({ onNavigateToSimulator }) => {
   const { darkMode } = useContext(ThemeContext);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
-
-  const categories = [
-    { id: 'all', name: 'All Questions', icon: <FaQuestionCircle />, count: 18 },
-    { id: 'simulator', name: 'Simulator', icon: <FaCalculator />, count: 6 },
-    { id: 'roi', name: 'ROI Analysis', icon: <FaChartLine />, count: 4 },
-    { id: 'unlock', name: 'Token Unlocks', icon: <FaLock />, count: 3 },
-    { id: 'security', name: 'Security & Privacy', icon: <FaShieldAlt />, count: 3 },
-    { id: 'general', name: 'General', icon: <FaUsers />, count: 2 }
-  ];
+  const { t } = useTranslation(['faq', 'common']);
+  
+  // Get SEO config for this page
+  const { title, description, canonicalUrl, schema } = seoConfig.faq;
 
   const faqs = [
     {
       id: 1,
       category: 'simulator',
-      question: 'How do I use the Token ROI Simulator?',
-      answer: 'Simply enter your investment amount, token allocation, unlock schedule, and price scenarios (bear, base, bull) in the Presale Setup tab. The simulator will automatically compute your potential returns, break-even points, and provide detailed ROI Over Time analysis.',
+      question: t('faq:categories.simulator.questions.q1.question'),
+      answer: t('faq:categories.simulator.questions.q1.answer'),
       popular: true
     },
     {
       id: 2,
       category: 'simulator',
-      question: 'What information do I need to start simulating?',
-      answer: 'You need: (1) Your investment amount in USD, (2) Number of tokens allocated, (3) Unlock schedule details (cliff period, vesting duration), and (4) Expected token prices for different market scenarios.',
+      question: t('faq:categories.simulator.questions.q2.question'),
+      answer: t('faq:categories.simulator.questions.q2.answer'),
       popular: true
     },
     {
       id: 3,
       category: 'roi',
-      question: 'What are the three price scenarios (Bear, Base, Bull)?',
-      answer: 'These represent different market conditions: Bear scenario assumes pessimistic market conditions with lower token prices, Base scenario represents realistic expectations, and Bull scenario assumes optimistic market growth with higher prices.',
+      question: t('faq:categories.roi.questions.q1.question'),
+      answer: t('faq:categories.roi.questions.q1.answer'),
       popular: true
     },
     {
       id: 4,
       category: 'unlock',
-      question: 'What is a cliff period in token unlocks?',
-      answer: 'A cliff period is the initial waiting time before any tokens become available for trading. For example, a 6-month cliff means you cannot access any tokens for the first 6 months after your investment.',
+      question: t('faq:categories.unlock.questions.q1.question'),
+      answer: t('faq:categories.unlock.questions.q1.answer'),
       popular: false
     },
     {
       id: 5,
       category: 'unlock',
-      question: 'How does linear vesting work?',
-      answer: 'Linear vesting means tokens are released gradually over time in equal portions. If you have 12-month linear vesting after a cliff, your tokens will unlock in equal monthly installments over that period.',
+      question: t('faq:categories.unlock.questions.q2.question'),
+      answer: t('faq:categories.unlock.questions.q2.answer'),
       popular: false
     },
     {
       id: 6,
       category: 'security',
-      question: 'Is my investment data secure and private?',
-      answer: 'Yes, absolutely. All calculations are performed locally in your browser. No data is sent to external servers, stored in databases, or tracked. Your sensitive investment information never leaves your device.',
+      question: t('faq:categories.security.questions.q1.question'),
+      answer: t('faq:categories.security.questions.q1.answer'),
       popular: true
     },
     {
       id: 7,
       category: 'security',
-      question: 'Do I need to create an account or register?',
-      answer: 'No registration required! You can start using the simulator immediately without providing any personal information, email addresses, or creating accounts.',
+      question: t('faq:categories.security.questions.q2.question'),
+      answer: t('faq:categories.security.questions.q2.answer'),
       popular: false
     },
     {
       id: 8,
       category: 'roi',
-      question: 'How accurate are the ROI calculations?',
-      answer: 'The calculations are mathematically precise based on your inputs. However, they are projections based on your price assumptions. Actual returns depend on real market conditions, which can be unpredictable.',
+      question: t('faq:categories.roi.questions.q2.question'),
+      answer: t('faq:categories.roi.questions.q2.answer'),
       popular: false
     },
     {
       id: 9,
       category: 'simulator',
-      question: 'Can I save my calculations for later?',
-      answer: 'Currently, calculations are session-based and not saved permanently. We recommend taking screenshots or notes of important results. Future updates may include local storage options.',
+      question: t('faq:categories.simulator.questions.q3.question'),
+      answer: t('faq:categories.simulator.questions.q3.answer'),
       popular: false
     },
     {
       id: 10,
       category: 'general',
-      question: 'Is this simulator free to use?',
-      answer: 'Yes, completely free! There are no hidden fees, subscriptions, or premium features. All functionality is available to everyone at no cost.',
+      question: t('faq:categories.general.questions.q1.question'),
+      answer: t('faq:categories.general.questions.q1.answer'),
       popular: true
     },
     {
       id: 11,
       category: 'simulator',
-      question: 'What if I make a mistake in my inputs?',
-      answer: 'You can easily modify any input field and recalculate instantly. The simulator updates results in real-time as you change parameters, making it easy to explore different scenarios.',
+      question: t('faq:categories.simulator.questions.q4.question'),
+      answer: t('faq:categories.simulator.questions.q4.answer'),
       popular: false
     },
     {
       id: 12,
       category: 'roi',
-      question: 'What does "break-even" mean in the results?',
-      answer: 'Break-even is when your total returns equal your initial investment (0% profit/loss). The simulator shows when you reach break-even in each price scenario and highlights these points in charts.',
+      question: t('faq:categories.roi.questions.q3.question'),
+      answer: t('faq:categories.roi.questions.q3.answer'),
       popular: false
     },
     {
       id: 13,
       category: 'unlock',
-      question: 'Can I model partial token sales during vesting?',
-      answer: 'The current version assumes you hold all tokens until they unlock. Advanced features for modeling partial sales and exit strategies are planned for future updates.',
+      question: t('faq:categories.unlock.questions.q3.question'),
+      answer: t('faq:categories.unlock.questions.q3.answer'),
       popular: false
     },
     {
       id: 14,
       category: 'simulator',
-      question: 'How do I interpret the ROI Over Time chart and table?',
-      answer: 'The ROI Over Time chart and table show your potential returns over time, including break-even points, monthly returns, and cumulative returns. Green indicates positive returns, red indicates losses.',
+      question: t('faq:categories.simulator.questions.q5.question'),
+      answer: t('faq:categories.simulator.questions.q5.answer'),
       popular: false
     },
     {
       id: 15,
       category: 'security',
-      question: 'Can I use this simulator offline?',
-      answer: 'The simulator requires an internet connection to load initially, but once loaded, all calculations work offline. No ongoing internet connection is needed for computations.',
+      question: t('faq:categories.security.questions.q3.question'),
+      answer: t('faq:categories.security.questions.q3.answer'),
       popular: false
     },
     {
       id: 16,
       category: 'general',
-      question: 'Who should use this simulator?',
-      answer: 'Designed for retail investors participating in token presales, private rounds, or any investment with vesting schedules. Useful for anyone wanting to model potential returns from locked token investments.',
+      question: t('faq:categories.general.questions.q2.question'),
+      answer: t('faq:categories.general.questions.q2.answer'),
       popular: false
     },
     {
       id: 17,
       category: 'simulator',
-      question: 'What browsers are supported?',
-      answer: 'Works on all modern browsers including Chrome, Firefox, Safari, and Edge. Mobile browsers are also fully supported with responsive design for smartphones and tablets.',
+      question: t('faq:categories.simulator.questions.q6.question'),
+      answer: t('faq:categories.simulator.questions.q6.answer'),
       popular: false
     },
     {
       id: 18,
       category: 'roi',
-      question: 'Should I trust these projections for investment decisions?',
-      answer: 'Use projections as one tool among many for analysis. Always do your own research, consider multiple scenarios, and never invest more than you can afford to lose. This is educational software, not financial advice.',
+      question: t('faq:categories.roi.questions.q4.question'),
+      answer: t('faq:categories.roi.questions.q4.answer'),
       popular: false
     }
+  ];
+
+  const categories = [
+    { id: 'all', name: t('faq:categories.all.title'), icon: <FaQuestionCircle />, count: 18 },
+    { id: 'simulator', name: t('faq:categories.simulator.title'), icon: <FaCalculator />, count: 6 },
+    { id: 'roi', name: t('faq:categories.roi.title'), icon: <FaChartLine />, count: 4 },
+    { id: 'unlock', name: t('faq:categories.unlock.title'), icon: <FaLock />, count: 3 },
+    { id: 'security', name: t('faq:categories.security.title'), icon: <FaShieldAlt />, count: 3 },
+    { id: 'general', name: t('faq:categories.general.title'), icon: <FaUsers />, count: 2 }
   ];
 
   const filteredFAQs = faqs.filter(faq => {
@@ -163,9 +168,6 @@ const FAQ = ({ onNavigateToSimulator }) => {
     }
   };
 
-  // Get SEO config for this page
-  const { title, description, canonicalUrl, schema } = seoConfig.faq;
-
   return (
     <div className="faq-page">
       <SEO 
@@ -182,14 +184,13 @@ const FAQ = ({ onNavigateToSimulator }) => {
             <Col lg={8} className="mx-auto">
               <Badge bg="primary" className="mb-3 px-3 py-2">
                 <FaQuestionCircle className="me-2" />
-                Help Center
+                {t('faq:helpCenter')}
               </Badge>
               <h1 className="display-4 fw-bold mb-4">
-                Frequently Asked <span className="text-primary">Questions</span>
+                {t('faq:title')} <span className="text-primary">{t('faq:questions')}</span>
               </h1>
               <p className="lead text-muted mb-4">
-                Find answers to common questions about the Token ROI Simulator, 
-                unlock schedules, and investment analysis features.
+                {t('faq:subtitle')}
               </p>
               
               {/* Search Bar */}
@@ -200,7 +201,7 @@ const FAQ = ({ onNavigateToSimulator }) => {
                   </InputGroup.Text>
                   <Form.Control
                     type="text"
-                    placeholder="Search for answers..."
+                    placeholder={t('common:general.search')}
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                     className="border-start-0"
@@ -215,11 +216,11 @@ const FAQ = ({ onNavigateToSimulator }) => {
                   className="px-4"
                   onClick={handleStartSimulating}
                 >
-                  Try Simulator
+                  {t('faq:trySimulator')}
                   <FaArrowRight className="ms-2" />
                 </Button>
                 <Button variant="outline-secondary" size="lg" className="px-4">
-                  Contact Support
+                  {t('faq:contactSupport')}
                 </Button>
               </div>
             </Col>
@@ -233,9 +234,9 @@ const FAQ = ({ onNavigateToSimulator }) => {
           <Row>
             <Col className="text-center mb-5">
               <h2 className="display-6 fw-bold mb-3">
-                <span className="text-primary">Popular</span> Questions
+                <span className="text-primary">{t('faq:popular')}</span> {t('faq:questions')}
               </h2>
-              <p className="text-muted">Most frequently asked questions by our users</p>
+              <p className="text-muted">{t('faq:mostFrequentlyAsked')}</p>
             </Col>
           </Row>
           <Row className="g-4">
@@ -244,9 +245,9 @@ const FAQ = ({ onNavigateToSimulator }) => {
                 <Card className="h-100 border-0 shadow-sm">
                   <Card.Body className="p-4">
                     <div className="d-flex align-items-start mb-3">
-                      <Badge bg="primary" className="me-2">Popular</Badge>
+                      <Badge bg="primary" className="me-2">{t('faq:popular')}</Badge>
                       <Badge bg="light" text="dark" className="text-capitalize">
-                        {faq.category}
+                        {t(`faq:categories.${faq.category}.title`)}
                       </Badge>
                     </div>
                     <h5 className="card-title fw-bold mb-3">{faq.question}</h5>
@@ -267,7 +268,7 @@ const FAQ = ({ onNavigateToSimulator }) => {
             <Col lg={3} className="mb-4 mb-lg-0">
               <Card className="border-0 shadow-sm faq-categories-card">
                 <Card.Header className="bg-primary text-white">
-                  <h5 className="mb-0 fw-bold">Categories</h5>
+                  <h5 className="mb-0 fw-bold">{t('faq:categories.title')}</h5>
                 </Card.Header>
                 <Card.Body className="p-0">
                   {categories.map((category) => (
@@ -299,11 +300,11 @@ const FAQ = ({ onNavigateToSimulator }) => {
             <Col lg={9}>
               <div className="d-flex justify-content-between align-items-center mb-4">
                 <h3 className="fw-bold mb-0">
-                  {selectedCategory === 'all' ? 'All Questions' : 
+                  {selectedCategory === 'all' ? t('faq:categories.all.title') : 
                    categories.find(c => c.id === selectedCategory)?.name}
                 </h3>
                 <Badge bg="secondary" className="px-3 py-2">
-                  {filteredFAQs.length} {filteredFAQs.length === 1 ? 'Question' : 'Questions'}
+                  {filteredFAQs.length} {filteredFAQs.length === 1 ? t('faq:question') : t('faq:questions')}
                 </Badge>
               </div>
 
@@ -311,15 +312,15 @@ const FAQ = ({ onNavigateToSimulator }) => {
                 <Card className="border-0 shadow-sm text-center py-5">
                   <Card.Body>
                     <FaSearch className="text-muted mb-3" style={{ fontSize: '3rem' }} />
-                    <h4 className="fw-bold mb-3">No Results Found</h4>
+                    <h4 className="fw-bold mb-3">{t('faq:noResultsFound')}</h4>
                     <p className="text-muted mb-4">
-                      Try adjusting your search terms or browse different categories.
+                      {t('faq:tryAnotherSearch')}
                     </p>
                     <Button 
                       variant="outline-primary" 
                       onClick={() => { setSearchTerm(''); setSelectedCategory('all'); }}
                     >
-                      Clear Filters
+                      {t('faq:clearFilters')}
                     </Button>
                   </Card.Body>
                 </Card>
@@ -330,9 +331,9 @@ const FAQ = ({ onNavigateToSimulator }) => {
                       <Accordion.Header>
                         <div className="d-flex align-items-center w-100">
                           <div className="me-3">
-                            {faq.popular && <Badge bg="warning" text="dark" className="me-2">Popular</Badge>}
+                            {faq.popular && <Badge bg="warning" text="dark" className="me-2">{t('faq:popular')}</Badge>}
                             <Badge bg="light" text="dark" className="text-capitalize">
-                              {faq.category}
+                              {t(`faq:categories.${faq.category}.title`)}
                             </Badge>
                           </div>
                           <span className="fw-medium">{faq.question}</span>
@@ -359,26 +360,25 @@ const FAQ = ({ onNavigateToSimulator }) => {
                 <FaQuestionCircle className="text-primary mb-3" style={{ fontSize: '4rem' }} />
               </div>
               <h2 className="display-6 fw-bold mb-4">
-                Still Have <span className="text-primary">Questions</span>?
+                {t('faq:stillHaveQuestions.title')} <span className="text-primary">{t('faq:questions')}</span>?
               </h2>
               <p className="lead text-muted mb-4">
-                Can't find what you're looking for? Our support team is here to help you 
-                get the most out of the Token ROI Simulator.
+                {t('faq:stillHaveQuestions.subtitle')}
               </p>
               
               <Row className="g-4 mb-5">
                 <Col md={4}>
                   <Card className="border-0 shadow-sm h-100">
                     <Card.Body className="text-center p-4">
-                      <FaRocket className="text-primary mb-3" style={{ fontSize: '2rem' }} />
-                      <h5 className="fw-bold">Quick Start</h5>
-                      <p className="text-muted small mb-3">Jump right into simulating your ROI</p>
+                      <FaArrowRight className="text-primary mb-3" style={{ fontSize: '2rem' }} />
+                      <h5 className="fw-bold">{t('faq:quickStart.title')}</h5>
+                      <p className="text-muted small mb-3">{t('faq:quickStart.description')}</p>
                       <Button 
                         variant="outline-primary" 
                         size="sm"
                         onClick={handleStartSimulating}
                       >
-                        Start Now
+                        {t('faq:quickStart.button')}
                       </Button>
                     </Card.Body>
                   </Card>
@@ -387,10 +387,10 @@ const FAQ = ({ onNavigateToSimulator }) => {
                   <Card className="border-0 shadow-sm h-100">
                     <Card.Body className="text-center p-4">
                       <FaUsers className="text-success mb-3" style={{ fontSize: '2rem' }} />
-                      <h5 className="fw-bold">Community</h5>
-                      <p className="text-muted small mb-3">Join our Discord community</p>
+                      <h5 className="fw-bold">{t('faq:community.title')}</h5>
+                      <p className="text-muted small mb-3">{t('faq:community.description')}</p>
                       <Button variant="outline-success" size="sm">
-                        Join Discord
+                        {t('faq:community.button')}
                       </Button>
                     </Card.Body>
                   </Card>
@@ -399,10 +399,10 @@ const FAQ = ({ onNavigateToSimulator }) => {
                   <Card className="border-0 shadow-sm h-100">
                     <Card.Body className="text-center p-4">
                       <FaShieldAlt className="text-info mb-3" style={{ fontSize: '2rem' }} />
-                      <h5 className="fw-bold">Support</h5>
-                      <p className="text-muted small mb-3">Get direct help from our team</p>
+                      <h5 className="fw-bold">{t('faq:support.title')}</h5>
+                      <p className="text-muted small mb-3">{t('faq:support.description')}</p>
                       <Button variant="outline-info" size="sm">
-                        Contact Us
+                        {t('faq:support.button')}
                       </Button>
                     </Card.Body>
                   </Card>
@@ -410,10 +410,9 @@ const FAQ = ({ onNavigateToSimulator }) => {
               </Row>
 
               <div className="bg-primary text-white rounded-3 p-4">
-                <h4 className="fw-bold mb-2">💡 Pro Tip</h4>
+                <h4 className="fw-bold mb-2">{t('faq:proTip.title')}</h4>
                 <p className="mb-0">
-                  For the most accurate results, research realistic price targets based on 
-                  comparable projects, market conditions, and tokenomics fundamentals.
+                  {t('faq:proTip.text')}
                 </p>
               </div>
             </Col>

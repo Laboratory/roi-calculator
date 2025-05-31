@@ -1,0 +1,40 @@
+{
+  "home": {
+    "title": "Simulador de ROI para IDO | Visualiza desbloqueos, modela rendimientos, planifica salidas más inteligentes",
+    "description": "Utiliza nuestro simulador gratuito de ROI para IDO para modelar desbloqueos de tokens, proyectar rendimientos reales y evitar trampas de preventa. Simula tu inversión en tokens en escenarios bajistas, base y alcistas. Sin billetera, sin inicio de sesión requerido.",
+    "ogTitle": "Simulador de ROI para IDO | Visualiza desbloqueos, modela rendimientos",
+    "ogDescription": "Simula desbloqueos de tokens y ROI en diferentes condiciones de mercado. Comprende el riesgo de FDV, el tiempo para alcanzar el punto de equilibrio y la presión de venta, todo sin hojas de cálculo."
+  },
+  "about": {
+    "title": "Cómo funciona el Simulador de ROI para IDO | Modelado de desbloqueos de tokens y análisis de riesgos",
+    "description": "Aprende cómo el Simulador de ROI para IDO ayuda a los inversores a modelar desbloqueos de tokens, evaluar cronogramas reales de ROI y planificar mejores salidas de preventas de criptomonedas.",
+    "ogTitle": "Cómo funciona el Simulador de ROI para IDO | Modelado de desbloqueos de tokens y análisis de riesgos",
+    "ogDescription": "Descubre cómo esta herramienta simula desbloqueos de tokens, proyecciones de rendimiento, sensibilidad de FDV y tiempo para alcanzar el punto de equilibrio basado en términos de preventa y movimiento del mercado."
+  },
+  "faq": {
+    "title": "Preguntas frecuentes | Desbloqueos de tokens, modelado de ROI y análisis de riesgos de preventa",
+    "description": "Respuestas a preguntas comunes sobre cómo simular cronogramas de desbloqueo de tokens, calcular ROI en diferentes escenarios y evaluar el momento de inversión en criptomonedas.",
+    "ogTitle": "Preguntas frecuentes | Desbloqueos de tokens, modelado de ROI y análisis de riesgos de preventa",
+    "ogDescription": "Obtén respuestas claras sobre cronogramas de desbloqueo de tokens, proyecciones de ROI y cómo este simulador modela rendimientos bajo varios resultados de mercado."
+  },
+  "notFound": {
+    "title": "404 - Página no encontrada | Simulador de ROI para IDO",
+    "description": "Lo sentimos, la página que estás buscando no existe o ha sido movida."
+  },
+  "privacy": {
+    "title": "Política de privacidad | Simulador de ROI para IDO",
+    "description": "Conoce nuestras prácticas de privacidad y cómo protegemos tus datos mientras usas el Simulador de ROI para IDO."
+  },
+  "terms": {
+    "title": "Términos de servicio | Simulador de ROI para IDO",
+    "description": "Revisa los términos y condiciones para usar el Simulador de ROI para IDO."
+  },
+  "education": {
+    "title": "Educación sobre inversión en criptomonedas | Simulador de ROI para IDO",
+    "description": "Aprende sobre preventas de tokens, cronogramas de desbloqueo y cómo calcular el ROI real en tus inversiones en criptomonedas."
+  },
+  "marketingText": {
+    "subtitle": "Descubre rendimientos reales. Visualiza desbloqueos de tokens. Libérate de las ilusiones de FDV.",
+    "mainDescription": "Simula tus rendimientos de cualquier preventa de tokens, pronostica desbloqueos de tokens y planifica salidas más inteligentes en diferentes escenarios de mercado. Gratis, rápido y seguro para tu privacidad. Creado por AlphaMind para proteger a los inversores minoristas."
+  }
+}

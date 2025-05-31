@@ -1,11 +1,24 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import AppRouter from './AppRouter';
 import { ThemeProvider } from './context/ThemeContext';
+import { LanguageProvider } from './context/LanguageContext';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
+
+// Import i18n instance
+import './i18n';
+
+// Loading component for Suspense fallback
+const Loading = () => (
+  <div className="d-flex justify-content-center align-items-center vh-100">
+    <div className="spinner-border text-primary" role="status">
+      <span className="visually-hidden">Loading...</span>
+    </div>
+  </div>
+);
 
 // Check if the app is already rendered on the server (for hydration)
 const rootElement = document.getElementById('root');
@@ -45,13 +58,17 @@ const root = ReactDOM.createRoot(rootElement);
 // Render the app
 root.render(
   <React.StrictMode>
-    <HelmetProvider>
-      <ThemeProvider>
-        <BrowserRouter>
-          <AppRouter />
-        </BrowserRouter>
-      </ThemeProvider>
-    </HelmetProvider>
+    <Suspense fallback={<Loading />}>
+      <HelmetProvider>
+        <ThemeProvider>
+          <LanguageProvider>
+            <BrowserRouter>
+              <AppRouter />
+            </BrowserRouter>
+          </LanguageProvider>
+        </ThemeProvider>
+      </HelmetProvider>
+    </Suspense>
   </React.StrictMode>
 );
 

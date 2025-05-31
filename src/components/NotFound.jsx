@@ -2,13 +2,15 @@ import React, { useEffect } from 'react';
 import { Container, Button } from 'react-bootstrap';
 import { Link, useLocation } from 'react-router-dom';
 import { FaArrowLeft, FaCalculator } from 'react-icons/fa';
+import { useTranslation } from 'react-i18next';
 import SEO from './SEO';
 import { seoConfig } from '../config/seo';
 import { trackError } from '../utils/analytics';
 
 const NotFound = () => {
+  const { t } = useTranslation(['notfound', 'common']);
   // Get SEO config for this page
-  const { title, description, canonicalUrl, schema } = seoConfig.notFound;
+  const { title, description, canonicalUrl, schema, pageKey } = seoConfig.notFound;
   const location = useLocation();
   
   // Track 404 error when component mounts
@@ -24,13 +26,14 @@ const NotFound = () => {
         description={description}
         canonicalUrl={canonicalUrl}
         schema={schema}
+        pageKey={pageKey}
       />
       
       <div className="mb-5">
-        <h1 className="display-1 fw-bold">404</h1>
-        <h2 className="mb-4">Page Not Found</h2>
+        <h1 className="display-1 fw-bold">{t('notfound:heading')}</h1>
+        <h2 className="mb-4">{t('notfound:subheading')}</h2>
         <p className="lead mb-4">
-          The page you're looking for doesn't exist or has been moved.
+          {t('notfound:message')}
         </p>
         
         <div className="d-flex justify-content-center gap-3 mt-4">
@@ -42,7 +45,7 @@ const NotFound = () => {
             className="d-flex align-items-center"
           >
             <FaCalculator className="me-2" />
-            Go to Calculator
+            {t('notfound:buttons.calculator')}
           </Button>
           
           <Button 
@@ -52,26 +55,26 @@ const NotFound = () => {
             className="d-flex align-items-center"
           >
             <FaArrowLeft className="me-2" />
-            Go Back
+            {t('notfound:buttons.back')}
           </Button>
         </div>
       </div>
       
       <div className="mt-5">
-        <h3>Looking for something?</h3>
+        <h3>{t('notfound:help.title')}</h3>
         <div className="d-flex flex-column flex-md-row justify-content-center gap-4 mt-3">
           <div>
-            <h5>Learn More</h5>
+            <h5>{t('notfound:help.sections.learn.title')}</h5>
             <ul className="list-unstyled">
-              <li><Link to="/about" className="text-decoration-none">About the Calculator</Link></li>
-              <li><Link to="/faq" className="text-decoration-none">Frequently Asked Questions</Link></li>
+              <li><Link to="/about" className="text-decoration-none">{t('notfound:help.sections.learn.links.about')}</Link></li>
+              <li><Link to="/faq" className="text-decoration-none">{t('notfound:help.sections.learn.links.faq')}</Link></li>
             </ul>
           </div>
           <div>
-            <h5>Legal</h5>
+            <h5>{t('notfound:help.sections.legal.title')}</h5>
             <ul className="list-unstyled">
-              <li><Link to="/terms" className="text-decoration-none">Terms of Service</Link></li>
-              <li><Link to="/privacy" className="text-decoration-none">Privacy Policy</Link></li>
+              <li><Link to="/terms" className="text-decoration-none">{t('notfound:help.sections.legal.links.terms')}</Link></li>
+              <li><Link to="/privacy" className="text-decoration-none">{t('notfound:help.sections.legal.links.privacy')}</Link></li>
             </ul>
           </div>
         </div>

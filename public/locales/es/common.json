@@ -1,0 +1,73 @@
+{
+  "general": {
+    "loading": "Cargando...",
+    "error": "Ha ocurrido un error",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "close": "Cerrar",
+    "apply": "Aplicar",
+    "back": "Atrás",
+    "next": "Siguiente",
+    "readMore": "Leer más",
+    "showLess": "Mostrar menos",
+    "share": "Compartir",
+    "followUs": "Síguenos",
+    "noData": "No hay datos disponibles",
+    "comingSoon": "Próximamente",
+    "search": "Buscar respuestas..."
+  },
+  "navigation": {
+    "home": "Simulador de ROI IDO",
+    "calculator": "Simulador",
+    "about": "Cómo Funciona",
+    "education": "Educación",
+    "faq": "Preguntas Frecuentes"
+  },
+  "theme": {
+    "light": "Cambiar a modo claro",
+    "dark": "Cambiar a modo oscuro",
+    "toggle": "Cambiar tema"
+  },
+  "language": {
+    "selectLanguage": "Idioma",
+    "en": "Inglés",
+    "ru": "Ruso",
+    "es": "Español",
+    "tr": "Turco"
+  },
+  "buttons": {
+    "calculate": "Calcular",
+    "reset": "Reiniciar",
+    "share": "Compartir Resultados",
+    "export": "Exportar Datos",
+    "copyLink": "Copiar Enlace",
+    "learnMore": "Saber más",
+    "tryNow": "Probar ahora",
+    "submit": "Enviar"
+  },
+  "errors": {
+    "404": "Página no encontrada",
+    "goHome": "Volver al inicio",
+    "errorMessage": "La página que buscas no existe o ha sido movida.",
+    "serverError": "Error del servidor",
+    "formError": "Por favor, corrige los errores en el formulario",
+    "required": "Este campo es obligatorio",
+    "invalidNumber": "Por favor, introduce un número válido",
+    "greaterThanZero": "El valor debe ser mayor que cero",
+    "invalidDate": "Por favor, introduce una fecha válida",
+    "invalidEmail": "Por favor, introduce un correo electrónico válido"
+  },
+  "notifications": {
+    "success": "¡Éxito!",
+    "error": "¡Error!",
+    "info": "Información",
+    "warning": "Advertencia",
+    "copied": "¡Copiado al portapapeles!"
+  },
+  "footer": {
+    "disclaimer": "Aviso legal: Esta calculadora es solo para fines informativos y no constituye asesoramiento financiero.",
+    "privacyPolicy": "Política de Privacidad",
+    "termsOfService": "Términos de Servicio",
+    "copyright": "  {{year}} AlphaMind. Todos los derechos reservados."
+  }
+}

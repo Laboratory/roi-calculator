@@ -2,55 +2,89 @@ import React, { useContext } from 'react';
 import { Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip as ChartTooltip, Legend } from 'chart.js';
 import { format } from 'date-fns';
-import { Table, OverlayTrigger, Tooltip, Card } from 'react-bootstrap';
+import { Table, OverlayTrigger, Tooltip, Card, Alert } from 'react-bootstrap';
 import { ThemeContext } from '../context/ThemeContext';
 import { FaInfoCircle } from 'react-icons/fa';
+import { useTranslation } from 'react-i18next';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, ChartTooltip, Legend);
 
-const UnlockSchedule = ({ results }) => {
+const UnlockSchedule = ({ data }) => {
+  const { t } = useTranslation(['unlockschedule', 'common']);
   const { darkMode } = useContext(ThemeContext);
-  const {
-    monthlyUnlocks,
-    tokenName,
-    tgeDate,
-    priceScenarios,
-    tokenAmount,
-    tgeUnlock,
-    unlockFrequency
-  } = results;
   
-  const baseScenario = priceScenarios.find(s => s.name === 'Base') || priceScenarios[0];
+  // Add a check for missing data
+  if (!data) {
+    return (
+      <div className="unlock-schedule-container">
+        <Alert variant="warning">
+          {t('common:general.noData')}
+        </Alert>
+      </div>
+    );
+  }
+  
+  // Add null checks for the destructured properties
+  const {
+    monthlyUnlocks = {},
+    tokenName = 'Token',
+    tgeDate,
+    priceScenarios = [],
+    tokenAmount = 0,
+    tgeUnlock = 0,
+    unlockFrequency = 'monthly',
+    unlockPeriods = []
+  } = data;
+  
+  const baseScenario = priceScenarios && Array.isArray(priceScenarios) 
+    ? (priceScenarios.find(s => s.name === 'Base') || priceScenarios[0])
+    : { price: 0, name: 'Base' };
   
   const formatMonth = (month) => {
     if (!tgeDate) {
-      return results.unlockFrequency === 'weekly' ? `Week ${month}` : `Month ${month}`;
+      return data.unlockFrequency === 'weekly' 
+        ? t('chart.periodLabels.week', { week: month }) 
+        : t('chart.periodLabels.month', { month });
     }
     
     const date = new Date(tgeDate);
-    if (results.unlockFrequency === 'weekly') {
+    if (data.unlockFrequency === 'weekly') {
       date.setDate(date.getDate() + (month * 7));
-      return `Week ${month} — ${format(date, 'MMM d, yyyy')}`;
+      return t('chart.periodLabels.weekWithDate', { 
+        week: month, 
+        date: format(date, 'MMM d, yyyy') 
+      });
     } else {
       date.setMonth(date.getMonth() + parseInt(month));
-      return `Month ${month} — ${format(date, 'MMM d, yyyy')}`;
+      return t('chart.periodLabels.monthWithDate', { 
+        month, 
+        date: format(date, 'MMM d, yyyy') 
+      });
     }
   };
   
   const formatDate = (month) => {
     if (!tgeDate) {
-      return results.unlockFrequency === 'weekly' ? `Week ${month}` : `Month ${month}`;
+      return data.unlockFrequency === 'weekly' 
+        ? t('chart.periodLabels.week', { week: month }) 
+        : t('chart.periodLabels.month', { month });
     }
     
-    if (month === 0) return 'TGE — ' + format(new Date(tgeDate), 'MMM d, yyyy');
+    if (month === 0) return t('chart.periodLabels.tge', { date: format(new Date(tgeDate), 'MMM d, yyyy') });
     
     const date = new Date(tgeDate);
-    if (results.unlockFrequency === 'weekly') {
+    if (data.unlockFrequency === 'weekly') {
       date.setDate(date.getDate() + (month * 7));
-      return `Week ${month} — ${format(date, 'MMM d, yyyy')}`;
+      return t('chart.periodLabels.weekWithDate', { 
+        week: month, 
+        date: format(date, 'MMM d, yyyy') 
+      });
     } else {
       date.setMonth(date.getMonth() + month);
-      return `Month ${month} — ${format(date, 'MMM d, yyyy')}`;
+      return t('chart.periodLabels.monthWithDate', { 
+        month, 
+        date: format(date, 'MMM d, yyyy') 
+      });
     }
   };
   
@@ -70,29 +104,36 @@ const UnlockSchedule = ({ results }) => {
   };
   
   // Prepare chart data
-  const labels = ['TGE', ...results.unlockPeriods.map(p => formatMonth(p.month))];
+  const labels = data.unlockPeriods && Array.isArray(data.unlockPeriods) 
+    ? ['TGE', ...data.unlockPeriods.map(p => formatMonth(p.month))]
+    : ['TGE'];
+    
   const unlockValues = [tgeUnlock * tokenAmount / 100];
   
-  results.unlockPeriods.forEach(period => {
-    unlockValues.push(period.percentage * tokenAmount / 100);
-  });
-  
-  // Get text color based on theme
-  const textColor = darkMode ? '#f5f6fa' : '#2d3436';
-  const gridColor = darkMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)';
+  if (data.unlockPeriods && Array.isArray(data.unlockPeriods)) {
+    data.unlockPeriods.forEach(period => {
+      unlockValues.push(period.percentage * tokenAmount / 100);
+    });
+  }
   
   const chartData = {
     labels,
     datasets: [
       {
-        label: `${tokenName} Unlock %`,
-        data: [tgeUnlock, ...results.unlockPeriods.map(p => p.percentage)],
+        label: `${tokenName || 'Token'} Unlock %`,
+        data: data.unlockPeriods && Array.isArray(data.unlockPeriods) 
+          ? [tgeUnlock, ...data.unlockPeriods.map(p => p.percentage)]
+          : [tgeUnlock],
         backgroundColor: 'rgba(138, 43, 226, 0.7)',
         borderColor: 'rgba(138, 43, 226, 1)',
         borderWidth: 1,
-      },
-    ],
+      }
+    ]
   };
+  
+  // Get text color based on theme
+  const textColor = darkMode ? '#f5f6fa' : '#2d3436';
+  const gridColor = darkMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)';
   
   const chartOptions = {
     responsive: true,
@@ -154,24 +195,26 @@ const UnlockSchedule = ({ results }) => {
     }
   ];
   
-  results.unlockPeriods.forEach((period, index) => {
-    let timeValue;
-    if (unlockFrequency === 'weekly') {
-      // For weekly frequency, use the weekNumber property if available
-      const weekIndex = period.weekNumber ? period.weekNumber : Math.round(period.month * 4.33);
-      timeValue = formatDate(weekIndex);
-    } else {
-      timeValue = formatDate(period.month);
-    }
-    
-    tableData.push({
-      period: index + 1,
-      time: timeValue,
-      percentage: period.percentage,
-      tokens: period.percentage * tokenAmount / 100,
-      value: period.percentage * tokenAmount * baseScenario.price / 100
+  if (data.unlockPeriods && Array.isArray(data.unlockPeriods)) {
+    data.unlockPeriods.forEach((period, index) => {
+      let timeValue;
+      if (data.unlockFrequency === 'weekly') {
+        // For weekly frequency, use the weekNumber property if available
+        const weekIndex = period.weekNumber ? period.weekNumber : Math.round(period.month * 4.33);
+        timeValue = formatDate(weekIndex);
+      } else {
+        timeValue = formatDate(period.month);
+      }
+      
+      tableData.push({
+        period: index + 1,
+        time: timeValue,
+        percentage: period.percentage,
+        tokens: period.percentage * tokenAmount / 100,
+        value: period.percentage * tokenAmount * baseScenario.price / 100
+      });
     });
-  });
+  }
   
   return (
     <div className="unlock-schedule">
@@ -181,12 +224,12 @@ const UnlockSchedule = ({ results }) => {
             placement="top"
             overlay={
               <Tooltip id="tooltip-unlock-schedule-chart">
-                This chart shows how your tokens will be released over time according to the vesting schedule.
+                {t('chart.tooltip')}
               </Tooltip>
             }
           >
             <div className="d-flex align-items-center tooltip-label">
-              <h5 className="mb-0">Token Unlock Schedule</h5>
+              <h5 className="mb-0">{t('chart.title')}</h5>
               <FaInfoCircle className="ms-2 text-primary info-icon" />
             </div>
           </OverlayTrigger>
@@ -203,12 +246,12 @@ const UnlockSchedule = ({ results }) => {
               placement="top"
               overlay={
                 <Tooltip id="tooltip-unlock-schedule-details">
-                  This table provides a detailed breakdown of your token's unlock schedule, including exact dates, percentages, and estimated values.
+                  {t('details.tooltip')}
                 </Tooltip>
               }
             >
               <div className="d-flex align-items-center tooltip-label">
-                <h5 className="mb-0">Unlock Schedule Details</h5>
+                <h5 className="mb-0">{t('details.title')}</h5>
                 <FaInfoCircle className="ms-2 text-primary info-icon" />
               </div>
             </OverlayTrigger>
@@ -218,12 +261,12 @@ const UnlockSchedule = ({ results }) => {
               <thead>
                 <tr>
                   <th>
-                    Period
+                    {t('details.columns.period.title')}
                     <OverlayTrigger
                       placement="top"
                       overlay={
                         <Tooltip id="tooltip-period">
-                          The unlock period number, with TGE (Token Generation Event) being the initial unlock.
+                          {t('details.columns.period.tooltip')}
                         </Tooltip>
                       }
                     >
@@ -231,12 +274,12 @@ const UnlockSchedule = ({ results }) => {
                     </OverlayTrigger>
                   </th>
                   <th>
-                    Time
+                    {t('details.columns.time.title')}
                     <OverlayTrigger
                       placement="top"
                       overlay={
                         <Tooltip id="tooltip-time">
-                          The specific date when tokens will be unlocked. Shows month number if no TGE date was provided.
+                          {t('details.columns.time.tooltip')}
                         </Tooltip>
                       }
                     >
@@ -244,12 +287,12 @@ const UnlockSchedule = ({ results }) => {
                     </OverlayTrigger>
                   </th>
                   <th>
-                    Percentage
+                    {t('details.columns.percentage.title')}
                     <OverlayTrigger
                       placement="top"
                       overlay={
                         <Tooltip id="tooltip-percentage">
-                          The percentage of your total token allocation that unlocks in this period.
+                          {t('details.columns.percentage.tooltip')}
                         </Tooltip>
                       }
                     >
@@ -257,12 +300,12 @@ const UnlockSchedule = ({ results }) => {
                     </OverlayTrigger>
                   </th>
                   <th>
-                    Tokens Unlocked
+                    {t('details.columns.tokens.title')}
                     <OverlayTrigger
                       placement="top"
                       overlay={
-                        <Tooltip id="tooltip-tokens-unlocked-table">
-                          The actual number of tokens that become available in this period based on your total token amount.
+                        <Tooltip id="tooltip-tokens">
+                          {t('details.columns.tokens.tooltip')}
                         </Tooltip>
                       }
                     >
@@ -270,12 +313,12 @@ const UnlockSchedule = ({ results }) => {
                     </OverlayTrigger>
                   </th>
                   <th>
-                    Value (Base Case)
+                    {t('details.columns.value.title')}
                     <OverlayTrigger
                       placement="top"
                       overlay={
                         <Tooltip id="tooltip-value">
-                          The estimated USD value of tokens unlocked in this period, calculated using the Base Case price scenario.
+                          {t('details.columns.value.tooltip')}
                         </Tooltip>
                       }
                     >
@@ -290,10 +333,28 @@ const UnlockSchedule = ({ results }) => {
                     <td>{row.period === 'TGE' ? 'TGE' : row.period}</td>
                     <td>{row.time}</td>
                     <td>{row.percentage}%</td>
-                    <td>{formatNumber(row.tokens)} {tokenName}</td>
+                    <td>{formatNumber(row.tokens)} {tokenName || 'Token'}</td>
                     <td>{formatCurrency(row.value)}</td>
                   </tr>
                 ))}
+                <tr className="table-primary fw-bold">
+                  <td colSpan={2}>{t('summary.totalRow')}</td>
+                  <td>
+                    {formatNumber(
+                      tableData.reduce((sum, row) => sum + row.percentage, 0)
+                    )}%
+                  </td>
+                  <td>
+                    {formatNumber(
+                      tableData.reduce((sum, row) => sum + row.tokens, 0)
+                    )}
+                  </td>
+                  <td>
+                    {formatCurrency(
+                      tableData.reduce((sum, row) => sum + row.value, 0)
+                    )}
+                  </td>
+                </tr>
               </tbody>
             </Table>
           </div>

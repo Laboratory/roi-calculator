@@ -1,8 +1,10 @@
 import React from 'react';
 import { Row, Col, Card, Alert, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { FaExclamationTriangle, FaInfoCircle } from 'react-icons/fa';
+import { useTranslation } from 'react-i18next';
 
 const CalculatorResults = ({ results }) => {
+  const { t } = useTranslation(['calculator', 'common']);
   const {
     tokenName,
     totalROI,
@@ -54,12 +56,12 @@ const CalculatorResults = ({ results }) => {
         placement="top"
         overlay={
           <Tooltip id="tooltip-roi-scenarios">
-            These cards show your potential returns in different market scenarios (Bear, Base, Bull). Each scenario uses different token price predictions to calculate your ROI.
+            {t('calculator:results.roiScenariosTooltip')}
           </Tooltip>
         }
       >
         <h3 className="section-title tooltip-label">
-          ROI Scenarios
+          {t('calculator:results.roiScenarios')}
           <FaInfoCircle className="ms-2 text-primary info-icon" />
         </h3>
       </OverlayTrigger>
@@ -72,12 +74,12 @@ const CalculatorResults = ({ results }) => {
               placement="top"
               overlay={
                 <Tooltip id="tooltip-fdv-warning">
-                  Fully Diluted Valuation (FDV) warnings indicate when a price scenario would result in an unrealistically high market cap for the token, which may be less likely to occur.
+                  {t('common:warnings.fdvWarning')}
                 </Tooltip>
               }
             >
               <strong className="tooltip-label">
-                FDV Warning:
+                {t('calculator:results.fdvWarning')}
                 <FaInfoCircle className="ms-2 text-primary info-icon" />
               </strong>
             </OverlayTrigger>
@@ -100,7 +102,9 @@ const CalculatorResults = ({ results }) => {
             <Col md={4} key={scenario} className="d-flex">
               <Card className={`scenario-card ${getScenarioClass(scenario)} flex-fill`}>
                 <Card.Body className="d-flex flex-column">
-                  <h4 className="scenario-name">{scenario} Case</h4>
+                  <h4 className="scenario-name">{scenario === 'Bear' ? t('calculator:results.scenarios.bearish') :
+                   scenario === 'Base' ? t('calculator:results.scenarios.neutral') :
+                   scenario === 'Bull' ? t('calculator:results.scenarios.bullish') : scenario}</h4>
                   <div className={`scenario-roi ${roiClass}`}>
                     {roi >= 0 ? '+' : ''}{formatPercentage(roi)}
                   </div>
@@ -110,12 +114,12 @@ const CalculatorResults = ({ results }) => {
                         placement="top"
                         overlay={
                           <Tooltip id={`tooltip-initial-${scenario}`}>
-                            Your initial investment amount in USD.
+                            {t('calculator:results.initialInvestmentTooltip')}
                           </Tooltip>
                         }
                       >
                         <span className="tooltip-label">
-                          Initial:
+                          {t('calculator:results.initialInvestment')}
                           <FaInfoCircle className="ms-2 text-primary info-icon" />
                         </span>
                       </OverlayTrigger>
@@ -126,12 +130,12 @@ const CalculatorResults = ({ results }) => {
                         placement="top"
                         overlay={
                           <Tooltip id={`tooltip-final-${scenario}`}>
-                            The estimated final value of your investment in this price scenario.
+                            {t('calculator:results.finalValueTooltip')}
                           </Tooltip>
                         }
                       >
                         <span className="tooltip-label">
-                          Final:
+                          {t('calculator:results.finalValue')}
                           <FaInfoCircle className="ms-2 text-primary info-icon" />
                         </span>
                       </OverlayTrigger>
@@ -143,16 +147,16 @@ const CalculatorResults = ({ results }) => {
                           placement="top"
                           overlay={
                             <Tooltip id={`tooltip-breakeven-${scenario}`}>
-                              The month when your investment reaches its original value, accounting for token unlocks and price changes.
+                              {t('calculator:results.breakEvenTooltip')}
                             </Tooltip>
                           }
                         >
                           <span className="tooltip-label">
-                            Break even:
+                            {t('calculator:results.breakEven')}
                             <FaInfoCircle className="ms-2 text-primary info-icon" />
                           </span>
                         </OverlayTrigger>
-                        <span>Month {breakEvenMonths[scenario]}</span>
+                        <span>{t('calculator:results.month')} {breakEvenMonths[scenario]}</span>
                       </div>
                     )}
                     {totalSupply && fdvValues && fdvValues[scenario] && (
@@ -161,12 +165,17 @@ const CalculatorResults = ({ results }) => {
                           placement="top"
                           overlay={
                             <Tooltip id={`tooltip-fdv-${scenario}`}>
-                              Fully Diluted Valuation - the theoretical market cap if all tokens were in circulation at this price. Values over $500M are highlighted as potentially less realistic.
+                              {t('common:tooltips.fdvWarning', {
+                                scenario: scenario === 'Bear' ? t('calculator:results.scenarios.bearish') :
+                                          scenario === 'Base' ? t('calculator:results.scenarios.neutral') :
+                                          scenario === 'Bull' ? t('calculator:results.scenarios.bullish') : scenario,
+                                fdv: formatFDV(fdvValues[scenario])
+                              })}
                             </Tooltip>
                           }
                         >
                           <span className="tooltip-label">
-                            Implied FDV:
+                            {t('calculator:results.impliedFDV')}
                             <FaInfoCircle className="ms-2 text-primary info-icon" />
                           </span>
                         </OverlayTrigger>
@@ -188,12 +197,12 @@ const CalculatorResults = ({ results }) => {
           placement="top"
           overlay={
             <Tooltip id="tooltip-token-info">
-              Key details about your token investment, including amount, price, and vesting schedule information.
+              {t('calculator:results.tokenInfoTooltip')}
             </Tooltip>
           }
         >
           <h3 className="section-title tooltip-label mt-3">
-            Token Information
+            {t('calculator:results.tokenInfo')}
             <FaInfoCircle className="ms-2 text-primary info-icon" />
           </h3>
         </OverlayTrigger>
@@ -206,12 +215,12 @@ const CalculatorResults = ({ results }) => {
                     placement="top"
                     overlay={
                       <Tooltip id="tooltip-token-amount-result">
-                        The total number of tokens you purchased with your investment.
+                        {t('calculator:results.tokenAmountTooltip')}
                       </Tooltip>
                     }
                   >
                     <span className="info-label tooltip-label">
-                      Token Amount:
+                      {t('calculator:results.tokenAmount')}
                       <FaInfoCircle className="ms-2 text-primary info-icon" />
                     </span>
                   </OverlayTrigger>
@@ -222,12 +231,12 @@ const CalculatorResults = ({ results }) => {
                     placement="top"
                     overlay={
                       <Tooltip id="tooltip-purchase-price">
-                        The price per token in USD at the time of your investment.
+                        {t('calculator:results.purchasePriceTooltip')}
                       </Tooltip>
                     }
                   >
                     <span className="info-label tooltip-label">
-                      Purchase Price:
+                      {t('calculator:results.purchasePrice')}
                       <FaInfoCircle className="ms-2 text-primary info-icon" />
                     </span>
                   </OverlayTrigger>
@@ -238,12 +247,12 @@ const CalculatorResults = ({ results }) => {
                     placement="top"
                     overlay={
                       <Tooltip id="tooltip-initial-investment">
-                        The total amount in USD you invested in this token.
+                        {t('calculator:results.initialInvestmentTooltip')}
                       </Tooltip>
                     }
                   >
                     <span className="info-label tooltip-label">
-                      Initial Investment:
+                      {t('calculator:results.initialInvestment')}
                       <FaInfoCircle className="ms-2 text-primary info-icon" />
                     </span>
                   </OverlayTrigger>
@@ -256,12 +265,12 @@ const CalculatorResults = ({ results }) => {
                     placement="top"
                     overlay={
                       <Tooltip id="tooltip-tge-date-result">
-                        Token Generation Event date - when your tokens were first created and the vesting schedule began.
+                        {t('calculator:results.tgeDateTooltip')}
                       </Tooltip>
                     }
                   >
                     <span className="info-label tooltip-label">
-                      TGE Date:
+                      {t('calculator:results.tgeDate')}
                       <FaInfoCircle className="ms-2 text-primary info-icon" />
                     </span>
                   </OverlayTrigger>
@@ -272,12 +281,12 @@ const CalculatorResults = ({ results }) => {
                     placement="top"
                     overlay={
                       <Tooltip id="tooltip-tge-unlock-result">
-                        The percentage of your tokens that were immediately available at the Token Generation Event.
+                        {t('calculator:results.tgeUnlockTooltip')}
                       </Tooltip>
                     }
                   >
                     <span className="info-label tooltip-label">
-                      TGE Unlock:
+                      {t('calculator:results.tgeUnlock')}
                       <FaInfoCircle className="ms-2 text-primary info-icon" />
                     </span>
                   </OverlayTrigger>
@@ -288,12 +297,12 @@ const CalculatorResults = ({ results }) => {
                     placement="top"
                     overlay={
                       <Tooltip id="tooltip-unlock-periods">
-                        The number of vesting periods in your token's unlock schedule after the initial TGE unlock.
+                        {t('calculator:results.unlockPeriodsTooltip')}
                       </Tooltip>
                     }
                   >
                     <span className="info-label tooltip-label">
-                      Unlock Periods:
+                      {t('calculator:results.unlockPeriods')}
                       <FaInfoCircle className="ms-2 text-primary info-icon" />
                     </span>
                   </OverlayTrigger>
@@ -305,12 +314,12 @@ const CalculatorResults = ({ results }) => {
                       placement="top"
                       overlay={
                         <Tooltip id="tooltip-total-supply-result">
-                          The total number of tokens that will ever exist for this project. Used to calculate the Fully Diluted Valuation (FDV).
+                          {t('common:tokenomics.totalSupplyTooltip')}
                         </Tooltip>
                       }
                     >
                       <span className="info-label tooltip-label">
-                        Total Supply:
+                        {t('common:tokenomics.totalSupply')}
                         <FaInfoCircle className="ms-2 text-primary info-icon" />
                       </span>
                     </OverlayTrigger>

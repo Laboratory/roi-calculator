@@ -1,0 +1,32 @@
+{
+  "title": "About This Tool",
+  "links": "Navigation",
+  "legal": "Legal",
+  "disclaimer": "This tool is for informational and educational purposes only. All simulations and ROI projections are hypothetical and do not constitute financial advice, investment guidance, or guarantees of future performance. Always do your own research (DYOR) and consult with licensed professionals before making any investment decisions.",
+  "disclaimerShort": "Remember: Simulations are not predictions. Markets are wild — especially in crypto.",
+  "copyright": "© {{year}} AlphaMind. All rights reserved.",
+  "privacyPolicy": "Privacy Policy",
+  "termsOfService": "Terms of Service",
+  "newsletter": {
+    "title": "Stay Updated",
+    "subtitle": "Subscribe to our newsletter for the latest updates and insights",
+    "placeholder": "Enter your email",
+    "button": "Subscribe",
+    "success": "Thank you for subscribing!",
+    "error": "Error subscribing. Please try again."
+  },
+  "social": {
+    "title": "Connect With Us",
+    "discord": "Join our Discord",
+    "telegram": "Telegram Group",
+    "telegramBot": "Telegram Bot",
+    "twitter": "Follow on Twitter",
+    "youtube": "YouTube Channel"
+  },
+  "links": {
+    "calculator": "ROI Calculator",
+    "about": "How It Works",
+    "education": "Education",
+    "faq": "FAQ"
+  }
+}

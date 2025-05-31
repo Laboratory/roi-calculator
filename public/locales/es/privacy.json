@@ -1,0 +1,84 @@
+{
+  "title": "Política de Privacidad",
+  "lastUpdated": "Última actualización: 26 de mayo de 2025",
+  "sections": {
+    "introduction": {
+      "title": "1. Introducción",
+      "content": "TokenCalculator (\"nosotros\", \"nuestro\" o \"nos\") está comprometido a proteger su privacidad. Esta Política de Privacidad explica cómo recopilamos, usamos, divulgamos y protegemos su información cuando utiliza nuestro sitio web y servicios. Por favor, lea esta política cuidadosamente para entender nuestras prácticas con respecto a su información."
+    },
+    "informationWeCollect": {
+      "title": "2. Información que Recopilamos",
+      "providedInfo": {
+        "title": "2.1 Información que Usted Proporciona",
+        "content": "Al utilizar nuestra calculadora, puede proporcionar información como:",
+        "items": [
+          "Cantidades y precios de tokens",
+          "Parámetros de inversión",
+          "Programas de desbloqueo"
+        ],
+        "additionalContent": "Esta información se procesa localmente en su navegador y no se almacena en nuestros servidores a menos que explícitamente guarde o comparta sus cálculos."
+      },
+      "automaticInfo": {
+        "title": "2.2 Información Recopilada Automáticamente",
+        "content": "Cuando accede a nuestro sitio web, podemos recopilar automáticamente cierta información, incluyendo:",
+        "items": [
+          "Dirección IP",
+          "Tipo y versión del navegador",
+          "Información del dispositivo",
+          "Patrones de uso y preferencias",
+          "Cookies y tecnologías de seguimiento similares"
+        ]
+      }
+    },
+    "howWeUseInfo": {
+      "title": "3. Cómo Usamos su Información",
+      "content": "Utilizamos la información que recopilamos para:",
+      "items": [
+        "Proporcionar, mantener y mejorar nuestros servicios",
+        "Entender cómo los usuarios interactúan con nuestro sitio web",
+        "Detectar, prevenir y abordar problemas técnicos",
+        "Desarrollar nuevas características y funcionalidades",
+        "Cumplir con obligaciones legales"
+      ]
+    },
+    "cookies": {
+      "title": "4. Cookies y Tecnologías de Seguimiento",
+      "content": "Utilizamos cookies y tecnologías de seguimiento similares para rastrear la actividad en nuestro sitio web y almacenar cierta información. Las cookies son archivos con una pequeña cantidad de datos que pueden incluir un identificador único anónimo. Puede instruir a su navegador para rechazar todas las cookies o para indicar cuándo se está enviando una cookie."
+    },
+    "dataSecurity": {
+      "title": "5. Seguridad de Datos",
+      "content": "Implementamos medidas técnicas y organizativas apropiadas para proteger la seguridad de su información personal. Sin embargo, tenga en cuenta que ningún método de transmisión por Internet o método de almacenamiento electrónico es 100% seguro, y no podemos garantizar la seguridad absoluta."
+    },
+    "dataRetention": {
+      "title": "6. Retención de Datos",
+      "content": "Conservaremos su información solo durante el tiempo que sea necesario para los fines establecidos en esta Política de Privacidad. Conservaremos y utilizaremos su información en la medida necesaria para cumplir con nuestras obligaciones legales, resolver disputas y hacer cumplir nuestras políticas."
+    },
+    "thirdParty": {
+      "title": "7. Servicios de Terceros",
+      "content": "Nuestro sitio web puede contener enlaces a sitios web o servicios de terceros que no son propiedad ni están controlados por TokenCalculator. No tenemos control sobre, y no asumimos responsabilidad por el contenido, políticas de privacidad o prácticas de cualquier sitio web o servicio de terceros."
+    },
+    "childrenPrivacy": {
+      "title": "8. Privacidad de los Niños",
+      "content": "Nuestros servicios no están destinados a personas menores de 18 años. No recopilamos conscientemente información personal de niños. Si usted es un padre o tutor y cree que su hijo nos ha proporcionado información personal, por favor contáctenos."
+    },
+    "changes": {
+      "title": "9. Cambios a esta Política de Privacidad",
+      "content": "Podemos actualizar nuestra Política de Privacidad de vez en cuando. Le notificaremos cualquier cambio publicando la nueva Política de Privacidad en esta página y actualizando la fecha de \"Última actualización\". Se le aconseja revisar esta Política de Privacidad periódicamente para cualquier cambio."
+    },
+    "yourRights": {
+      "title": "10. Sus Derechos",
+      "content": "Dependiendo de su ubicación, puede tener ciertos derechos con respecto a su información personal, incluyendo:",
+      "items": [
+        "El derecho a acceder a la información personal que tenemos sobre usted",
+        "El derecho a solicitar la corrección o eliminación de su información personal",
+        "El derecho a restringir u oponerse a nuestro procesamiento de su información personal",
+        "El derecho a la portabilidad de datos"
+      ],
+      "additionalContent": "Para ejercer estos derechos, por favor contáctenos utilizando la información proporcionada a continuación."
+    },
+    "contactUs": {
+      "title": "11. Contáctenos",
+      "content": "Si tiene alguna pregunta o inquietud sobre esta Política de Privacidad, por favor contáctenos en support@alphamind.co."
+    }
+  }
+}

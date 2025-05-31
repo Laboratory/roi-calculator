@@ -1,0 +1,17 @@
+{
+  "selectLanguage": "Dil seçin",
+  "switchTo": "Şuna geç",
+  "currentLanguage": "Mevcut dil",
+  "languageNames": {
+    "en": "İngilizce",
+    "ru": "Rusça",
+    "es": "İspanyolca",
+    "tr": "Türkçe"
+  },
+  "languageNativeNames": {
+    "en": "English",
+    "ru": "Русский",
+    "es": "Español",
+    "tr": "Türkçe"
+  }
+}

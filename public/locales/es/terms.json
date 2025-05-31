@@ -1,0 +1,46 @@
+{
+  "title": "Términos de Servicio",
+  "lastUpdated": "Última actualización: 26 de mayo de 2025",
+  "sections": {
+    "introduction": {
+      "title": "1. Introducción",
+      "content": "Bienvenido a TokenCalculator (\"nosotros\", \"nuestro\" o \"nos\"). Al acceder o utilizar nuestro sitio web y servicios, usted acepta estar sujeto a estos Términos de Servicio. Si no está de acuerdo con estos términos, por favor no utilice nuestros servicios."
+    },
+    "useOfServices": {
+      "title": "2. Uso de Servicios",
+      "content": "TokenCalculator proporciona herramientas para calcular posibles retornos en inversiones de tokens. Nuestra calculadora es solo para fines informativos y no debe considerarse como asesoramiento financiero.",
+      "additional": "Usted acepta utilizar nuestros servicios solo para fines legales y de acuerdo con estos Términos. Está prohibido:",
+      "items": [
+        "Utilizar nuestros servicios de cualquier manera que viole las leyes o regulaciones aplicables",
+        "Intentar interferir o interrumpir la operación de nuestros servicios",
+        "Hacerse pasar por cualquier persona o entidad, o declarar falsamente su afiliación",
+        "Participar en cualquier actividad que pueda dañar nuestros sistemas u otros usuarios"
+      ]
+    },
+    "disclaimer": {
+      "title": "3. Descargo de Responsabilidad de Garantías",
+      "content": "LOS SERVICIOS SE PROPORCIONAN \"TAL CUAL\" Y \"SEGÚN DISPONIBILIDAD\" SIN GARANTÍAS DE NINGÚN TIPO, YA SEAN EXPRESAS O IMPLÍCITAS. EN LA MÁXIMA MEDIDA PERMITIDA POR LA LEY APLICABLE, RECHAZAMOS TODAS LAS GARANTÍAS, EXPRESAS O IMPLÍCITAS, INCLUIDAS LAS GARANTÍAS IMPLÍCITAS DE COMERCIABILIDAD, IDONEIDAD PARA UN PROPÓSITO PARTICULAR Y NO INFRACCIÓN.",
+      "additional": "No garantizamos que nuestros servicios serán ininterrumpidos, seguros o libres de errores, o que los defectos serán corregidos. No hacemos ninguna garantía con respecto a la precisión, fiabilidad o integridad del contenido o información proporcionada a través de nuestros servicios."
+    },
+    "limitation": {
+      "title": "4. Limitación de Responsabilidad",
+      "content": "EN LA MÁXIMA MEDIDA PERMITIDA POR LA LEY APLICABLE, EN NINGÚN CASO TOKENCALCULATOR, SUS AFILIADOS, O SUS RESPECTIVOS FUNCIONARIOS, DIRECTORES, EMPLEADOS O AGENTES SERÁN RESPONSABLES POR CUALQUIER DAÑO INDIRECTO, INCIDENTAL, ESPECIAL, CONSECUENTE O PUNITIVO, INCLUYENDO PÉRDIDA DE BENEFICIOS, QUE SURJA DE O EN RELACIÓN CON EL USO O LA IMPOSIBILIDAD DE USAR NUESTROS SERVICIOS."
+    },
+    "riskDisclosure": {
+      "title": "5. Divulgación de Riesgos",
+      "content": "Las inversiones en criptomonedas implican un riesgo sustancial. El rendimiento pasado no es indicativo de resultados futuros. Los cálculos y proyecciones proporcionados por nuestras herramientas se basan en la información que usted ingresa y varias suposiciones que pueden no reflejar las condiciones reales del mercado. Debe realizar su propia investigación y consultar con profesionales financieros antes de tomar decisiones de inversión."
+    },
+    "modifications": {
+      "title": "6. Modificaciones a los Términos",
+      "content": "Nos reservamos el derecho de modificar estos Términos en cualquier momento. Proporcionaremos aviso de cambios significativos publicando los Términos actualizados en nuestro sitio web. Su uso continuado de nuestros servicios después de tales modificaciones constituye su aceptación de los Términos actualizados."
+    },
+    "governingLaw": {
+      "title": "7. Ley Aplicable",
+      "content": "Estos Términos se regirán e interpretarán de acuerdo con las leyes de la jurisdicción en la que operamos, sin tener en cuenta sus disposiciones sobre conflictos de leyes."
+    },
+    "contactInfo": {
+      "title": "8. Información de Contacto",
+      "content": "Si tiene alguna pregunta sobre estos Términos, por favor contáctenos en support@alphamind.co."
+    }
+  }
+}

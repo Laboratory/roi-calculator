@@ -11,6 +11,7 @@ export const seoConfig = {
 
   // Home/Simulator page
   home: {
+    pageKey: 'home',
     title: 'IDO ROI Simulator | Visualize Unlocks, Model Returns, Plan Smarter Exits',
     description: 'Use our free IDO ROI Simulator to model token unlocks, project real returns, and avoid presale pitfalls. Simulate your token investment across bear, base, and bull scenarios. No wallet, no login required.',
     canonicalUrl: '/',
@@ -34,6 +35,7 @@ export const seoConfig = {
 
   // About page
   about: {
+    pageKey: 'about',
     title: 'How the IDO ROI Simulator Works | Token Unlock Modeling & Risk Insights',
     description: 'Learn how the IDO ROI Simulator helps investors model token unlocks, assess real ROI timelines, and plan better exits from crypto presales.',
     canonicalUrl: '/about',
@@ -55,6 +57,7 @@ export const seoConfig = {
 
   // FAQ page
   faq: {
+    pageKey: 'faq',
     title: 'FAQs | Token Unlocks, ROI Modeling & Presale Risk Analysis',
     description: 'Answers to common questions about how to simulate token unlock schedules, calculate ROI across scenarios, and evaluate crypto investment timing.',
     canonicalUrl: '/faq',
@@ -95,6 +98,7 @@ export const seoConfig = {
 
   // Education page
   education: {
+    pageKey: 'education',
     title: 'Crypto Investment Education | IDO ROI Simulator Guide & Terminology',
     description: 'Learn everything you need to know about token investments, unlock schedules, and ROI calculations. A complete guide for beginners to advanced investors.',
     canonicalUrl: '/education',
@@ -123,6 +127,7 @@ export const seoConfig = {
 
   // Terms page
   terms: {
+    pageKey: 'terms',
     title: 'Terms of Service | IDO ROI Simulator',
     description: 'Read our Terms of Service for the IDO ROI Simulator to understand your use of this free crypto investment modeling tool.',
     canonicalUrl: '/terms',
@@ -139,6 +144,7 @@ export const seoConfig = {
 
   // Privacy page
   privacy: {
+    pageKey: 'privacy',
     title: 'Privacy Policy | IDO ROI Simulator',
     description: 'Learn how your data is handled using the IDO ROI Simulator. We don’t track, log, or store personal information.',
     canonicalUrl: '/privacy',
@@ -155,6 +161,7 @@ export const seoConfig = {
 
   // 404 page
   notFound: {
+    pageKey: 'notFound',
     title: 'Page Not Found | IDO ROI Simulator',
     description: "This page doesn't exist. Return to the simulator to model your token presale ROI and unlock schedule.",
     canonicalUrl: '/404',

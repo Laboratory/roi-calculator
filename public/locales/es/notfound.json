@@ -1,0 +1,29 @@
+{
+  "title": "404 - Página no encontrada",
+  "heading": "404",
+  "subheading": "Página no encontrada",
+  "message": "La página que estás buscando no existe o ha sido movida.",
+  "buttons": {
+    "calculator": "Ir al Calculador",
+    "back": "Volver"
+  },
+  "help": {
+    "title": "¿Buscas algo?",
+    "sections": {
+      "learn": {
+        "title": "Aprende más",
+        "links": {
+          "about": "Acerca del Calculador",
+          "faq": "Preguntas frecuentes"
+        }
+      },
+      "legal": {
+        "title": "Legal",
+        "links": {
+          "terms": "Términos de Servicio",
+          "privacy": "Política de Privacidad"
+        }
+      }
+    }
+  }
+}

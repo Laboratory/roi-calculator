@@ -1,0 +1,50 @@
+{
+  "chart": {
+    "title": "Token Kilit Açma Takvimi",
+    "tooltip": "Bu grafik, hak ediş takvimine göre tokenlerinizin zaman içinde nasıl serbest bırakılacağını gösterir.",
+    "labels": {
+      "percentage": "Yüzde (%)",
+      "period": "Dönem",
+      "tokenUnlocked": "Kilidi Açılan {{tokenName}} Tokenleri",
+      "tokensUnlocked": "Kilidi Açılan {{tokenName}}: {{value}}"
+    },
+    "periodLabels": {
+      "month": "Ay {{month}}",
+      "week": "Hafta {{week}}",
+      "monthWithDate": "Ay {{month}} — {{date}}",
+      "weekWithDate": "Hafta {{week}} — {{date}}",
+      "tge": "TGE — {{date}}"
+    }
+  },
+  "details": {
+    "title": "Kilit Açma Takvimi Detayları",
+    "tooltip": "Bu tablo, tokeninizin kilit açma takvimiyle ilgili kesin tarihler, yüzdeler ve tahmini değerler dahil olmak üzere ayrıntılı bir dökümünü sağlar.",
+    "columns": {
+      "period": {
+        "title": "Dönem",
+        "tooltip": "TGE'nin (Token Oluşturma Etkinliği) başlangıç kilidi açılması olduğu kilit açma dönemi numarası."
+      },
+      "time": {
+        "title": "Zaman",
+        "tooltip": "Tokenlerin kilidinin açılacağı belirli tarih. TGE tarihi sağlanmadıysa ay numarasını gösterir."
+      },
+      "percentage": {
+        "title": "Yüzde",
+        "tooltip": "Bu dönemde kilidi açılacak toplam tokenlerinizin yüzdesi."
+      },
+      "tokens": {
+        "title": "Tokenler",
+        "tooltip": "Bu dönemde kilidi açılacak gerçek token sayısı."
+      },
+      "value": {
+        "title": "Tahmini Değer",
+        "tooltip": "Bu dönemde kilidi açılan tokenlerin tahmini USD değeri, temel fiyat senaryosu kullanılarak hesaplanır."
+      }
+    }
+  },
+  "summary": {
+    "title": "Toplam Kilit Açma Özeti",
+    "tooltip": "Toplam yüzdeyi, tokenleri ve tahmini değeri gösteren tüm kilit açma takviminin bir özeti.",
+    "totalRow": "Toplam"
+  }
+}

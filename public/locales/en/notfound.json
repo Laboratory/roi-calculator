@@ -1,0 +1,29 @@
+{
+  "title": "404 - Page Not Found",
+  "heading": "404",
+  "subheading": "Page Not Found",
+  "message": "The page you're looking for doesn't exist or has been moved.",
+  "buttons": {
+    "calculator": "Go to Calculator",
+    "back": "Go Back"
+  },
+  "help": {
+    "title": "Looking for something?",
+    "sections": {
+      "learn": {
+        "title": "Learn More",
+        "links": {
+          "about": "About the Calculator",
+          "faq": "Frequently Asked Questions"
+        }
+      },
+      "legal": {
+        "title": "Legal",
+        "links": {
+          "terms": "Terms of Service",
+          "privacy": "Privacy Policy"
+        }
+      }
+    }
+  }
+}

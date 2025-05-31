@@ -1,0 +1,40 @@
+{
+  "home": {
+    "title": "IDO ROI Simülatörü | Token kilit açılımlarını görselleştirin, getirileri modelleyin, daha akıllı çıkışlar planlayın",
+    "description": "Ücretsiz IDO ROI Simülatörümüzü kullanarak token kilit açma planlarını modelleyin, gerçek getirileri tahmin edin ve ön satış tuzaklarından kaçının. Token yatırımınızı ayı, temel ve boğa senaryolarında simüle edin. Cüzdan veya giriş gerektirmez.",
+    "ogTitle": "IDO ROI Simülatörü | Token kilit açılımlarını görselleştirin, getirileri modelleyin",
+    "ogDescription": "Token kilit açılımlarını ve ROI'yi farklı piyasa koşullarında simüle edin. FDV riskini, başabaş noktasına ulaşma süresini ve satış baskısını anlayın — tümü elektronik tablolar olmadan."
+  },
+  "about": {
+    "title": "IDO ROI Simülatörü Nasıl Çalışır | Token Kilit Açma Modellemesi ve Risk Analizi",
+    "description": "IDO ROI Simülatörünün yatırımcılara token kilit açılımlarını modellemede, gerçek ROI zaman çizelgelerini değerlendirmede ve kripto ön satışlarından daha iyi çıkışlar planlamada nasıl yardımcı olduğunu öğrenin.",
+    "ogTitle": "IDO ROI Simülatörü Nasıl Çalışır | Token Kilit Açma Modellemesi ve Risk Analizi",
+    "ogDescription": "Bu aracın ön satış koşullarına ve piyasa hareketine dayalı olarak token kilit açılımlarını, getiri projeksiyonlarını, FDV duyarlılığını ve başabaş noktasına ulaşma süresini nasıl simüle ettiğini keşfedin."
+  },
+  "faq": {
+    "title": "SSS | Token Kilit Açılımları, ROI Modellemesi ve Ön Satış Risk Analizi",
+    "description": "Token kilit açma planlarını nasıl simüle edeceğiniz, farklı senaryolarda ROI'yi nasıl hesaplayacağınız ve kripto yatırım zamanlamasını nasıl değerlendireceğiniz hakkında yaygın sorulara cevaplar.",
+    "ogTitle": "SSS | Token Kilit Açılımları, ROI Modellemesi ve Ön Satış Risk Analizi",
+    "ogDescription": "Token kilit açma planları, ROI tahminleri ve bu simülatörün çeşitli piyasa sonuçları altında getirileri nasıl modellediği hakkında net cevaplar alın."
+  },
+  "notFound": {
+    "title": "404 - Sayfa Bulunamadı | IDO ROI Simülatörü",
+    "description": "Üzgünüz, aradığınız sayfa mevcut değil veya taşınmış."
+  },
+  "privacy": {
+    "title": "Gizlilik Politikası | IDO ROI Simülatörü",
+    "description": "IDO ROI Simülatörünü kullanırken gizlilik uygulamalarımız ve verilerinizi nasıl koruduğumuz hakkında bilgi edinin."
+  },
+  "terms": {
+    "title": "Kullanım Şartları | IDO ROI Simülatörü",
+    "description": "IDO ROI Simülatörünü kullanmak için şartları ve koşulları gözden geçirin."
+  },
+  "education": {
+    "title": "Kripto Yatırım Eğitimi | IDO ROI Simülatörü",
+    "description": "Token ön satışları, kilit açma planları ve kripto yatırımlarınızda gerçek ROI'yi nasıl hesaplayacağınız hakkında bilgi edinin."
+  },
+  "marketingText": {
+    "subtitle": "Gerçek getirileri keşfedin. Token kilit açılımlarını görselleştirin. FDV yanılsamalarından kurtulun.",
+    "mainDescription": "Herhangi bir token ön satışından getirilerinizi simüle edin, token kilit açılımlarını tahmin edin ve farklı piyasa senaryolarında daha akıllı çıkışlar planlayın. Ücretsiz, hızlı ve gizlilik açısından güvenli. Bireysel yatırımcıları korumak için AlphaMind tarafından geliştirilmiştir."
+  }
+}

@@ -1,0 +1,261 @@
+{
+  "title": "Simulador de Desbloqueo de Tokens y ROI",
+  "subtitle": "Descubre rendimientos reales. Visualiza desbloqueos de tokens. Libérate de las ilusiones FDV.",
+  "description": "Simula tus rendimientos de cualquier preventa de tokens, pronostica los desbloqueos de tokens y planifica salidas más inteligentes bajo diferentes escenarios de mercado. Gratuito, rápido y seguro para la privacidad. Creado por AlphaMind para proteger a los inversores minoristas.",
+  
+  "form": {
+    "sections": {
+      "projectDetails": "Detalles del Proyecto",
+      "investmentDetails": "Detalles de Inversión",
+      "marketScenarios": "Escenarios de Mercado",
+      "results": "Resultados",
+      "presaleSetup": "Configuración de Preventa"
+    },
+    "projectName": {
+      "label": "Nombre del Proyecto",
+      "placeholder": "Ingrese el nombre del proyecto"
+    },
+    "projectIcon": {
+      "label": "Ícono del Proyecto (opcional)",
+      "placeholder": "Ingrese URL del ícono del proyecto"
+    },
+    "tokenSymbol": {
+      "label": "Símbolo del Token",
+      "placeholder": "Ej., BTC, ETH"
+    },
+    "tokenAmount": {
+      "label": "Cantidad de Tokens",
+      "placeholder": "Calculado a partir de inversión y precio"
+    },
+    "investmentAmount": {
+      "label": "Cantidad de Inversión (USD)",
+      "placeholder": "Ingrese cantidad de inversión",
+      "tooltip": "La cantidad de dinero que invertiste en USD."
+    },
+    "tokenPrice": {
+      "label": "Precio del Token al Entrar (USD)",
+      "placeholder": "Precio por token"
+    },
+    "totalSupply": {
+      "label": "Suministro Total de Tokens",
+      "placeholder": "Número total de tokens",
+      "options": {
+        "10billion": "10 Mil Millones (10,000,000,000)",
+        "1billion": "1 Mil Millones (1,000,000,000)",
+        "100million": "100 Millones (100,000,000)",
+        "custom": "Personalizado"
+      },
+      "note": "Añade el suministro total para detectar configuraciones FDV altas y dilución de desbloqueo."
+    },
+    "expectedListingPrice": {
+      "label": "Precio de Listado Esperado (opcional)",
+      "placeholder": "ej., 0.1"
+    },
+    "tgeDate": {
+      "label": "Fecha de TGE",
+      "placeholder": "dd.mm.aaaa",
+      "note": "Si se proporciona, los resultados mostrarán fechas reales del calendario"
+    },
+    "vestingPeriod": {
+      "label": "Período de Vesting (Meses)",
+      "placeholder": "Ej., 12, 24, 36"
+    },
+    "unlockSchedule": {
+      "title": "Programa de Desbloqueo",
+      "periodLabel": {
+        "weekly": "Semana #",
+        "monthly": "Mes"
+      },
+      "tgePercentage": {
+        "label": "Desbloqueo en TGE (%)",
+        "placeholder": "Porcentaje en lanzamiento"
+      },
+      "unlockFrequency": {
+        "label": "Frecuencia de Desbloqueo",
+        "options": {
+          "monthly": "Mensual",
+          "quarterly": "Trimestral",
+          "linear": "Lineal (Diario)",
+          "weekly": "Semanal"
+        }
+      },
+      "cliffPeriod": {
+        "label": "Período de Cliff (Meses)",
+        "placeholder": "Meses antes de que los tokens comiencen a desbloquearse"
+      }
+    },
+    "generatedSchedule": {
+      "title": "Programa de Desbloqueo Generado",
+      "period": "Período",
+      "time": "Tiempo",
+      "percentage": "Porcentaje (%)",
+      "tgeDate": "Mes 0",
+      "week0": "Semana 0 (TGE)",
+      "month0": "Mes 0 (TGE)",
+      "week": "Semana",
+      "month": "Mes",
+      "weekNote": "Los números de semana se calculan desde la fecha de TGE"
+    },
+    "marketScenarios": {
+      "title": "Escenarios de Mercado",
+      "scenarioLabel": "Rendimiento del Mercado",
+      "roiPlaceholder": "Porcentaje de rendimiento",
+      "calculatedPrice": "Precio calculado:",
+      "bearish": {
+        "label": "Precio Bajista (USD)",
+        "placeholder": "Precio esperado más bajo"
+      },
+      "neutral": {
+        "label": "Precio Neutral (USD)",
+        "placeholder": "Precio esperado moderado"
+      },
+      "bullish": {
+        "label": "Precio Alcista (USD)",
+        "placeholder": "Precio esperado más alto"
+      }
+    },
+    "actions": {
+      "calculate": "Calcular ROI",
+      "reset": "Restablecer Formulario",
+      "simulateRoi": "Modela instantáneamente tus rendimientos en diferentes condiciones de mercado y términos de desbloqueo."
+    },
+    "cta": {
+      "title": "Deja tu correo electrónico o únete a nuestro Telegram para dar forma a la próxima versión.",
+      "note": "¿Quieres acceso anticipado a la versión avanzada y nuevas funciones? Deja tu correo electrónico o suscríbete a nuestro bot de Telegram para recibir notificaciones.",
+      "emailPlaceholder": "Tu dirección de correo electrónico",
+      "emailLabel": "Dirección de correo electrónico",
+      "submitting": "Suscribiendo...",
+      "subscribe": "Suscribirse",
+      "success": "¡Gracias por suscribirte! Te mantendremos informado.",
+      "telegram": "Bot de Telegram",
+      "joinCommunity": "¿Te gusta esta herramienta? Ayúdanos a construir el mejor simulador de ROI para IDOs:",
+      "communityNote": "deja tu opinión y únete a la conversación en los canales de la comunidad:",
+      "discord": "Unirse a Discord",
+      "telegramGroup": "Grupo de Telegram",
+      "twitter": "Seguir en X (Twitter)",
+      "youtube": "Canal de YouTube"
+    },
+    "errors": {
+      "investmentAmount": "La cantidad de inversión es obligatoria y debe ser mayor que 0",
+      "tokenPrice": "El precio del token es obligatorio y debe ser mayor que 0",
+      "tokenName": "El nombre del token es obligatorio",
+      "tokenAmount": "La cantidad de tokens es obligatoria y debe ser mayor que 0",
+      "tgeUnlock": "El desbloqueo de TGE debe estar entre 0 y 100",
+      "scenarios": "Todos los escenarios deben tener un nombre y ROI válido",
+      "unlockPeriods": "Todos los períodos de desbloqueo deben tener un mes y porcentaje válidos",
+      "totalPercentage": "El porcentaje total de desbloqueo debe ser igual al 100%",
+      "email": "Por favor, introduce una dirección de correo electrónico válida"
+    },
+    "tooltips": {
+      "investmentAmount": "La cantidad de dinero que invertiste en USD.",
+      "tokenPrice": "El precio por token al que compraste.",
+      "tokenName": "El nombre o símbolo del token.",
+      "tokenAmount": "El número de tokens que recibiste.",
+      "tgeUnlock": "Porcentaje de tokens desbloqueados en el Evento de Generación de Tokens (lanzamiento).",
+      "cliff": "Número de meses antes de que los tokens comiencen a desbloquearse.",
+      "vestingDuration": "Duración total del período de vesting en meses.",
+      "unlockFrequency": "Con qué frecuencia se desbloquean los tokens.",
+      "expectedListingPrice": "Precio esperado de TGE (opcional): Si se conoce, se utilizará como precio base para los escenarios de ROI del mercado. Si no se proporciona, asumimos que el precio de listado = tu precio de compra",
+      "tgeDate": "Fecha del Evento de Generación de Tokens - cuando tus tokens fueron creados por primera vez y comenzó el programa de vesting.",
+      "totalSupply": "El número total de tokens que existirán para este proyecto. Se utiliza para calcular la Valoración Totalmente Diluida (FDV).",
+      "generatedSchedule": "Esta tabla muestra el programa detallado de desbloqueo para tus tokens.",
+      "period": "El número de mes/semana después del TGE (Evento de Generación de Tokens).",
+      "percentage": "El porcentaje de tus tokens totales que se desbloquearán durante este período.",
+      "bearScenario": "Asumimos que tu token se negocia un 90% por debajo de tu precio de preventa durante todo tu período de vesting.",
+      "baseScenario": "Sin cambios importantes de precio. El precio del token permanece cerca de tu nivel de compra.",
+      "bullScenario": "El mercado aumenta. Asumimos que el Token se negocia a un múltiplo de tu precio de preventa durante tu período de vesting."
+    }
+  },
+  "results": {
+    "title": "Resultados de Inversión",
+    "summary": "Resumen de Inversión",
+    "projectName": "Proyecto",
+    "investmentAmount": "Cantidad de Inversión",
+    "tokenAmount": "Tokens Comprados",
+    "entryPrice": "Precio de Entrada",
+    "totalValue": "Valor Total en",
+    "roi": "ROI",
+    "scenarios": {
+      "bearish": "Bajista",
+      "neutral": "Neutral",
+      "bullish": "Alcista"
+    },
+    "monthlyBreakdown": {
+      "title": "ROI a lo largo del tiempo",
+      "chartTitle": "ROI a lo largo del tiempo",
+      "chartTooltip": "Este gráfico muestra cómo cambia el ROI de su inversión a lo largo del tiempo a medida que se desbloquean los tokens. Las líneas representan diferentes escenarios de precios.",
+      "breakdownTitle": {
+        "monthly": "Desglose mensual",
+        "weekly": "Desglose semanal"
+      },
+      "breakdownTooltip": {
+        "monthly": "Esta tabla muestra un desglose detallado mes a mes del rendimiento de su inversión, incluyendo desbloqueos de tokens, ingresos y ROI acumulativo para cada escenario.",
+        "weekly": "Esta tabla muestra un desglose detallado semana a semana del rendimiento de su inversión, incluyendo desbloqueos de tokens, ingresos y ROI acumulativo para cada escenario."
+      },
+      "tableColumns": {
+        "period": {
+          "title": "Mes",
+          "weekTitle": "Semana",
+          "tooltip": "El número de mes después del TGE (Evento de Generación de Tokens). Si se proporcionó una fecha de TGE, se muestran las fechas reales del calendario entre paréntesis.",
+          "weekTooltip": "El número de semana después del TGE (Evento de Generación de Tokens). Si se proporcionó una fecha de TGE, se muestran las fechas reales del calendario entre paréntesis."
+        },
+        "tokensUnlocked": {
+          "title": "Tokens desbloqueados",
+          "tooltip": "El número de tokens que se vuelven disponibles en este mes según su programa de consolidación.",
+          "weekTooltip": "El número de tokens que se vuelven disponibles en esta semana según su programa de consolidación."
+        },
+        "revenue": {
+          "title": "Ingresos por escenario",
+          "tooltip": "El valor en USD de los tokens desbloqueados en este mes, calculado utilizando el precio del escenario.",
+          "weekTooltip": "El valor en USD de los tokens desbloqueados en esta semana, calculado utilizando el precio del escenario."
+        },
+        "cumulativeRoi": {
+          "title": "ROI por escenario",
+          "tooltip": "Su retorno total de inversión hasta este mes, calculado utilizando el precio del escenario.",
+          "weekTooltip": "Su retorno total de inversión hasta esta semana, calculado utilizando el precio del escenario."
+        }
+      },
+      "breakEven": "Punto de equilibrio",
+      "totalSummary": {
+        "title": "Resumen total",
+        "totalRevenue": "Ingresos totales:",
+        "finalRoi": "ROI final:"
+      },
+      "scenarioLabels": {
+        "bear": "Escenario Bajista",
+        "base": "Escenario Base",
+        "bull": "Escenario Alcista"
+      },
+      "advancedModeTeaser": {
+        "title": "Modo avanzado próximamente:",
+        "features": "estrategia de salida parcial, presión de desbloqueo de VC, planes de venta dinámicos."
+      },
+      "keyMetrics": {
+        "initialInvestment": "Inversión Inicial",
+        "tokenAllocation": "Asignación de Tokens"
+      },
+      "noData": "No hay datos de cálculo disponibles. Por favor, complete primero el formulario de la calculadora."
+    }
+  },
+  "tokenomicsChart": {
+    "title": "Programa de Desbloqueo de Tokens",
+    "xAxis": "Mes",
+    "yAxis": "Tokens Desbloqueados",
+    "series": {
+      "unlocked": "Tokens Desbloqueados",
+      "locked": "Tokens Bloqueados"
+    },
+    "tooltips": {
+      "month": "Mes",
+      "unlocked": "Desbloqueado",
+      "cumulative": "Acumulativo",
+      "percentUnlocked": "% Desbloqueado"
+    }
+  },
+  "share": {
+    "title": "Compartir Resultados",
+    "linkCopied": "¡Enlace copiado al portapapeles!",
+    "copyLink": "Copiar Enlace",
+    "shareOn": "Compartir en"
+  }
+}

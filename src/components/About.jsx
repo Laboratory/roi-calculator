@@ -21,6 +21,7 @@ import SEO from './SEO';
 import { seoConfig } from '../config/seo';
 import { subscribeToBrevo } from '../api/brevoService';
 import { trackButtonClick, trackEvent, trackFormSubmission, trackLinkClick } from '../utils/analytics';
+import { useTranslation } from 'react-i18next';
 
 const HowItWorks = ({onNavigateToSimulator}) => {
   const {darkMode} = useContext(ThemeContext);
@@ -29,6 +30,7 @@ const HowItWorks = ({onNavigateToSimulator}) => {
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const { t } = useTranslation(['about', 'common']);
 
   // Get SEO config for this page
   const {title, description, canonicalUrl, schema} = seoConfig.about;
@@ -110,11 +112,10 @@ const HowItWorks = ({onNavigateToSimulator}) => {
         <Row className="align-items-center py-5">
           <Col lg={8} className="mx-auto text-center">
             <h1 className="display-4 fw-bold mb-4">
-              Understand Your IDO ROI Before You Ape In
+              {t('about:hero.title')}
             </h1>
             <p className="lead mb-5">
-              This free simulator shows you how token unlocks, FDV, vesting, and market conditions
-              affect your actual returns — not just hype projections.
+              {t('about:hero.description')}
             </p>
 
             <div className="d-flex justify-content-center gap-3 flex-wrap mb-5">
@@ -124,7 +125,7 @@ const HowItWorks = ({onNavigateToSimulator}) => {
                 className="px-4"
                 onClick={handleStartSimulating}
               >
-                Try the Simulator
+                {t('about:hero.trySimulator')}
               </Button>
               <Button
                 variant="outline-info"
@@ -135,21 +136,21 @@ const HowItWorks = ({onNavigateToSimulator}) => {
                 rel="noopener noreferrer"
               >
                 <FaTelegram className="me-2"/>
-                Join Telegram Bot
+                {t('about:hero.joinTelegram')}
               </Button>
             </div>
 
             {!emailSubmitted && (<Card className="shadow-sm border-0 p-2 bg-white">
               <Card.Body>
-                <h5 className="fw-bold mb-3">Get notified of advanced features</h5>
+                <h5 className="fw-bold mb-3">{t('about:hero.notificationCard.title')}</h5>
                 <p className="text-muted mb-3">
-                  Be the first to know when we launch powerful new features
+                  {t('about:hero.notificationCard.description')}
                 </p>
                 <form onSubmit={handleEmailSubmit}>
                   <InputGroup className="mb-3">
                     <Form.Control
                       type="email"
-                      placeholder="Your email address"
+                      placeholder={t('about:hero.notificationCard.emailPlaceholder')}
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       required
@@ -157,14 +158,14 @@ const HowItWorks = ({onNavigateToSimulator}) => {
                     />
                     <Button variant="primary" type="submit" className="px-3 py-2" disabled={isSubmitting}>
                       <FaPaperPlane className="me-2"/>
-                      {isSubmitting ? 'Subscribing...' : 'Notify Me'}
+                      {isSubmitting ? t('about:hero.notificationCard.subscribing') : t('about:hero.notificationCard.subscribeButton')}
                     </Button>
                   </InputGroup>
                   {errorMessage && (<Alert variant="danger" className="mt-2 mb-0 py-2">
                     {errorMessage}
                   </Alert>)}
                   {showSuccessMessage && (<Alert variant="success" className="mt-2 mb-0 py-2">
-                    Thanks for subscribing! We'll keep you updated.
+                    {t('about:hero.notificationCard.successMessage')}
                   </Alert>)}
                 </form>
               </Card.Body>
@@ -180,53 +181,25 @@ const HowItWorks = ({onNavigateToSimulator}) => {
         <Row className="justify-content-center">
           <Col lg={8} className="text-center mb-5">
             <h2 className="display-5 fw-bold mb-4">
-              What is the IDO ROI Simulator?
+              {t('about:whatIsTool.title')}
             </h2>
             <p className="lead mb-5">
-              The IDO ROI Simulator is a free, privacy-first tool that helps crypto investors understand
-              their actual return potential from presale token investments. It models your real ROI timeline
-              based on TGE %, cliff, vesting schedule, market direction, and FDV.
+              {t('about:whatIsTool.description')}
             </p>
 
             <div className="card border-0 shadow-sm p-4 mb-4">
-              <h5 className="fw-bold mb-3">The IDO ROI Simulator helps you:</h5>
+              <h5 className="fw-bold mb-3">{t('about:whatIsTool.helpsList.title')}</h5>
               <ul className="list-group list-group-flush">
-                <li className="list-group-item d-flex align-items-center border-0 ps-0">
-                  <div className="bg-primary rounded-circle d-flex align-items-center justify-content-center me-3"
-                       style={{width: "32px", height: "32px", minWidth: "32px"}}>
-                    <FaCheck className="text-white" style={{fontSize: '14px'}}/>
-                  </div>
-                  <span className="fw-medium">Know your break-even point based on token price, vesting schedule, and market conditions</span>
-                </li>
-                <li className="list-group-item d-flex align-items-center border-0 ps-0">
-                  <div className="bg-primary rounded-circle d-flex align-items-center justify-content-center me-3"
-                       style={{width: "32px", height: "32px", minWidth: "32px"}}>
-                    <FaCheck className="text-white" style={{fontSize: '14px'}}/>
-                  </div>
-                  <span className="fw-medium">Spot dangerous unlock schedules that could create selling pressure and tank your investment</span>
-                </li>
-                <li className="list-group-item d-flex align-items-center border-0 ps-0">
-                  <div className="bg-primary rounded-circle d-flex align-items-center justify-content-center me-3"
-                       style={{width: "32px", height: "32px", minWidth: "32px"}}>
-                    <FaCheck className="text-white" style={{fontSize: '14px'}}/>
-                  </div>
-                  <span
-                    className="fw-medium">Understand how the market affects your exit timing and potential profits</span>
-                </li>
-                <li className="list-group-item d-flex align-items-center border-0 ps-0">
-                  <div className="bg-primary rounded-circle d-flex align-items-center justify-content-center me-3"
-                       style={{width: "32px", height: "32px", minWidth: "32px"}}>
-                    <FaCheck className="text-white" style={{fontSize: '14px'}}/>
-                  </div>
-                  <span className="fw-medium">Visualize month-by-month token unlocks and their impact on your investment value</span>
-                </li>
-                <li className="list-group-item d-flex align-items-center border-0 ps-0">
-                  <div className="bg-primary rounded-circle d-flex align-items-center justify-content-center me-3"
-                       style={{width: "32px", height: "32px", minWidth: "32px"}}>
-                    <FaCheck className="text-white" style={{fontSize: '14px'}}/>
-                  </div>
-                  <span className="fw-medium">Compare bear, base, and bull market scenarios to plan your investment strategy</span>
-                </li>
+                {Array.isArray(t('about:whatIsTool.helpsList.items', { returnObjects: true })) 
+                  ? t('about:whatIsTool.helpsList.items', { returnObjects: true }).map((item, index) => (
+                  <li key={index} className="list-group-item d-flex align-items-center border-0 ps-0">
+                    <div className="bg-primary rounded-circle d-flex align-items-center justify-content-center me-3"
+                         style={{width: "32px", height: "32px", minWidth: "32px"}}>
+                      <FaCheck className="text-white" style={{fontSize: '14px'}}/>
+                    </div>
+                    <span className="fw-medium">{item}</span>
+                  </li>
+                )) : null}
               </ul>
             </div>
           </Col>
@@ -240,7 +213,7 @@ const HowItWorks = ({onNavigateToSimulator}) => {
         <Row className="justify-content-center">
           <Col lg={10}>
             <h2 className="display-5 fw-bold mb-5 text-center">
-              Who It's For
+              {t('about:whoIsFor.title')}
             </h2>
 
             <Row className="g-4">
@@ -252,10 +225,10 @@ const HowItWorks = ({onNavigateToSimulator}) => {
                            style={{width: "48px", height: "48px", minWidth: "48px"}}>
                         <FaUser className="text-white"/>
                       </div>
-                      <h5 className="fw-bold mb-0">First-time token investors</h5>
+                      <h5 className="fw-bold mb-0">{t('about:whoIsFor.categories.firstTime.title')}</h5>
                     </div>
                     <p className="text-muted ms-5 ps-2">
-                      Coming from platforms like AngelList, Kickstarter, Seedrs
+                      {t('about:whoIsFor.categories.firstTime.description')}
                     </p>
                   </Card.Body>
                 </Card>
@@ -269,10 +242,10 @@ const HowItWorks = ({onNavigateToSimulator}) => {
                            style={{width: "48px", height: "48px", minWidth: "48px"}}>
                         <FaUsers className="text-white"/>
                       </div>
-                      <h5 className="fw-bold mb-0">Crypto-native IDO participants</h5>
+                      <h5 className="fw-bold mb-0">{t('about:whoIsFor.categories.cryptoNative.title')}</h5>
                     </div>
                     <p className="text-muted ms-5 ps-2">
-                      Who want more clarity and timing
+                      {t('about:whoIsFor.categories.cryptoNative.description')}
                     </p>
                   </Card.Body>
                 </Card>
@@ -286,10 +259,10 @@ const HowItWorks = ({onNavigateToSimulator}) => {
                            style={{width: "48px", height: "48px", minWidth: "48px"}}>
                         <FaRocket className="text-white"/>
                       </div>
-                      <h5 className="fw-bold mb-0">Early-stage alpha hunters</h5>
+                      <h5 className="fw-bold mb-0">{t('about:whoIsFor.categories.alphaHunters.title')}</h5>
                     </div>
                     <p className="text-muted ms-5 ps-2">
-                      Looking to simulate exit paths
+                      {t('about:whoIsFor.categories.alphaHunters.description')}
                     </p>
                   </Card.Body>
                 </Card>
@@ -303,10 +276,10 @@ const HowItWorks = ({onNavigateToSimulator}) => {
                            style={{width: "48px", height: "48px", minWidth: "48px"}}>
                         <FaChartLine className="text-white"/>
                       </div>
-                      <h5 className="fw-bold mb-0">Influencers, analysts, and VCs</h5>
+                      <h5 className="fw-bold mb-0">{t('about:whoIsFor.categories.influencers.title')}</h5>
                     </div>
                     <p className="text-muted ms-5 ps-2">
-                      Who publish presale content
+                      {t('about:whoIsFor.categories.influencers.description')}
                     </p>
                   </Card.Body>
                 </Card>
@@ -323,59 +296,30 @@ const HowItWorks = ({onNavigateToSimulator}) => {
         <Row className="justify-content-center">
           <Col lg={10} className="text-center mb-5">
             <h2 className="display-5 fw-bold mb-4">
-              How It Works
+              {t('about:howItWorksSection.title')}
             </h2>
           </Col>
         </Row>
 
         <Row className="g-4 justify-content-center">
-          <Col md={4}>
-            <Card className="h-100 text-center border-0 shadow-sm">
-              <Card.Body className="p-4">
-                <div
-                  className="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center mx-auto mb-4"
-                  style={{width: '80px', height: '80px', fontSize: '1.75rem', fontWeight: 'bold'}}>
-                  1
-                </div>
-                <h4 className="fw-bold mb-3">Input Your Investment</h4>
-                <p className="text-muted">
-                  Enter your presale token price, amount, TGE %, vesting, and cliff.
-                </p>
-              </Card.Body>
-            </Card>
-          </Col>
-
-          <Col md={4}>
-            <Card className="h-100 text-center border-0 shadow-sm">
-              <Card.Body className="p-4">
-                <div
-                  className="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center mx-auto mb-4"
-                  style={{width: '80px', height: '80px', fontSize: '1.75rem', fontWeight: 'bold'}}>
-                  2
-                </div>
-                <h4 className="fw-bold mb-3">Simulate Market Scenarios</h4>
-                <p className="text-muted">
-                  Model outcomes in bear, base, or bull markets.
-                </p>
-              </Card.Body>
-            </Card>
-          </Col>
-
-          <Col md={4}>
-            <Card className="h-100 text-center border-0 shadow-sm">
-              <Card.Body className="p-4">
-                <div
-                  className="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center mx-auto mb-4"
-                  style={{width: '80px', height: '80px', fontSize: '1.75rem', fontWeight: 'bold'}}>
-                  3
-                </div>
-                <h4 className="fw-bold mb-3">Visualize Results</h4>
-                <p className="text-muted">
-                  See month-by-month unlocks, break-even point, and ROI progression.
-                </p>
-              </Card.Body>
-            </Card>
-          </Col>
+          {Array.isArray(t('about:howItWorksSection.steps', { returnObjects: true })) 
+            ? t('about:howItWorksSection.steps', { returnObjects: true }).map((step, index) => (
+            <Col md={4} key={index}>
+              <Card className="h-100 text-center border-0 shadow-sm">
+                <Card.Body className="p-4">
+                  <div
+                    className="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center mx-auto mb-4"
+                    style={{width: '80px', height: '80px', fontSize: '1.75rem', fontWeight: 'bold'}}>
+                    {step.number}
+                  </div>
+                  <h4 className="fw-bold mb-3">{step.title}</h4>
+                  <p className="text-muted">
+                    {step.description}
+                  </p>
+                </Card.Body>
+              </Card>
+            </Col>
+          )) : null}
         </Row>
       </Container>
     </section>
@@ -386,46 +330,27 @@ const HowItWorks = ({onNavigateToSimulator}) => {
         <Row className="justify-content-center">
           <Col lg={8}>
             <h2 className="display-5 fw-bold mb-4 text-center">
-              Why Most Retail Investors Get IDOs Wrong
+              {t('about:whyMatters.title')}
             </h2>
 
             <div className="d-flex flex-column gap-4 mt-5">
-              <div className="d-flex">
-                <div
-                  className="bg-danger text-white rounded-circle d-flex align-items-center justify-content-center me-3 mt-1"
-                  style={{width: "24px", height: "24px", minWidth: "24px"}}>
-                  <FaInfoCircle className="text-white" style={{fontSize: '14px'}}/>
+              {Array.isArray(t('about:whyMatters.reasons', { returnObjects: true })) 
+                ? t('about:whyMatters.reasons', { returnObjects: true }).map((reason, index) => (
+                <div className="d-flex" key={index}>
+                  <div
+                    className="bg-danger text-white rounded-circle d-flex align-items-center justify-content-center me-3 mt-1"
+                    style={{width: "24px", height: "24px", minWidth: "24px"}}>
+                    <FaInfoCircle className="text-white" style={{fontSize: '14px'}}/>
+                  </div>
+                  <p className="fs-5">
+                    {reason}
+                  </p>
                 </div>
-                <p className="fs-5">
-                  FDV is often misunderstood — you're buying at a $500M valuation without knowing it
-                </p>
-              </div>
-
-              <div className="d-flex">
-                <div
-                  className="bg-danger text-white rounded-circle d-flex align-items-center justify-content-center me-3 mt-1"
-                  style={{width: "24px", height: "24px", minWidth: "24px"}}>
-                  <FaInfoCircle className="text-white" style={{fontSize: '14px'}}/>
-                </div>
-                <p className="fs-5">
-                  Token unlock schedules are buried in whitepapers
-                </p>
-              </div>
-
-              <div className="d-flex">
-                <div
-                  className="bg-danger text-white rounded-circle d-flex align-items-center justify-content-center me-3 mt-1"
-                  style={{width: "24px", height: "24px", minWidth: "24px"}}>
-                  <FaInfoCircle className="text-white" style={{fontSize: '14px'}}/>
-                </div>
-                <p className="fs-5">
-                  You expect a 10x, but don't realize your tokens unlock slowly while the market dumps
-                </p>
-              </div>
+              )) : null}
             </div>
 
             <div className="alert alert-primary mt-4 fs-5 text-center">
-              <strong>This tool gives you the full picture — before it's too late.</strong>
+              <strong>{t('about:whyMatters.alert')}</strong>
             </div>
           </Col>
         </Row>
@@ -438,63 +363,26 @@ const HowItWorks = ({onNavigateToSimulator}) => {
         <Row className="justify-content-center">
           <Col lg={8} className="text-center mb-5">
             <h2 className="display-5 fw-bold mb-4">
-              What's Coming in the Advanced Version
+              {t('about:comingNext.title')}
             </h2>
 
             <div className="row row-cols-1 row-cols-md-2 g-4 text-start mt-4">
-              <div className="col">
-                <div className="d-flex align-items-start">
-                  <div className="me-3 fs-3">📈</div>
-                  <div>
-                    <h5 className="fw-bold">Partial exit strategy modeling</h5>
-                    <p className="text-muted">Optimize when to take profits</p>
+              {Array.isArray(t('about:comingNext.features', { returnObjects: true })) 
+                ? t('about:comingNext.features', { returnObjects: true }).map((feature, index) => (
+                <div className="col" key={index}>
+                  <div className="d-flex align-items-start">
+                    <div className="me-3 fs-3">{feature.emoji}</div>
+                    <div>
+                      <h5 className="fw-bold">{feature.title}</h5>
+                      <p className="text-muted">{feature.description}</p>
+                    </div>
                   </div>
                 </div>
-              </div>
-
-              <div className="col">
-                <div className="d-flex align-items-start">
-                  <div className="me-3 fs-3">📊</div>
-                  <div>
-                    <h5 className="fw-bold">Dynamic price tracking across months</h5>
-                    <p className="text-muted">See how prices evolve over time</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="col">
-                <div className="d-flex align-items-start">
-                  <div className="me-3 fs-3">⚠️</div>
-                  <div>
-                    <h5 className="fw-bold">Dump pressure alerts</h5>
-                    <p className="text-muted">From VCs, teams, unlock schedules</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="col">
-                <div className="d-flex align-items-start">
-                  <div className="me-3 fs-3">📥</div>
-                  <div>
-                    <h5 className="fw-bold">CSV export and PDF sharing</h5>
-                    <p className="text-muted">Save and share your analysis</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="col">
-                <div className="d-flex align-items-start">
-                  <div className="me-3 fs-3">🔔</div>
-                  <div>
-                    <h5 className="fw-bold">Unlock reminders via Telegram bot</h5>
-                    <p className="text-muted">Never miss an unlock event</p>
-                  </div>
-                </div>
-              </div>
+              )) : null}
             </div>
 
             <div className="mt-5">
-              <p className="fs-5 fw-medium">Want early access when we release these?</p>
+              <p className="fs-5 fw-medium">{t('about:comingNext.earlyAccess')}</p>
               <div className="d-flex justify-content-center gap-3 flex-wrap">
                 <Button
                   variant="outline-info"
@@ -505,7 +393,7 @@ const HowItWorks = ({onNavigateToSimulator}) => {
                   onClick={() => trackLinkClick('https://t.me/alphamind_official', 'Telegram Group', 'about_page')}
                 >
                   <FaTelegram className="me-2"/>
-                  Join Telegram
+                  {t('about:comingNext.joinTelegram')}
                 </Button>
 
                 {!emailSubmitted && (<Button
@@ -521,7 +409,7 @@ const HowItWorks = ({onNavigateToSimulator}) => {
                   className="px-4"
                 >
                   <FaPaperPlane className="me-2"/>
-                  Leave Your Email
+                  {t('about:comingNext.leaveEmail')}
                 </Button>)}
               </div>
 
@@ -535,7 +423,7 @@ const HowItWorks = ({onNavigateToSimulator}) => {
                   onClick={() => trackLinkClick('https://discord.gg/NB4hhuXkWz', 'Discord', 'about_page')}
                 >
                   <FaDiscord className="me-2"/>
-                  Join Discord
+                  {t('about:comingNext.joinDiscord')}
                 </Button>
 
                 <Button
@@ -547,7 +435,7 @@ const HowItWorks = ({onNavigateToSimulator}) => {
                   onClick={() => trackLinkClick('https://twitter.com/alphamind_labs', 'Twitter', 'about_page')}
                 >
                   <FaTwitter className="me-2"/>
-                  Follow on X
+                  {t('about:comingNext.followX')}
                 </Button>
 
                 <Button
@@ -559,7 +447,7 @@ const HowItWorks = ({onNavigateToSimulator}) => {
                   onClick={() => trackLinkClick('https://www.youtube.com/@AlphaMind_labs', 'YouTube', 'about_page')}
                 >
                   <FaYoutube className="me-2"/>
-                  YouTube
+                  {t('about:comingNext.youtube')}
                 </Button>
               </div>
             </div>
@@ -574,13 +462,13 @@ const HowItWorks = ({onNavigateToSimulator}) => {
         <Row className="justify-content-center">
           <Col lg={8}>
             <h2 className="display-5 fw-bold mb-5 text-center">
-              Explore Real Token Sales on AlphaMind
+              {t('about:exploreIDOs.title')}
             </h2>
 
             <Card className="border-0 shadow text-center p-4 mb-4">
               <Card.Body>
-                <h3 className="fw-bold mb-4">Want to see actual live IDOs?</h3>
-                <p className="mb-4">Check out AlphaMind's launchpad platform for active presales and opportunities</p>
+                <h3 className="fw-bold mb-4">{t('about:exploreIDOs.card.title')}</h3>
+                <p className="mb-4">{t('about:exploreIDOs.card.description')}</p>
                 <div className="d-flex justify-content-center gap-3 flex-wrap">
                   <Button
                     variant="primary"
@@ -590,7 +478,7 @@ const HowItWorks = ({onNavigateToSimulator}) => {
                     className="px-4"
                     onClick={() => trackLinkClick('https://app.alphamind.co/', 'See Active Presales', 'about_page')}
                   >
-                    See Active Presales
+                    {t('about:exploreIDOs.card.seeActive')}
                   </Button>
                   <Button
                     variant="outline-primary"
@@ -600,7 +488,7 @@ const HowItWorks = ({onNavigateToSimulator}) => {
                     className="px-4"
                     onClick={() => trackLinkClick('https://app.alphamind.co/build_karma/', 'Join IDO Quests', 'about_page')}
                   >
-                    Join IDO Quests
+                    {t('about:exploreIDOs.card.joinQuests')}
                   </Button>
                   <Button
                     variant="outline-secondary"
@@ -610,7 +498,7 @@ const HowItWorks = ({onNavigateToSimulator}) => {
                     className="px-4"
                     onClick={() => trackLinkClick('https://alphamind.co/', 'About AlphaMind', 'about_page')}
                   >
-                    About AlphaMind
+                    {t('about:exploreIDOs.card.aboutAlphaMind')}
                   </Button>
                 </div>
               </Card.Body>
@@ -626,53 +514,29 @@ const HowItWorks = ({onNavigateToSimulator}) => {
         <Row className="justify-content-center">
           <Col lg={8} className="text-center">
             <h2 className="display-5 fw-bold mb-4">
-              Privacy-First by Design
+              {t('about:privacy.title')}
             </h2>
 
             <Row className="g-4 mt-3">
-              <Col sm={6} lg={3}>
-                <Card className="h-100 border-0 shadow-sm">
-                  <Card.Body className="p-4 text-center">
-                    <FaShieldAlt className="text-primary mb-3" style={{fontSize: '2.5rem'}}/>
-                    <h5 className="fw-bold">No Tracking</h5>
-                    <p className="text-muted small">We don't track or store anything</p>
-                  </Card.Body>
-                </Card>
-              </Col>
-
-              <Col sm={6} lg={3}>
-                <Card className="h-100 border-0 shadow-sm">
-                  <Card.Body className="p-4 text-center">
-                    <FaLock className="text-primary mb-3" style={{fontSize: '2.5rem'}}/>
-                    <h5 className="fw-bold">No Wallet</h5>
-                    <p className="text-muted small">No wallet connection required</p>
-                  </Card.Body>
-                </Card>
-              </Col>
-
-              <Col sm={6} lg={3}>
-                <Card className="h-100 border-0 shadow-sm">
-                  <Card.Body className="p-4 text-center">
-                    <FaUser className="text-primary mb-3" style={{fontSize: '2.5rem'}}/>
-                    <h5 className="fw-bold">No Account</h5>
-                    <p className="text-muted small">No account needed</p>
-                  </Card.Body>
-                </Card>
-              </Col>
-
-              <Col sm={6} lg={3}>
-                <Card className="h-100 border-0 shadow-sm">
-                  <Card.Body className="p-4 text-center">
-                    <FaRocket className="text-primary mb-3" style={{fontSize: '2.5rem'}}/>
-                    <h5 className="fw-bold">Browser-Only</h5>
-                    <p className="text-muted small">Everything runs in your browser</p>
-                  </Card.Body>
-                </Card>
-              </Col>
+              {Array.isArray(t('about:privacy.features', { returnObjects: true })) 
+                ? t('about:privacy.features', { returnObjects: true }).map((feature, index) => (
+                <Col sm={6} lg={3} key={index}>
+                  <Card className="h-100 border-0 shadow-sm">
+                    <Card.Body className="p-4 text-center">
+                      {index === 0 && <FaShieldAlt className="text-primary mb-3" style={{fontSize: '2.5rem'}}/>}
+                      {index === 1 && <FaLock className="text-primary mb-3" style={{fontSize: '2.5rem'}}/>}
+                      {index === 2 && <FaUser className="text-primary mb-3" style={{fontSize: '2.5rem'}}/>}
+                      {index === 3 && <FaRocket className="text-primary mb-3" style={{fontSize: '2.5rem'}}/>}
+                      <h5 className="fw-bold">{feature.title}</h5>
+                      <p className="text-muted small">{feature.description}</p>
+                    </Card.Body>
+                  </Card>
+                </Col>
+              )) : null}
             </Row>
 
             <p className="text-muted mt-4">
-              Some advanced features may require $MIND tokens in the future.
+              {t('about:privacy.note')}
             </p>
           </Col>
         </Row>
@@ -684,11 +548,10 @@ const HowItWorks = ({onNavigateToSimulator}) => {
       <Container>
         <Row className="justify-content-center">
           <Col lg={8}>
-            <div className="text-muted small text-center">
-              <p className="mb-0">
-                <strong>Disclaimer:</strong> This simulator is for educational purposes only. ROI outputs are
-                hypothetical and not financial advice. Always DYOR. AlphaMind assumes no liability.
-              </p>
+            <div className="alert alert-warning">
+              <small>
+                {t('about:disclaimer')}
+              </small>
             </div>
           </Col>
         </Row>
@@ -696,27 +559,27 @@ const HowItWorks = ({onNavigateToSimulator}) => {
     </section>
 
     {/* CTA Section */}
-    <section className="py-5 bg-primary text-white">
+    <section className="py-5 bg-primary text-white text-center">
       <Container>
-        <Row>
-          <Col lg={8} className="mx-auto text-center">
-            <h2 className="display-5 fw-bold mb-4">
-              Ready to Simulate Your IDO Returns?
+        <Row className="justify-content-center">
+          <Col lg={8}>
+            <h2 className="display-5 fw-bold mb-3">
+              {t('about:ctaSection.title')}
             </h2>
             <p className="lead mb-4">
-              Start using our free tool now to see your real ROI potential.
+              {t('about:ctaSection.description')}
             </p>
             <Button
               variant="light"
               size="lg"
-              className="px-5 py-3 fw-bold"
+              className="px-4 py-2 fw-bold"
               onClick={() => {
-                trackButtonClick('try_simulator', 'Try the Simulator', 'about_page');
+                trackButtonClick('About Page CTA Button');
                 onNavigateToSimulator();
               }}
             >
-              Try the Simulator
-              <FaArrowRight className="ms-2"/>
+              <FaArrowRight className="me-2"/>
+              {t('about:cta.button')}
             </Button>
           </Col>
         </Row>

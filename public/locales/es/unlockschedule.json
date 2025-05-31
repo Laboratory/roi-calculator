@@ -1,0 +1,50 @@
+{
+  "chart": {
+    "title": "Calendario de Desbloqueo de Tokens",
+    "tooltip": "Este gráfico muestra cómo sus tokens se liberarán con el tiempo según el calendario de consolidación.",
+    "labels": {
+      "percentage": "Porcentaje (%)",
+      "period": "Período",
+      "tokenUnlocked": "Tokens {{tokenName}} Desbloqueados",
+      "tokensUnlocked": "{{tokenName}} Desbloqueados: {{value}}"
+    },
+    "periodLabels": {
+      "month": "Mes {{month}}",
+      "week": "Semana {{week}}",
+      "monthWithDate": "Mes {{month}} — {{date}}",
+      "weekWithDate": "Semana {{week}} — {{date}}",
+      "tge": "TGE — {{date}}"
+    }
+  },
+  "details": {
+    "title": "Detalles del Calendario de Desbloqueo",
+    "tooltip": "Esta tabla proporciona un desglose detallado del calendario de desbloqueo de sus tokens, incluyendo fechas exactas, porcentajes y valores estimados.",
+    "columns": {
+      "period": {
+        "title": "Período",
+        "tooltip": "El número del período de desbloqueo, siendo TGE (Evento de Generación de Tokens) el desbloqueo inicial."
+      },
+      "time": {
+        "title": "Tiempo",
+        "tooltip": "La fecha específica cuando los tokens serán desbloqueados. Muestra el número de mes si no se proporcionó una fecha de TGE."
+      },
+      "percentage": {
+        "title": "Porcentaje",
+        "tooltip": "El porcentaje de sus tokens totales que se desbloquearán durante este período."
+      },
+      "tokens": {
+        "title": "Tokens",
+        "tooltip": "El número real de tokens que se desbloquearán durante este período."
+      },
+      "value": {
+        "title": "Valor Estimado",
+        "tooltip": "El valor estimado en USD de los tokens desbloqueados en este período, calculado utilizando el escenario de precio base."
+      }
+    }
+  },
+  "summary": {
+    "title": "Resumen Total de Desbloqueo",
+    "tooltip": "Un resumen de todo el calendario de desbloqueo, mostrando el porcentaje total, tokens y valor estimado.",
+    "totalRow": "Total"
+  }
+}

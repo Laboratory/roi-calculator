@@ -1,0 +1,17 @@
+{
+  "selectLanguage": "Select language",
+  "switchTo": "Switch to",
+  "currentLanguage": "Current language",
+  "languageNames": {
+    "en": "English",
+    "ru": "Russian",
+    "es": "Spanish",
+    "tr": "Turkish"
+  },
+  "languageNativeNames": {
+    "en": "English",
+    "ru": "Русский",
+    "es": "Español",
+    "tr": "Türkçe"
+  }
+}

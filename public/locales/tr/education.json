@@ -1,0 +1,323 @@
+{
+  "title": "IDO ROI Simülatörü Eğitimi",
+  "subtitle": "Simülatörümüzü kullanarak bilinçli token yatırım kararları vermeyi öğrenin. Önceden kripto bilgisi gerekmez.",
+  "description": "Token yatırımları, kilit açma takvimleri ve simülatörümüzün sonuçlarını nasıl yorumlayacağınız hakkında bilmeniz gereken her şeyi öğrenin.",
+  "sections": {
+    "basics": {
+      "title": "Yatırım Temelleri",
+      "topics": {
+        "ido": {
+          "title": "IDO nedir?",
+          "content": "Initial DEX Offering (IDO), yeni projelerin tokenlerini merkezi olmayan borsalar aracılığıyla sattığı bir fon toplama yöntemidir. ICO'ların aksine, IDO'lar anında likidite ve genellikle daha düşük maliyetler sunar."
+        },
+        "roi": {
+          "title": "ROI'yi Anlamak",
+          "content": "Yatırım Getirisi (ROI), bir yatırımın karlılığını orijinal maliyetin yüzdesi olarak ölçer. Kriptoda ROI, token fiyat değişimleri, kilit açma takvimleri ve piyasa koşullarından etkilenir."
+        },
+        "fdv": {
+          "title": "Tam Seyreltilmiş Değerleme (FDV)",
+          "content": "FDV, tüm arzı mevcut fiyattan dolaşımda olsaydı bir tokenin teorik değerini temsil eder. Genellikle gerçekçi olmayan beklentiler yaratan maksimum bir değerleme metriğidir."
+        }
+      }
+    },
+    "tokenomics": {
+      "title": "Tokenomics 101",
+      "topics": {
+        "supply": {
+          "title": "Token Arz Metrikleri",
+          "content": "Toplam arz, hiç var olacak tüm tokenleri ifade ederken, dolaşımdaki arz şu anda piyasada mevcut olan tokenleri temsil eder. Fark genellikle kilitli veya vesting durumundadır."
+        },
+        "unlocks": {
+          "title": "Token Kilit Açmaları",
+          "content": "Token kilit açmaları, önceden kilitlenmiş tokenlerin dolaşıma planlı olarak serbest bırakılmasını ifade eder. Kilit açmalar genellikle satış baskısını artırır ve token fiyatını olumsuz etkileyebilir."
+        },
+        "vesting": {
+          "title": "Vesting Takvimleri",
+          "content": "Vesting, tokenlerin yatırımcılara, ekip üyelerine veya diğer paydaşlara önceden belirlenmiş bir takvime göre kademeli olarak serbest bırakıldığı süreçtir."
+        }
+      }
+    },
+    "simulation": {
+      "title": "Simülatörü Kullanma",
+      "topics": {
+        "scenarios": {
+          "title": "Piyasa Senaryoları",
+          "content": "Simülatörümüz, farklı piyasa ortamlarında potansiyel sonuçları görmek için ayı, nötr ve boğa piyasa koşullarını modellemenize olanak tanır."
+        },
+        "exit": {
+          "title": "Çıkış Stratejinizi Planlama",
+          "content": "Potansiyel satış baskısı dönemlerini belirlemek ve çıkış stratejinizi buna göre planlamak için kilit açma takvimi verilerini kullanın."
+        },
+        "interpretation": {
+          "title": "Sonuçları Yorumlama",
+          "content": "Simülasyon sonuçlarını nasıl okuyacağınızı ve içgörüleri yatırım stratejinize nasıl uygulayacağınızı öğrenin."
+        }
+      }
+    },
+    "advanced": {
+      "title": "Gelişmiş Stratejiler",
+      "topics": {
+        "dca": {
+          "title": "Maliyet Ortalaması",
+          "content": "Hepsini bir kerede yatırmak yerine, volatilitenin etkisini azaltmak için yatırımınızı birden fazla giriş noktasına yayma seçeneğini düşünün."
+        },
+        "risk": {
+          "title": "Risk Yönetimi",
+          "content": "Asla kaybetmeyi göze alabileceğinizden fazlasını yatırmayın ve birden fazla projeye çeşitlendirmeyi düşünün."
+        },
+        "research": {
+          "title": "Detaylı İnceleme",
+          "content": "Yatırım yapmadan önce her zaman projenin ekibini, teknolojisini ve tokenomisini araştırmayın."
+        }
+      }
+    }
+  },
+  "glossary": {
+    "title": "Kripto Yatırım Sözlüğü",
+    "terms": {
+      "ath": {
+        "term": "ATH",
+        "definition": "All-Time High - Bir tokenin şimdiye kadar ulaştığı en yüksek fiyat."
+      },
+      "dex": {
+        "term": "DEX",
+        "definition": "Merkezi Olmayan Borsa - Merkezi bir otorite olmadan kripto para ticareti yapmak için bir platform."
+      },
+      "mcap": {
+        "term": "MCAP",
+        "definition": "Piyasa Değeri - Bir tokenin dolaşımdaki arzının toplam değeri (fiyat × dolaşımdaki arz)."
+      },
+      "tge": {
+        "term": "TGE",
+        "definition": "Token Oluşturma Etkinliği - Tokenlerin ilk kez oluşturulduğu ve ilk yatırımcılara dağıtıldığı zaman."
+      },
+      "seed": {
+        "term": "Seed Turu",
+        "definition": "Yatırımcıların tokenleri en düşük fiyattan aldığı en erken finansman turu."
+      },
+      "private": {
+        "term": "Özel Satış",
+        "definition": "Genellikle halka açık satışlardan önce indirimli olarak sadece seçilmiş yatırımcılara açık olan token satışı."
+      }
+    }
+  },
+  "resources": {
+    "title": "Ek Kaynaklar",
+    "description": "Daha fazla bilgi edinmek ister misiniz? Bu kaynaklara göz atın:"
+  },
+  "cta": {
+    "trySimulator": "Simülatörü Deneyin",
+    "title": "Yatırımınızı Planlamaya Hazır mısınız?",
+    "description": "Artık simülatörün nasıl çalıştığını ve parametrelerin ne anlama geldiğini anladığınıza göre, kendi yatırım detaylarınızla deneyin."
+  },
+  "intro": {
+    "title": "IDO ROI Simülatörü Nedir?",
+    "paragraph1": "IDO ROI Simülatörü, token ön satışları ve İlk DEX Teklifleri (IDO'lar) için potansiyel yatırım getirisini (ROI) tahmin etmenize yardımcı olan bir araçtır. Yatırım potansiyelinizin gerçekçi bir görünümünü sunmak için token kilit açma takvimlerini, hak ediş dönemlerini ve çeşitli piyasa senaryolarını dikkate alır.",
+    "paragraph2": "Sadece tamamen seyreltilmiş değerlemeyi (FDV) dikkate alan basitleştirilmiş hesaplayıcıların aksine, simülatörümüz tokenlerinizin ne zaman kullanılabilir olacağını ve farklı piyasa koşullarında getirilerinizin nasıl görünebileceğini tam olarak gösterir.",
+    "whyMatters": {
+      "title": "Neden önemli:",
+      "content": "Birçok yatırımcı, token hak ediş takvimlerini ve değişen piyasa koşullarını hesaba katmadıkları için IDO getirilerinden hayal kırıklığına uğrar. Bu simülatör, gerçekçi beklentiler belirlemenize ve daha iyi yatırım kararları almanıza yardımcı olur."
+    }
+  },
+  "howToUse": {
+    "title": "Simülatör Nasıl Kullanılır",
+    "step1": {
+      "title": "Yatırım Detaylarınızı Girin",
+      "description": "Token fiyatını, yatırım miktarınızı ve alacağınız token sayısını girin. Bu değerler projenin belgelerinde veya yatırım portalında bulunmalıdır.",
+      "example": {
+        "title": "Örnek:",
+        "tokenPrice": "Token fiyatı: $0.05",
+        "investmentAmount": "Yatırım: $1,000",
+        "tokens": "Tokenler: 20,000"
+      }
+    },
+    "step2": {
+      "title": "Token Kilit Açma Takvimini Belirleyin",
+      "description": "TGE %'sini (başlangıçta kullanılabilir tokenler), cliff dönemini (daha fazla token kilidinin açılması için bekleme süresi) ve hak ediş dönemini (tüm tokenlerin serbest bırakılması için geçen süre) girin.",
+      "example": {
+        "title": "Örnek:",
+        "tgePercent": "TGE: %10",
+        "cliffPeriod": "Cliff: 1 ay",
+        "vestingPeriod": "Hak ediş: 12 ay"
+      }
+    },
+    "step3": {
+      "title": "Farklı Piyasa Senaryoları için Fiyat Hedefleri Belirleyin",
+      "description": "Ayı (kötümser), temel (gerçekçi) ve boğa (iyimser) piyasa koşullarında beklenen token fiyatlarınızı tanımlayın.",
+      "example": {
+        "title": "Örnek:",
+        "bearPrice": "Ayı: Token başına $0.08 (IDO fiyatından %60 artış)",
+        "basePrice": "Temel: Token başına $0.15 (IDO fiyatından %200 artış)",
+        "bullPrice": "Boğa: Token başına $0.50 (IDO fiyatından %900 artış)"
+      }
+    },
+    "step4": {
+      "title": "Sonuçları Analiz Edin",
+      "description": "Oluşturulan kilit açma takvimini, aylık ROI dökümünü ve her piyasa senaryosunda genel getiri projeksiyonlarını inceleyin.",
+      "keyInsights": {
+        "title": "Dikkat edilmesi gereken önemli noktalar:",
+        "breakEvenPoint": "Yatırımınızı ne zaman kurtaracağınız",
+        "tokenUnlocks": "Token kilit açmalarının zaman içinde toplam varlıklarınızı nasıl etkilediği",
+        "maxPotentialROI": "Farklı piyasa koşullarında maksimum potansiyel ROI"
+      }
+    }
+  },
+  "parameters": {
+    "title": "Simülatör Parametreleri Açıklaması",
+    "tip": {
+      "title": "İpucu:"
+    },
+    "example": {
+      "title": "Örnek:"
+    },
+    "tokenPrice": {
+      "name": "Token Fiyatı",
+      "description": "Ön satış veya IDO sırasındaki token başına fiyat. Bu, her token için ödediğiniz miktardır.",
+      "tips": "Genellikle borsalardaki beklenen listeleme fiyatından çok daha düşüktür.",
+      "example": "Token başına $0.05"
+    },
+    "investmentAmount": {
+      "name": "Yatırım Miktarı",
+      "description": "Token satışına yatırdığınız toplam para miktarı.",
+      "tips": "Sadece kaybetmeyi göze alabileceğiniz miktarı yatırın.",
+      "example": "$1,000"
+    },
+    "tgePercent": {
+      "name": "TGE %",
+      "description": "Token Oluşturma Etkinliğinde hemen serbest bırakılan toplam token tahsisatınızın yüzdesi.",
+      "tips": "Daha düşük TGE % değeri, daha fazla tokenin hak edişte kilitli olduğu anlamına gelir.",
+      "example": "%10 (tokenlerinizin TGE'de kullanılabilir olanı)"
+    },
+    "cliffPeriod": {
+      "name": "Cliff Dönemi",
+      "description": "TGE'den sonra ek tokenlerin kilidinin açılmadığı bir dönem.",
+      "tips": "Daha uzun cliff'ler, bu süre zarfında satış yapamayacağınız için daha riskli olabilir.",
+      "example": "3 ay"
+    },
+    "vestingPeriod": {
+      "name": "Hak Ediş Dönemi",
+      "description": "Kalan tokenlerinizin (TGE'den sonra) kademeli olarak kilidinin açılacağı toplam süre.",
+      "tips": "Daha kısa hak ediş dönemleri genellikle yatırımcılar için daha iyidir.",
+      "example": "12 ay"
+    },
+    "totalTokenSupply": {
+      "name": "Toplam Token Arzı",
+      "description": "Bu proje için var olacak toplam token sayısı.",
+      "tips": "Tamamen seyreltilmiş değerlemeyi (FDV) hesaplamak için kullanılır.",
+      "example": "100,000,000 token"
+    },
+    "bearPrice": {
+      "name": "Ayı Fiyatı",
+      "description": "Olumsuz bir piyasa senaryosunda tahmini token fiyatı.",
+      "tips": "Riskinizi değerlendirmek için her zaman bu senaryoyu planlayın.",
+      "example": "Token başına $0.08 (IDO fiyatından %60 artış)"
+    },
+    "basePrice": {
+      "name": "Temel Fiyat",
+      "description": "Nötr bir piyasa senaryosunda tahmini token fiyatı.",
+      "tips": "Bu, birçok durumda en olası sonuçtur.",
+      "example": "Token başına $0.15 (IDO fiyatından %200 artış)"
+    },
+    "bullPrice": {
+      "name": "Boğa Fiyatı",
+      "description": "Olumlu bir piyasa senaryosunda tahmini token fiyatı.",
+      "tips": "Gerçekçi olun - her proje 100x yapmayacaktır.",
+      "example": "Token başına $0.50 (IDO fiyatından %900 artış)"
+    }
+  },
+  "glossary": {
+    "title": "Terimler Sözlüğü",
+    "term": "Terim",
+    "definition": "Tanım",
+    "allTerms": "Tüm Terimler",
+    "generalTerms": "Genel",
+    "investmentTerms": "Yatırım",
+    "vestingTerms": "Hak Ediş",
+    "valuationTerms": "Değerleme",
+    "marketTerms": "Piyasa",
+    "categories": {
+      "general": "genel",
+      "investment": "yatırım",
+      "vesting": "hak ediş",
+      "valuation": "değerleme",
+      "market": "piyasa"
+    },
+    "terms": {
+      "ido": {
+        "term": "IDO",
+        "definition": "Initial DEX Offering (İlk DEX Teklifi) - Yeni kripto para projelerinin tokenlerini merkezi olmayan borsalar aracılığıyla doğrudan sattığı bir fon toplama yöntemi."
+      },
+      "roi": {
+        "term": "ROI",
+        "definition": "Return on Investment (Yatırım Getirisi) - Bir yatırımdan elde edilen kâr veya zarar, başlangıç maliyetinin yüzdesi olarak ifade edilir."
+      },
+      "tge": {
+        "term": "TGE",
+        "definition": "Token Generation Event (Token Oluşturma Etkinliği) - Bir projenin tokenlerinin oluşturulduğu ve ilk yatırımcılara dağıtıldığı an."
+      },
+      "tgePercent": {
+        "term": "TGE %",
+        "definition": "Token Oluşturma Etkinliğinde kullanılabilir hale gelen toplam token tahsisatınızın yüzdesi."
+      },
+      "cliff": {
+        "term": "Cliff",
+        "definition": "TGE'den sonra hiçbir tokenin kilidinin açılmadığı bir dönem."
+      },
+      "vesting": {
+        "term": "Hak Ediş",
+        "definition": "Tokenlerin önceden belirlenmiş bir takvime göre zaman içinde kademeli olarak serbest bırakılması süreci."
+      },
+      "vestingPeriod": {
+        "term": "Hak Ediş Dönemi",
+        "definition": "Tüm tokenlerin serbest bırakılacağı toplam süre."
+      },
+      "fdv": {
+        "term": "FDV",
+        "definition": "Fully Diluted Valuation (Tamamen Seyreltilmiş Değerleme) - Tüm tokenler dolaşımda olsaydı bir kripto para projesinin teorik değeri."
+      },
+      "marketCap": {
+        "term": "Piyasa Değeri",
+        "definition": "Dolaşımdaki tüm tokenlerin toplam değeri, mevcut fiyat ile dolaşımdaki arz çarpılarak hesaplanır."
+      },
+      "bearMarket": {
+        "term": "Ayı Piyasası",
+        "definition": "Fiyatların düştüğü ve yatırımcı güveninin düşük olduğu bir piyasa durumu."
+      },
+      "baseMarket": {
+        "term": "Temel Piyasa",
+        "definition": "Beklenen ortalama durum senaryosunu temsil eden, ılımlı büyüme gösteren bir piyasa durumu."
+      },
+      "bullMarket": {
+        "term": "Boğa Piyasası",
+        "definition": "Fiyatların yükseldiği ve yatırımcı güveninin yüksek olduğu bir piyasa durumu."
+      },
+      "unlockSchedule": {
+        "term": "Kilit Açma Takvimi",
+        "definition": "Tokenlerin hak ediş kısıtlamalarından ne zaman serbest bırakılacağını ve ticaret için ne zaman kullanılabilir olacağını detaylandıran zaman çizelgesi."
+      },
+      "breakEvenPoint": {
+        "term": "Başabaş Noktası",
+        "definition": "Bir yatırımdan elde edilen getirilerin yatırımın maliyetine eşit olduğu nokta."
+      }
+    }
+  },
+  "commonMistakes": {
+    "title": "Yaygın Yatırımcı Hataları",
+    "mistake1": {
+      "title": "Hak Ediş Takvimlerini Göz Ardı Etmek",
+      "description": "Birçok yatırımcı, token kilit açmalarının gerçek getirilerini nasıl etkilediğini dikkate almadan sadece başlangıç fiyatına odaklanır. Tokenleri ancak kilitleri açıldıktan sonra satabileceğinizi ve o zamana kadar piyasa koşullarının değişmiş olabileceğini unutmayın."
+    },
+    "mistake2": {
+      "title": "Piyasa Performansını Abartmak",
+      "description": "Sadece boğa piyasası senaryolarına odaklanmak cazip gelebilir, ancak gerçeklik genellikle temel ve ayı durumları arasında bir yerde olur. Yatırım kararları alırken her zaman tüm senaryoları dikkate alın."
+    },
+    "mistake3": {
+      "title": "FDV'yi (Tamamen Seyreltilmiş Değerleme) Anlamamak",
+      "description": "Projeler genellikle, sonunda dolaşıma girecek tüm tokenleri içeren tamamen seyreltilmiş değerlemeden bahsetmeden mevcut değerlemelerini tanıtırlar. Bu, daha fazla token kilidi açıldığında fiyat sürprizlerine yol açabilir."
+    },
+    "mistake4": {
+      "title": "Diğer Yatırımcıların Kilit Açmalarını Unutmak",
+      "description": "Kilidi açılan tokenler sadece sizinkiler değil. VC'ler, ekip üyeleri ve diğer erken yatırımcıların tokenleri kilit açtığında, belirli zamanlarda satış yaparak fiyat üzerinde aşağı yönlü baskı oluşturabilirler."
+    }
+  }
+}

@@ -1,5 +1,6 @@
 import React, { lazy, Suspense, useEffect, useState } from 'react';
 import { Container, Nav, Tab } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
 import SEO from './SEO';
 import { seoConfig } from '../config/seo';
 import { trackEvent, trackTabChange } from '../utils/analytics';
@@ -10,22 +11,26 @@ const UnlockSchedule = lazy(() => import('./UnlockSchedule'));
 const MonthlyROIBreakdown = lazy(() => import('./MonthlyROIBreakdown'));
 
 // Loading component for suspense fallback
-const ComponentLoader = () => (
-  <div className="p-4 text-center">
-    <div className="spinner-border text-primary" role="status">
-      <span className="visually-hidden">Loading...</span>
+const ComponentLoader = () => {
+  const { t } = useTranslation();
+  return (
+    <div className="p-4 text-center">
+      <div className="spinner-border text-primary" role="status">
+        <span className="visually-hidden">{t('general.loading')}</span>
+      </div>
+      <p className="mt-2">{t('general.loading')}</p>
     </div>
-    <p className="mt-2">Loading component...</p>
-  </div>
-);
+  );
+};
 
 const Simulator = () => {
   const [calculationData, setCalculationData] = useState(null);
   const [activeTab, setActiveTab] = useState('input');
   const [isTabChanging, setIsTabChanging] = useState(false);
+  const { t } = useTranslation(['common', 'calculator']);
 
   // Get SEO config for this page
-  const {title, description, canonicalUrl, schema} = seoConfig.home;
+  const {title, description, canonicalUrl, schema, pageKey} = seoConfig.home;
 
   const handleCalculate = (data) => {
     setCalculationData(data);
@@ -48,47 +53,53 @@ const Simulator = () => {
     }, 100);
   };
 
-  const handleTabChange = (newTab) => {
-    if (newTab === activeTab) return;
+  const handleTabChange = (tabKey) => {
+    setIsTabChanging(true);
+    setActiveTab(tabKey);
 
     // Track tab change
-    trackTabChange(newTab, activeTab);
+    trackTabChange('calculator_tab', tabKey);
 
-    setIsTabChanging(true);
+    // Prevent focus issues during tab transition
     setTimeout(() => {
-      setActiveTab(newTab);
       setIsTabChanging(false);
-    }, 300);
+    }, 50);
   };
+
+  // Transition to unlock schedule tab after calculations are done
+  useEffect(() => {
+    if (calculationData && activeTab === 'input') {
+      setActiveTab('monthly');
+    }
+  }, [calculationData, activeTab]);
 
   return (
     <Container className="py-4 simulator-container">
-      <SEO
+      <SEO 
         title={title}
         description={description}
         canonicalUrl={canonicalUrl}
         schema={schema}
+        pageKey={pageKey}
       />
-
+      
       <div className="simulator-header">
-        <h1>Token Unlock & ROI Simulator</h1>
-        <p className="subtitle">Uncover real returns. Visualize token unlocks. Break free from FDV illusions.</p>
-        <p className="description">Simulate your returns from any token presale, forecast token unlocks, and plan
-          smarter exits under different market scenarios. Free, fast, and privacy-safe. Built by AlphaMind to protect
-          retail investors.</p>
+        <h1>{t('calculator:title')}</h1>
+        <p className="subtitle">{t('calculator:subtitle')}</p>
+        <p className="description">{t('calculator:description')}</p>
       </div>
 
       <div className="simulator-body">
         <Tab.Container activeKey={activeTab} onSelect={handleTabChange}>
           <Nav className="simulator-tabs" variant="tabs">
             <Nav.Item>
-              <Nav.Link eventKey="input">Presale Setup</Nav.Link>
+              <Nav.Link eventKey="input">{t('calculator:form.sections.projectDetails')}</Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link eventKey="unlock" disabled={!calculationData}>Unlock Schedule</Nav.Link>
+              <Nav.Link eventKey="monthly" disabled={!calculationData}>{t('calculator:results.title')}</Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link eventKey="monthly" disabled={!calculationData}>ROI Over Time</Nav.Link>
+              <Nav.Link eventKey="unlock" disabled={!calculationData}>{t('calculator:form.unlockSchedule.title')}</Nav.Link>
             </Nav.Item>
           </Nav>
 
@@ -96,15 +107,17 @@ const Simulator = () => {
             <Tab.Pane eventKey="input"
                       className={`tab-pane ${activeTab === 'input' ? 'active fade-in' : ''} ${isTabChanging ? 'fade-out' : ''}`}>
               {activeTab === 'input' && (
-                <SimulatorForm onCalculate={handleCalculate}/>
+                <Suspense fallback={<ComponentLoader />}>
+                  <SimulatorForm onCalculate={handleCalculate} calculationData={calculationData} />
+                </Suspense>
               )}
             </Tab.Pane>
 
             <Tab.Pane eventKey="monthly"
                       className={`tab-pane ${activeTab === 'monthly' ? 'active fade-in' : ''} ${isTabChanging ? 'fade-out' : ''}`}>
               {activeTab === 'monthly' && calculationData && (
-                <Suspense fallback={<ComponentLoader/>}>
-                  <MonthlyROIBreakdown results={calculationData}/>
+                <Suspense fallback={<ComponentLoader />}>
+                  <MonthlyROIBreakdown data={calculationData} />
                 </Suspense>
               )}
             </Tab.Pane>
@@ -112,8 +125,8 @@ const Simulator = () => {
             <Tab.Pane eventKey="unlock"
                       className={`tab-pane ${activeTab === 'unlock' ? 'active fade-in' : ''} ${isTabChanging ? 'fade-out' : ''}`}>
               {activeTab === 'unlock' && calculationData && (
-                <Suspense fallback={<ComponentLoader/>}>
-                  <UnlockSchedule results={calculationData}/>
+                <Suspense fallback={<ComponentLoader />}>
+                  <UnlockSchedule data={calculationData} />
                 </Suspense>
               )}
             </Tab.Pane>
@@ -122,6 +135,6 @@ const Simulator = () => {
       </div>
     </Container>
   );
-}
+};
 
 export default Simulator;

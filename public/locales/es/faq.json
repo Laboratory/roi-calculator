@@ -1,0 +1,151 @@
+{
+  "title": "Preguntas",
+  "questions": "Frecuentes",
+  "subtitle": "Encuentra respuestas a preguntas comunes sobre el Simulador de ROI de Tokens, calendarios de desbloqueo y funciones de análisis de inversión.",
+  "description": "Respuestas a preguntas comunes sobre cómo simular calendarios de desbloqueo de tokens y evaluar retornos potenciales.",
+  "helpCenter": "Centro de Ayuda",
+  "popular": "Populares",
+  "mostFrequentlyAsked": "Preguntas más frecuentes de nuestros usuarios",
+  "noResultsFound": "No se encontraron resultados",
+  "tryAnotherSearch": "Intente ajustar sus términos de búsqueda o explore diferentes categorías.",
+  "clearFilters": "Borrar Filtros",
+  "question": "Pregunta",
+  "trySimulator": "Probar Simulador",
+  "contactSupport": "Contactar Soporte",
+  "popularQuestion": "Popular",
+  "allQuestions": "Todas las Preguntas",
+  "categories": {
+    "title": "Categorías",
+    "all": {
+      "title": "Todas las Preguntas"
+    },
+    "general": {
+      "title": "General",
+      "questions": {
+        "q1": {
+          "question": "¿Es gratuito este simulador?",
+          "answer": "¡Sí, completamente gratuito! No hay tarifas ocultas, suscripciones o características premium. Toda la funcionalidad está disponible para todos sin costo."
+        },
+        "q2": {
+          "question": "¿Quién debería usar este simulador?",
+          "answer": "Diseñado para inversores minoristas que participan en preventas de tokens, rondas privadas o cualquier inversión con calendarios de vesting. Útil para cualquiera que quiera modelar retornos potenciales de inversiones en tokens bloqueados."
+        },
+        "q3": {
+          "question": "¿Mis datos son privados?",
+          "answer": "Sí, no almacenamos ninguno de sus detalles de inversión o cálculos. Todos los datos permanecen en su navegador y no se envían a nuestros servidores."
+        }
+      }
+    },
+    "simulator": {
+      "title": "Simulador",
+      "questions": {
+        "q1": {
+          "question": "¿Cómo uso el Simulador de ROI de Tokens?",
+          "answer": "Simplemente ingrese su monto de inversión, asignación de tokens, calendario de desbloqueo y escenarios de precio (bajista, base, alcista) en la pestaña de Configuración de Preventa. El simulador calculará automáticamente sus retornos potenciales, puntos de equilibrio y proporcionará un análisis detallado de ROI a lo largo del tiempo."
+        },
+        "q2": {
+          "question": "¿Qué información necesito para comenzar a simular?",
+          "answer": "Necesita: (1) Su monto de inversión en USD, (2) Número de tokens asignados, (3) Detalles del calendario de desbloqueo (período de cliff, duración del vesting), y (4) Precios esperados del token para diferentes escenarios de mercado."
+        },
+        "q3": {
+          "question": "¿Puedo guardar mis cálculos para más tarde?",
+          "answer": "Actualmente, los cálculos se basan en la sesión y no se guardan permanentemente. Recomendamos tomar capturas de pantalla o notas de resultados importantes. Las actualizaciones futuras pueden incluir opciones de almacenamiento local."
+        },
+        "q4": {
+          "question": "¿Qué sucede si cometo un error en mis entradas?",
+          "answer": "Puede modificar fácilmente cualquier campo de entrada y recalcular al instante. El simulador actualiza los resultados en tiempo real a medida que cambia los parámetros, facilitando la exploración de diferentes escenarios."
+        },
+        "q5": {
+          "question": "¿Cómo interpreto el gráfico y la tabla de ROI a lo largo del tiempo?",
+          "answer": "El gráfico y la tabla de ROI a lo largo del tiempo muestran sus retornos potenciales a lo largo del tiempo, incluidos los puntos de equilibrio, los retornos mensuales y los retornos acumulativos. El verde indica retornos positivos, el rojo indica pérdidas."
+        },
+        "q6": {
+          "question": "¿Qué navegadores son compatibles?",
+          "answer": "Funciona en todos los navegadores modernos, incluidos Chrome, Firefox, Safari y Edge. Los navegadores móviles también son totalmente compatibles con diseño responsive para smartphones y tablets."
+        }
+      }
+    },
+    "roi": {
+      "title": "Análisis de ROI",
+      "questions": {
+        "q1": {
+          "question": "¿Qué son los tres escenarios de precio (Bajista, Base, Alcista)?",
+          "answer": "Estos representan diferentes condiciones de mercado: el escenario Bajista asume condiciones de mercado pesimistas con precios de tokens más bajos, el escenario Base representa expectativas realistas, y el escenario Alcista asume un crecimiento optimista del mercado con precios más altos."
+        },
+        "q2": {
+          "question": "¿Qué tan precisos son los cálculos de ROI?",
+          "answer": "Los cálculos son matemáticamente precisos según sus entradas. Sin embargo, son proyecciones basadas en sus suposiciones de precio. Los retornos reales dependen de las condiciones reales del mercado, que pueden ser impredecibles."
+        },
+        "q3": {
+          "question": "¿Qué significa \"punto de equilibrio\" en los resultados?",
+          "answer": "El punto de equilibrio es cuando sus retornos totales igualan su inversión inicial (0% de ganancia/pérdida). El simulador muestra cuándo alcanza el punto de equilibrio en cada escenario de precio y destaca estos puntos en los gráficos."
+        },
+        "q4": {
+          "question": "¿Debo confiar en estas proyecciones para decisiones de inversión?",
+          "answer": "Use las proyecciones como una herramienta entre muchas para el análisis. Siempre haga su propia investigación, considere múltiples escenarios y nunca invierta más de lo que puede permitirse perder. Este es un software educativo, no un consejo financiero."
+        }
+      }
+    },
+    "unlock": {
+      "title": "Desbloqueos de Tokens",
+      "questions": {
+        "q1": {
+          "question": "¿Qué es un período de cliff en los desbloqueos de tokens?",
+          "answer": "Un período de cliff es el tiempo de espera inicial antes de que cualquier token esté disponible para operar. Por ejemplo, un cliff de 6 meses significa que no puede acceder a ningún token durante los primeros 6 meses después de su inversión."
+        },
+        "q2": {
+          "question": "¿Cómo funciona el vesting lineal?",
+          "answer": "El vesting lineal significa que los tokens se liberan gradualmente con el tiempo en porciones iguales. Si tiene un vesting lineal de 12 meses después de un cliff, sus tokens se desbloquearán en cuotas mensuales iguales durante ese período."
+        },
+        "q3": {
+          "question": "¿Puedo modelar ventas parciales de tokens durante el vesting?",
+          "answer": "La versión actual asume que mantiene todos los tokens hasta que se desbloquean. Las funciones avanzadas para modelar ventas parciales y estrategias de salida están planificadas para futuras actualizaciones."
+        }
+      }
+    },
+    "security": {
+      "title": "Seguridad y Privacidad",
+      "questions": {
+        "q1": {
+          "question": "¿Están seguros y privados mis datos de inversión?",
+          "answer": "Sí, absolutamente. Todos los cálculos se realizan localmente en su navegador. Ningún dato se envía a servidores externos, se almacena en bases de datos o se rastrea. Su información de inversión sensible nunca sale de su dispositivo."
+        },
+        "q2": {
+          "question": "¿Necesito crear una cuenta o registrarme?",
+          "answer": "¡No se requiere registro! Puede comenzar a usar el simulador inmediatamente sin proporcionar ninguna información personal, direcciones de correo electrónico o crear cuentas."
+        },
+        "q3": {
+          "question": "¿Puedo usar este simulador sin conexión?",
+          "answer": "El simulador requiere una conexión a Internet para cargarse inicialmente, pero una vez cargado, todos los cálculos funcionan sin conexión. No se necesita una conexión a Internet continua para los cálculos."
+        }
+      }
+    }
+  },
+  "stillHaveQuestions": {
+    "title": "¿Aún tienes",
+    "subtitle": "¿No encuentras lo que buscas? Nuestro equipo de soporte está aquí para ayudarte a aprovechar al máximo el Simulador de ROI de Tokens.",
+    "contact": "Contáctanos a través de nuestra comunidad de Discord o envía un correo electrónico a support@alphamind.co"
+  },
+  "quickStart": {
+    "title": "Inicio Rápido",
+    "description": "Comienza a simular tu ROI ahora mismo",
+    "button": "Comenzar Ahora"
+  },
+  "community": {
+    "title": "Comunidad",
+    "description": "Únete a nuestra comunidad de Discord",
+    "button": "Unirse a Discord"
+  },
+  "support": {
+    "title": "Soporte",
+    "description": "Obtén ayuda directa de nuestro equipo",
+    "button": "Contáctanos"
+  },
+  "proTip": {
+    "title": "💡 Consejo Pro",
+    "text": "Para obtener los resultados más precisos, investigue objetivos de precio realistas basados en proyectos comparables, condiciones del mercado y fundamentos de tokenomics."
+  },
+  "readyToTry": "¿Listo para probarlo tú mismo?",
+  "simulatorDescription": "Utiliza nuestro simulador para modelar tus propias inversiones en tokens y planificar mejores estrategias de salida.",
+  "trySimulatorNow": "Probar Simulador Ahora"
+}

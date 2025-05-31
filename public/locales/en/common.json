@@ -1,0 +1,75 @@
+{
+  "navigation": {
+    "home": "IDO ROI Simulator",
+    "calculator": "Simulator",
+    "about": "How It Works",
+    "education": "Education",
+    "faq": "FAQ"
+  },
+  "footer": {
+    "disclaimer": "Disclaimer: This calculator is for informational purposes only and does not constitute financial advice.",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service",
+    "copyright": "  {{year}} AlphaMind. All rights reserved."
+  },
+  "buttons": {
+    "calculate": "Calculate",
+    "reset": "Reset",
+    "share": "Share Results",
+    "export": "Export Data",
+    "copyLink": "Copy Link",
+    "back": "Back",
+    "next": "Next",
+    "submit": "Submit",
+    "learnMore": "Learn More",
+    "tryNow": "Try Now"
+  },
+  "errors": {
+    "404": "Page Not Found",
+    "goHome": "Return to Home",
+    "errorMessage": "The page you are looking for doesn't exist or has been moved.",
+    "serverError": "Server Error",
+    "formError": "Please correct the errors in the form",
+    "required": "This field is required",
+    "invalidNumber": "Please enter a valid number",
+    "greaterThanZero": "Value must be greater than zero",
+    "invalidDate": "Please enter a valid date",
+    "invalidEmail": "Please enter a valid email address"
+  },
+  "theme": {
+    "light": "Switch to light mode",
+    "dark": "Switch to dark mode",
+    "toggle": "Toggle Theme"
+  },
+  "language": {
+    "en": "English",
+    "ru": "Russian",
+    "es": "Spanish",
+    "tr": "Turkish",
+    "selectLanguage": "Language"
+  },
+  "general": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "save": "Save",
+    "cancel": "Cancel",
+    "close": "Close",
+    "apply": "Apply",
+    "back": "Back",
+    "next": "Next",
+    "readMore": "Read More",
+    "showLess": "Show Less",
+    "share": "Share",
+    "followUs": "Follow Us",
+    "noData": "No data available",
+    "comingSoon": "Coming Soon",
+    "search": "Search for answers..."
+  },
+  "notifications": {
+    "success": "Success!",
+    "error": "Error!",
+    "info": "Information",
+    "warning": "Warning",
+    "copied": "Copied to clipboard!"
+  }
+}

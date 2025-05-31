@@ -1,0 +1,261 @@
+{
+  "title": "Token Kilit Açma ve ROI Simülatörü",
+  "subtitle": "Gerçek getirileri keşfedin. Token kilit açılımlarını görselleştirin. FDV yanılsamalarından kurtulun.",
+  "description": "Herhangi bir token ön satışından elde edeceğiniz getirileri simüle edin, token kilit açılımlarını tahmin edin ve farklı piyasa senaryoları altında daha akıllı çıkışlar planlayın. Ücretsiz, hızlı ve gizlilik açısından güvenli. Perakende yatırımcıları korumak için AlphaMind tarafından oluşturulmuştur.",
+  
+  "form": {
+    "sections": {
+      "projectDetails": "Proje Detayları",
+      "investmentDetails": "Yatırım Detayları",
+      "marketScenarios": "Piyasa Senaryoları",
+      "results": "Sonuçlar",
+      "presaleSetup": "Ön Satış Ayarları"
+    },
+    "projectName": {
+      "label": "Proje Adı",
+      "placeholder": "Proje adını girin"
+    },
+    "projectIcon": {
+      "label": "Proje İkonu (isteğe bağlı)",
+      "placeholder": "Proje ikonunun URL'sini girin"
+    },
+    "tokenSymbol": {
+      "label": "Token Sembolü",
+      "placeholder": "Örn., BTC, ETH"
+    },
+    "tokenAmount": {
+      "label": "Token Miktarı",
+      "placeholder": "Yatırım ve fiyattan hesaplanır"
+    },
+    "investmentAmount": {
+      "label": "Yatırım Miktarı (USD)",
+      "placeholder": "Yatırım miktarını girin",
+      "tooltip": "USD olarak yatırdığınız para miktarı."
+    },
+    "tokenPrice": {
+      "label": "Giriş Anında Token Fiyatı (USD)",
+      "placeholder": "Token başına fiyat"
+    },
+    "totalSupply": {
+      "label": "Toplam Token Arzı",
+      "placeholder": "Toplam token sayısı",
+      "options": {
+        "10billion": "10 Milyar (10,000,000,000)",
+        "1billion": "1 Milyar (1,000,000,000)",
+        "100million": "100 Milyon (100,000,000)",
+        "custom": "Özel"
+      },
+      "note": "Yüksek FDV kurulumlarını ve kilit açma seyreltmesini tespit etmek için toplam arzı ekleyin."
+    },
+    "expectedListingPrice": {
+      "label": "Beklenen Liste Fiyatı (isteğe bağlı)",
+      "placeholder": "örn., 0.1"
+    },
+    "tgeDate": {
+      "label": "TGE Tarihi",
+      "placeholder": "gg.aa.yyyy",
+      "note": "Eğer sağlanırsa, sonuçlar gerçek takvim tarihlerini gösterecektir"
+    },
+    "vestingPeriod": {
+      "label": "Vesting Süresi (Ay)",
+      "placeholder": "Örn., 12, 24, 36"
+    },
+    "unlockSchedule": {
+      "title": "Kilit Açma Takvimi",
+      "periodLabel": {
+        "weekly": "Hafta #",
+        "monthly": "Ay"
+      },
+      "tgePercentage": {
+        "label": "TGE Kilit Açma (%)",
+        "placeholder": "Lansmandaki yüzde"
+      },
+      "unlockFrequency": {
+        "label": "Kilit Açma Sıklığı",
+        "options": {
+          "monthly": "Aylık",
+          "quarterly": "Üç Aylık",
+          "linear": "Doğrusal (Günlük)",
+          "weekly": "Haftalık"
+        }
+      },
+      "cliffPeriod": {
+        "label": "Cliff Süresi (Ay)",
+        "placeholder": "Tokenların kilit açılmaya başlamasından önceki aylar"
+      }
+    },
+    "generatedSchedule": {
+      "title": "Oluşturulan Kilit Açma Takvimi",
+      "period": "Dönem",
+      "time": "Zaman",
+      "percentage": "Yüzde (%)",
+      "tgeDate": "Ay 0",
+      "week0": "Hafta 0 (TGE)",
+      "month0": "Ay 0 (TGE)",
+      "week": "Hafta",
+      "month": "Ay",
+      "weekNote": "Hafta numaraları TGE tarihinden hesaplanır"
+    },
+    "marketScenarios": {
+      "title": "Piyasa Senaryoları",
+      "scenarioLabel": "Piyasa Getirisi",
+      "roiPlaceholder": "Getiri yüzdesi",
+      "calculatedPrice": "Hesaplanan fiyat:",
+      "bearish": {
+        "label": "Düşüş Piyasası Fiyatı (USD)",
+        "placeholder": "En düşük beklenen fiyat"
+      },
+      "neutral": {
+        "label": "Nötr Piyasa Fiyatı (USD)",
+        "placeholder": "Orta seviye beklenen fiyat"
+      },
+      "bullish": {
+        "label": "Yükseliş Piyasası Fiyatı (USD)",
+        "placeholder": "En yüksek beklenen fiyat"
+      }
+    },
+    "actions": {
+      "calculate": "ROI Hesapla",
+      "reset": "Formu Sıfırla",
+      "simulateRoi": "Farklı piyasa koşulları ve kilit açma şartları altında getirilerinizi anında modelleyin."
+    },
+    "cta": {
+      "title": "Sonraki versiyonu şekillendirmek için e-posta adresinizi bırakın veya Telegram'ımıza katılın.",
+      "note": "Gelişmiş versiyona ve yeni özelliklere erken erişim mi istiyorsunuz? Bildirimler için e-posta adresinizi bırakın veya Telegram botumuza abone olun.",
+      "emailPlaceholder": "E-posta adresiniz",
+      "emailLabel": "E-posta adresi",
+      "submitting": "Abone olunuyor...",
+      "subscribe": "Abone Ol",
+      "success": "Abone olduğunuz için teşekkürler! Sizi güncel tutacağız.",
+      "telegram": "Telegram Botu",
+      "joinCommunity": "Bu aracı beğendiniz mi? IDO'lar için en iyi ROI simülatörünü oluşturmamıza yardımcı olun:",
+      "communityNote": "geri bildiriminizi bırakın ve topluluk kanallarındaki konuşmaya katılın:",
+      "discord": "Discord'a Katıl",
+      "telegramGroup": "Telegram Grubu",
+      "twitter": "X'te (Twitter) Takip Et",
+      "youtube": "YouTube Kanalı"
+    },
+    "errors": {
+      "investmentAmount": "Yatırım miktarı gerekli ve 0'dan büyük olmalıdır",
+      "tokenPrice": "Token fiyatı gerekli ve 0'dan büyük olmalıdır",
+      "tokenName": "Token adı gereklidir",
+      "tokenAmount": "Token miktarı gerekli ve 0'dan büyük olmalıdır",
+      "tgeUnlock": "TGE kilit açma 0 ile 100 arasında olmalıdır",
+      "scenarios": "Tüm senaryoların bir adı ve geçerli bir ROI'si olmalıdır",
+      "unlockPeriods": "Tüm kilit açma dönemlerinin geçerli bir ay ve yüzdesi olmalıdır",
+      "totalPercentage": "Toplam kilit açma yüzdesi %100'e eşit olmalıdır",
+      "email": "Lütfen geçerli bir e-posta adresi girin"
+    },
+    "tooltips": {
+      "investmentAmount": "USD olarak yatırdığınız para miktarı.",
+      "tokenPrice": "Satın aldığınız token başına fiyat.",
+      "tokenName": "Tokenın adı veya sembolü.",
+      "tokenAmount": "Aldığınız token sayısı.",
+      "tgeUnlock": "Token Oluşturma Etkinliği'nde (lansmanında) kilidi açılan token yüzdesi.",
+      "cliff": "Tokenların kilidi açılmaya başlamadan önceki ay sayısı.",
+      "vestingDuration": "Vesting süresinin ay cinsinden toplam süresi.",
+      "unlockFrequency": "Tokenların ne sıklıkta kilidi açılır.",
+      "expectedListingPrice": "Beklenen TGE Fiyatı (isteğe bağlı): Biliniyorsa, piyasa ROI senaryoları için temel fiyat olarak kullanılacaktır. Sağlanmazsa, liste fiyatı = satın alma fiyatınız olarak varsayarız",
+      "tgeDate": "Token Oluşturma Etkinliği tarihi - tokenlarınızın ilk kez oluşturulduğu ve vesting planının başladığı zaman.",
+      "totalSupply": "Bu proje için her zaman var olacak toplam token sayısı. Tam Seyreltilmiş Değerlemeyi (FDV) hesaplamak için kullanılır.",
+      "generatedSchedule": "Bu tablo, tokenlarınız için ayrıntılı kilit açma planını gösterir.",
+      "period": "TGE'den (Token Oluşturma Etkinliği) sonraki ay/hafta numarası.",
+      "percentage": "Bu dönemde kilidini açacak toplam tokenlarınızın yüzdesi.",
+      "bearScenario": "Tokenınızın tüm vesting dönemi boyunca ön satış fiyatınızın %90 altında işlem gördüğünü varsayıyoruz.",
+      "baseScenario": "Önemli bir fiyat değişikliği yok. Token fiyatı satın alma seviyenize yakın kalır.",
+      "bullScenario": "Piyasa yükselişte. Tokenın vesting döneminiz boyunca ön satış fiyatınızın katı bir fiyatta işlem gördüğünü varsayıyoruz."
+    }
+  },
+  "results": {
+    "title": "Yatırım Sonuçları",
+    "summary": "Yatırım Özeti",
+    "projectName": "Proje",
+    "investmentAmount": "Yatırım Miktarı",
+    "tokenAmount": "Satın Alınan Tokenlar",
+    "entryPrice": "Giriş Fiyatı",
+    "totalValue": "Toplam Değer",
+    "roi": "ROI",
+    "scenarios": {
+      "bearish": "Düşüş",
+      "neutral": "Nötr",
+      "bullish": "Yükseliş"
+    },
+    "monthlyBreakdown": {
+      "title": "Zaman İçinde ROI",
+      "chartTitle": "Zaman İçinde ROI",
+      "chartTooltip": "Bu grafik, tokenlar kilidi açıldıkça yatırımınızın ROI'sinin zaman içinde nasıl değiştiğini gösterir. Çizgiler farklı fiyat senaryolarını temsil eder.",
+      "breakdownTitle": {
+        "monthly": "Aylık Detay",
+        "weekly": "Haftalık Detay"
+      },
+      "breakdownTooltip": {
+        "monthly": "Bu tablo, token kilit açılımları, gelir ve her senaryo için kümülatif ROI dahil olmak üzere yatırımınızın performansının aydan aya ayrıntılı bir dökümünü gösterir.",
+        "weekly": "Bu tablo, token kilit açılımları, gelir ve her senaryo için kümülatif ROI dahil olmak üzere yatırımınızın performansının haftadan haftaya ayrıntılı bir dökümünü gösterir."
+      },
+      "tableColumns": {
+        "period": {
+          "title": "Ay",
+          "weekTitle": "Hafta",
+          "tooltip": "TGE'den (Token Oluşturma Etkinliği) sonraki ay numarası. Eğer bir TGE tarihi belirtildiyse, gerçek takvim tarihleri parantez içinde gösterilir.",
+          "weekTooltip": "TGE'den (Token Oluşturma Etkinliği) sonraki hafta numarası. Eğer bir TGE tarihi belirtildiyse, gerçek takvim tarihleri parantez içinde gösterilir."
+        },
+        "tokensUnlocked": {
+          "title": "Kilidi Açılan Tokenlar",
+          "tooltip": "Hak ediş programınıza göre bu ayda kullanılabilir hale gelen token sayısı.",
+          "weekTooltip": "Hak ediş programınıza göre bu haftada kullanılabilir hale gelen token sayısı."
+        },
+        "revenue": {
+          "title": "Senaryo Geliri",
+          "tooltip": "Bu ayda kilidi açılan tokenların, senaryo fiyatı kullanılarak hesaplanan USD değeri.",
+          "weekTooltip": "Bu haftada kilidi açılan tokenların, senaryo fiyatı kullanılarak hesaplanan USD değeri."
+        },
+        "cumulativeRoi": {
+          "title": "Senaryo ROI",
+          "tooltip": "Bu aya kadarki toplam yatırım getiriniz, senaryo fiyatı kullanılarak hesaplanmıştır.",
+          "weekTooltip": "Bu haftaya kadarki toplam yatırım getiriniz, senaryo fiyatı kullanılarak hesaplanmıştır."
+        }
+      },
+      "breakEven": "Başabaş noktası",
+      "totalSummary": {
+        "title": "Toplam Özet",
+        "totalRevenue": "Toplam Gelir:",
+        "finalRoi": "Nihai ROI:"
+      },
+      "scenarioLabels": {
+        "bear": "Düşüş Senaryosu",
+        "base": "Temel Senaryo",
+        "bull": "Yükseliş Senaryosu"
+      },
+      "advancedModeTeaser": {
+        "title": "Gelişmiş mod yakında geliyor:",
+        "features": "kısmi çıkış stratejisi, VC kilit açma baskısı, dinamik satış planları."
+      },
+      "keyMetrics": {
+        "initialInvestment": "Başlangıç Yatırımı",
+        "tokenAllocation": "Token Tahsisi"
+      },
+      "noData": "Hesaplama verisi mevcut değil. Lütfen önce hesaplayıcı formunu doldurun."
+    }
+  },
+  "tokenomicsChart": {
+    "title": "Token Kilit Açma Takvimi",
+    "xAxis": "Ay",
+    "yAxis": "Kilidi Açılan Tokenlar",
+    "series": {
+      "unlocked": "Kilidi Açılan Tokenlar",
+      "locked": "Kilitli Tokenlar"
+    },
+    "tooltips": {
+      "month": "Ay",
+      "unlocked": "Kilidi Açılan",
+      "cumulative": "Kümülatif",
+      "percentUnlocked": "% Kilidi Açılan"
+    }
+  },
+  "share": {
+    "title": "Sonuçları Paylaş",
+    "linkCopied": "Bağlantınız panoya kopyalandı!",
+    "copyLink": "Bağlantıyı Kopyala",
+    "shareOn": "Şurada Paylaş"
+  }
+}

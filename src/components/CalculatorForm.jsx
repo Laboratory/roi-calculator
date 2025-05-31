@@ -6,12 +6,14 @@ import { FaDiscord, FaInfoCircle, FaPaperPlane, FaTelegram, FaTwitter, FaYoutube
 import { calculateResults } from '../utils/calculator';
 import { subscribeToBrevo } from '../api/brevoService';
 import { trackEvent, trackFormSubmission, trackInputChange, trackLinkClick } from '../utils/analytics';
+import { useTranslation } from 'react-i18next';
 
 const DEFAULT_UNLOCK_PERIODS = [{month: 1, percentage: 15}, {month: 3, percentage: 25}, {
   month: 6, percentage: 25
 }, {month: 12, percentage: 25}];
 
-const SimulatorForm = ({onCalculate, setCurrentTab}) => {
+const SimulatorForm = ({onCalculate}) => {
+  const { t } = useTranslation(['calculator']);
   const [formData, setFormData] = useState({
     investmentAmount: '1000',
     tokenPrice: '0.1',
@@ -180,7 +182,6 @@ const SimulatorForm = ({onCalculate, setCurrentTab}) => {
         ...formData, priceScenarios, unlockPeriods, unlockFrequency: formData.unlockFrequency
       });
       onCalculate(results);
-      setCurrentTab("time");
     }
   };
 
@@ -252,48 +253,48 @@ const SimulatorForm = ({onCalculate, setCurrentTab}) => {
 
     // Validate investment amount
     if (!formData.investmentAmount || Number(formData.investmentAmount) <= 0) {
-      newErrors.investmentAmount = 'Investment amount is required and must be greater than 0';
+      newErrors.investmentAmount = t('calculator:form.errors.investmentAmount');
     }
 
     // Validate token price
     if (!formData.tokenPrice || Number(formData.tokenPrice) <= 0) {
-      newErrors.tokenPrice = 'Token price is required and must be greater than 0';
+      newErrors.tokenPrice = t('calculator:form.errors.tokenPrice');
     }
 
     // Validate token name
     if (!formData.tokenName) {
-      newErrors.tokenName = 'Token name is required';
+      newErrors.tokenName = t('calculator:form.errors.tokenName');
     }
 
     // Validate token amount
     if (!formData.tokenAmount || Number(formData.tokenAmount) <= 0) {
-      newErrors.tokenAmount = 'Token amount is required and must be greater than 0';
+      newErrors.tokenAmount = t('calculator:form.errors.tokenAmount');
     }
 
     // Validate TGE unlock
     if (formData.tgeUnlock === '' || Number(formData.tgeUnlock) < 0 || Number(formData.tgeUnlock) > 100) {
-      newErrors.tgeUnlock = 'TGE unlock must be between 0 and 100';
+      newErrors.tgeUnlock = t('calculator:form.errors.tgeUnlock');
     }
 
     // Validate scenarios
     const hasValidScenarios = priceScenarios.every(scenario => scenario.name && scenario.roi !== '' && parseFloat(scenario.roi) >= -100);
 
     if (!hasValidScenarios) {
-      newErrors.scenarios = 'All scenarios must have a name and valid ROI';
+      newErrors.scenarios = t('calculator:form.errors.scenarios');
     }
 
     // Validate unlock periods
     const hasValidUnlockPeriods = unlockPeriods.every(period => period.month > 0 && period.percentage >= 0 && period.percentage <= 100);
 
     if (!hasValidUnlockPeriods) {
-      newErrors.unlockPeriods = 'All unlock periods must have a valid month and percentage';
+      newErrors.unlockPeriods = t('calculator:form.errors.unlockPeriods');
     }
 
     // Validate total percentage
     const totalPercentage = Number(formData.tgeUnlock) + unlockPeriods.reduce((sum, period) => sum + Number(period.percentage), 0);
 
     if (Math.abs(totalPercentage - 100) > 0.1) { // Allow small rounding errors
-      newErrors.totalPercentage = `Total unlock percentage must equal 100%. Current total: ${totalPercentage.toFixed(2)}%`;
+      newErrors.totalPercentage = t('calculator:form.errors.totalPercentage');
     }
 
     setErrors(newErrors);
@@ -343,7 +344,7 @@ const SimulatorForm = ({onCalculate, setCurrentTab}) => {
           setIsSubmittingEmail(false);
         });
     } else {
-      setEmailError('Please enter a valid email address');
+      setEmailError(t('calculator:form.errors.email'));
 
       // Track validation error
       trackEvent('email_subscription_validation_error', {
@@ -354,9 +355,9 @@ const SimulatorForm = ({onCalculate, setCurrentTab}) => {
 
   const getUnlockPeriodLabel = () => {
     if (formData.unlockFrequency === 'weekly') {
-      return 'Week #';
+      return t('calculator:form.unlockSchedule.periodLabel.weekly');
     } else {
-      return 'Month';
+      return t('calculator:form.unlockSchedule.periodLabel.monthly');
     }
   };
 
@@ -379,7 +380,7 @@ const SimulatorForm = ({onCalculate, setCurrentTab}) => {
 
   return (<div className="simulator-form">
     <div className="form-section">
-      <h2>Presale Setup</h2>
+      <h2>{t('calculator:form.sections.presaleSetup')}</h2>
       <div className="section-content ps-2 pe-2">
         <Row>
           <Col md={6}>
@@ -387,11 +388,11 @@ const SimulatorForm = ({onCalculate, setCurrentTab}) => {
               <OverlayTrigger
                 placement="top"
                 overlay={<Tooltip id="tooltip-investment-amount">
-                  The amount of money you invested in USD.
+                  {t('calculator:form.tooltips.investmentAmount')}
                 </Tooltip>}
               >
                 <Form.Label className="tooltip-label">
-                  Investment Amount (USD)
+                  {t('calculator:form.investmentAmount.label')}
                   <FaInfoCircle className="ms-2 text-primary info-icon"/>
                 </Form.Label>
               </OverlayTrigger>
@@ -402,14 +403,14 @@ const SimulatorForm = ({onCalculate, setCurrentTab}) => {
                   name="investmentAmount"
                   value={formData.investmentAmount}
                   onChange={handleInputChange}
-                  placeholder="e.g., 1000"
+                  placeholder={t('calculator:form.investmentAmount.placeholder')}
                   step="0.01"
                   isInvalid={!!errors.investmentAmount}
                 />
               </InputGroup>
-              <Form.Control.Feedback type="invalid">
+              {errors.investmentAmount && <Form.Control.Feedback type="invalid">
                 {errors.investmentAmount}
-              </Form.Control.Feedback>
+              </Form.Control.Feedback>}
             </Form.Group>
           </Col>
 
@@ -418,11 +419,11 @@ const SimulatorForm = ({onCalculate, setCurrentTab}) => {
               <OverlayTrigger
                 placement="top"
                 overlay={<Tooltip id="tooltip-token-price">
-                  The price per token in USD at the time of your investment.
+                  {t('calculator:form.tooltips.tokenPrice')}
                 </Tooltip>}
               >
                 <Form.Label className="tooltip-label">
-                  Token Price (USD)
+                  {t('calculator:form.tokenPrice.label')}
                   <FaInfoCircle className="ms-2 text-primary info-icon"/>
                 </Form.Label>
               </OverlayTrigger>
@@ -433,14 +434,14 @@ const SimulatorForm = ({onCalculate, setCurrentTab}) => {
                   name="tokenPrice"
                   value={formData.tokenPrice}
                   onChange={handleInputChange}
-                  placeholder="e.g., 0.1"
+                  placeholder={t('calculator:form.tokenPrice.placeholder')}
                   step="0.0000001"
                   isInvalid={!!errors.tokenPrice}
                 />
               </InputGroup>
-              <Form.Control.Feedback type="invalid">
+              {errors.tokenPrice && <Form.Control.Feedback type="invalid">
                 {errors.tokenPrice}
-              </Form.Control.Feedback>
+              </Form.Control.Feedback>}
             </Form.Group>
           </Col>
         </Row>
@@ -451,11 +452,11 @@ const SimulatorForm = ({onCalculate, setCurrentTab}) => {
               <OverlayTrigger
                 placement="top"
                 overlay={<Tooltip id="tooltip-token-name">
-                  The ticker symbol of the token you invested in.
+                  {t('calculator:form.tooltips.tokenName')}
                 </Tooltip>}
               >
                 <Form.Label className="tooltip-label">
-                  Token Ticker (e.g. $XYZ)
+                  {t('calculator:form.tokenSymbol.label')}
                   <FaInfoCircle className="ms-2 text-primary info-icon"/>
                 </Form.Label>
               </OverlayTrigger>
@@ -464,12 +465,12 @@ const SimulatorForm = ({onCalculate, setCurrentTab}) => {
                 name="tokenName"
                 value={formData.tokenName}
                 onChange={handleInputChange}
-                placeholder="Enter ticker"
+                placeholder={t('calculator:form.tokenSymbol.placeholder')}
                 isInvalid={!!errors.tokenName}
               />
-              <Form.Control.Feedback type="invalid">
+              {errors.tokenName && <Form.Control.Feedback type="invalid">
                 {errors.tokenName}
-              </Form.Control.Feedback>
+              </Form.Control.Feedback>}
             </Form.Group>
           </Col>
 
@@ -478,28 +479,28 @@ const SimulatorForm = ({onCalculate, setCurrentTab}) => {
               <OverlayTrigger
                 placement="top"
                 overlay={<Tooltip id="tooltip-token-amount">
-                  The number of tokens you purchased. This is automatically calculated based on your investment
-                  amount and token price, but you can override it if needed.
+                  {t('calculator:form.tooltips.tokenAmount')}
                 </Tooltip>}
               >
                 <Form.Label className="tooltip-label">
-                  Token Amount
+                  {t('calculator:form.tokenAmount.label', 'Token Amount')}
                   <FaInfoCircle className="ms-2 text-primary info-icon"/>
                 </Form.Label>
               </OverlayTrigger>
-              <Form.Control
-                type="number"
-                name="tokenAmount"
-                value={formData.tokenAmount}
-                onChange={handleInputChange}
-                placeholder="e.g., 10000"
-                step="0.01"
-                isInvalid={!!errors.tokenAmount}
-                disabled={true}
-              />
-              {isTokenAmountCalculated && (<Form.Text className="text-muted">
-                Estimated: {Number(getEstimatedTokenAmount()).toLocaleString(undefined, {maximumFractionDigits: 2})} tokens
-              </Form.Text>)}
+              <InputGroup>
+                <Form.Control
+                  type="number"
+                  name="tokenAmount"
+                  value={formData.tokenAmount}
+                  onChange={isTokenAmountCalculated ? null : handleInputChange}
+                  readOnly={isTokenAmountCalculated}
+                  placeholder={t('calculator:form.tokenAmount.placeholder')}
+                  isInvalid={!!errors.tokenAmount}
+                />
+                {errors.tokenAmount && <Form.Control.Feedback type="invalid">
+                  {errors.tokenAmount}
+                </Form.Control.Feedback>}
+              </InputGroup>
             </Form.Group>
           </Col>
         </Row>
@@ -510,12 +511,11 @@ const SimulatorForm = ({onCalculate, setCurrentTab}) => {
               <OverlayTrigger
                 placement="top"
                 overlay={<Tooltip id="tooltip-expected-listing-price">
-                  Expected TGE Price (optional): If known, this will be used as the base price for market ROI scenarios.
-                  If not provided, we assume listing price = your purchase price
+                  {t('calculator:form.tooltips.expectedListingPrice')}
                 </Tooltip>}
               >
                 <Form.Label className="tooltip-label">
-                  Expected Listing Price (optional)
+                  {t('calculator:form.expectedListingPrice.label')}
                   <FaInfoCircle className="ms-2 text-primary info-icon"/>
                 </Form.Label>
               </OverlayTrigger>
@@ -526,7 +526,7 @@ const SimulatorForm = ({onCalculate, setCurrentTab}) => {
                   name="expectedListingPrice"
                   value={formData.expectedListingPrice}
                   onChange={handleInputChange}
-                  placeholder="e.g., 0.1"
+                  placeholder={t('calculator:form.expectedListingPrice.placeholder')}
                   step="0.0000001"
                 />
               </InputGroup>
@@ -538,12 +538,11 @@ const SimulatorForm = ({onCalculate, setCurrentTab}) => {
               <OverlayTrigger
                 placement="top"
                 overlay={<Tooltip id="tooltip-tge-date">
-                  Token Generation Event date - when your tokens were first created and the vesting schedule
-                  began.
+                  {t('calculator:form.tooltips.tgeDate')}
                 </Tooltip>}
               >
                 <Form.Label className="tooltip-label">
-                  TGE Date
+                  {t('calculator:form.tgeDate.label')}
                   <FaInfoCircle className="ms-2 text-primary info-icon"/>
                 </Form.Label>
               </OverlayTrigger>
@@ -551,12 +550,12 @@ const SimulatorForm = ({onCalculate, setCurrentTab}) => {
                 selected={formData.tgeDate}
                 onChange={handleDateChange}
                 className="form-control"
-                placeholderText="dd.mm.yyyy"
+                placeholderText={t('calculator:form.tgeDate.placeholder')}
                 dateFormat="dd.MM.yyyy"
               />
               <div>
                 <Form.Text className="text-muted">
-                  If provided, results will show actual calendar dates
+                  {t('calculator:form.tgeDate.note')}
                 </Form.Text>
               </div>
             </Form.Group>
@@ -569,12 +568,11 @@ const SimulatorForm = ({onCalculate, setCurrentTab}) => {
               <OverlayTrigger
                 placement="top"
                 overlay={<Tooltip id="tooltip-total-supply">
-                  The total number of tokens that will ever exist for this project. Used to calculate the Fully Diluted
-                  Valuation (FDV).
+                  {t('calculator:form.tooltips.totalSupply')}
                 </Tooltip>}
               >
                 <Form.Label className="tooltip-label">
-                  Total Token Supply (Optional)
+                  {t('calculator:form.totalSupply.label')}
                   <FaInfoCircle className="ms-2 text-primary info-icon"/>
                 </Form.Label>
               </OverlayTrigger>
@@ -585,10 +583,10 @@ const SimulatorForm = ({onCalculate, setCurrentTab}) => {
                   onChange={handleInputChange}
                   className="mb-2"
                 >
-                  <option value="10billion">10 Billion (10,000,000,000)</option>
-                  <option value="1billion">1 Billion (1,000,000,000)</option>
-                  <option value="100million">100 Million (100,000,000)</option>
-                  <option value="custom">Custom</option>
+                  <option value="10billion">{t('calculator:form.totalSupply.options.10billion')}</option>
+                  <option value="1billion">{t('calculator:form.totalSupply.options.1billion')}</option>
+                  <option value="100million">{t('calculator:form.totalSupply.options.100million')}</option>
+                  <option value="custom">{t('calculator:form.totalSupply.options.custom')}</option>
                 </Form.Select>
 
                 {formData.supplyOption === 'custom' && (<Form.Control
@@ -596,12 +594,12 @@ const SimulatorForm = ({onCalculate, setCurrentTab}) => {
                   name="totalSupply"
                   value={formData.totalSupply}
                   onChange={handleInputChange}
-                  placeholder="e.g., 100000000"
+                  placeholder={t('calculator:form.totalSupply.placeholder')}
                 />)}
               </Form.Group>
 
               <Form.Text className="text-muted">
-                Add total supply to detect high FDV setups and unlock dilution.
+                {t('calculator:form.totalSupply.note')}
               </Form.Text>
             </Form.Group>
           </Col>
@@ -612,7 +610,7 @@ const SimulatorForm = ({onCalculate, setCurrentTab}) => {
           {/* Market ROI Scenarios Column */}
           <Col md={6}>
             <div className="form-section h-100">
-              <h3 className="section-title">Market ROI Scenarios</h3>
+              <h3 className="section-title">{t('calculator:form.marketScenarios.title')}</h3>
               <div className="section-content border-0 ps-2 pe-2">
                 {priceScenarios.map((scenario, index) => (<Row key={index} className="mb-3">
                   <Col md={12}>
@@ -620,13 +618,13 @@ const SimulatorForm = ({onCalculate, setCurrentTab}) => {
                       <OverlayTrigger
                         placement="top"
                         overlay={<Tooltip id={`tooltip-scenario-${index}`}>
-                          {scenario.name === 'Bear' && 'We assume your token trades at 90% below your presale price during your entire vesting period.'}
-                          {scenario.name === 'Base' && 'No major price change. Token price stays near your purchase level.'}
-                          {scenario.name === 'Bull' && 'Market surges. We assume Token trades at a multiple of your presale price over your vesting period.'}
+                          {scenario.name === 'Bear' && t('calculator:form.tooltips.bearScenario')}
+                          {scenario.name === 'Base' && t('calculator:form.tooltips.baseScenario')}
+                          {scenario.name === 'Bull' && t('calculator:form.tooltips.bullScenario')}
                         </Tooltip>}
                       >
                         <Form.Label className="tooltip-label">
-                          {scenario.name} Market Return
+                          {scenario.name} {t('calculator:form.marketScenarios.scenarioLabel')}
                           <FaInfoCircle className="ms-2 text-primary info-icon"/>
                         </Form.Label>
                       </OverlayTrigger>
@@ -635,13 +633,13 @@ const SimulatorForm = ({onCalculate, setCurrentTab}) => {
                           type="number"
                           value={scenario.roi}
                           onChange={(e) => handleScenarioChange(index, 'roi', e.target.value)}
-                          placeholder="Return percentage"
+                          placeholder={t('calculator:form.marketScenarios.roiPlaceholder')}
                           step="1"
                         />
                         <InputGroup.Text>%</InputGroup.Text>
                       </InputGroup>
                       <Form.Text className="text-muted">
-                        Calculated price: ${parseFloat(scenario.price).toFixed(6)}
+                        {t('calculator:form.marketScenarios.calculatedPrice')} ${parseFloat(scenario.price).toFixed(6)}
                       </Form.Text>
                     </Form.Group>
                   </Col>
@@ -653,7 +651,7 @@ const SimulatorForm = ({onCalculate, setCurrentTab}) => {
           {/* Unlock Schedule Column */}
           <Col md={6}>
             <div className="form-section h-100">
-              <h3 className="section-title">Unlock Schedule</h3>
+              <h3 className="section-title">{t('calculator:form.unlockSchedule.title')}</h3>
               <div className="section-content border-0 ps-2 pe-2">
                 <Row>
                   <Col md={12}>
@@ -661,11 +659,11 @@ const SimulatorForm = ({onCalculate, setCurrentTab}) => {
                       <OverlayTrigger
                         placement="top"
                         overlay={<Tooltip id="tooltip-tge-unlock">
-                          The percentage of your tokens that will be unlocked at TGE (Token Generation Event).
+                          {t('calculator:form.tooltips.tgeUnlock')}
                         </Tooltip>}
                       >
                         <Form.Label className="tooltip-label">
-                          TGE Unlock (%)
+                          {t('calculator:form.unlockSchedule.tgePercentage.label')}
                           <FaInfoCircle className="ms-2 text-primary info-icon"/>
                         </Form.Label>
                       </OverlayTrigger>
@@ -675,7 +673,7 @@ const SimulatorForm = ({onCalculate, setCurrentTab}) => {
                           name="tgeUnlock"
                           value={formData.tgeUnlock}
                           onChange={handleInputChange}
-                          placeholder="e.g., 10"
+                          placeholder={t('calculator:form.unlockSchedule.tgePercentage.placeholder')}
                           min="0"
                           max="100"
                           step="0.1"
@@ -683,9 +681,9 @@ const SimulatorForm = ({onCalculate, setCurrentTab}) => {
                         />
                         <InputGroup.Text>%</InputGroup.Text>
                       </InputGroup>
-                      <Form.Control.Feedback type="invalid">
+                      {errors.tgeUnlock && <Form.Control.Feedback type="invalid">
                         {errors.tgeUnlock}
-                      </Form.Control.Feedback>
+                      </Form.Control.Feedback>}
                     </Form.Group>
                   </Col>
                 </Row>
@@ -697,11 +695,11 @@ const SimulatorForm = ({onCalculate, setCurrentTab}) => {
                       <OverlayTrigger
                         placement="top"
                         overlay={<Tooltip id="tooltip-cliff">
-                          The number of months after TGE before tokens start to unlock.
+                          {t('calculator:form.tooltips.cliff')}
                         </Tooltip>}
                       >
                         <Form.Label className="tooltip-label">
-                          Cliff (months)
+                          {t('calculator:form.unlockSchedule.cliffPeriod.label')}
                           <FaInfoCircle className="ms-2 text-primary info-icon"/>
                         </Form.Label>
                       </OverlayTrigger>
@@ -723,11 +721,11 @@ const SimulatorForm = ({onCalculate, setCurrentTab}) => {
                       <OverlayTrigger
                         placement="top"
                         overlay={<Tooltip id="tooltip-vesting-duration">
-                          The total duration in months over which tokens will vest after the cliff period.
+                          {t('calculator:form.tooltips.vestingDuration')}
                         </Tooltip>}
                       >
                         <Form.Label className="tooltip-label">
-                          Vesting Duration (months)
+                          {t('calculator:form.vestingPeriod.label')}
                           <FaInfoCircle className="ms-2 text-primary info-icon"/>
                         </Form.Label>
                       </OverlayTrigger>
@@ -749,11 +747,11 @@ const SimulatorForm = ({onCalculate, setCurrentTab}) => {
                       <OverlayTrigger
                         placement="top"
                         overlay={<Tooltip id="tooltip-unlock-frequency">
-                          How frequently tokens unlock during the vesting period.
+                          {t('calculator:form.tooltips.unlockFrequency')}
                         </Tooltip>}
                       >
                         <Form.Label className="tooltip-label">
-                          Unlock Frequency
+                          {t('calculator:form.unlockSchedule.unlockFrequency.label')}
                           <FaInfoCircle className="ms-2 text-primary info-icon"/>
                         </Form.Label>
                       </OverlayTrigger>
@@ -762,8 +760,8 @@ const SimulatorForm = ({onCalculate, setCurrentTab}) => {
                         value={formData.unlockFrequency}
                         onChange={handleInputChange}
                       >
-                        <option value="monthly">Monthly</option>
-                        <option value="weekly">Weekly</option>
+                        <option value="monthly">{t('calculator:form.unlockSchedule.unlockFrequency.options.monthly')}</option>
+                        <option value="weekly">{t('calculator:form.unlockSchedule.unlockFrequency.options.weekly')}</option>
                       </Form.Select>
                     </Form.Group>
                   </Col>
@@ -781,13 +779,11 @@ const SimulatorForm = ({onCalculate, setCurrentTab}) => {
                 <OverlayTrigger
                   placement="top"
                   overlay={<Tooltip id="tooltip-generated-schedule">
-                    This table shows the
-                    detailed {formData.unlockFrequency === 'weekly' ? 'weekly' : 'monthly'} unlock schedule for
-                    your tokens.
+                    {t('calculator:form.tooltips.generatedSchedule')}
                   </Tooltip>}
                 >
                   <span className="tooltip-label">
-                    Generated Unlock Schedule
+                    {t('calculator:form.generatedSchedule.title')}
                     <FaInfoCircle className="ms-2 text-primary info-icon"/>
                   </span>
                 </OverlayTrigger>
@@ -801,12 +797,11 @@ const SimulatorForm = ({onCalculate, setCurrentTab}) => {
                       <OverlayTrigger
                         placement="top"
                         overlay={<Tooltip id="tooltip-period">
-                          The {formData.unlockFrequency === 'weekly' ? 'week' : 'month'} number after TGE (Token
-                          Generation Event).
+                          {t('calculator:form.tooltips.period')}
                         </Tooltip>}
                       >
                         <span className="tooltip-label">
-                          {formData.tgeDate ? "Time" : "Period"}
+                          {formData.tgeDate ? t('calculator:form.generatedSchedule.time') : t('calculator:form.generatedSchedule.period')}
                           <FaInfoCircle className="ms-2 text-primary info-icon"/>
                         </span>
                       </OverlayTrigger>
@@ -815,11 +810,11 @@ const SimulatorForm = ({onCalculate, setCurrentTab}) => {
                       <OverlayTrigger
                         placement="top"
                         overlay={<Tooltip id="tooltip-percentage">
-                          The percentage of your total tokens that will unlock during this period.
+                          {t('calculator:form.tooltips.percentage')}
                         </Tooltip>}
                       >
                         <span className="tooltip-label">
-                          Percentage (%)
+                          {t('calculator:form.generatedSchedule.percentage')}
                           <FaInfoCircle className="ms-2 text-primary info-icon"/>
                         </span>
                       </OverlayTrigger>
@@ -829,9 +824,9 @@ const SimulatorForm = ({onCalculate, setCurrentTab}) => {
                   <tbody>
                   <tr>
                     <td>
-                      {formData.tgeDate ? (<div>Month 0 — {new Date(formData.tgeDate).toLocaleDateString('en-US', {
+                      {formData.tgeDate ? (<div>{t('calculator:form.generatedSchedule.tgeDate')} — {new Date(formData.tgeDate).toLocaleDateString('en-US', {
                         month: 'short', day: 'numeric', year: 'numeric'
-                      })}</div>) : (<div>{formData.unlockFrequency === 'weekly' ? 'Week (0)' : 'Month 0 (TGE)'}</div>)}
+                      })}</div>) : (<div>{formData.unlockFrequency === 'weekly' ? t('calculator:form.generatedSchedule.week0') : t('calculator:form.generatedSchedule.month0')}</div>)}
                     </td>
                     <td>{formData.tgeUnlock}%</td>
                   </tr>
@@ -843,9 +838,9 @@ const SimulatorForm = ({onCalculate, setCurrentTab}) => {
                     return (<tr key={index}>
                       <td>
                         {formData.tgeDate ? (<div>
-                          {formData.unlockFrequency === 'weekly' ? `Week ${weekValue} — ${formatUnlockDate(weekValue)}` : `Month ${monthValue} — ${formatUnlockDate(monthValue)}`}
+                          {formData.unlockFrequency === 'weekly' ? `${t('calculator:form.generatedSchedule.week')} ${weekValue} — ${formatUnlockDate(weekValue)}` : `${t('calculator:form.generatedSchedule.month')} ${monthValue} — ${formatUnlockDate(monthValue)}`}
                         </div>) : (<div>
-                          {formData.unlockFrequency === 'weekly' ? `Week ${weekValue}` : `Month ${monthValue}`}
+                          {formData.unlockFrequency === 'weekly' ? `${t('calculator:form.generatedSchedule.week')} ${weekValue}` : `${t('calculator:form.generatedSchedule.month')} ${monthValue}`}
                         </div>)}
                       </td>
                       <td>{period.percentage}%</td>
@@ -857,7 +852,7 @@ const SimulatorForm = ({onCalculate, setCurrentTab}) => {
 
               {formData.unlockFrequency === 'weekly' && !formData.tgeDate && (<div className="mt-2">
                 <small className="text-muted">
-                  * Week numbers are calculated from TGE date
+                  * {t('calculator:form.generatedSchedule.weekNote')}
                 </small>
               </div>)}
             </div>
@@ -865,16 +860,14 @@ const SimulatorForm = ({onCalculate, setCurrentTab}) => {
         </Row>
 
         <div className="d-grid gap-2 mt-4">
-          <p className="text-center mb-3">Instantly model your returns across different market conditions & unlock
-            terms.</p>
+          <p className="text-center mb-3">{t('calculator:form.actions.simulateRoi')}</p>
           <Button variant="primary" size="lg" onClick={handleSubmit}>
-            Simulate ROI
+            {t('calculator:form.actions.calculate')}
           </Button>
 
           <div className="cta-section mt-4 p-4 border rounded bg-light">
-            <h5 className="text-center mb-3">Drop your email or join our Telegram to shape the next version.</h5>
-            <p className="text-center mb-4">Want early access to the advanced version and new features? Drop your
-              📩email or subscribe to our telegram bot for notifications.</p>
+            <h5 className="text-center mb-3">{t('calculator:form.cta.title')}</h5>
+            <p className="text-center mb-4">{t('calculator:form.cta.note')}</p>
 
             <Row className="mb-4">
               <Col md={8}>
@@ -882,8 +875,8 @@ const SimulatorForm = ({onCalculate, setCurrentTab}) => {
                   <InputGroup>
                     <Form.Control
                       type="email"
-                      placeholder="Your email address"
-                      aria-label="Email address"
+                      placeholder={t('calculator:form.cta.emailPlaceholder')}
+                      aria-label={t('calculator:form.cta.emailLabel')}
                       className="py-2"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
@@ -895,14 +888,14 @@ const SimulatorForm = ({onCalculate, setCurrentTab}) => {
                       disabled={isSubmittingEmail}
                     >
                       <FaPaperPlane className="me-2"/>
-                      {isSubmittingEmail ? 'Subscribing...' : 'Subscribe'}
+                      {isSubmittingEmail ? t('calculator:form.cta.submitting') : t('calculator:form.cta.subscribe')}
                     </Button>
                   </InputGroup>
                   {emailError && (<Alert variant="danger" className="mt-2 mb-0 py-2 small">
                     {emailError}
                   </Alert>)}
                   {emailSuccess && (<Alert variant="success" className="mt-2 mb-0 py-2 small">
-                    Thanks for subscribing! We'll keep you updated.
+                    {t('calculator:form.cta.success')}
                   </Alert>)}
                 </Form>
               </Col>
@@ -916,29 +909,29 @@ const SimulatorForm = ({onCalculate, setCurrentTab}) => {
                   onClick={() => trackLinkClick('https://t.me/AlphaIDO_bot?start', 'Telegram Bot', 'calculator_footer')}
                 >
                   <FaTelegram className="me-2"/>
-                  Telegram Bot
+                  {t('calculator:form.cta.telegram')}
                 </Button>
               </Col>
             </Row>
 
             <hr className="my-4"/>
 
-            <p className="text-center mb-3">Like this tool? Help us build the ultimate ROI simulator for IDOs:</p>
-            <p className="text-center mb-4">leave your feedback and join conversation in community channels:</p>
+            <p className="text-center mb-3">{t('calculator:form.cta.joinCommunity')}</p>
+            <p className="text-center mb-4">{t('calculator:form.cta.communityNote')}</p>
 
             <Row>
               <Col md={6}>
                 <Button variant="outline-primary" className="w-100 py-2 h-100" href="https://discord.gg/NB4hhuXkWz"
                         target="_blank" rel="noopener noreferrer">
                   <FaDiscord className="me-2"/>
-                  Join Discord
+                  {t('calculator:form.cta.discord')}
                 </Button>
               </Col>
               <Col md={6}>
                 <Button variant="outline-info" className="w-100 py-2 h-100" href="https://t.me/alphamind_official"
                         target="_blank" rel="noopener noreferrer">
                   <FaTelegram className="me-2"/>
-                  Telegram Group
+                  {t('calculator:form.cta.telegramGroup')}
                 </Button>
               </Col>
             </Row>
@@ -948,14 +941,14 @@ const SimulatorForm = ({onCalculate, setCurrentTab}) => {
                 <Button variant="outline-dark" className="w-100 py-2 h-100" href="https://twitter.com/alphamind_labs"
                         target="_blank" rel="noopener noreferrer">
                   <FaTwitter className="me-2"/>
-                  Follow on X (Twitter)
+                  {t('calculator:form.cta.twitter')}
                 </Button>
               </Col>
               <Col md={6}>
                 <Button variant="outline-danger" className="w-100 py-2 h-100"
                         href="https://www.youtube.com/@AlphaMind_labs" target="_blank" rel="noopener noreferrer">
                   <FaYoutube className="me-2"/>
-                  YouTube Channel
+                  {t('calculator:form.cta.youtube')}
                 </Button>
               </Col>
             </Row>

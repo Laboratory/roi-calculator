@@ -1,0 +1,29 @@
+{
+  "title": "404 - Sayfa Bulunamadı",
+  "heading": "404",
+  "subheading": "Sayfa Bulunamadı",
+  "message": "Aradığınız sayfa mevcut değil veya taşınmış.",
+  "buttons": {
+    "calculator": "Hesaplayıcıya Git",
+    "back": "Geri Dön"
+  },
+  "help": {
+    "title": "Bir şey mi arıyorsunuz?",
+    "sections": {
+      "learn": {
+        "title": "Daha Fazla Bilgi",
+        "links": {
+          "about": "Hesaplayıcı Hakkında",
+          "faq": "Sık Sorulan Sorular"
+        }
+      },
+      "legal": {
+        "title": "Yasal",
+        "links": {
+          "terms": "Kullanım Şartları",
+          "privacy": "Gizlilik Politikası"
+        }
+      }
+    }
+  }
+}

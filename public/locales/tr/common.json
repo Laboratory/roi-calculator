@@ -1,0 +1,73 @@
+{
+  "general": {
+    "loading": "Yükleniyor...",
+    "error": "Bir hata oluştu",
+    "save": "Kaydet",
+    "cancel": "İptal",
+    "close": "Kapat",
+    "apply": "Uygula",
+    "back": "Geri",
+    "next": "İleri",
+    "readMore": "Daha fazla oku",
+    "showLess": "Daha az göster",
+    "share": "Paylaş",
+    "followUs": "Bizi takip edin",
+    "noData": "Veri mevcut değil",
+    "comingSoon": "Çok Yakında",
+    "search": "Yanıtları ara..."
+  },
+  "navigation": {
+    "home": "IDO ROI Simülatörü",
+    "calculator": "Simülatör",
+    "about": "Nasıl Çalışır",
+    "education": "Eğitim",
+    "faq": "Sık Sorulan Sorular"
+  },
+  "theme": {
+    "light": "Açık moda geç",
+    "dark": "Koyu moda geç",
+    "toggle": "Temayı değiştir"
+  },
+  "language": {
+    "selectLanguage": "Dil",
+    "en": "İngilizce",
+    "ru": "Rusça",
+    "es": "İspanyolca",
+    "tr": "Türkçe"
+  },
+  "buttons": {
+    "calculate": "Hesapla",
+    "reset": "Sıfırla",
+    "share": "Sonuçları Paylaş",
+    "export": "Verileri Dışa Aktar",
+    "copyLink": "Bağlantıyı Kopyala",
+    "learnMore": "Daha fazla bilgi",
+    "tryNow": "Şimdi deneyin",
+    "submit": "Gönder"
+  },
+  "errors": {
+    "404": "Sayfa Bulunamadı",
+    "goHome": "Ana Sayfaya Dön",
+    "errorMessage": "Aradığınız sayfa mevcut değil veya taşınmış.",
+    "serverError": "Sunucu Hatası",
+    "formError": "Lütfen formdaki hataları düzeltin",
+    "required": "Bu alan gereklidir",
+    "invalidNumber": "Lütfen geçerli bir sayı girin",
+    "greaterThanZero": "Değer sıfırdan büyük olmalıdır",
+    "invalidDate": "Lütfen geçerli bir tarih girin",
+    "invalidEmail": "Lütfen geçerli bir e-posta adresi girin"
+  },
+  "notifications": {
+    "success": "Başarılı!",
+    "error": "Hata!",
+    "info": "Bilgi",
+    "warning": "Uyarı",
+    "copied": "Panoya kopyalandı!"
+  },
+  "footer": {
+    "disclaimer": "Yasal uyarı: Bu hesaplayıcı yalnızca bilgilendirme amaçlıdır ve finansal tavsiye oluşturmaz.",
+    "privacyPolicy": "Gizlilik Politikası",
+    "termsOfService": "Kullanım Şartları",
+    "copyright": "  {{year}} AlphaMind. Tüm hakları saklıdır."
+  }
+}

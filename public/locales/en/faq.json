@@ -1,0 +1,151 @@
+{
+  "title": "Frequently Asked",
+  "questions": "Questions",
+  "subtitle": "Find answers to common questions about the Token ROI Simulator, unlock schedules, and investment analysis features.",
+  "description": "Answers to common questions about how to simulate token unlock schedules and evaluate potential returns.",
+  "helpCenter": "Help Center",
+  "popular": "Popular",
+  "mostFrequentlyAsked": "Most frequently asked questions by our users",
+  "noResultsFound": "No Results Found",
+  "tryAnotherSearch": "Try adjusting your search terms or browse different categories.",
+  "clearFilters": "Clear Filters",
+  "question": "Question",
+  "trySimulator": "Try Simulator",
+  "contactSupport": "Contact Support",
+  "popularQuestion": "Popular",
+  "allQuestions": "All Questions",
+  "categories": {
+    "title": "Categories",
+    "all": {
+      "title": "All Questions"
+    },
+    "general": {
+      "title": "General",
+      "questions": {
+        "q1": {
+          "question": "Is this simulator free to use?",
+          "answer": "Yes, completely free! There are no hidden fees, subscriptions, or premium features. All functionality is available to everyone at no cost."
+        },
+        "q2": {
+          "question": "Who should use this simulator?",
+          "answer": "Designed for retail investors participating in token presales, private rounds, or any investment with vesting schedules. Useful for anyone wanting to model potential returns from locked token investments."
+        },
+        "q3": {
+          "question": "Is my data private?",
+          "answer": "Yes, we don't store any of your investment details or calculations. All data remains in your browser and is not sent to our servers."
+        }
+      }
+    },
+    "simulator": {
+      "title": "Simulator",
+      "questions": {
+        "q1": {
+          "question": "How do I use the Token ROI Simulator?",
+          "answer": "Simply enter your investment amount, token allocation, unlock schedule, and price scenarios (bear, base, bull) in the Presale Setup tab. The simulator will automatically compute your potential returns, break-even points, and provide detailed ROI Over Time analysis."
+        },
+        "q2": {
+          "question": "What information do I need to start simulating?",
+          "answer": "You need: (1) Your investment amount in USD, (2) Number of tokens allocated, (3) Unlock schedule details (cliff period, vesting duration), and (4) Expected token prices for different market scenarios."
+        },
+        "q3": {
+          "question": "Can I save my calculations for later?",
+          "answer": "Currently, calculations are session-based and not saved permanently. We recommend taking screenshots or notes of important results. Future updates may include local storage options."
+        },
+        "q4": {
+          "question": "What if I make a mistake in my inputs?",
+          "answer": "You can easily modify any input field and recalculate instantly. The simulator updates results in real-time as you change parameters, making it easy to explore different scenarios."
+        },
+        "q5": {
+          "question": "How do I interpret the ROI Over Time chart and table?",
+          "answer": "The ROI Over Time chart and table show your potential returns over time, including break-even points, monthly returns, and cumulative returns. Green indicates positive returns, red indicates losses."
+        },
+        "q6": {
+          "question": "What browsers are supported?",
+          "answer": "Works on all modern browsers including Chrome, Firefox, Safari, and Edge. Mobile browsers are also fully supported with responsive design for smartphones and tablets."
+        }
+      }
+    },
+    "roi": {
+      "title": "ROI Analysis",
+      "questions": {
+        "q1": {
+          "question": "What are the three price scenarios (Bear, Base, Bull)?",
+          "answer": "These represent different market conditions: Bear scenario assumes pessimistic market conditions with lower token prices, Base scenario represents realistic expectations, and Bull scenario assumes optimistic market growth with higher prices."
+        },
+        "q2": {
+          "question": "How accurate are the ROI calculations?",
+          "answer": "The calculations are mathematically precise based on your inputs. However, they are projections based on your price assumptions. Actual returns depend on real market conditions, which can be unpredictable."
+        },
+        "q3": {
+          "question": "What does \"break-even\" mean in the results?",
+          "answer": "Break-even is when your total returns equal your initial investment (0% profit/loss). The simulator shows when you reach break-even in each price scenario and highlights these points in charts."
+        },
+        "q4": {
+          "question": "Should I trust these projections for investment decisions?",
+          "answer": "Use projections as one tool among many for analysis. Always do your own research, consider multiple scenarios, and never invest more than you can afford to lose. This is educational software, not financial advice."
+        }
+      }
+    },
+    "unlock": {
+      "title": "Token Unlocks",
+      "questions": {
+        "q1": {
+          "question": "What is a cliff period in token unlocks?",
+          "answer": "A cliff period is the initial waiting time before any tokens become available for trading. For example, a 6-month cliff means you cannot access any tokens for the first 6 months after your investment."
+        },
+        "q2": {
+          "question": "How does linear vesting work?",
+          "answer": "Linear vesting means tokens are released gradually over time in equal portions. If you have 12-month linear vesting after a cliff, your tokens will unlock in equal monthly installments over that period."
+        },
+        "q3": {
+          "question": "Can I model partial token sales during vesting?",
+          "answer": "The current version assumes you hold all tokens until they unlock. Advanced features for modeling partial sales and exit strategies are planned for future updates."
+        }
+      }
+    },
+    "security": {
+      "title": "Security & Privacy",
+      "questions": {
+        "q1": {
+          "question": "Is my investment data secure and private?",
+          "answer": "Yes, absolutely. All calculations are performed locally in your browser. No data is sent to external servers, stored in databases, or tracked. Your sensitive investment information never leaves your device."
+        },
+        "q2": {
+          "question": "Do I need to create an account or register?",
+          "answer": "No registration required! You can start using the simulator immediately without providing any personal information, email addresses, or creating accounts."
+        },
+        "q3": {
+          "question": "Can I use this simulator offline?",
+          "answer": "The simulator requires an internet connection to load initially, but once loaded, all calculations work offline. No ongoing internet connection is needed for computations."
+        }
+      }
+    }
+  },
+  "stillHaveQuestions": {
+    "title": "Still Have",
+    "subtitle": "Can't find what you're looking for? Our support team is here to help you get the most out of the Token ROI Simulator.",
+    "contact": "Reach out to us through our Discord community or send an email to support@alphamind.co"
+  },
+  "quickStart": {
+    "title": "Quick Start",
+    "description": "Jump right into simulating your ROI",
+    "button": "Start Now"
+  },
+  "community": {
+    "title": "Community",
+    "description": "Join our Discord community",
+    "button": "Join Discord"
+  },
+  "support": {
+    "title": "Support",
+    "description": "Get direct help from our team",
+    "button": "Contact Us"
+  },
+  "proTip": {
+    "title": " Pro Tip",
+    "text": "For the most accurate results, research realistic price targets based on comparable projects, market conditions, and tokenomics fundamentals."
+  },
+  "readyToTry": "Ready to try it yourself?",
+  "simulatorDescription": "Use our simulator to model your own token investments and plan better exit strategies.",
+  "trySimulatorNow": "Try Simulator Now"
+}

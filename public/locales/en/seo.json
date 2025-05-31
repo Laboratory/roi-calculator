@@ -1,0 +1,40 @@
+{
+  "home": {
+    "title": "IDO ROI Simulator | Visualize Unlocks, Model Returns, Plan Smarter Exits",
+    "description": "Use our free IDO ROI Simulator to model token unlocks, project real returns, and avoid presale pitfalls. Simulate your token investment across bear, base, and bull scenarios. No wallet, no login required.",
+    "ogTitle": "IDO ROI Simulator | Visualize Unlocks, Model Returns, Plan Smarter Exits",
+    "ogDescription": "Simulate token unlocks and ROI across market conditions. Understand FDV risk, break-even timing, and sell pressure — all without spreadsheets."
+  },
+  "about": {
+    "title": "How the IDO ROI Simulator Works | Token Unlock Modeling & Risk Insights",
+    "description": "Learn how the IDO ROI Simulator helps investors model token unlocks, assess real ROI timelines, and plan better exits from crypto presales.",
+    "ogTitle": "How the IDO ROI Simulator Works | Token Unlock Modeling & Risk Insights",
+    "ogDescription": "Discover how this tool simulates token unlocks, return projections, FDV sensitivity and break-even timing based on presale terms and market movement."
+  },
+  "faq": {
+    "title": "FAQs | Token Unlocks, ROI Modeling & Presale Risk Analysis",
+    "description": "Answers to common questions about how to simulate token unlock schedules, calculate ROI across scenarios, and evaluate crypto investment timing.",
+    "ogTitle": "FAQs | Token Unlocks, ROI Modeling & Presale Risk Analysis",
+    "ogDescription": "Get clear answers about token unlock schedules, ROI projections, and how this simulator models returns under various market outcomes."
+  },
+  "notFound": {
+    "title": "404 - Page Not Found | IDO ROI Simulator",
+    "description": "Sorry, the page you are looking for does not exist or has been moved."
+  },
+  "privacy": {
+    "title": "Privacy Policy | IDO ROI Simulator",
+    "description": "Learn about our privacy practices and how we protect your data while using the IDO ROI Simulator."
+  },
+  "terms": {
+    "title": "Terms of Service | IDO ROI Simulator",
+    "description": "Review the terms and conditions for using the IDO ROI Simulator."
+  },
+  "education": {
+    "title": "Crypto Investment Education | IDO ROI Simulator",
+    "description": "Learn about token presales, unlock schedules, and how to calculate real ROI on your crypto investments."
+  },
+  "marketingText": {
+    "subtitle": "Uncover real returns. Visualize token unlocks. Break free from FDV illusions.",
+    "mainDescription": "Simulate your returns from any token presale, forecast token unlocks, and plan smarter exits under different market scenarios. Free, fast, and privacy-safe. Built by AlphaMind to protect retail investors."
+  }
+}

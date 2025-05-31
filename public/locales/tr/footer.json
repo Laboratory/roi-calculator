@@ -1,0 +1,26 @@
+{
+  "title": "Bu Araç Hakkında",
+  "links": "Navigasyon",
+  "legal": "Yasal",
+  "disclaimer": "Bu araç yalnızca bilgilendirme ve eğitim amaçlıdır. Tüm simülasyonlar ve ROI projeksiyonları hipotetiktir ve finansal tavsiye, yatırım rehberliği veya gelecekteki performans garantisi oluşturmaz. Herhangi bir yatırım kararı vermeden önce her zaman kendi araştırmınızı yapın (DYOR) ve lisanslı profesyonellere danışın.",
+  "disclaimerShort": "Unutmayın: Simülasyonlar tahmin değildir. Piyasalar, özellikle kripto dünyasında çok değişkendir.",
+  "copyright": " {{year}} AlphaMind. Tüm hakları saklıdır.",
+  "privacyPolicy": "Gizlilik Politikası",
+  "termsOfService": "Kullanım Şartları",
+  "newsletter": {
+    "title": "Güncel Kalın",
+    "subtitle": "En son güncellemeler ve bilgiler için bültenimize abone olun",
+    "placeholder": "E-posta adresinizi girin",
+    "button": "Abone Ol",
+    "success": "Abone olduğunuz için teşekkürler!",
+    "error": "Abone olurken hata oluştu. Lütfen tekrar deneyin."
+  },
+  "social": {
+    "title": "Bizimle Bağlantı Kurun",
+    "discord": "Discord'umuza Katılın",
+    "telegram": "Telegram Grubu",
+    "telegramBot": "Telegram Bot",
+    "twitter": "Twitter'da Takip Edin",
+    "youtube": "YouTube Kanalı"
+  }
+}

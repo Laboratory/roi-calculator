@@ -1,0 +1,46 @@
+{
+  "title": "Hizmet Şartları",
+  "lastUpdated": "Son güncelleme: 26 Mayıs 2025",
+  "sections": {
+    "introduction": {
+      "title": "1. Giriş",
+      "content": "TokenCalculator'a (\"biz,\" \"bizim\" veya \"bizi\") hoş geldiniz. Web sitemize erişerek veya hizmetlerimizi kullanarak, bu Hizmet Şartlarına bağlı kalmayı kabul etmiş olursunuz. Bu şartları kabul etmiyorsanız, lütfen hizmetlerimizi kullanmayın."
+    },
+    "useOfServices": {
+      "title": "2. Hizmetlerin Kullanımı",
+      "content": "TokenCalculator, token yatırımlarında potansiyel getirileri hesaplamak için araçlar sağlar. Hesaplayıcımız yalnızca bilgilendirme amaçlıdır ve finansal tavsiye olarak değerlendirilmemelidir.",
+      "additional": "Hizmetlerimizi yalnızca yasal amaçlar için ve bu Şartlara uygun olarak kullanmayı kabul edersiniz. Aşağıdakiler yasaktır:",
+      "items": [
+        "Hizmetlerimizi yürürlükteki yasa veya düzenlemeleri ihlal eden herhangi bir şekilde kullanmak",
+        "Hizmetlerimizin işleyişine müdahale etmeye veya bozmaya çalışmak",
+        "Herhangi bir kişi veya kuruluşu taklit etmek veya bağlılığınızı yanlış beyan etmek",
+        "Sistemlerimize veya diğer kullanıcılara zarar verebilecek herhangi bir faaliyette bulunmak"
+      ]
+    },
+    "disclaimer": {
+      "title": "3. Garantilerin Reddi",
+      "content": "HİZMETLER, HERHANGİ BİR TÜR GARANTİ OLMAKSIZIN \"OLDUĞU GİBİ\" VE \"MEVCUT OLDUĞU GİBİ\" SAĞLANIR, AÇIK VEYA ZIMNİ. UYGULANABİLİR YASALARIN İZİN VERDİĞİ AZAMİ ÖLÇÜDE, TİCARİ ELVERİŞLİLİK, BELİRLİ BİR AMACA UYGUNLUK VE İHLAL ETMEME DAHİL OLMAK ÜZERE TÜM GARANTİLERİ, AÇIK VEYA ZIMNİ OLARAK REDDEDİYORUZ.",
+      "additional": "Hizmetlerimizin kesintisiz, güvenli veya hatasız olacağını veya kusurların düzeltileceğini garanti etmiyoruz. Hizmetlerimiz aracılığıyla sağlanan içerik veya bilgilerin doğruluğu, güvenilirliği veya eksiksizliği konusunda hiçbir garanti vermiyoruz."
+    },
+    "limitation": {
+      "title": "4. Sorumluluk Sınırlaması",
+      "content": "UYGULANABİLİR YASALARIN İZİN VERDİĞİ AZAMİ ÖLÇÜDE, TOKENCALCULATOR, BAĞLI KURULUŞLARI VEYA İLGİLİ GÖREVLİLERİ, DİREKTÖRLERİ, ÇALIŞANLARI VEYA TEMSİLCİLERİ, KAR KAYBI DAHİL OLMAK ÜZERE, HİZMETLERİMİZİN KULLANIMINDAN VEYA KULLANILAMAMASINDAN KAYNAKLANAN VEYA İLGİLİ HERHANGİ BİR DOLAYLI, ARIZİ, ÖZEL, SONUÇ NİTELİĞİNDE VEYA CEZALANDIRICI ZARARLARDAN SORUMLU OLMAYACAKTIR."
+    },
+    "riskDisclosure": {
+      "title": "5. Risk Açıklaması",
+      "content": "Kripto para yatırımları önemli risk içerir. Geçmiş performans, gelecekteki sonuçların bir göstergesi değildir. Araçlarımız tarafından sağlanan hesaplamalar ve projeksiyonlar, girdiğiniz bilgilere ve gerçek piyasa koşullarını yansıtmayabilecek çeşitli varsayımlara dayanmaktadır. Yatırım kararları vermeden önce kendi araştırmanızı yapmalı ve finansal profesyonellere danışmalısınız."
+    },
+    "modifications": {
+      "title": "6. Şartlarda Değişiklikler",
+      "content": "Bu Şartları istediğimiz zaman değiştirme hakkını saklı tutuyoruz. Önemli değişiklikleri, güncellenmiş Şartları web sitemizde yayınlayarak bildireceğiz. Bu tür değişikliklerden sonra hizmetlerimizi kullanmaya devam etmeniz, güncellenmiş Şartları kabul ettiğiniz anlamına gelir."
+    },
+    "governingLaw": {
+      "title": "7. Geçerli Kanun",
+      "content": "Bu Şartlar, faaliyet gösterdiğimiz yargı bölgesinin kanunlarına göre yönetilecek ve yorumlanacaktır, kanun hükümleri çatışmaları dikkate alınmaksızın."
+    },
+    "contactInfo": {
+      "title": "8. İletişim Bilgileri",
+      "content": "Bu Şartlar hakkında herhangi bir sorunuz varsa, lütfen support@alphamind.co adresinden bizimle iletişime geçin."
+    }
+  }
+}

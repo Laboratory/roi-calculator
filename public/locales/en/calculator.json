@@ -1,0 +1,249 @@
+{
+  "title": "Token Unlock & ROI Simulator",
+  "subtitle": "Uncover real returns. Visualize token unlocks. Break free from FDV illusions.",
+  "description": "Simulate your returns from any token presale, forecast token unlocks, and plan smarter exits under different market scenarios. Free, fast, and privacy-safe. Built by AlphaMind to protect retail investors.",
+  
+  "form": {
+    "sections": {
+      "projectDetails": "Project Details",
+      "investmentDetails": "Investment Details",
+      "marketScenarios": "Market Scenarios",
+      "results": "Results",
+      "presaleSetup": "Presale Setup"
+    },
+    "projectName": {
+      "label": "Project Name",
+      "placeholder": "Enter project name"
+    },
+    "projectIcon": {
+      "label": "Project Icon (optional)",
+      "placeholder": "Enter URL to project icon"
+    },
+    "tokenSymbol": {
+      "label": "Token Symbol",
+      "placeholder": "E.g., BTC, ETH"
+    },
+    "tokenAmount": {
+      "label": "Token Amount",
+      "placeholder": "Calculated from investment and price"
+    },
+    "investmentAmount": {
+      "label": "Investment Amount (USD)",
+      "placeholder": "Enter investment amount",
+      "tooltip": "The amount of money you invested in USD."
+    },
+    "tokenPrice": {
+      "label": "Token Price at Entry (USD)",
+      "placeholder": "Price per token"
+    },
+    "totalSupply": {
+      "label": "Total Token Supply",
+      "placeholder": "Total number of tokens",
+      "options": {
+        "10billion": "10 Billion (10,000,000,000)",
+        "1billion": "1 Billion (1,000,000,000)",
+        "100million": "100 Million (100,000,000)",
+        "custom": "Custom"
+      },
+      "note": "Add total supply to detect high FDV setups and unlock dilution."
+    },
+    "expectedListingPrice": {
+      "label": "Expected Listing Price (optional)",
+      "placeholder": "e.g., 0.1"
+    },
+    "tgeDate": {
+      "label": "TGE Date",
+      "placeholder": "dd.mm.yyyy",
+      "note": "If provided, results will show actual calendar dates"
+    },
+    "vestingPeriod": {
+      "label": "Vesting Period (Months)",
+      "placeholder": "E.g., 12, 24, 36"
+    },
+    "unlockSchedule": {
+      "title": "Unlock Schedule",
+      "periodLabel": {
+        "weekly": "Week #",
+        "monthly": "Month"
+      },
+      "tgePercentage": {
+        "label": "TGE Unlock (%)",
+        "placeholder": "Percentage at launch"
+      },
+      "unlockFrequency": {
+        "label": "Unlock Frequency",
+        "options": {
+          "monthly": "Monthly",
+          "quarterly": "Quarterly",
+          "linear": "Linear (Daily)",
+          "weekly": "Weekly"
+        }
+      },
+      "cliffPeriod": {
+        "label": "Cliff Period (Months)",
+        "placeholder": "Months before tokens start unlocking"
+      }
+    },
+    "generatedSchedule": {
+      "title": "Generated Unlock Schedule",
+      "period": "Period",
+      "time": "Time",
+      "percentage": "Percentage (%)",
+      "tgeDate": "Month 0",
+      "week0": "Week 0 (TGE)",
+      "month0": "Month 0 (TGE)",
+      "week": "Week",
+      "month": "Month",
+      "weekNote": "Week numbers are calculated from TGE date"
+    },
+    "marketScenarios": {
+      "title": "Market Scenarios",
+      "scenarioLabel": "Market Return",
+      "roiPlaceholder": "Return percentage",
+      "calculatedPrice": "Calculated price:",
+      "bearish": {
+        "label": "Bearish Price (USD)",
+        "placeholder": "Lowest expected price"
+      },
+      "neutral": {
+        "label": "Neutral Price (USD)",
+        "placeholder": "Moderate expected price"
+      },
+      "bullish": {
+        "label": "Bullish Price (USD)",
+        "placeholder": "Highest expected price"
+      }
+    },
+    "actions": {
+      "calculate": "Calculate ROI",
+      "reset": "Reset Form",
+      "simulateRoi": "Instantly model your returns across different market conditions & unlock terms."
+    },
+    "cta": {
+      "title": "Drop your email or join our Telegram to shape the next version.",
+      "note": "Want early access to the advanced version and new features? Drop your 📩email or subscribe to our telegram bot for notifications.",
+      "emailPlaceholder": "Your email address",
+      "emailLabel": "Email address",
+      "submitting": "Subscribing...",
+      "subscribe": "Subscribe",
+      "success": "Thanks for subscribing! We'll keep you updated.",
+      "telegram": "Telegram Bot",
+      "joinCommunity": "Like this tool? Help us build the ultimate ROI simulator for IDOs:",
+      "communityNote": "leave your feedback and join conversation in community channels:",
+      "discord": "Join Discord",
+      "telegramGroup": "Telegram Group",
+      "twitter": "Follow on X (Twitter)",
+      "youtube": "YouTube Channel"
+    },
+    "errors": {
+      "investmentAmount": "Investment amount is required and must be greater than 0",
+      "tokenPrice": "Token price is required and must be greater than 0",
+      "tokenName": "Token name is required",
+      "tokenAmount": "Token amount is required and must be greater than 0",
+      "tgeUnlock": "TGE unlock must be between 0 and 100",
+      "scenarios": "All scenarios must have a name and valid ROI",
+      "unlockPeriods": "All unlock periods must have a valid month and percentage",
+      "totalPercentage": "Total unlock percentage must equal 100%",
+      "email": "Please enter a valid email address"
+    },
+    "tooltips": {
+      "investmentAmount": "The amount of money you invested in USD.",
+      "tokenPrice": "The price per token at which you purchased.",
+      "tokenName": "The name or symbol of the token.",
+      "tokenAmount": "The number of tokens you received.",
+      "tgeUnlock": "Percentage of tokens unlocked at Token Generation Event (launch).",
+      "cliff": "Number of months before tokens start unlocking.",
+      "vestingDuration": "Total duration of vesting period in months.",
+      "unlockFrequency": "How often tokens unlock.",
+      "expectedListingPrice": "Expected TGE Price (optional): If known, this will be used as the base price for market ROI scenarios. If not provided, we assume listing price = your purchase price",
+      "tgeDate": "Token Generation Event date - when your tokens were first created and the vesting schedule began.",
+      "totalSupply": "The total number of tokens that will ever exist for this project. Used to calculate the Fully Diluted Valuation (FDV).",
+      "generatedSchedule": "This table shows the detailed unlock schedule for your tokens.",
+      "period": "The month/week number after TGE (Token Generation Event).",
+      "percentage": "The percentage of your total tokens that will unlock during this period.",
+      "bearScenario": "We assume your token trades at 90% below your presale price during your entire vesting period.",
+      "baseScenario": "No major price change. Token price stays near your purchase level.",
+      "bullScenario": "Market surges. We assume Token trades at a multiple of your presale price over your vesting period."
+    }
+  },
+  "results": {
+    "title": "Investment Results",
+    "summary": "Investment Summary",
+    "projectName": "Project",
+    "investmentAmount": "Investment Amount",
+    "tokenAmount": "Tokens Purchased",
+    "entryPrice": "Entry Price",
+    "totalValue": "Total Value at",
+    "roi": "ROI",
+    "scenarios": {
+      "bearish": "Bearish",
+      "neutral": "Neutral",
+      "bullish": "Bullish"
+    },
+    "monthlyBreakdown": {
+      "title": "ROI Over Time",
+      "chartTitle": "ROI Over Time",
+      "chartTooltip": "This chart shows how your investment's ROI changes over time as tokens are unlocked. The lines represent different price scenarios.",
+      "breakdownTitle": {
+        "monthly": "Monthly Breakdown",
+        "weekly": "Weekly Breakdown"
+      },
+      "breakdownTooltip": {
+        "monthly": "This table shows a detailed month-by-month breakdown of your investment's performance, including token unlocks, revenue, and cumulative ROI for each scenario.",
+        "weekly": "This table shows a detailed week-by-week breakdown of your investment's performance, including token unlocks, revenue, and cumulative ROI for each scenario."
+      },
+      "tableColumns": {
+        "period": {
+          "title": "Month",
+          "weekTitle": "Week",
+          "tooltip": "The month number after TGE (Token Generation Event). If a TGE date was provided, actual calendar dates are shown in parentheses.",
+          "weekTooltip": "The week number after TGE (Token Generation Event). If a TGE date was provided, actual calendar dates are shown in parentheses."
+        },
+        "tokensUnlocked": {
+          "title": "Tokens Unlocked",
+          "tooltip": "The number of tokens that become available in this month according to your vesting schedule.",
+          "weekTooltip": "The number of tokens that become available in this week according to your vesting schedule."
+        },
+        "revenue": {
+          "title": "Case Revenue",
+          "tooltip": "The USD value of tokens unlocked in this month, calculated using the case price.",
+          "weekTooltip": "The USD value of tokens unlocked in this week, calculated using the case price."
+        },
+        "cumulativeRoi": {
+          "title": "Case ROI",
+          "tooltip": "Your total return on investment up to this month, calculated using the case price.",
+          "weekTooltip": "Your total return on investment up to this week, calculated using the case price."
+        }
+      },
+      "breakEven": "Break-even",
+      "totalSummary": {
+        "title": "Total Summary",
+        "totalRevenue": "Total Revenue:",
+        "finalRoi": "Final ROI:"
+      },
+      "scenarioLabels": {
+        "bear": "Bear Case",
+        "base": "Base Case",
+        "bull": "Bull Case"
+      },
+      "advancedModeTeaser": {
+        "title": "Advanced mode coming soon:",
+        "features": "partial exit strategy, VC unlock pressure, dynamic sell plans."
+      },
+      "keyMetrics": {
+        "initialInvestment": "Initial Investment",
+        "tokenAllocation": "Token Allocation"
+      },
+      "noData": "No calculation data available. Please complete the calculator form first."
+    }
+  },
+  "tokenomicsChart": {
+    "title": "Token Unlock Schedule",
+    "xAxis": "Month",
+    "yAxis": "Tokens Unlocked",
+    "series": {
+      "unlocked": "Unlocked Tokens",
+      "locked": "Locked Tokens"
+    }
+  }
+}

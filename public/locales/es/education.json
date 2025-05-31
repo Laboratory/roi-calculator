@@ -1,0 +1,294 @@
+{
+  "title": "Educación del Simulador de ROI de IDO",
+  "subtitle": "Aprenda a usar nuestro simulador para tomar decisiones de inversión informadas. No se requieren conocimientos previos de criptomonedas.",
+  "description": "Aprenda todo lo que necesita saber sobre inversiones en tokens, calendarios de desbloqueo y cómo interpretar los resultados de nuestro simulador.",
+  "sections": {
+    "basics": {
+      "title": "Fundamentos de inversión",
+      "topics": {
+        "ido": {
+          "title": "¿Qué es un IDO?",
+          "content": "Una Oferta Inicial en DEX (IDO) es un método de recaudación de fondos en el que nuevos proyectos venden sus tokens a través de intercambios descentralizados. A diferencia de las ICO, los IDO ofrecen liquidez inmediata y costos típicamente más bajos."
+        },
+        "roi": {
+          "title": "Entendiendo el ROI",
+          "content": "El Retorno sobre la Inversión (ROI) mide la rentabilidad de una inversión como porcentaje del costo original. En cripto, el ROI se ve afectado por cambios en el precio del token, calendarios de desbloqueo y condiciones del mercado."
+        },
+        "fdv": {
+          "title": "Valoración Totalmente Diluida (FDV)",
+          "content": "FDV representa el valor teórico de un token si todo su suministro estuviera en circulación al precio actual. Es una métrica de valoración máxima que a menudo crea expectativas poco realistas."
+        }
+      }
+    },
+    "tokenomics": {
+      "title": "Tokenomics básico",
+      "topics": {
+        "supply": {
+          "title": "Métricas de suministro de tokens",
+          "content": "El suministro total se refiere a todos los tokens que existirán, mientras que el suministro circulante representa los tokens disponibles actualmente en el mercado. La diferencia suele estar bloqueada o en proceso de vesting."
+        },
+        "unlocks": {
+          "title": "Desbloqueos de tokens",
+          "content": "Los desbloqueos de tokens se refieren a la liberación programada de tokens previamente bloqueados a la circulación. Los desbloqueos a menudo aumentan la presión de venta y pueden impactar negativamente en el precio del token."
+        },
+        "vesting": {
+          "title": "Calendarios de vesting",
+          "content": "El vesting es el proceso mediante el cual los tokens se liberan gradualmente a inversores, miembros del equipo u otras partes interesadas según un calendario predeterminado."
+        }
+      }
+    },
+    "simulation": {
+      "title": "Uso del simulador",
+      "topics": {
+        "scenarios": {
+          "title": "Escenarios de mercado",
+          "content": "Nuestro simulador le permite modelar condiciones de mercado bajistas, neutrales y alcistas para ver resultados potenciales en diferentes entornos de mercado."
+        },
+        "exit": {
+          "title": "Planificación de su salida",
+          "content": "Utilice los datos del calendario de desbloqueo para identificar posibles períodos de presión de venta y planificar su estrategia de salida en consecuencia."
+        },
+        "interpretation": {
+          "title": "Interpretación de resultados",
+          "content": "Aprenda a leer los resultados de la simulación y aplicar los conocimientos a su estrategia de inversión."
+        }
+      }
+    },
+    "advanced": {
+      "title": "Estrategias avanzadas",
+      "topics": {
+        "dca": {
+          "title": "Promedio de costo en dólares",
+          "content": "En lugar de invertir todo de una vez, considere distribuir su inversión en múltiples puntos de entrada para reducir el impacto de la volatilidad."
+        },
+        "risk": {
+          "title": "Gestión de riesgos",
+          "content": "Nunca invierta más de lo que puede permitirse perder, y considere diversificar en múltiples proyectos."
+        },
+        "research": {
+          "title": "Diligencia debida",
+          "content": "Siempre investigue el equipo, la tecnología y la tokenomics de un proyecto antes de invertir."
+        }
+      }
+    }
+  },
+  "cta": {
+    "trySimulator": "Probar el Simulador",
+    "title": "¿Listo para planificar tu inversión?",
+    "description": "Ahora que entiendes cómo funciona el simulador y qué significan los parámetros, pruébalo con tus propios detalles de inversión."
+  },
+  "intro": {
+    "title": "¿Qué es el Simulador de ROI de IDO?",
+    "paragraph1": "El Simulador de ROI de IDO es una herramienta que te ayuda a predecir el potencial retorno de inversión (ROI) para preventas de tokens y Ofertas Iniciales de DEX (IDOs). Tiene en cuenta los cronogramas de desbloqueo de tokens, períodos de consolidación y varios escenarios de mercado para darte una visión realista del potencial de tu inversión.",
+    "paragraph2": "A diferencia de las calculadoras simplificadas que solo consideran la valoración totalmente diluida (FDV), nuestro simulador te muestra exactamente cuándo tus tokens estarán disponibles y cómo podrían verse tus rendimientos bajo diferentes condiciones de mercado.",
+    "whyMatters": {
+      "title": "Por qué esto importa:",
+      "content": "Muchos inversores se decepcionan con sus rendimientos de IDO porque no tienen en cuenta los cronogramas de consolidación de tokens y las cambiantes condiciones del mercado. Este simulador te ayuda a establecer expectativas realistas y tomar mejores decisiones de inversión."
+    }
+  },
+  "howToUse": {
+    "title": "Cómo usar el Simulador",
+    "step1": {
+      "title": "Ingresa los detalles de tu inversión",
+      "description": "Introduce el precio del token, tu monto de inversión y el número de tokens que recibirás. Estos valores deberían estar disponibles en la documentación del proyecto o en el portal de inversión.",
+      "example": {
+        "title": "Ejemplo:",
+        "tokenPrice": "Precio del token: $0.05",
+        "investmentAmount": "Inversión: $1,000",
+        "tokens": "Tokens: 20,000"
+      }
+    },
+    "step2": {
+      "title": "Especifica el cronograma de desbloqueo de tokens",
+      "description": "Ingresa el % de TGE (tokens disponibles al lanzamiento), período de cliff (tiempo de espera antes de que se desbloqueen más tokens) y período de vesting (cuánto tiempo hasta que todos los tokens sean liberados).",
+      "example": {
+        "title": "Ejemplo:",
+        "tgePercent": "TGE: 10%",
+        "cliffPeriod": "Cliff: 1 mes",
+        "vestingPeriod": "Vesting: 12 meses"
+      }
+    },
+    "step3": {
+      "title": "Establece objetivos de precio para diferentes escenarios de mercado",
+      "description": "Define tus precios esperados de tokens bajo condiciones de mercado bajista (pesimista), base (realista) y alcista (optimista).",
+      "example": {
+        "title": "Ejemplo:",
+        "bearPrice": "Bajista: $0.08 por token (60% de aumento desde el precio de IDO)",
+        "basePrice": "Base: $0.15 por token (200% de aumento desde el precio de IDO)",
+        "bullPrice": "Alcista: $0.50 por token (900% de aumento desde el precio de IDO)"
+      }
+    },
+    "step4": {
+      "title": "Analiza los resultados",
+      "description": "Revisa el cronograma de desbloqueo generado, el desglose mensual de ROI y las proyecciones generales de rendimiento bajo cada escenario de mercado.",
+      "keyInsights": {
+        "title": "Aspectos clave a buscar:",
+        "breakEvenPoint": "Cuándo recuperarás tu inversión",
+        "tokenUnlocks": "Cómo los desbloqueos de tokens afectan tus tenencias totales a lo largo del tiempo",
+        "maxPotentialROI": "ROI potencial máximo bajo diferentes condiciones de mercado"
+      }
+    }
+  },
+  "parameters": {
+    "title": "Parámetros del Simulador Explicados",
+    "tip": {
+      "title": "Consejo:"
+    },
+    "example": {
+      "title": "Ejemplo:"
+    },
+    "tokenPrice": {
+      "name": "Precio del Token",
+      "description": "El precio por token durante la preventa o IDO. Esto es cuánto pagas por cada token.",
+      "tips": "Usualmente mucho más bajo que el precio de listado esperado en los exchanges.",
+      "example": "$0.05 por token"
+    },
+    "investmentAmount": {
+      "name": "Monto de Inversión",
+      "description": "La cantidad total de dinero que inviertes en la venta de tokens.",
+      "tips": "Solo invierte lo que puedes permitirte perder.",
+      "example": "$1,000"
+    },
+    "tgePercent": {
+      "name": "% de TGE",
+      "description": "El porcentaje de tu asignación total de tokens liberados inmediatamente en el Evento de Generación de Tokens.",
+      "tips": "Un % de TGE más bajo significa que más tokens están bloqueados en vesting.",
+      "example": "10% (de tus tokens disponibles en TGE)"
+    },
+    "cliffPeriod": {
+      "name": "Período de Cliff",
+      "description": "Un período después del TGE durante el cual no se desbloquean tokens adicionales.",
+      "tips": "Los cliffs más largos pueden ser más arriesgados ya que no puedes vender durante este tiempo.",
+      "example": "3 meses"
+    },
+    "vestingPeriod": {
+      "name": "Período de Vesting",
+      "description": "La duración total durante la cual tus tokens restantes (después del TGE) se desbloquearán gradualmente.",
+      "tips": "Los períodos de vesting más cortos son generalmente mejores para los inversores.",
+      "example": "12 meses"
+    },
+    "totalTokenSupply": {
+      "name": "Suministro Total de Tokens",
+      "description": "El número total de tokens que existirán para este proyecto.",
+      "tips": "Se utiliza para calcular la valoración totalmente diluida (FDV).",
+      "example": "100,000,000 tokens"
+    },
+    "bearPrice": {
+      "name": "Precio Bajista",
+      "description": "El precio estimado del token en un escenario de mercado negativo.",
+      "tips": "Siempre planifica para este escenario para evaluar tu riesgo.",
+      "example": "$0.08 por token (60% de aumento desde el precio de IDO)"
+    },
+    "basePrice": {
+      "name": "Precio Base",
+      "description": "El precio estimado del token en un escenario de mercado neutral.",
+      "tips": "Este es el resultado más probable en muchos casos.",
+      "example": "$0.15 por token (200% de aumento desde el precio de IDO)"
+    },
+    "bullPrice": {
+      "name": "Precio Alcista",
+      "description": "El precio estimado del token en un escenario de mercado positivo.",
+      "tips": "Sé realista - no todos los proyectos harán 100x.",
+      "example": "$0.50 por token (900% de aumento desde el precio de IDO)"
+    }
+  },
+  "glossary": {
+    "title": "Glosario de Términos",
+    "term": "Término",
+    "definition": "Definición",
+    "allTerms": "Todos los Términos",
+    "generalTerms": "General",
+    "investmentTerms": "Inversión",
+    "vestingTerms": "Vesting",
+    "valuationTerms": "Valoración",
+    "marketTerms": "Mercado",
+    "categories": {
+      "general": "general",
+      "investment": "inversión",
+      "vesting": "vesting",
+      "valuation": "valoración",
+      "market": "mercado"
+    },
+    "terms": {
+      "ido": {
+        "term": "IDO",
+        "definition": "Initial DEX Offering - Un método de recaudación de fondos donde nuevos proyectos de criptomonedas venden tokens directamente a través de exchanges descentralizados."
+      },
+      "roi": {
+        "term": "ROI",
+        "definition": "Return on Investment (Retorno de Inversión) - La ganancia o pérdida de una inversión expresada como porcentaje del costo inicial."
+      },
+      "tge": {
+        "term": "TGE",
+        "definition": "Token Generation Event (Evento de Generación de Tokens) - El momento en que los tokens de un proyecto son creados y distribuidos a los inversores iniciales."
+      },
+      "tgePercent": {
+        "term": "% de TGE",
+        "definition": "El porcentaje de tu asignación total de tokens que se vuelve disponible en el Evento de Generación de Tokens."
+      },
+      "cliff": {
+        "term": "Cliff",
+        "definition": "Un período después del TGE durante el cual no se desbloquean tokens."
+      },
+      "vesting": {
+        "term": "Vesting",
+        "definition": "El proceso de liberar gradualmente tokens a lo largo del tiempo según un cronograma predeterminado."
+      },
+      "vestingPeriod": {
+        "term": "Período de Vesting",
+        "definition": "La duración total durante la cual todos los tokens serán liberados."
+      },
+      "fdv": {
+        "term": "FDV",
+        "definition": "Fully Diluted Valuation (Valoración Totalmente Diluida) - El valor teórico de un proyecto de criptomonedas si todos los tokens estuvieran en circulación."
+      },
+      "marketCap": {
+        "term": "Capitalización de Mercado",
+        "definition": "El valor total de todos los tokens en circulación, calculado multiplicando el precio actual por el suministro circulante."
+      },
+      "bearMarket": {
+        "term": "Mercado Bajista",
+        "definition": "Una condición de mercado en la que los precios están cayendo y la confianza de los inversores es baja."
+      },
+      "baseMarket": {
+        "term": "Mercado Base",
+        "definition": "Una condición de mercado con crecimiento moderado, que representa el escenario promedio esperado."
+      },
+      "bullMarket": {
+        "term": "Mercado Alcista",
+        "definition": "Una condición de mercado en la que los precios están subiendo y la confianza de los inversores es alta."
+      },
+      "unlockSchedule": {
+        "term": "Cronograma de Desbloqueo",
+        "definition": "La línea de tiempo que detalla cuándo los tokens son liberados de las restricciones de vesting y se vuelven disponibles para comerciar."
+      },
+      "breakEvenPoint": {
+        "term": "Punto de Equilibrio",
+        "definition": "El punto en el que los rendimientos de una inversión igualan el costo de la inversión."
+      }
+    }
+  },
+  "commonMistakes": {
+    "title": "Errores Comunes de los Inversores",
+    "mistake1": {
+      "title": "Ignorar los Cronogramas de Vesting",
+      "description": "Muchos inversores se centran solo en el precio inicial sin considerar cómo los desbloqueos de tokens afectan sus rendimientos reales. Recuerda que solo puedes vender tokens una vez que están desbloqueados, y para entonces, las condiciones del mercado pueden haber cambiado."
+    },
+    "mistake2": {
+      "title": "Sobrestimar el Rendimiento del Mercado",
+      "description": "Es tentador centrarse solo en escenarios de mercado alcista, pero la realidad a menudo cae en algún punto entre los casos base y bajista. Siempre considera todos los escenarios al tomar decisiones de inversión."
+    },
+    "mistake3": {
+      "title": "No Entender FDV (Valoración Totalmente Diluida)",
+      "description": "Los proyectos a menudo promocionan su valoración actual sin mencionar la valoración totalmente diluida, que incluye todos los tokens que eventualmente entrarán en circulación. Esto puede llevar a sorpresas de precio cuando se desbloquean más tokens."
+    },
+    "mistake4": {
+      "title": "Olvidar los Desbloqueos de Otros Inversores",
+      "description": "Tus tokens no son los únicos que se están desbloqueando. Cuando los tokens de VCs, miembros del equipo y otros inversores tempranos se desbloquean, pueden vender, creando presión a la baja en el precio en momentos específicos."
+    }
+  },
+  "resources": {
+    "title": "Recursos adicionales",
+    "description": "¿Quiere aprender más? Consulte estos recursos:"
+  }
+}
