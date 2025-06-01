@@ -10,7 +10,7 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className={`footer ${darkMode ? 'bg-dark text-light' : 'bg-light'} mt-auto py-3`}>
+    <footer className={`footer ${darkMode ? 'dark-card-bg text-light' : 'bg-light'} mt-auto py-3`}>
       <Container>
         <Row>
           <Col className="text-center">

@@ -1,5 +1,5 @@
-import React, { lazy, Suspense, useContext, useEffect } from 'react';
-import { Button, Spinner } from 'react-bootstrap';
+import React, { lazy, Suspense, useContext, useEffect, useState } from 'react';
+import { Button, Spinner, Navbar, Nav, Container } from 'react-bootstrap';
 import { FaMoon, FaSun } from 'react-icons/fa';
 import { Link, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { ThemeContext } from './context/ThemeContext';
@@ -21,7 +21,7 @@ const NotFound = lazy(() => import('./components/NotFound'));
 // Fallback loading component
 const LoadingFallback = () => {
   const { t } = useTranslation('pageloader');
-  
+
   return (
     <div className="d-flex justify-content-center align-items-center p-5">
       <Spinner animation="border" role="status" variant="primary">
@@ -36,16 +36,17 @@ function AppRouter () {
   const location = useLocation();
   const navigate = useNavigate();
   const { t } = useTranslation();
+  const [expanded, setExpanded] = useState(false);
 
   // Track page views when location changes
   useEffect(() => {
     // Get the path
     const path = location.pathname;
-    
+
     // Find the matching SEO config for the current path
     let configKey = 'home'; // Default to home
     let isPathFound = false;
-    
+
     // Loop through all SEO config entries to find matching canonicalUrl
     Object.entries(seoConfig).forEach(([key, value]) => {
       if (key !== 'baseUrl' && value.canonicalUrl === path) {
@@ -53,50 +54,65 @@ function AppRouter () {
         isPathFound = true;
       }
     });
-    
+
     // Get the title from the SEO config
     const pageTitle = seoConfig[configKey]?.title || 'IDO ROI Calculator';
-    
+
     // Track the page view
     trackPageView(path, pageTitle);
-    
+
     // Track 404 errors for unknown pages
     if (!isPathFound && path !== '/404' && path !== '/') {
       trackError('404', `Page not found: ${path}`, 'navigation');
       // Note: We don't automatically redirect to 404 here, as React Router will handle that
     }
+
+    // Close mobile menu when navigating
+    setExpanded(false);
   }, [location]);
 
+  const handleNavLinkClick = () => {
+    setExpanded(false);
+  };
+
   return (<div className={`app-container ${darkMode ? 'dark-mode' : 'light-mode'}`}>
-    <header className={`navbar navbar-expand-lg ${darkMode ? 'navbar-dark bg-dark' : 'navbar-light bg-light'} shadow-sm py-2 w-100`}>
-      <div className="container">
-        <Link className="navbar-brand" to="/">
+    <Navbar
+      expand="lg"
+      expanded={expanded}
+      onToggle={setExpanded}
+      className={`shadow-sm py-2 w-100 ${darkMode ? 'navbar-dark dark-card-bg' : 'navbar-light bg-light'}`}
+    >
+      <Container className="px-3 px-sm-4">
+        <Navbar.Brand as={Link} to="/" onClick={handleNavLinkClick}>
           <img src="/logo.svg" alt="Logo" height="30" className="me-2" />
           <span className="d-none d-md-inline">{t('navigation.home')}</span>
-        </Link>
-        <div className="d-flex align-items-center">
-          <nav className="navbar-nav me-auto mb-0 mb-lg-0 flex-row">
-            <Link to="/" className="nav-link px-2">{t('navigation.calculator')}</Link>
-            <Link to="/about" className="nav-link px-2">{t('navigation.about')}</Link>
-            <Link to="/education" className="nav-link px-2">{t('navigation.education')}</Link>
-            <Link to="/faq" className="nav-link px-2">{t('navigation.faq')}</Link>
-          </nav>
-          <div className="d-flex align-items-center ms-3">
-            <LanguageSelector />
-            <Button 
-              variant="link" 
-              className={`p-1 ms-2 ${darkMode ? 'text-light' : ''}`}
-              onClick={toggleTheme} 
-              aria-label={darkMode ? t('theme.light') : t('theme.dark')}
-            >
-              {darkMode ? <FaSun className="text-warning" /> : <FaMoon className="text-dark" />}
-            </Button>
-          </div>
-        </div>
-      </div>
-    </header>
+        </Navbar.Brand>
 
-    <main>
+        <div className="d-flex align-items-center order-lg-2 ms-auto">
+          <LanguageSelector />
+          <Button
+            variant="link"
+            className={`p-1 ms-2 ${darkMode ? 'text-light' : ''}`}
+            onClick={toggleTheme}
+            aria-label={darkMode ? t('theme.light') : t('theme.dark')}
+          >
+            {darkMode ? <FaSun className="text-warning" /> : <FaMoon className="text-dark" />}
+          </Button>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" className="ms-2 border-0" />
+        </div>
+
+        <Navbar.Collapse id="basic-navbar-nav" className="order-lg-1">
+          <Nav className="me-auto">
+            <Nav.Link as={Link} to="/" onClick={handleNavLinkClick}>{t('navigation.calculator')}</Nav.Link>
+            <Nav.Link as={Link} to="/about" onClick={handleNavLinkClick}>{t('navigation.about')}</Nav.Link>
+            <Nav.Link as={Link} to="/education" onClick={handleNavLinkClick}>{t('navigation.education')}</Nav.Link>
+            <Nav.Link as={Link} to="/faq" onClick={handleNavLinkClick}>{t('navigation.faq')}</Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
+
+    <main className="mb-2 p-2">
       <Suspense fallback={<LoadingFallback />}>
         <Routes>
           <Route path="/" element={<Simulator />} />

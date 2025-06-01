@@ -74,23 +74,23 @@ const Simulator = () => {
   }, [calculationData, activeTab]);
 
   return (
-    <Container className="py-4 simulator-container">
-      <SEO 
+    <Container className="simulator-container p-0">
+      <SEO
         title={title}
         description={description}
         canonicalUrl={canonicalUrl}
         schema={schema}
         pageKey={pageKey}
       />
-      
-      <div className="simulator-header">
+
+      <div className="simulator-header p-1">
         <h1>{t('calculator:title')}</h1>
         <p className="subtitle">{t('calculator:subtitle')}</p>
         <p className="description">{t('calculator:description')}</p>
       </div>
 
       <div className="simulator-body">
-        <Tab.Container activeKey={activeTab} onSelect={handleTabChange}>
+        <Tab.Container activeKey={activeTab} onSelect={handleTabChange} className="p-0">
           <Nav className="simulator-tabs" variant="tabs">
             <Nav.Item>
               <Nav.Link eventKey="input">{t('calculator:form.sections.projectDetails')}</Nav.Link>
@@ -103,9 +103,9 @@ const Simulator = () => {
             </Nav.Item>
           </Nav>
 
-          <Tab.Content>
+          <Tab.Content className="p-0">
             <Tab.Pane eventKey="input"
-                      className={`tab-pane ${activeTab === 'input' ? 'active fade-in' : ''} ${isTabChanging ? 'fade-out' : ''}`}>
+                      className={`tab-pane p-0 ${activeTab === 'input' ? 'active fade-in' : ''} ${isTabChanging ? 'fade-out' : ''}`}>
               {activeTab === 'input' && (
                 <Suspense fallback={<ComponentLoader />}>
                   <SimulatorForm onCalculate={handleCalculate} calculationData={calculationData} />
@@ -114,7 +114,7 @@ const Simulator = () => {
             </Tab.Pane>
 
             <Tab.Pane eventKey="monthly"
-                      className={`tab-pane ${activeTab === 'monthly' ? 'active fade-in' : ''} ${isTabChanging ? 'fade-out' : ''}`}>
+                      className={`tab-pane p-0 ${activeTab === 'monthly' ? 'active fade-in' : ''} ${isTabChanging ? 'fade-out' : ''}`}>
               {activeTab === 'monthly' && calculationData && (
                 <Suspense fallback={<ComponentLoader />}>
                   <MonthlyROIBreakdown data={calculationData} />
@@ -123,7 +123,7 @@ const Simulator = () => {
             </Tab.Pane>
 
             <Tab.Pane eventKey="unlock"
-                      className={`tab-pane ${activeTab === 'unlock' ? 'active fade-in' : ''} ${isTabChanging ? 'fade-out' : ''}`}>
+                      className={`tab-pane p-0 ${activeTab === 'unlock' ? 'active fade-in' : ''} ${isTabChanging ? 'fade-out' : ''}`}>
               {activeTab === 'unlock' && calculationData && (
                 <Suspense fallback={<ComponentLoader />}>
                   <UnlockSchedule data={calculationData} />

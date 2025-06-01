@@ -99,7 +99,7 @@ const HowItWorks = ({onNavigateToSimulator}) => {
     window.scrollTo({top: 0, behavior: 'smooth'});
   };
 
-  return (<div className="how-it-works-page">
+  return (<div className="how-it-works-page about-page">
     <SEO
       title={title}
       description={description}
@@ -108,22 +108,22 @@ const HowItWorks = ({onNavigateToSimulator}) => {
     />
 
     {/* Hero Section */}
-    <section className="hero-section py-5 bg-light">
+    <section className="hero-section py-4 py-md-5 bg-light">
       <Container>
-        <Row className="align-items-center py-5">
+        <Row className="align-items-center py-3 py-md-5">
           <Col lg={8} className="mx-auto text-center">
-            <h1 className="display-4 fw-bold mb-4">
+            <h1 className="display-4 fw-bold mb-3 mb-md-4">
               {t('hero.title')}
             </h1>
-            <p className="lead mb-5">
+            <p className="lead mb-4 mb-md-5">
               {t('hero.description')}
             </p>
 
-            <div className="d-flex justify-content-center gap-3 flex-wrap mb-5">
+            <div className="d-flex justify-content-center gap-2 gap-md-3 flex-wrap mb-4 mb-md-5">
               <Button
                 variant="primary"
                 size="lg"
-                className="px-4"
+                className="px-3 px-md-4"
                 onClick={handleStartSimulating}
               >
                 {t('hero.trySimulator')}
@@ -131,7 +131,7 @@ const HowItWorks = ({onNavigateToSimulator}) => {
               <Button
                 variant="outline-info"
                 size="lg"
-                className="px-4"
+                className="px-3 px-md-4"
                 href="https://t.me/AlphaIDO_bot?start"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -142,13 +142,13 @@ const HowItWorks = ({onNavigateToSimulator}) => {
             </div>
 
             {!emailSubmitted && (<Card className="shadow-sm border-0 p-2 bg-white">
-              <Card.Body>
-                <h5 className="fw-bold mb-3">{t('hero.notificationCard.title')}</h5>
-                <p className="text-muted mb-3">
+              <Card.Body className="p-2 p-md-3">
+                <h5 className="fw-bold mb-2 mb-md-3">{t('hero.notificationCard.title')}</h5>
+                <p className="text-muted mb-2 mb-md-3">
                   {t('hero.notificationCard.description')}
                 </p>
                 <form onSubmit={handleEmailSubmit}>
-                  <InputGroup className="mb-3">
+                  <InputGroup className="mb-2 mb-md-3">
                     <Form.Control
                       type="email"
                       placeholder={t('hero.notificationCard.emailPlaceholder')}
@@ -157,7 +157,7 @@ const HowItWorks = ({onNavigateToSimulator}) => {
                       required
                       className="py-2"
                     />
-                    <Button variant="primary" type="submit" className="px-3 py-2" disabled={isSubmitting}>
+                    <Button variant="primary" type="submit" className="px-3 px-md-4" disabled={isSubmitting}>
                       <FaPaperPlane className="me-2"/>
                       {isSubmitting ? t('hero.notificationCard.subscribing') : t('hero.notificationCard.subscribeButton')}
                     </Button>

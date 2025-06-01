@@ -378,7 +378,7 @@ const SimulatorForm = ({onCalculate}) => {
     return date.toLocaleDateString('en-US', {month: 'short', day: 'numeric', year: 'numeric'});
   };
 
-  return (<div className="simulator-form">
+  return (<div className="simulator-form p-1">
     <div className="form-section">
       <h2>{t('calculator:form.sections.presaleSetup')}</h2>
       <div className="section-content ps-2 pe-2">
@@ -396,8 +396,8 @@ const SimulatorForm = ({onCalculate}) => {
                   <FaInfoCircle className="ms-2 text-primary info-icon"/>
                 </Form.Label>
               </OverlayTrigger>
-              <InputGroup>
-                <InputGroup.Text>$</InputGroup.Text>
+              <InputGroup className="price-input-group">
+                <InputGroup.Text className="currency-icon">$</InputGroup.Text>
                 <Form.Control
                   type="number"
                   name="investmentAmount"
@@ -427,8 +427,8 @@ const SimulatorForm = ({onCalculate}) => {
                   <FaInfoCircle className="ms-2 text-primary info-icon"/>
                 </Form.Label>
               </OverlayTrigger>
-              <InputGroup>
-                <InputGroup.Text>$</InputGroup.Text>
+              <InputGroup className="price-input-group">
+                <InputGroup.Text className="currency-icon">$</InputGroup.Text>
                 <Form.Control
                   type="number"
                   name="tokenPrice"
@@ -519,8 +519,8 @@ const SimulatorForm = ({onCalculate}) => {
                   <FaInfoCircle className="ms-2 text-primary info-icon"/>
                 </Form.Label>
               </OverlayTrigger>
-              <InputGroup>
-                <InputGroup.Text>$</InputGroup.Text>
+              <InputGroup className="price-input-group">
+                <InputGroup.Text className="currency-icon">$</InputGroup.Text>
                 <Form.Control
                   type="number"
                   name="expectedListingPrice"
