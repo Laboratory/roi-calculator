@@ -921,14 +921,14 @@ const SimulatorForm = ({onCalculate}) => {
 
             <Row>
               <Col md={6}>
-                <Button variant="outline-primary" className="w-100 py-2 h-100" href="https://discord.gg/NB4hhuXkWz"
+                <Button variant="outline-primary" className="w-100 py-2 h-100" href="https://discord.gg/YtsDMGuYjC"
                         target="_blank" rel="noopener noreferrer">
                   <FaDiscord className="me-2"/>
                   {t('calculator:form.cta.discord')}
                 </Button>
               </Col>
               <Col md={6}>
-                <Button variant="outline-info" className="w-100 py-2 h-100" href="https://t.me/alphamind_official"
+                <Button variant="outline-info" className="w-100 py-2 h-100" href="https://t.me/+KGQ9yq6BeH1jYzVk"
                         target="_blank" rel="noopener noreferrer">
                   <FaTelegram className="me-2"/>
                   {t('calculator:form.cta.telegramGroup')}
@@ -938,7 +938,7 @@ const SimulatorForm = ({onCalculate}) => {
 
             <Row className="mt-3">
               <Col md={6}>
-                <Button variant="outline-dark" className="w-100 py-2 h-100" href="https://twitter.com/alphamind_labs"
+                <Button variant="outline-dark" className="w-100 py-2 h-100" href="https://x.com/Alphamind_labs?utm_source=roi_calculator&utm_medium=social&utm_campaign=footer_button"
                         target="_blank" rel="noopener noreferrer">
                   <FaTwitter className="me-2"/>
                   {t('calculator:form.cta.twitter')}
@@ -946,7 +946,7 @@ const SimulatorForm = ({onCalculate}) => {
               </Col>
               <Col md={6}>
                 <Button variant="outline-danger" className="w-100 py-2 h-100"
-                        href="https://www.youtube.com/@AlphaMind_labs" target="_blank" rel="noopener noreferrer">
+                        href="https://www.youtube.com/@AlphaMind_labs/featured?utm_source=roi_calculator&utm_medium=social&utm_campaign=footer_button" target="_blank" rel="noopener noreferrer">
                   <FaYoutube className="me-2"/>
                   {t('calculator:form.cta.youtube')}
                 </Button>
@@ -958,38 +958,38 @@ const SimulatorForm = ({onCalculate}) => {
     </div>
     <div className="social-links d-flex justify-content-center gap-3 mt-4">
       <a
-        href="https://t.me/alphamind_official"
+        href="https://t.me/+KGQ9yq6BeH1jYzVk"
         target="_blank"
         rel="noopener noreferrer"
         className="social-link"
-        onClick={() => trackLinkClick('https://t.me/alphamind_official', 'Telegram Group', 'calculator_footer')}
+        onClick={() => trackLinkClick('https://t.me/+KGQ9yq6BeH1jYzVk', 'Telegram Group', 'calculator_footer')}
       >
         <FaTelegram size={24}/>
       </a>
       <a
-        href="https://discord.gg/NB4hhuXkWz"
+        href="https://discord.gg/YtsDMGuYjC"
         target="_blank"
         rel="noopener noreferrer"
         className="social-link"
-        onClick={() => trackLinkClick('https://discord.gg/NB4hhuXkWz', 'Discord', 'calculator_footer')}
+        onClick={() => trackLinkClick('https://discord.gg/YtsDMGuYjC', 'Discord', 'calculator_footer')}
       >
         <FaDiscord size={24}/>
       </a>
       <a
-        href="https://twitter.com/alphamind_labs"
+        href="https://x.com/Alphamind_labs?utm_source=roi_calculator&utm_medium=social&utm_campaign=footer_button"
         target="_blank"
         rel="noopener noreferrer"
         className="social-link"
-        onClick={() => trackLinkClick('https://twitter.com/alphamind_labs', 'Twitter', 'calculator_footer')}
+        onClick={() => trackLinkClick('https://x.com/Alphamind_labs?utm_source=roi_calculator&utm_medium=social&utm_campaign=footer_button', 'Twitter', 'calculator_footer')}
       >
         <FaTwitter size={24}/>
       </a>
       <a
-        href="https://www.youtube.com/@AlphaMind_labs"
+        href="https://www.youtube.com/@AlphaMind_labs/featured?utm_source=roi_calculator&utm_medium=social&utm_campaign=footer_button"
         target="_blank"
         rel="noopener noreferrer"
         className="social-link"
-        onClick={() => trackLinkClick('https://www.youtube.com/@AlphaMind_labs', 'YouTube', 'calculator_footer')}
+        onClick={() => trackLinkClick('https://www.youtube.com/@AlphaMind_labs/featured?utm_source=roi_calculator&utm_medium=social&utm_campaign=footer_button', 'YouTube', 'calculator_footer')}
       >
         <FaYoutube size={24}/>
       </a>
