@@ -220,7 +220,9 @@
       "totalSummary": {
         "title": "Общий итог",
         "totalRevenue": "Общий доход:",
-        "finalRoi": "Итоговый ROI:"
+        "finalRoi": "Итоговый ROI:",
+        "impliedFdv": "Подразумеваемый FDV:",
+        "fdvWarning": "Нереально высокий для раннего TGE"
       },
       "scenarioLabels": {
         "bear": "Медвежий сценарий",

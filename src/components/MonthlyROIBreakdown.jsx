@@ -76,6 +76,16 @@ const MonthlyROIBreakdown = ({data}) => {
     }).format(value);
   };
 
+  const formatFDV = (value) => {
+    if (value >= 1000000000) {
+      return `$${(value / 1000000000).toFixed(2)}B`;
+    } else if (value >= 1000000) {
+      return `$${(value / 1000000).toFixed(2)}M`;
+    } else {
+      return formatCurrency(value);
+    }
+  };
+
   // Get all months from the data
   const months = Object.keys(data.cumulativeROI[data.priceScenarios[0].name]).map(Number);
 
@@ -286,6 +296,8 @@ const MonthlyROIBreakdown = ({data}) => {
                 const totalRevenue = getTotalRevenue(scenario);
                 const finalROI = data.totalROI[scenario];
                 const roiClass = finalROI >= 0 ? 'positive-roi' : 'negative-roi';
+                const fdvValue = data.fdvValues && data.fdvValues[scenario];
+                const isHighFDV = fdvValue && fdvValue > 500000000;
 
                 return (<Col md={4} key={scenario} className="mb-3 d-flex">
                   <Card className={`summary-card ${scenario.toLowerCase()}-summary flex-fill`}
@@ -296,14 +308,27 @@ const MonthlyROIBreakdown = ({data}) => {
                       <div className="summary-content flex-grow-1">
                         <div className="summary-item">
                                 <span
-                                  className={darkMode ? "text-white" : ""}>{t('calculator:results.monthlyBreakdown.totalSummary.totalRevenue')}:</span>
+                                  className={darkMode ? "text-white" : ""}>{t('calculator:results.monthlyBreakdown.totalSummary.totalRevenue')}</span>
                           <span className={darkMode ? "text-white" : ""}>{formatCurrency(totalRevenue)}</span>
                         </div>
                         <div className="summary-item">
                                 <span
-                                  className={darkMode ? "text-white" : ""}>{t('calculator:results.monthlyBreakdown.totalSummary.finalRoi')}:</span>
+                                  className={darkMode ? "text-white" : ""}>{t('calculator:results.monthlyBreakdown.totalSummary.finalRoi')}</span>
                           <span className={roiClass}>{formatPercentage(finalROI)}</span>
                         </div>
+                        {fdvValue && (
+                          <div className="summary-item">
+                            <span className={darkMode ? "text-white" : ""}>{t('calculator:results.monthlyBreakdown.totalSummary.impliedFdv')}</span>
+                            <span className={isHighFDV ? 'text-warning' : (darkMode ? "text-white" : "")}>{formatFDV(fdvValue)}</span>
+                          </div>
+                        )}
+                        {isHighFDV && (
+                          <div className="summary-item">
+                            <small className="text-warning">
+                              {t('calculator:results.monthlyBreakdown.totalSummary.fdvWarning')}
+                            </small>
+                          </div>
+                        )}
                       </div>
                     </Card.Body>
                   </Card>

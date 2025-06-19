@@ -218,9 +218,11 @@
       },
       "breakEven": "Punto de equilibrio",
       "totalSummary": {
-        "title": "Resumen total",
-        "totalRevenue": "Ingresos totales:",
-        "finalRoi": "ROI final:"
+        "title": "Resumen Total",
+        "totalRevenue": "Ingresos Totales:",
+        "finalRoi": "ROI Final:",
+        "impliedFdv": "FDV Implícito:",
+        "fdvWarning": "Irrealmente alto para TGE temprano"
       },
       "scenarioLabels": {
         "bear": "Escenario Bajista",
