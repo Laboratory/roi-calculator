@@ -2,7 +2,9 @@ import React, { useContext } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { FaDiscord, FaTelegram, FaTwitter, FaYoutube } from 'react-icons/fa';
 import { ThemeContext } from '../context/ThemeContext';
+import { trackLinkClick } from '../utils/analytics';
 
 const Footer = () => {
   const {t} = useTranslation(['common', 'footer']);
@@ -44,6 +46,51 @@ const Footer = () => {
             </Link>
           </Col>
         </Row>
+
+        {/* Social Media Links */}
+        <Row className="mt-3">
+          <Col className="text-center">
+            <div className="d-flex justify-content-center gap-3 mb-3">
+              <a
+                href="https://t.me/alphamind_official"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="social-link"
+                onClick={() => trackLinkClick('https://t.me/alphamind_official', 'Telegram Group', 'footer')}
+              >
+                <FaTelegram size={20}/>
+              </a>
+              <a
+                href="https://discord.gg/NB4hhuXkWz"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="social-link"
+                onClick={() => trackLinkClick('https://discord.gg/NB4hhuXkWz', 'Discord', 'footer')}
+              >
+                <FaDiscord size={20}/>
+              </a>
+              <a
+                href="https://twitter.com/alphamind_labs"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="social-link"
+                onClick={() => trackLinkClick('https://twitter.com/alphamind_labs', 'Twitter', 'footer')}
+              >
+                <FaTwitter size={20}/>
+              </a>
+              <a
+                href="https://www.youtube.com/@AlphaMind_labs"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="social-link"
+                onClick={() => trackLinkClick('https://www.youtube.com/@AlphaMind_labs', 'YouTube', 'footer')}
+              >
+                <FaYoutube size={20}/>
+              </a>
+            </div>
+          </Col>
+        </Row>
+
         <Row>
           <Col className="text-center">
             <p className={`${darkMode ? 'text-light' : 'text-muted'} mb-0`}>

@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { Alert, Card, Col, Form, OverlayTrigger, Row, Table, Tooltip } from 'react-bootstrap';
 import ROIChart from './ROIChart';
+import SubscriptionForm from './SubscriptionForm';
 import { format } from 'date-fns';
 import { ThemeContext } from '../context/ThemeContext';
 import { FaInfoCircle } from 'react-icons/fa';
@@ -125,6 +126,12 @@ const MonthlyROIBreakdown = ({data}) => {
         {t('common:general.noData')}
       </Alert>) : (<>
         <h2 className="ms-2">{t('calculator:results.title')}</h2>
+        
+        {/* Subscription Form */}
+        <div className="m-4">
+          <SubscriptionForm />
+        </div>
+        
         <div className="chart-section">
           <Card className="chart-card">
             <Card.Body>

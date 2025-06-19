@@ -132,7 +132,7 @@ const HowItWorks = ({onNavigateToSimulator}) => {
                 variant="outline-info"
                 size="lg"
                 className="px-3 px-md-4"
-                href="https://t.me/+KGQ9yq6BeH1jYzVk"
+                href="https://t.me/alphamind_official"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -387,11 +387,11 @@ const HowItWorks = ({onNavigateToSimulator}) => {
               <div className="d-flex justify-content-center gap-3 flex-wrap">
                 <Button
                   variant="outline-info"
-                  href="https://t.me/+KGQ9yq6BeH1jYzVk"
+                  href="https://t.me/alphamind_official"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="px-4"
-                  onClick={() => trackLinkClick('https://t.me/+KGQ9yq6BeH1jYzVk', 'Telegram Group', 'about_page')}
+                  onClick={() => trackLinkClick('https://t.me/alphamind_official', 'Telegram Group', 'about_page')}
                 >
                   <FaTelegram className="me-2"/>
                   {t('comingNext.joinTelegram')}
@@ -417,11 +417,11 @@ const HowItWorks = ({onNavigateToSimulator}) => {
               <div className="d-flex justify-content-center gap-3 flex-wrap mt-3">
                 <Button
                   variant="outline-primary"
-                  href="https://discord.gg/YtsDMGuYjC"
+                  href="https://discord.gg/NB4hhuXkWz"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="px-4"
-                  onClick={() => trackLinkClick('https://discord.gg/YtsDMGuYjC', 'Discord', 'about_page')}
+                  onClick={() => trackLinkClick('https://discord.gg/NB4hhuXkWz', 'Discord', 'about_page')}
                 >
                   <FaDiscord className="me-2"/>
                   {t('comingNext.joinDiscord')}
@@ -429,11 +429,11 @@ const HowItWorks = ({onNavigateToSimulator}) => {
 
                 <Button
                   variant="outline-dark"
-                  href="https://x.com/Alphamind_labs?utm_source=roi_calculator&utm_medium=social&utm_campaign=footer_button"
+                  href="https://twitter.com/alphamind_labs"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="px-4"
-                  onClick={() => trackLinkClick('https://x.com/Alphamind_labs?utm_source=roi_calculator&utm_medium=social&utm_campaign=footer_button', 'Twitter', 'about_page')}
+                  onClick={() => trackLinkClick('https://twitter.com/alphamind_labs', 'Twitter', 'about_page')}
                 >
                   <FaTwitter className="me-2"/>
                   {t('comingNext.followX')}
@@ -441,11 +441,11 @@ const HowItWorks = ({onNavigateToSimulator}) => {
 
                 <Button
                   variant="outline-danger"
-                  href="https://www.youtube.com/@AlphaMind_labs/featured?utm_source=roi_calculator&utm_medium=social&utm_campaign=footer_button"
+                  href="https://www.youtube.com/@AlphaMind_labs"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="px-4"
-                  onClick={() => trackLinkClick('https://www.youtube.com/@AlphaMind_labs/featured?utm_source=roi_calculator&utm_medium=social&utm_campaign=footer_button', 'YouTube', 'about_page')}
+                  onClick={() => trackLinkClick('https://www.youtube.com/@AlphaMind_labs', 'YouTube', 'about_page')}
                 >
                   <FaYoutube className="me-2"/>
                   {t('comingNext.youtube')}
@@ -594,38 +594,38 @@ const HowItWorks = ({onNavigateToSimulator}) => {
           <Col lg={8} className="text-center">
             <div className="social-links d-flex justify-content-center gap-3 mt-4">
               <a
-                href="https://t.me/+KGQ9yq6BeH1jYzVk"
+                href="https://t.me/alphamind_official"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="social-link"
-                onClick={() => trackLinkClick('https://t.me/+KGQ9yq6BeH1jYzVk', 'Telegram Group', 'about_page_footer')}
+                onClick={() => trackLinkClick('https://t.me/alphamind_official', 'Telegram Group', 'about_page_footer')}
               >
                 <FaTelegram size={24}/>
               </a>
               <a
-                href="https://discord.gg/YtsDMGuYjC"
+                href="https://discord.gg/NB4hhuXkWz"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="social-link"
-                onClick={() => trackLinkClick('https://discord.gg/YtsDMGuYjC', 'Discord', 'about_page_footer')}
+                onClick={() => trackLinkClick('https://discord.gg/NB4hhuXkWz', 'Discord', 'about_page_footer')}
               >
                 <FaDiscord size={24}/>
               </a>
               <a
-                href="https://x.com/Alphamind_labs?utm_source=roi_calculator&utm_medium=social&utm_campaign=footer_button"
+                href="https://twitter.com/alphamind_labs"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="social-link"
-                onClick={() => trackLinkClick('https://x.com/Alphamind_labs?utm_source=roi_calculator&utm_medium=social&utm_campaign=footer_button', 'Twitter', 'about_page_footer')}
+                onClick={() => trackLinkClick('https://twitter.com/alphamind_labs', 'Twitter', 'about_page_footer')}
               >
                 <FaTwitter size={24}/>
               </a>
               <a
-                href="https://www.youtube.com/@AlphaMind_labs/featured?utm_source=roi_calculator&utm_medium=social&utm_campaign=footer_button"
+                href="https://www.youtube.com/@AlphaMind_labs"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="social-link"
-                onClick={() => trackLinkClick('https://www.youtube.com/@AlphaMind_labs/featured?utm_source=roi_calculator&utm_medium=social&utm_campaign=footer_button', 'YouTube', 'about_page_footer')}
+                onClick={() => trackLinkClick('https://www.youtube.com/@AlphaMind_labs', 'YouTube', 'about_page_footer')}
               >
                 <FaYoutube size={24}/>
               </a>
