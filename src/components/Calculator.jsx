@@ -99,16 +99,14 @@ const Simulator = () => {
           <Tab.Content className="p-0">
             <Tab.Pane eventKey="input"
                       className={`tab-pane p-0 ${activeTab === 'input' ? 'active fade-in' : ''} ${isTabChanging ? 'fade-out' : ''}`}>
-              {activeTab === 'input' && (
-                <Suspense fallback={<ComponentLoader />}>
-                  <SimulatorForm onCalculate={handleCalculate} calculationData={calculationData} />
-                </Suspense>
-              )}
+              <Suspense fallback={<ComponentLoader />}>
+                <SimulatorForm onCalculate={handleCalculate} calculationData={calculationData} />
+              </Suspense>
             </Tab.Pane>
 
             <Tab.Pane eventKey="monthly"
                       className={`tab-pane p-0 ${activeTab === 'monthly' ? 'active fade-in' : ''} ${isTabChanging ? 'fade-out' : ''}`}>
-              {activeTab === 'monthly' && calculationData && (
+              {calculationData && (
                 <Suspense fallback={<ComponentLoader />}>
                   <MonthlyROIBreakdown data={calculationData} />
                 </Suspense>
@@ -117,7 +115,7 @@ const Simulator = () => {
 
             <Tab.Pane eventKey="unlock"
                       className={`tab-pane p-0 ${activeTab === 'unlock' ? 'active fade-in' : ''} ${isTabChanging ? 'fade-out' : ''}`}>
-              {activeTab === 'unlock' && calculationData && (
+              {calculationData && (
                 <Suspense fallback={<ComponentLoader />}>
                   <UnlockSchedule data={calculationData} />
                 </Suspense>
