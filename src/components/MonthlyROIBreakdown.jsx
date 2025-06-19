@@ -259,7 +259,7 @@ const MonthlyROIBreakdown = ({data}) => {
                 <td className={data.cumulativeROI[scenario][month] >= 0 ? 'positive-roi' : 'negative-roi'}>
                   {formatPercentage(data.cumulativeROI[scenario][month])}
                   {breakEvenMonths[scenario] === month && (<span
-                    className="break-even-badge">{t('calculator:results.monthlyBreakdown.breakEven')}</span>)}
+                    className="break-even-badge"> {t('calculator:results.monthlyBreakdown.breakEven')}</span>)}
                 </td>
               </React.Fragment>))}
             </tr>))}
