@@ -66,13 +66,6 @@ const Simulator = () => {
     }, 50);
   };
 
-  // Transition to unlock schedule tab after calculations are done
-  useEffect(() => {
-    if (calculationData && activeTab === 'input') {
-      setActiveTab('monthly');
-    }
-  }, [calculationData, activeTab]);
-
   return (
     <Container className="simulator-container p-0">
       <SEO
