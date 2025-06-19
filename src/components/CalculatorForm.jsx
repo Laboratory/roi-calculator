@@ -7,6 +7,7 @@ import { calculateResults } from '../utils/calculator';
 import { subscribeToBrevo } from '../api/brevoService';
 import { trackEvent, trackFormSubmission, trackInputChange, trackLinkClick } from '../utils/analytics';
 import { useTranslation } from 'react-i18next';
+import SubscriptionForm from './SubscriptionForm';
 
 const DEFAULT_UNLOCK_PERIODS = [{month: 1, percentage: 15}, {month: 3, percentage: 25}, {
   month: 6, percentage: 25
@@ -864,56 +865,7 @@ const SimulatorForm = ({onCalculate}) => {
           <Button variant="primary" size="lg" onClick={handleSubmit}>
             {t('calculator:form.actions.calculate')}
           </Button>
-
-          <div className="cta-section mt-4 p-4 border rounded bg-light">
-            <h5 className="text-center mb-3">{t('calculator:form.cta.title')}</h5>
-            <p className="text-center mb-4">{t('calculator:form.cta.note')}</p>
-
-            <Row className="mb-4">
-              <Col md={8}>
-                <Form onSubmit={handleEmailSubscribe}>
-                  <InputGroup>
-                    <Form.Control
-                      type="email"
-                      placeholder={t('calculator:form.cta.emailPlaceholder')}
-                      aria-label={t('calculator:form.cta.emailLabel')}
-                      className="py-2"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                    />
-                    <Button
-                      variant="primary"
-                      className="px-3 py-2"
-                      type="submit"
-                      disabled={isSubmittingEmail}
-                    >
-                      <FaPaperPlane className="me-2"/>
-                      {isSubmittingEmail ? t('calculator:form.cta.submitting') : t('calculator:form.cta.subscribe')}
-                    </Button>
-                  </InputGroup>
-                  {emailError && (<Alert variant="danger" className="mt-2 mb-0 py-2 small">
-                    {emailError}
-                  </Alert>)}
-                  {emailSuccess && (<Alert variant="success" className="mt-2 mb-0 py-2 small">
-                    {t('calculator:form.cta.success')}
-                  </Alert>)}
-                </Form>
-              </Col>
-              <Col md={4}>
-                <Button
-                  variant="outline-info"
-                  className="w-100 py-2 h-100"
-                  href="https://t.me/AlphaIDO_bot?start"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => trackLinkClick('https://t.me/AlphaIDO_bot?start', 'Telegram Bot', 'calculator_footer')}
-                >
-                  <FaTelegram className="me-2"/>
-                  {t('calculator:form.cta.telegram')}
-                </Button>
-              </Col>
-            </Row>
-          </div>
+          <SubscriptionForm />
         </div>
       </div>
     </div>
