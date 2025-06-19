@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, Filler);
 
-const ROIChart = ({ data, scenarios, tgeDate, unlockFrequency = 'monthly' }) => {
+const ROIChart = ({ data, scenarios, tgeDate, unlockFrequency = 'monthly', fdvValues, totalSupply }) => {
   const { darkMode } = useContext(ThemeContext);
   const { t } = useTranslation(['calculator', 'common']);
   
@@ -53,11 +53,11 @@ const ROIChart = ({ data, scenarios, tgeDate, unlockFrequency = 'monthly' }) => 
     'Bear': { bg: 'rgba(255, 99, 132, 0.2)', border: 'rgba(255, 99, 132, 1)' },
     'Base': { bg: 'rgba(54, 162, 235, 0.2)', border: 'rgba(54, 162, 235, 1)' },
     'Bull': { bg: 'rgba(75, 192, 192, 0.2)', border: 'rgba(75, 192, 192, 1)' },
+    'FDV': { bg: 'rgba(255, 206, 86, 0.2)', border: 'rgba(255, 206, 86, 1)' },
     // Default colors for additional scenarios
     default: [
       { bg: 'rgba(153, 102, 255, 0.2)', border: 'rgba(153, 102, 255, 1)' },
       { bg: 'rgba(255, 159, 64, 0.2)', border: 'rgba(255, 159, 64, 1)' },
-      { bg: 'rgba(255, 206, 86, 0.2)', border: 'rgba(255, 206, 86, 1)' },
       { bg: 'rgba(199, 199, 199, 0.2)', border: 'rgba(199, 199, 199, 1)' }
     ]
   };
@@ -123,6 +123,22 @@ const ROIChart = ({ data, scenarios, tgeDate, unlockFrequency = 'monthly' }) => 
       }
     });
   });
+
+  // Add FDV threshold line if FDV data is available
+  let fdvThresholdData = null;
+  if (fdvValues && totalSupply) {
+    // Calculate FDV threshold line (e.g., when FDV reaches $500M)
+    const fdvThreshold = 500000000; // $500M
+    fdvThresholdData = months.map(month => {
+      // Calculate what ROI would be needed to reach the FDV threshold
+      // This is a reference line showing when investment would be "overvalued"
+      const avgFdv = Object.values(fdvValues).reduce((sum, val) => sum + val, 0) / Object.values(fdvValues).length;
+      if (avgFdv > fdvThreshold) {
+        return (fdvThreshold / avgFdv - 1) * 100; // ROI adjustment needed
+      }
+      return 0; // Threshold line at 0% if FDV is reasonable
+    });
+  }
   
   // Prepare dataset for Chart.js
   const chartData = {
@@ -136,23 +152,37 @@ const ROIChart = ({ data, scenarios, tgeDate, unlockFrequency = 'monthly' }) => 
       
       return formattedTimeUnit;
     }),
-    datasets: scenarios.map((scenario, index) => {
-      const color = getColor(scenario, index);
-      
-      return {
-        label: scenario === 'Bear' ? t('calculator:results.monthlyBreakdown.scenarioLabels.bear') :
-               scenario === 'Base' ? t('calculator:results.monthlyBreakdown.scenarioLabels.base') :
-               scenario === 'Bull' ? t('calculator:results.monthlyBreakdown.scenarioLabels.bull') : scenario,
-        data: months.map(month => processedData[scenario][month]),
-        borderColor: color.border,
-        backgroundColor: color.bg,
+    datasets: [
+      ...scenarios.map((scenario, index) => {
+        const color = getColor(scenario, index);
+        
+        return {
+          label: scenario === 'Bear' ? t('calculator:results.monthlyBreakdown.scenarioLabels.bear') :
+                 scenario === 'Base' ? t('calculator:results.monthlyBreakdown.scenarioLabels.base') :
+                 scenario === 'Bull' ? t('calculator:results.monthlyBreakdown.scenarioLabels.bull') : scenario,
+          data: months.map(month => processedData[scenario][month]),
+          borderColor: color.border,
+          backgroundColor: color.bg,
+          fill: false,
+          tension: 0.4,
+          pointRadius: 3,
+          pointHoverRadius: 5,
+          borderWidth: 2
+        };
+      }),
+      ...(fdvThresholdData ? [{
+        label: t('calculator:results.monthlyBreakdown.fdvThreshold', 'FDV Threshold ($500M)'),
+        data: fdvThresholdData,
+        borderColor: colors['FDV'].border,
+        backgroundColor: colors['FDV'].bg,
         fill: false,
         tension: 0.4,
         pointRadius: 3,
         pointHoverRadius: 5,
-        borderWidth: 2
-      };
-    })
+        borderWidth: 2,
+        borderDash: [5, 5]
+      }] : [])
+    ]
   };
   
   // Chart options

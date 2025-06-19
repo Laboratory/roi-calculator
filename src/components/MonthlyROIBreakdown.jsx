@@ -162,6 +162,8 @@ const MonthlyROIBreakdown = ({data}) => {
                 scenarios={selectedScenarios}
                 tgeDate={data.tgeDate}
                 unlockFrequency={data.unlockFrequency}
+                fdvValues={data.fdvValues}
+                totalSupply={data.totalSupply}
               />
             </div>
           </Card.Body>
