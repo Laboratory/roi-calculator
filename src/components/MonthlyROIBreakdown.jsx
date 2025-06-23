@@ -316,12 +316,12 @@ const MonthlyROIBreakdown = ({data}) => {
                                   className={darkMode ? "text-white" : ""}>{t('calculator:results.monthlyBreakdown.totalSummary.finalRoi')}</span>
                           <span className={roiClass}>{formatPercentage(finalROI)}</span>
                         </div>
-                        {fdvValue && (
-                          <div className="summary-item">
-                            <span className={darkMode ? "text-white" : ""}>{t('calculator:results.monthlyBreakdown.totalSummary.impliedFdv')}</span>
-                            <span className={isHighFDV ? 'text-warning' : (darkMode ? "text-white" : "")}>{formatFDV(fdvValue)}</span>
-                          </div>
-                        )}
+                        <div className="summary-item">
+                          <span className={darkMode ? "text-white" : ""}>{t('calculator:results.monthlyBreakdown.totalSummary.impliedFdv')}</span>
+                          <span className={isHighFDV ? 'text-warning' : (darkMode ? "text-white" : "")}>
+                            {fdvValue ? formatFDV(fdvValue) : 'N/A'}
+                          </span>
+                        </div>
                         {isHighFDV && (
                           <div className="summary-item">
                             <small className="text-warning">
