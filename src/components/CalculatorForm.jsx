@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { Alert, Button, Col, Form, InputGroup, OverlayTrigger, Row, Tooltip } from 'react-bootstrap';
+import { Alert, Button, Col, Form, InputGroup, OverlayTrigger, Row, Tooltip, Card, Badge } from 'react-bootstrap';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
-import { FaDiscord, FaInfoCircle, FaPaperPlane, FaTelegram, FaTwitter, FaYoutube } from 'react-icons/fa';
+import { FaDiscord, FaInfoCircle, FaPaperPlane, FaTelegram, FaTwitter, FaYoutube, FaChevronDown, FaChevronUp, FaRocket } from 'react-icons/fa';
 import { calculateResults } from '../utils/calculator';
 import { subscribeToBrevo } from '../api/brevoService';
 import { trackEvent, trackFormSubmission, trackInputChange, trackLinkClick } from '../utils/analytics';
 import { useTranslation } from 'react-i18next';
 import SubscriptionForm from './SubscriptionForm';
+import EarlyLeadCapture from './EarlyLeadCapture';
 
 const DEFAULT_UNLOCK_PERIODS = [{month: 1, percentage: 15}, {month: 3, percentage: 25}, {
   month: 6, percentage: 25
@@ -37,6 +38,7 @@ const SimulatorForm = ({onCalculate}) => {
   const [unlockPeriods, setUnlockPeriods] = useState(DEFAULT_UNLOCK_PERIODS);
   const [errors, setErrors] = useState({});
   const [isTokenAmountCalculated, setIsTokenAmountCalculated] = useState(false);
+  const [showEarlyCapture, setShowEarlyCapture] = useState(false);
 
   const [email, setEmail] = useState('');
   const [isSubmittingEmail, setIsSubmittingEmail] = useState(false);
@@ -44,6 +46,23 @@ const SimulatorForm = ({onCalculate}) => {
   const [emailSuccess, setEmailSuccess] = useState(false);
 
   const [trackingTimeouts, setTrackingTimeouts] = useState({});
+
+  // Early lead capture trigger logic
+  useEffect(() => {
+    let timer;
+    const hasShownEarly = localStorage.getItem('early_lead_capture_shown');
+    
+    if (formData.investmentAmount && formData.tokenPrice && !showEarlyCapture && !hasShownEarly) {
+      // Show early capture after user has entered both essential fields
+      timer = setTimeout(() => {
+        setShowEarlyCapture(true);
+        localStorage.setItem('early_lead_capture_shown', 'true');
+      }, 3000); // Show after 3 seconds of having both fields filled
+    }
+    return () => {
+      if (timer) clearTimeout(timer);
+    };
+  }, [formData.investmentAmount, formData.tokenPrice, showEarlyCapture]);
 
   // Auto-calculate token amount when investment and price are provided
   useEffect(() => {
@@ -498,10 +517,11 @@ const SimulatorForm = ({onCalculate}) => {
                   placeholder={t('calculator:form.tokenAmount.placeholder')}
                   isInvalid={!!errors.tokenAmount}
                 />
-                {errors.tokenAmount && <Form.Control.Feedback type="invalid">
-                  {errors.tokenAmount}
-                </Form.Control.Feedback>}
+                <InputGroup.Text>{formData.tokenName}</InputGroup.Text>
               </InputGroup>
+              {errors.tokenAmount && <Form.Control.Feedback type="invalid">
+                {errors.tokenAmount}
+              </Form.Control.Feedback>}
             </Form.Group>
           </Col>
         </Row>
@@ -869,6 +889,18 @@ const SimulatorForm = ({onCalculate}) => {
         </div>
       </div>
     </div>
+    <EarlyLeadCapture 
+      show={showEarlyCapture} 
+      onHide={() => setShowEarlyCapture(false)}
+      onSuccess={() => {
+        setShowEarlyCapture(false);
+        // Track successful early capture
+        trackEvent('early_capture_success', {
+          source: 'calculator_form'
+        });
+      }}
+      trigger="form_interaction"
+    />
   </div>);
 };
 

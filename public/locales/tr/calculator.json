@@ -241,9 +241,9 @@
     }
   },
   "tokenomicsChart": {
-    "title": "Token Kilit Açma Takvimi",
+    "title": "Token Kilit Açma Programı",
     "xAxis": "Ay",
-    "yAxis": "Kilidi Açılan Tokenlar",
+    "yAxis": "Kilit Açılan Tokenlar",
     "series": {
       "unlocked": "Kilidi Açılan Tokenlar",
       "locked": "Kilitli Tokenlar"
@@ -260,5 +260,27 @@
     "linkCopied": "Bağlantınız panoya kopyalandı!",
     "copyLink": "Bağlantıyı Kopyala",
     "shareOn": "Şurada Paylaş"
+  },
+  "leadCapture": {
+    "title": "🚀 Premium Özelliklere Erken Erişim Alın",
+    "subtitle": "Özel IDO içgörüleri ve gelişmiş araçlar alan 1000+ akıllı yatırımcıya katılın",
+    "advancedTitle": "🎯 Daha Gelişmiş Analiz İster misiniz?",
+    "advancedSubtitle": "Gelişmiş ROI araçlarına, pazar içgörülerine ve IDO uyarılarına özel erişim alın",
+    "getAccess": "Ücretsiz Erişim Al",
+    "skip": "Şimdilik geç",
+    "telegram": "Telegram'a Katıl",
+    "benefits": "✓ Özel IDO uyarıları ✓ Gelişmiş hesap makinesi özellikleri ✓ Pazar analizi ✓ Spam yok, istediğiniz zaman abonelikten çıkın",
+    "success": "Hoş geldiniz! 🎉",
+    "successMessage": "Özel içerik ve yeni özelliklere erken erişim için e-postanızı kontrol edin."
+  },
+  "simplified": {
+    "title": "Hızlı ROI Hesaplayıcısı",
+    "subtitle": "3 basit adımda anında içgörüler alın",
+    "step1": "Yatırımınızı girin",
+    "step2": "Token detaylarını ayarlayın", 
+    "step3": "Getirilerinizi görün",
+    "showAdvanced": "Gelişmiş Seçenekleri Göster",
+    "hideAdvanced": "Gelişmiş Seçenekleri Gizle",
+    "quickCalculate": "ROI'mi Hesapla"
   }
 }

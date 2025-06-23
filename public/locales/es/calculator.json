@@ -241,7 +241,7 @@
     }
   },
   "tokenomicsChart": {
-    "title": "Programa de Desbloqueo de Tokens",
+    "title": "Cronograma de Desbloqueo de Tokens",
     "xAxis": "Mes",
     "yAxis": "Tokens Desbloqueados",
     "series": {
@@ -254,6 +254,28 @@
       "cumulative": "Acumulativo",
       "percentUnlocked": "% Desbloqueado"
     }
+  },
+  "leadCapture": {
+    "title": "🚀 Obtén Acceso Temprano a Funciones Premium",
+    "subtitle": "Únete a 1000+ inversores inteligentes que reciben insights exclusivos de IDO y herramientas avanzadas",
+    "advancedTitle": "🎯 ¿Quieres Análisis Más Avanzados?",
+    "advancedSubtitle": "Obtén acceso exclusivo a herramientas ROI avanzadas, insights de mercado y alertas IDO",
+    "getAccess": "Obtener Acceso Gratuito",
+    "skip": "Omitir por ahora",
+    "telegram": "Unirse a Telegram",
+    "benefits": "✓ Alertas exclusivas de IDO ✓ Funciones avanzadas de calculadora ✓ Análisis de mercado ✓ Sin spam, cancela cuando quieras",
+    "success": "¡Bienvenido a bordo! 🎉",
+    "successMessage": "Revisa tu email para contenido exclusivo y acceso temprano a nuevas funciones."
+  },
+  "simplified": {
+    "title": "Calculadora ROI Rápida",
+    "subtitle": "Obtén insights instantáneos en 3 pasos simples",
+    "step1": "Ingresa tu inversión",
+    "step2": "Configura detalles del token", 
+    "step3": "Ve tus retornos",
+    "showAdvanced": "Mostrar Opciones Avanzadas",
+    "hideAdvanced": "Ocultar Opciones Avanzadas",
+    "quickCalculate": "Calcular Mi ROI"
   },
   "share": {
     "title": "Compartir Resultados",

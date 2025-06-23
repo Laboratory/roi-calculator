@@ -1,4 +1,5 @@
 @import 'bootstrap/dist/css/bootstrap.min.css';
+@import './styles/simplified-calculator.css';
 
 :root {
     --primary-color: #2563eb;

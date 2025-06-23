@@ -1,11 +1,12 @@
 import React, { useContext, useState } from 'react';
-import { Alert, Card, Col, Form, OverlayTrigger, Row, Table, Tooltip } from 'react-bootstrap';
+import { Alert, Button, Card, Col, Form, OverlayTrigger, Row, Table, Tooltip } from 'react-bootstrap';
+import { FaInfoCircle } from 'react-icons/fa';
+import { ThemeContext } from '../context/ThemeContext';
 import ROIChart from './ROIChart';
+import { useTranslation } from 'react-i18next';
+import InlineLeadCapture from './InlineLeadCapture';
 import SubscriptionForm from './SubscriptionForm';
 import { format } from 'date-fns';
-import { ThemeContext } from '../context/ThemeContext';
-import { FaInfoCircle } from 'react-icons/fa';
-import { useTranslation } from 'react-i18next';
 
 const MonthlyROIBreakdown = ({data}) => {
   const {darkMode} = useContext(ThemeContext);
@@ -186,6 +187,17 @@ const MonthlyROIBreakdown = ({data}) => {
               </div>
             </Card.Body>
           </Card>
+        </div>
+
+        {/* Inline Lead Capture */}
+        <div className="my-4">
+          <InlineLeadCapture 
+            title={t('calculator:leadCapture.advancedTitle')}
+            subtitle={t('calculator:leadCapture.advancedSubtitle')}
+            trigger="roi_results_view"
+            variant="primary"
+            className="shadow-sm"
+          />
         </div>
 
         <div className="table-section">

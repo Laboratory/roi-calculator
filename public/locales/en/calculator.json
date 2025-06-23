@@ -9,7 +9,9 @@
       "investmentDetails": "Investment Details",
       "marketScenarios": "Market Scenarios",
       "results": "Results",
-      "presaleSetup": "Presale Setup"
+      "presaleSetup": "Presale Setup",
+      "leadCapture": "Lead Capture",
+      "simplified": "Simplified"
     },
     "projectName": {
       "label": "Project Name",
@@ -248,5 +250,27 @@
       "unlocked": "Unlocked Tokens",
       "locked": "Locked Tokens"
     }
+  },
+  "leadCapture": {
+    "title": "🚀 Get Early Access to Premium Features",
+    "subtitle": "Join 1000+ smart investors getting exclusive IDO insights and advanced tools",
+    "advancedTitle": "🎯 Want More Advanced Analysis?",
+    "advancedSubtitle": "Get exclusive access to advanced ROI tools, market insights, and IDO alerts",
+    "getAccess": "Get Free Access",
+    "skip": "Skip for now",
+    "telegram": "Join Telegram",
+    "benefits": "✓ Exclusive IDO alerts ✓ Advanced calculator features ✓ Market analysis ✓ No spam, unsubscribe anytime",
+    "success": "Welcome aboard! 🎉",
+    "successMessage": "Check your email for exclusive content and early access to new features."
+  },
+  "simplified": {
+    "title": "Quick ROI Calculator",
+    "subtitle": "Get instant insights in 3 simple steps",
+    "step1": "Enter your investment",
+    "step2": "Set token details", 
+    "step3": "See your returns",
+    "showAdvanced": "Show Advanced Options",
+    "hideAdvanced": "Hide Advanced Options",
+    "quickCalculate": "Calculate My ROI"
   }
 }
